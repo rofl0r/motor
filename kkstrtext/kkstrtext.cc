@@ -431,7 +431,7 @@ int stringcompare(void *s1, void *s2) {
 }
 
 int intcompare(void *s1, void *s2) {
-    return (int) s1 != (int) s2;
+    return s1 != s2;
 }
 
 string i2str(int i) {

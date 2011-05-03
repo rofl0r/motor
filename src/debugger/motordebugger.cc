@@ -9,6 +9,7 @@
 
 #include <strstream>
 #include <iostream>
+#include <memory>
 #include <fcntl.h>
 #include <sys/ioctl.h>
 #include <sys/wait.h>

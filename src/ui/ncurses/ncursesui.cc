@@ -1242,7 +1242,7 @@ bool ncursesui::projectsettings() {
 	populatesettingstree(*db.gettree());
         if(fin = !db.open(n, b, &p)) break;
 
-        switch((int) p) {
+        switch((size_t) p) {
             case 10:
 		if(input(motorui::text, buf = project.getversion(),
 		_("version: ")) == motorui::yes) {
@@ -1368,7 +1368,7 @@ void ncursesui::populatecontentstree(treeview &tree, motorproject &mp, projedita
 	    id = tree.getid(i);
 
 	    if(tree.isnode(id))
-		if(sid = (int) tree.getref(id))
+		if(sid = (size_t) tree.getref(id))
 		    if(!tree.isnodeopen(id))
 			cnodes.push_back(treeshit[sid-1].second->gettagname());
 	}

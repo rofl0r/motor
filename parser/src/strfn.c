@@ -44,19 +44,6 @@ char byte2char(char c) {
     return z;
 }
 
-/* string function */
-char *strndup(const char *src, int size) {
-    int s;
-    char *r;
-
-    if ((s = strlen(src)) > size) s = size;
-    
-    r = calloc(1, s + 1);
-    memcpy(r, src, s);
-    
-    return r;
-}
-
 char *strappend(char *dst, const char *src) {
     int dlen;
     

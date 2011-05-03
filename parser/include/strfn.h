@@ -32,23 +32,11 @@
 #ifndef _STRFN_H
 #define _STRFN_H
 
+#include <string.h>
+
 /*****************************************************************************/
 /* Functions for manipulate strings */
 /*****************************************************************************/
-
-/*
-* strndup - Duplicate string with maximum length specified.
-*
-* WARNING: This function can process memory allocation.
-* 
-* Parameters:
-*	char *src - source string
-*	int size - new string maximum size
-*
-* Return value:
-* 	char * - new string
-*/
-char *strndup(const char *src, int size);
 
 /*
 * strappend - Append source string to destination.

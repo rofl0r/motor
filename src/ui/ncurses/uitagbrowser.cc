@@ -95,7 +95,7 @@ void uitagbrowser::changemode() {
     cm.close();
 
     if(n) {
-	int c = (int) cm.getref(n-1);
+	size_t c = (size_t) cm.getref(n-1);
 
 	if(c != tagbrowser.getscope()) {
 	    tagbrowser.setscope((motortagbrowser::viewscope) c);
@@ -142,7 +142,7 @@ void uitagbrowser::changefilter() {
 	switch(cm.open()) {
 	    case -2:
 		iter = false;
-		c = (char) (int) cm.getref(cm.getpos());
+		c = (char) (size_t) cm.getref(cm.getpos());
 
 		while((pos = nfilter.find(c)) != -1) {
 		    nfilter.erase(pos, 1);
@@ -240,7 +240,7 @@ void uitagbrowser::exec() {
     m.setpos(mpos);
 
     if(r = (n = m.open())) {
-        k = (int) m.getref(n-1);
+        k = (size_t) m.getref(n-1);
         mpos = n-1;
     }
 
