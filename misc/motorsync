@@ -1,0 +1,269 @@
+#!/bin/sh
+
+#
+# This script can be used to for checking out and updating
+# a program with anonymous r/o CVS access.
+#
+# by Konstantin Klyagin <konst@konst.org.ua>
+#
+# $Id: motorsync,v 1.19 2004/07/08 14:39:39 konst Exp $
+#
+
+CROOT=":pserver:anonymous@cvs.thekonst.net:/home/konst/cvs/root"
+
+PROG="motor"
+MODULES="kktoolbox/kkstrtext kktoolbox/kksystr kktoolbox/kkconsui parser"
+MAKEUPDATE=""
+MONOLITE="1"
+
+RETVAL=0
+CVS="cvs -z9 -d $CROOT"
+
+moduledir=""
+
+checkutils() {
+    for i in automake autoconf aclocal autoheader gettextize; do
+	r=`which $i 2>&1`
+	if test ! -f "$r"; then
+	    echo "error: you must have $i installed to be able to use $0"
+	    exit 1
+	fi
+    done
+
+    vcvs=`cvs --version | grep System | gawk '{print $5}' | gawk -F . '{print $1 " " $2}'`
+    if test "$vcvs" = "1 10"; then
+	echo "CVS version 1.11 or later is needed in order to use $0"
+	exit 1
+    fi
+
+    ver=1.4
+    for i in automake aclocal; do
+	r=`which $i-$ver 2>&1`
+	eval $i=$i
+	if test -f "$r"; then eval $i=$i-$ver; fi
+    done
+
+    ver=2.13
+    for i in autoconf autoheader; do
+	r=`which $i-$ver 2>&1`
+	eval $i=$i
+	if test -f "$r"; then eval $i=$i-$ver; fi
+    done
+}
+
+preparedirs() {
+    if test ! -d ${DEST}; then
+	mkdir -p ${DEST};
+    fi
+}
+
+getmoduledirname() {
+    moduledir=`echo $1 | sed 's@^..*/\(..*\)$@\1@g'`
+}
+
+progsync() {
+    preparedirs
+    codir=$PROG
+    dir=$prefix
+
+    for module in $PROG $MODULES
+    do
+	if test $module != $PROG; then
+	    getmoduledirname $module
+	    dir=$DEST/$moduledir
+	    codir="orig"
+	fi
+
+	mkdir -p $dir
+
+	if test -d $dir; then
+	    cd $dir
+
+	    if test $1 = "checkout"; then
+		$CVS co -d $codir $module
+	    else
+		cd $codir
+		$CVS update -C -P -d
+	    fi
+
+	    RETVAL=$?
+	    [ $RETVAL != 0 ] && return
+	fi
+    done
+
+    find $DEST -name ".#*" -exec rm -f {} \;
+}
+
+makelinks() {
+    echo -n "Creating symbolic links for sources of libraries.. "
+
+    for module in $MODULES
+    do
+	getmoduledirname $module
+	dir=$DEST/$moduledir/orig
+
+	if test -d $dir; then
+	    cd $dir
+
+	    for fn in `find $dir -name "*.h" -o -name "*.cc" -o -name "*.c" -o -name "*.cpp" -o -name "*.C" -o -name "Makefile.am" -o -name "*.in"`
+	    do
+		srcfname=`echo $fn | sed 's@^..*/\(orig/..*\)$@\1@'`
+		destdir=`dirname $fn | sed 's@/orig@@'`
+		updirs=`echo $srcfname | sed 's/ /_/g;s/\// /g' | wc -w`
+		updirs=`expr $updirs - 2`
+		i=0
+
+		while test $i -lt $updirs; do
+		    srcfname="../"$srcfname
+		    i=`expr $i + 1`
+		done
+
+		if test ! -d $destdir; then
+		    mkdir -p $destdir
+		fi
+
+		if test ! -f $destdir/`basename $srcfname`; then
+		    ln -sf $srcfname $destdir/
+		fi
+	    done
+	fi
+    done
+
+    echo "ok"
+}
+
+updatemakepaths() {
+    if test ! -z "$MAKEUPDATE"; then
+	for fn in `find $DEST -name "Makefile.am"`
+	do
+	    sed $MAKEUPDATE $fn >.makefile.am
+	    mv .makefile.am $fn
+	done
+    fi
+
+    for m in $MODULES
+    do
+	getmoduledirname $m
+	for fn in `find $DEST -name "configure.in"`
+	do
+	    smask="s/${moduledir}-[[:digit:].-][[:digit:].-]*/${moduledir}/g"
+
+	    sed $smask $fn >.configure.in
+	    mv .configure.in $fn
+	done
+    done
+
+    MSUBDIRS=`cat $DEST/Makefile.am | egrep "^SUBDIRS" | sed 's/SUBDIRS[ =][ =]*//g'`
+    
+    for m in $MODULES
+    do
+	getmoduledirname $m
+	onlist=`echo $MSUBDIRS | grep $moduledir`
+	if test -z "$onlist"; then
+	    MSUBDIRS="$moduledir $MSUBDIRS"
+	fi
+    done
+
+    echo "SUBDIRS = $MSUBDIRS" >.makefile.am
+    egrep -v "^SUBDIRS" $DEST/Makefile.am >>.makefile.am
+    mv .makefile.am $DEST/Makefile.am
+}
+
+runautomake() {
+    if test "$MONOLITE" != "0"
+    then
+	traverse="${DEST}/configure.in"
+    else
+	traverse=`find $DEST -name "configure.in" -print`
+    fi
+
+    for i in $traverse
+    do
+	cd `dirname $i`
+
+	$aclocal
+	headneeded=`grep AM_CONFIG_HEADER configure.in`
+	if test ! -z "$headneeded"; then $autoheader; fi
+	$autoconf
+	$automake -a -c
+    done
+
+    cd $DEST
+    if test ! -f intl/Makefile.in; then
+	p="--no-changelog"
+	while true; do
+	    gettextize -f --intl $p
+	    if test ! -z "$p"; then p=""; else break; fi
+	done
+
+	if test -f po/Makevars.template -a ! -f po/Makevars; then
+	    mv po/Makevars.template po/Makevars
+	fi
+
+	if test -d m4; then
+	    sed 's/^\s*SUBDIRS[         =]*m4[  =]*\(.*\)$/SUBDIRS = \1/g' <Makefile.am >11
+	    grep -v "ACLOCAL_AMFLAGS = -I m4" 11 >Makefile.am
+	    rm -rf m4 11
+	    sed 's@intl/Makefile@@;s@po/Makefile.in@@;s@m4/Makefile @@' <configure.in >11
+	    mv 11 configure.in
+	fi
+
+	aclocal
+    fi
+}
+
+usage() {
+    echo "
+This is a script which can checkout and update $PROG from an
+anonymous CVS repository.
+
+script usage:
+    $0 {update|checkout} <pathname>
+"
+}
+
+finishmsg() {
+    echo "
+CVS operations finished sucessfully.
+
+To build the updated stuff go to the ${DEST} directory
+and issue the following commands:
+
+./configure
+make
+make install
+"
+}
+
+if test $# -lt 2; then
+    usage
+else
+    checkutils
+
+    if test ! -d $2; then
+	echo "the location you specified does not exist: $2"
+	exit
+    else
+	cd $2
+	prefix=`pwd`
+	DEST=${prefix}/$PROG
+    fi
+
+    if test $1 = "checkout" -o $1 = "update"; then
+	progsync $1
+    else
+	usage
+	exit
+    fi
+
+    if test $RETVAL != 0; then
+	echo "$0 aborted, exit code = $RETVAL"
+    else
+	updatemakepaths
+	makelinks
+	runautomake
+	finishmsg
+    fi
+fi
+
+exit $RETVAL

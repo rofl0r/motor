@@ -1,0 +1,18 @@
+#
+# This is an external programs definition file.
+#
+
+%keys
+
+# External keys section. Each line here must look like this:
+#
+# key		command line
+#
+# ctrl-<key>	command to execute
+# alt-<key>	command to execute [value motor_variable]
+#
+# Note: you can't override keys that are already used
+# by the motor IDE. Only unused ones.
+#
+
+ctrl-v		vi [value cureditfile]

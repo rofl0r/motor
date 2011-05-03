@@ -1,0 +1,8 @@
+Basic Installation
+==================
+
+   These are generic installation instructions.
+
+   To install the parser library you simply need to type "make" and then
+"make install". This will install the library into yours /usr/local/lib and
+/usr/local/include/parser directories.

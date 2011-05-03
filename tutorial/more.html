@@ -1,0 +1,290 @@
+<HTML>
+<HEAD><TITLE>More about Motor</TITLE></HEAD>
+<BODY BGCOLOR=White>
+
+<TABLE BORDER=0>
+<TR><TD></TD><TD WIDTH="60%">
+
+<H2>Introduction</H2>
+
+<P ALIGN="justify">
+
+In this article I will try to cover new features appeared in motor after
+2.6.3 version release. I gonna tell you why I decided to implement them
+and why you may feel need for them. This article can be considered as a
+status report easily.
+
+</P>
+
+<H2>What is motor? (if you still don't know)</H2>
+
+<P ALIGN="justify">
+
+Motor is an IDE for Linux that works in the console and provides the
+developer with a useful mcedit-like editor, front-ends to the compiler,
+linker, debugger (gdb), concurrent version system (cvs), ctags, rpm,
+automake/autoconf and other useful things. It can also generate
+distribution packages in any format. Almost everything is done with
+templates, so any kind of language or distribution can be added easily.
+
+</P>
+
+<H2>The new features as they are</H2>
+
+<H3>Autoconf/automake support</H3>
+
+<P ALIGN="justify">
+
+As autoconf/automake is a de-facto standard for Linux packages, I've
+been planning to implement support for it in motor for a long time. And
+now it's finally done. Most of files needed by automake are generated
+and updated by a script that resides inside Makefile.func (see below).
+
+</P>
+
+<P ALIGN="justify">
+
+Using automake gives a developer a bunch of benefits such as automatic
+dependency tracking, ready-to-use standard Makefile targets such as
+"dist" to generate a tar.gz distribution package, "all" to build the
+binaries, "clean" and "distclean" to clear generated stuff, etc. So it
+must have been supported by motor a long ago. Bad luck, I haven't got
+enough time to implement it before.
+
+</P>
+
+<P ALIGN="justify">
+
+To use automake/autoconf with a project you write with motor, you are
+simply to set "makefile mode" to "automake" value on project creation.
+If you decided to migrate an existing one to automake, the option is
+accessible in the "project settings" dialog. It happens sometimes some
+of your Makefile.am's are accidentaly removed or broken. In this case
+motor has a facility to regenerate it. This can be achieved with
+selecting the "Project->Regen. build stuff" menu item. You might also
+need to change something in your Makefile.am's or configure.in. All the
+files can be found in the "Build stuff" folder of the "Project files"
+dialog.
+
+</P>
+
+
+<H3>Gettext support</H3>
+
+<P ALIGN="justify">
+
+Another intresting feature motor 2.15.7 and later versions have. It's
+the gettext support. GNU gettext is a localization library designed
+specially to make Linux programs as well as other GNU software speak
+various languages. Any language can be supported just with putting a
+single file to the special directory.
+
+</P>
+
+<P ALIGN="justify">
+
+Now, how it works with motor. Please note that it requires you to be
+quite familiar with gettext itself. You can turn on or off the feature
+with the "Use GNU gettext for internationalization" item either in the
+"Create a new project" window or in the "Project settings" dialog.
+
+</P>
+
+<P ALIGN="justify">
+
+But turning the option on is not enough. Now you gotta create at least
+one translation file so gettext stuff is to be included into your
+project. For example, you are going to translate it into Russian (aren't
+you? :) yourself. Open the "Project files" dialog, and add a file named
+"po/ru.po" to the "Miscellaneous files" folder. As soon as the dialog is
+closed, all the necessary programs are ran and two directories are
+created. They are standard-named po/ and intl/.
+
+</P>
+
+<P ALIGN="justify">
+
+Being familiar with GNU gettext you should know that to make a program
+be multi-lingual some code is to be added to its source.
+
+Usually it's done the following way.
+
+<P>
+<B>// ...</B><BR><BR>
+
+<B>#ifdef ENABLE_NLS</B></BR>
+<B>#include &lt;libintl.h&gt;</B><BR>
+<B>#include &lt;locale.h&gt;</B><BR>
+<B>#define &nbsp; &nbsp; _(c) &nbsp; &nbsp; gettext(c)</B><BR>
+<B>#endif</B><BR><BR>
+
+<B>// ...</B><BR><BR>
+
+int main() {<BR>
+&nbsp;&nbsp; <B>// ...</B><BR>
+<B>#ifdef ENABLE_NLS</B><BR>
+&nbsp;&nbsp; setlocale(LC_ALL, "");<BR>
+&nbsp;&nbsp; bindtextdomain("progname", "/usr/share/locale");<BR><BR>
+
+&nbsp;&nbsp; &nbsp;&nbsp; <B>// Actually the directory for translation files
+should</B><BR>
+&nbsp;&nbsp; &nbsp;&nbsp; <B>// be specified in a more flexible way, but I left
+it</B><BR>
+&nbsp;&nbsp; &nbsp;&nbsp; <B>// hard-coded just to keep things
+simple.</B><BR><BR>
+
+&nbsp;&nbsp; textdomain("progname);<BR>
+<B>#endif</B><BR>
+<B>&nbsp;&nbsp; // ...</B><BR>
+}<BR>
+</P>
+
+Having done all of this you can easily add now .po's to the
+"Miscellaneous files" folder. If you use automake they will be compiled
+and installed automatically.
+
+</P>
+
+
+<H3>The magic functional Makefile</H3>
+
+<P ALIGN="justify">
+
+It was obvious previous versions of motor needed more and more
+flexibility. Growing amount of external GNU tools to be called, more
+complex scripts, you know. I though a little about how to group them. So
+I came up with a simple solution, to add a template for Makefile that
+does everything. Its name is Makefile.func and it's called to compile
+and clean the binaries and object files, to import files into CVS, to
+call a debuger, even to generate automake required Makefile.am files.
+
+</P>
+
+<P ALIGN="justify">
+
+The output of Makefile.func is displayed every time the execution is
+performed. Actually it's quite customizable. If you don't want to see
+all of those annoying and chaotic messages, you can easily turn it off
+with the appropriate options in the "Motor settings" dialog. Options for
+compiler and CVS output are separated. So you can control both of them.
+
+</P>
+
+
+<H3>Java support</H3>
+
+<P ALIGN="justify">
+
+Since the 2.15.7 release motor supports Java. Actually it's not that
+deep and great Java support JBuilder has. Motor cannot even debug Java
+programs so far though it's planned. What it can about this nice
+language now is just to support its syntax and generate appropriable
+Makefiles with automake. Also motor calls java VM to run a program from
+the IDE.
+
+</P>
+
+<P ALIGN="justify">
+
+First, you should have JDK. Also you will need path to your javac and
+java binaries present on your PATH environment variable. To create a
+Java program just follow the standard project creation procedure, don't
+forget to select the "terminal program/java" template for it. In the
+main class of your project (that what's the "Result file name" from the
+"Project settings" dialog points to) you should have the standard
+<B>public static void main()</B> method which is ran when you press F12.
+That's it.
+
+</P>
+
+
+<H3>Other nifty facilities</H3>
+
+<P ALIGN="justify">
+
+I was often bothered by the fact that gdb stepped inside the standard
+template library (STL) source when passing parameters of string type,
+lists, vectors and other stuff. That's why I decided to implement an
+option not to step inside the standard headers when debugging. You can
+control such a behaviour with the "Debug standard headers" option in the
+"Motor settings" dialog.
+
+</P>
+
+<P ALIGN="justify">
+
+It happens from time you time you add some non-standard targets to the
+Makefile. I found motor not to be able to execute such ones. So now
+there is a "Make a target" item in the "Project" sub-menu. You can add
+any targets there that are executed from motor which shows their output.
+
+</P>
+
+
+<H3>Plans for the future releases</H3>
+
+<P ALIGN="justify">
+
+I'm frequently asked questions like this: "What are you planning to
+implement in the next release of motor?". Well, I will try to tell about
+the planned features here in brief.
+
+</P>
+
+<H4>CVS front-end improvement</H3>
+
+<P ALIGN="justify">
+
+While using my own made front-end for CVS with motor, I found something
+I can also need. Aside from checking in and out, viewing the file
+modification history and module releases, it would be really great to
+have a branching facility and ability to view diffs CVS can generate.
+That's what I plan to implement first of all.
+
+</P>
+
+<H4>Regexper tool</H3>
+
+<P ALIGN="justify">
+
+This small feature can be of interest for those who like regular
+expressions and use it in their everyday programming. This gonna be a
+dialog that allows to construct regexps, try matching to various strings
+specified and if everything is ok, give an ability for programmer to
+insert it into the source.
+
+</P>
+
+<H4>Sending signals to a program being run</H3>
+
+<P ALIGN="justify">
+
+Every time a program I write is being ran, looking at the motor screen I
+think why a developer cannot do anything there? So I think it's a good
+idea to add some functionality such as sending signals, and maybe doing
+something else instead of just reporting the program running.
+
+</P>
+
+<H2>About the Author</H2>
+
+<P align="justify">
+
+<IMG SRC="images/konstsm.jpg" ALIGN=LEFT>
+
+Konstantin "konst" Klyagin, lives in Kharkov, Ukraine. He is a 4th year
+student of the Kharkov State Polytechnical University, going to get his
+BS in System Analysis this year. Works as a programmer for the <A HREF="http://www.creativedd.com/">"Creative Data Desicions" company</A>. Has
+got about 10 years overall programming expirience. Personal interests
+relate to computers, networking, programming, IT, Linux, digital
+innovations and also art, painting, history, politics, heavy music,
+girls, and having fun. Can be contacted at <A HREF="mailto:konst@konst.org.ua?subject=motor">konst@konst.org.ua</A>.
+Konst's personal site URL is <A HREF="http://konst.org.ua/">http://konst.org.ua/</A>.
+
+</P>
+
+
+</TD><TD></TD></TR>
+</TABLE>
+
+</BODY></HTML>

@@ -1,0 +1,143 @@
+%pairs classic
+1	yellow/blue	bold
+2	white/blue	bold
+3	green/blue	bold
+4	cyan/blue	bold
+5	white/blue
+6	black/cyan
+7	white/blue	bold
+8	green/blue	bold
+9	white/blue	bold
+10	white/blue	bold
+
+%pairs mc
+1	white/blue
+2	yellow/blue	bold
+3	red/blue	bold
+4	white/blue
+5	red/blue
+6	black/cyan
+7	cyan/blue	bold
+8	green/blue
+9	magenta/blue	bold
+10	yellow/blue	bold
+
+%pairs mono
+1	white/black
+2	white/black	bold
+3	white/black	bold
+4	white/black	bold
+5	white/black
+6	black/white
+7	white/black	bold
+8	white/black	bold
+9	white/black	bold
+10	white/black	bold
+
+%pairs dark
+1	cyan/black
+2	cyan/black	bold
+3	green/black	bold
+4	blue/black	bold
+5	white/black
+6	blue/white
+7	white/black	bold
+8	green/black
+9	white/black	bold
+10	white/black	bold
+
+%lang
+tag	default
+all	1 6
+alone	GNU;motor	1
+
+%lang
+tag	C
+mask	\.c$
+all	1 6
+alone	int;void;struct;char;if;switch;for;while;case;static;signed;unsigned;default;else;goto;break;return;long;short;typedef;const;extern;enum;do;continue;inline;double;float	2
+eol	#		3
+eol	//		5
+comment	/* */		5
+quotes	"' \		8
+symbol	(){}[],.:	7
+symbol	;		9
+symbol	*=<>+-%/	10
+block	0123456789	4
+
+%lang
+tag	C++
+mask	\.(cc|C|cpp|h|hpp|hxx|hh)$
+all	1 6
+alone	int;void;struct;char;if;switch;for;while;case;static;signed;unsigned;default;else;goto;break;return;long;short;typedef;const;extern;enum;do;continue;inline;double;float	2
+alone	class;new;delete;true;false;try;catch;template;protected;private;public;string;throw;virtual;namespace;using;list;vector;ifstream;ofstream;istream;ostream;iterator;reverse_iterator;const_iterator;cin;cout;operator;this;friend;bool;dynamic_cast;static_cast;mutable;typename	2
+eol	#		3
+eol	//		5
+comment	/* */		5
+quotes	"' \		8
+symbol	(){}[],.:	7
+symbol	;		9
+symbol	*=<>+-%/	10
+block	0123456789	4
+
+%lang
+tag	java
+mask	\.java$
+all	1 6
+alone	abstract;boolean;byte;byvalue;cast;extends;final;implements;import;inner;instanceof;outer;package;rest;synchronized;throws;transient;finally;future;generic;interface;native;null;super;var;clone;equals;finalize;getClass;hashCode;notify;notifyAll;toString;wait;break;case;char;const;continue;default;do;double;else;float;for;goto;if;int;long;return;short;static;switch;void;volatile;while;catch;class;new;private;protected;public;this;throw;try;false;true	2
+eol	#		3
+eol	//		5
+comment	/* */		5
+quotes	"' \		8
+symbol	(){}[],:	7
+symbol	;		9
+symbol	*=<>+-%/	10
+block	0123456789	4
+
+%lang
+tag	perl
+mask	\.(pl|PL)$
+all	1 6
+alone	STDIN;STDOUT;STDERR;STDARGV;DATA	3
+alone	and;or;not;do;if;until;elsif;else;unless;while;foreach;for;goto;last;next;bless;caller;import;package;require;return;untie;use	9
+alone	sub;abs;atan;cos;exp;int;log;rand;sin;sqrt;srand;time;chr;gmtime;hex;localtime;oct;ord;vec;pack;unpack;chomp;chop;crypt;eval;index;length;lc;lcfirst;quotemeta;rindex;substr;uc;ucfirst;delete;each;exists;grep;join;keys;map;pop;push;reverse;scalar;shift;sort;splice;split;unshift;values;chmod;chown;truncate;link;lstat;mkdir;readlink;rename;rmdir;stat;symlink;unlink;utime;binmade;close;dbmclose;dbmopen;binmade;eof;fcntl;fileno;flock;getc;ioctl;open;pipe;print;printf;read;seek;select;sprintf;sysopen;sysread;syswrite;tell;formline;write;closedir;opendir;readdir;rewinddir;seekdir;telldir;alarm;chdir;chroot;die;exec;exit;fork;getlogin;getpgrp;getppid;getpriority;glob;kill;setpgrp;setpriority;sleep;syscall;system;times;umask;wait;waitpid;warn;accept;bind;connect;getpeername;getsockname;getsockopt;listen;recv;send;setsockopt;shutdown;socket;socketpair;msgctl;msgget;msgsnd;msgrcv;semctl;semget;semop;shmctl;shmget;shmread;shmwrite;defined;dump;eval;local;my;ref;reset;scalar;undef;wantarray;endpwent;getpwent;getpwnam;getpwuid;setpwent;endgrent;getgrgid;getgrnam;getgrent;setgrent;endhostent;gethostbyaddr;gethostbyname;gethostent;sethostent;endnetent;getnetbyaddr;getnetbyname;getnetent;setnetent;endservent;getservbyname;getservbyport;getservent;serservent;endprotoent;getprotobyname;getprotobynumber;getprotoent;setprotoent	2
+alone	$_;$.;$/;$,;$";$\;$#;$*;$?;$];$[;$!;$@;$:;$0;$$;$<;$>;$(;$);$%;$=;$-;$~;$|;$&;$`;$';$\+;$^A;$^D;$^E;$^I;$^L;$^P;$^T;$^W;$^X;$^A;@EXPORT;@EXPORT_OK;@INC;@ISA;@_;@ENV;@OVERLOAD;@SIG	5
+eol	#		5
+symbol	*=<>+-%		10
+block	0123456789	4
+symbol	(){}[],:	7
+quotes	"' \		8
+symbol	;		9
+
+%lang
+tag	rc
+mask	rc$|\.conf$|^conf\.
+all	5 6
+eol	#		3
+
+%lang
+tag	make
+mask	(\/|^)Makefile
+all	1 6
+eol	#		3
+
+%lang
+tag	pascal
+mask	\.(pp|pas)$
+all	1 6
+alone	absolute;abstract;and;array;as;asm;assembler;begin;break;case;cdecl;class;const;continue;constructor;default;destructor;dispose;div;do;downto;dynamic;else;end;except;exit;export;exports;external;fail;far;file;finalization;finally;for;forward;function;goto;if;implementation;in;inherited;initialization;inline;interface;interrupt;is;label;library;mod;near;new;nil;not;object;of;on;operator;or;override;packed;private;procedure;program;property;public;published;raise;read;record;repeat;self;set;shl;shr;stdcall;string;then;to;try;type;unit;until;uses;var;virtual;while;with;xor	2
+eol 	//		5
+comment	{ }		5
+quotes	' '		8
+symbol	()[],:		7
+symbol	;		9
+symbol	*=<>+-%		10
+block	0123456789	4
+
+%lang
+tag	gettext
+mask	\.(po|pot)$
+all	1 6
+alone	msgid;msgstr	2
+eol	#		5
+quotes	" \		8

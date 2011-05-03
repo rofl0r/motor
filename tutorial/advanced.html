@@ -1,0 +1,397 @@
+<HTML><TITLE>Programming with Motor: Advanced Issues</TITLE>
+<BODY BGCOLOR=White>
+
+<TABLE BORDER=0>
+<TR><TD></TD><TD width="60%">
+
+<H2>This Article</H2>
+
+<P align="justify">
+
+In the previous article named "Introducing Motor: A Programming IDE
+for Linux", I covered the basics of software development using
+Motor. Now I continue with a look at some advanced issues such as
+debugging, organizing your libraries, version control and a bit
+more. By the way, I've just released the new 2.0.0 version of Motor,
+so features appearing in this latest release are also covered in this
+article.
+
+</P>
+
+
+<H2>A Small Address to the Community</H2>
+
+<P align="justify">
+
+Currently, almost all the planned features of Motor have been implemented.
+Now, I want to address all the GNU programmers who have experience in
+programming with GTK+/GNOME. I realize that a lot of people work in X, so
+my next big plan is to make a GNOME-based GUI version of Motor. If you
+want to help me create a good IDE -- not only for console, but for X
+too, please contact me and we will work out a strategy together.
+
+</P>
+
+
+<H2>Debugging with Motor</H2>
+
+<P align="justify">
+
+Motor has a useful front-end to gdb, a popular Linux debugger. Let's
+check it out. Start by opening your favorite project to get a quick
+insight on what happens inside the program in run time. I assume you
+already have Motor running and you can see the editor window. For a
+quick look at all the debug commands available, just press F10 and
+then open the "Debug" sub-menu.
+
+</P>
+
+<CENTER><IMG SRC="images/snapshot04.png"></CENTER><br>
+
+
+<H3>Before You Debug. Important Note</H3>
+
+<P align="justify">
+
+Motor can only debug programs in local console. That means that you
+need to sit in front of your Linux/FreeBSD/whatever box and work on a
+local tty. One of those you usually switch with Alt-F1..F12 :) Also
+you should have a place to run a debug session, a free tty, Just like
+X-Windows needs a free tty to start X display.
+
+</P>
+
+<H3>"Step into" and "Trace over"</H3>
+
+<P align="justify">
+
+Even a very minimalist gdb front-end allows you to run a program
+line-by-line. That usually means you can see the line to be executed
+highlighted on your screen, then press a key and move to the next line,
+etc. till the program ends. During that, you can either trace into
+subroutines called in the line of code or just jump over them to the next
+line in the current routine. Motor lets you do it very easily. Just start
+your program, not with "Run" (F12), but with the F8 key. The program
+starts and then Motor positions and highlights the first line in the
+main() function of your program. Then, pressing F8 or F7 (remember
+the difference) you can go through all the program source cycling
+into 'for' and 'while' constructions, entering and exiting functions, etc.
+
+</P>
+
+<CENTER><IMG SRC="images/snapshot05.png"></CENTER><br>
+
+
+<H3>"Go to cursor" command</H3>
+
+<P align="justify">
+
+This option allows you to stop a program at any line in the code. To
+do it, just position the cursor on the line you want Motor to stop the
+program and press F4. The program will execute until this line is
+reached. Then Motor will let you decide what to do next. You can
+terminate the debug session with Ctrl-F12.
+
+</P>
+
+<H3>Breakpoints</H3>
+
+<P align="justify">
+
+A "breakpoint" makes your program stop every time a certain line in
+the source is reached. To set a breakpoint at the specific line just
+position the cursor and press Ctrl-B. The line will be highlighted and
+next time it is passed, motor will stop and let you do further
+debugging. If you press Ctrl-B on an already highlighted line,
+breakpoint is removed. A list of the breakpoints can be invoked using Alt-B.
+
+</P>
+
+<CENTER><IMG SRC="images/snapshot06.png"></CENTER><br>
+
+
+<H3>Inspecting Data</H3>
+
+<H4>Evaluate/Modify Dialog</H4>
+
+<P align="justify">
+
+During debug, you may wish to see values of various variables to get a clear
+view of what is happening in your code. The easiest way to see a value,
+evaluate an expression or even modify some data is the "Evaluate/modify"
+dialog. It is opened with the Alt-E key and contains the following
+controls: expression to evaluate, its value and the "change" item.
+Entered expressions are evaluated and their values are displayed. To
+change the expression or its value, just position on an appropriate
+item and press "Enter". But sometimes you might want to keep an eye on
+some variable values all the time as you jump through the source code.
+"Watches" is a useful feature in this case.
+
+</P>
+
+<CENTER><IMG SRC="images/snapshot07.png"></CENTER><br>
+
+
+<H4>Watches</H4>
+
+<P align="justify">
+
+To watch variables or expression values, you should open the watches
+window with Alt-W. Here you can add/remove watches or change values
+of the variables being watched. Press ESC-ESC or Alt-W to switch back
+to the editor or just Ctrl-D to close the window.
+
+</P>
+
+<CENTER><IMG SRC="images/snapshot08.png"></CENTER><br>
+
+
+<H3>Inspecting Code</H3>
+
+<H4>Call stack</H4>
+
+<P align="justify">
+
+A backtrace, a summary of how your program got to where it is, or call
+stack, can be viewed with Alt-S key. It allows you to open an appropriate
+part of the source code in the editor and view information about each
+function call, such as parameters, file name and line number. Very
+useful when you want to find out how long the way to the current line
+in the source was.
+
+</P>
+
+<CENTER><IMG SRC="images/snapshot09.png"></CENTER><br>
+
+
+<H4>Examining core dump files</H4>
+
+<P align="justify">
+
+Sometimes programs crash with "core dumped" message. Every time you
+see this message a file named "core" is created in current directory.
+Program can crash this way due to run-time problems ("segmentation
+fault" is the most frequent cause) or it can be forced to dump core
+and terminate with SIGQUIT (usually generated by the SysRq key), for
+example. So what is core? It's a file that holds all the information
+about your program before it crashed. It can be loaded then and all
+the code around the line that crashed as well as the variables can be
+inspected. Motor also allows you to load a core dump. All you need is
+to select "Load core dump" in the "Debug" sub-menu and point it to the
+'core' file. The information window will be displayed then and if
+everything went ok, the point in source where the program crashed will
+be highlighted. Now you can invoke a call stack viewer, etc. Note that
+you're inspecting a core dump, a still image of your program state, so
+no further program execution is possible.
+
+</P>
+
+
+<H2>Library Projects</H2>
+
+<P align="justify">
+
+All the IDEs I've seen before have had the same problem. If you
+want to connect your own written library to a project and you are also
+going to debug it along with your program, you had to include all the
+library source files into your project. This I will say, is not a very
+good way. So I decided to solve that inconvenience in Motor. With it,
+you can easily add the whole library, which is built if needed, every
+time you recompile a project. It can be easily removed from the project.
+
+</P>
+
+<H3>A Quick Example</H3>
+
+<P align="justify">
+
+Let's assume you have a library named tools. You created it from a
+special template named "library/static". Then you write a program and
+feel the need for this library. What should you do? It's enough just to
+open the "Project files" dialog, position it on the "Connected libraries"
+folder and press "Ins" or select "Add" item. The list of library
+projects is displayed. All you need is to select it here and press
+Enter. All the necessary paths and file names will be passed to the
+compiler the next time you try to build the project. The library with all
+of its attributes can be removed from the project in the same way.
+
+</P>
+
+
+<H2>Version Control</H2>
+
+<P align="justify">
+
+Being a Linux developer you must have heard about CVS. It's a powerful
+version control system for Linux. But I'll explain what it is in a
+few words for newbies. CVS allows you to keep track of all the changes
+made to a program source. You can retrieve old versions of your code if
+some bugs were added with the last modifications. Every change can be
+commented and put into a history. Lets move on to how motor interacts with CVS.
+
+</P>
+
+<H3>Preparing a Repository</H3>
+
+<P align="justify">
+
+To be able to use CVS you should have a repository, place to put the stuff.
+CVS can work though TCP/IP as well as in local mode. Here I'll explain
+how to create a minimalist local repository. For further information about
+setting up a CVS TCP/IP server, please consult the CVS documentation and
+info pages.
+
+</P>
+
+<P align="justify">
+
+First, make sure you have CVS installed in your system by typing cvs
+on your command line. If you haven't got it, you can download it from
+its web site at <A HREF="http://www.cvshome.org/">www.cvshome.org</A>.
+
+</P>
+
+<P align="justify">
+
+For example, you want the repository to reside in your home directory
+in the cvsroot/ sub-dir. To create it, execute the following command.
+
+</P>
+
+<P align="justify"><B>
+
+cvs -d /home/myusername/cvsroot init
+
+</B></P>
+
+</P>
+
+
+<H3>Motor and CVS</H3>
+
+<P align="justify">
+
+To be able to use CVS with Motor, first of all you should point it to
+the repositories you wanna work with. It can be done with the "Motor
+settings" dialog, invoked either from the project list dialog or from
+the "File" menu. You can see two options of switch kind here and a
+list of CVS repositories. Press Ins to add one. A repository
+specification consists of two parts: access method and path. For our
+local repository we should specify the following:
+<B>:local:/home/myusername/cvsroot</B> or just <B>/home/myusername/cvsroot</B>
+since CVS assumes local mode by default. The other two options in the dialog
+allow you to enable or disable "auto commit/update changes" made to
+your projects when you open or close them.
+
+</P>
+
+<CENTER><IMG SRC="images/snapshot10.png"></CENTER><br>
+
+
+<H3>Setting Up the Project Files</H3>
+
+<P align="justify">
+
+Now having at least one repository specified in your configuration, you
+can easily put your project under version control. Press F10 to
+activate the menu and select "CVS->Import into CVS" item. You will
+be asked to select a repository to import a project into. Then wait a
+while as the project is imported.
+
+</P>
+
+
+<H3>Imported. What next?</H3>
+
+<P align="justify">
+
+After importing the files of your project into the CVS repository you
+can access all the CVS functionality. You can watch and then commit and/or
+update changes, see the history and check out old releases and modifications.
+
+</P>
+
+<H4>Checking in and Out</H3>
+
+<P align="justify">
+
+After you select this item in the "Debug" menu, Motor runs CVS to
+check for modifications in your source and compares your local version
+with the repository. Then the report is displayed saying what files were
+changed. In this dialog you can "Update" (synchronize your local copy
+with the repository getting all the changes and applying them to your
+local source), "Commit" (send your local changes in the repository)
+and "Tag a release".
+
+</P>
+
+<CENTER><IMG SRC="images/snapshot11.png"></CENTER><br>
+
+
+<H4>Tagging Releases</H3>
+
+<P align="justify">
+
+This option is useful when you think the source is ok (stable?) and
+you want to put a milestone to be able to roll back in case any bugs
+appear because of further modifications. It can be run from several
+places: from the menu, from the check in/out dialog and from the
+distribution generation dialog. After you select this item, you are
+asked for a release name. Note, it must start with a letter. Once a
+release is tagged, it appears on the release history every time you
+invoke it.
+
+</P>
+
+<H4>Release and File Histories</H3>
+
+<P align="justify">
+
+Since the changes and comments are held in the repository, there must
+be a way to view the history. There are two histories. File history
+displays a chronological sequence of modifications and comments for
+the current file open in the editor. With release history you can view
+and check out either a single file or a whole set of source files from
+previously tagged releases. Checked out source will replace your local
+copies and be re-loaded in editor if necessary.
+
+</P>
+
+<H2>Contributing to Motor Development</H2>
+
+<P align="justify">
+
+As it usually happens with my programs -- any comments, ideas,
+bug-reports and patches you make while using Motor, are welcome. Mail 
+them to <A HREF="mailto:konst@konst.org.ua?subject=motor">me
+directly</A>. There is also a section for programs written using  Motor
+at its homepage. If you don't mind listing your program  there, you can
+fill out a form and the information will appear  on the <A
+HREF="http://konst.org.ua/motor/">motor web site</A>.
+	       
+</P>
+
+<H2>About the Author</H2>
+
+<P align="justify">
+
+<IMG SRC="images/konstsm.jpg" ALIGN=LEFT>
+
+Konstantin "konst" Klyagin, lives in Kharkov, Ukraine. He is a 4th year
+student of the Kharkov State Polytechnical University, next year going
+to get BS in System Analysis. Works as a programmer for the <A
+HREF="http://www.nixsolutions.com/">"NIX Solutions" company</A>. Has
+got about 10 years overall programming expirience. Personal interests
+relate to computers, networking, programming, IT, Linux, digital
+innovations and also art, painting, history, politics, heavy music,
+girls, and having fun. Can be contacted at <A
+HREF="mailto:konst@konst.org.ua?subject=motor">konst@konst.org.ua</A>.
+Konst's personal site URL is <A
+HREF="http://konst.org.ua/">http://konst.org.ua/</A>.
+
+</P>
+
+</TD><TD></TD></TR>
+</TABLE>
+
+</BODY></HTML>

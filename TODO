@@ -1,0 +1,84 @@
+/*
+*
+* DONE
+*
+*/
+
+/*
+*
+* BUGS
+*
+*/
+
+comments like //*
+
+/*
+*
+* TODO
+*
+*/
+
+svn support
+
+automatically DL required projects
+
+ctrl-` - switch between source and header
+
+separate command line for linker and compiler for dist target
+
+configure options for compiling various libraries in
+
+patch from Szasz Pal
+
+make a branch..
+    how to detect if it's a branch or not
+    how to separate branches in connected projects?
+
+merge
+
+vcs: revision explorer
+transform "check out a specific release" to "view releases.." -> dialog
+with ability to view logs on specific files in releases, view diffs and
+checkout files and releases
+
+finish the perl template
+    make breakmain execute without run command
+    multiline debugger commands
+
+HOWTO on new templates
+
+indent front-end with preview feature
+
+ability to catch already cvs-controlled source
+    "from files" is to import the VCS settings
+
+look at kbabel
+
+context man pages :)
+
+compiler and linker options IDE-only mode or take cppflags from configure.in
+
+auto-commit the project file to vcs, and read it on import
+
+improve gnudoc
+
+error msgs longer than 80
+ability to view output of program ran in the same console with motor
+
+rebuild on a library file change
+
+send a signal and other functions while the program is running..
+
+gdb: break <position> if <condition>
+configurable key bindings
+renaming projects
+rootdir not found -> point another one :)
+
+strace front-end
+shared libs
+
+
+TODO list (reminder)
+ChangeLog generation
+documentation manager (spell check, etc)
+single console debugging

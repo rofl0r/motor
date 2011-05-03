@@ -1,0 +1,1497 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: motor 3.3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-07-09 02:19+0300\n"
+"PO-Revision-Date: 2003-04-05 10:53+0300\n"
+"Last-Translator: Konstantin Klyagin <konst@konst.org.ua>\n"
+"Language-Team: Russian <konst@konst.org.ua>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=koi8-r\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/debugger/motordebugger.cc:107
+msgid "Debugging is not supported by the project template"
+msgstr "Отладка не поддерживается темплейтом проекта"
+
+#: src/debugger/motordebugger.cc:151
+#, c-format
+msgid "Cannot debug %s"
+msgstr "Отладка %s невозможна"
+
+#: src/debugger/motordebugger.cc:157
+msgid "No free tty to start a debug session. Run without debugging?"
+msgstr "Нет свободного tty для запуска отладчика. Запустить напрямую?"
+
+#: src/debugger/motordebugger.cc:176
+msgid "It's impossible to run this kind of projects"
+msgstr "Невозможно запустить проект такого типа"
+
+#: src/debugger/motordebugger.cc:201
+#, c-format
+msgid "Running %s.. Ctrl-C to break"
+msgstr ""
+
+#: src/debugger/motordebugger.cc:213
+#, c-format
+msgid "Killed %s"
+msgstr "Завершен %s"
+
+#: src/debugger/motordebugger.cc:221
+msgid "The source was modified. Do you want to rebuild the program?"
+msgstr "Исходный код был изменен. Перекомпилировать программу?"
+
+#: src/debugger/motordebugger.cc:239 src/debugger/motordebugger.cc:258
+#, fuzzy, c-format
+msgid "Continuing running %s.. Ctrl-C to break"
+msgstr "Продолжение выполнения %s.."
+
+#: src/debugger/motordebugger.cc:273
+msgid "Debugger stopped"
+msgstr "Отладчик остановился"
+
+#: src/debugger/motordebugger.cc:307
+msgid "Reading the stack info.."
+msgstr "Чтение информации о стеке.."
+
+#: src/debugger/motordebugger.cc:327
+msgid "Stack info has been fetched"
+msgstr "Информация о стека была извлечена успешно"
+
+#: src/debugger/motordebugger.cc:329
+msgid "Cannot read the stack"
+msgstr "Невозможно прочитать стек"
+
+#: src/debugger/motordebugger.cc:342
+msgid "Loading core dump.."
+msgstr "Загрузка core dump.."
+
+#: src/debugger/motordebugger.cc:346
+msgid "Core dump load done"
+msgstr "Загрузка core dump завершена"
+
+#: src/debugger/motordebugger.cc:602
+#, c-format
+msgid "Stopped at breakpoint %s"
+msgstr "Точка останова %s"
+
+#: src/debugger/motordebugger.cc:607
+#, c-format
+msgid "Terminated %s"
+msgstr "Завершено выполнение %s"
+
+#: src/debugger/motordebugger.cc:613
+#, c-format
+msgid "Cannot start %s"
+msgstr "Невозможно запустить %s"
+
+#: src/debugger/motordebugger.cc:619
+#, c-format
+msgid "Interrupted: %s"
+msgstr "Прервано: %s"
+
+#: src/executor/motorexecutor.cc:21
+msgid "Executing "
+msgstr "Выполнение "
+
+#: src/grepper/motorgrepper.cc:88
+msgid "The regexp specified cannot be compiled"
+msgstr "Заданное регулярное выражение неверно"
+
+#: src/grepper/motorgrepper.cc:93
+#, c-format
+msgid "%d files grepped, %d matches found"
+msgstr "%d файлов просмотрено, %d вхождений найдено"
+
+#: src/grepper/motorgrepper.cc:108
+#, c-format
+msgid "Grepping %s.."
+msgstr "Поиск в %s.."
+
+#: src/project/motorfolder.cc:85
+#, c-format
+msgid "Directory %s does not exist. Create it?"
+msgstr "Каталог %s не существует. Создать?"
+
+#: src/project/motorfolder.cc:88
+msgid "Unable to create the directory"
+msgstr "Невозможно создать каталог"
+
+#: src/project/motorfolder.cc:95
+#, c-format
+msgid "%s is ~not~ a directory"
+msgstr "%s ~не~ является каталогом"
+
+#: src/project/motorproject.cc:77
+msgid "Unable to find the project root directory"
+msgstr "Каталог проекта не существует"
+
+#: src/project/motorproject.cc:321
+msgid "Generating a distribution package of the project.."
+msgstr "Генерация дистрибутивного пакета проекта.."
+
+#: src/project/motorproject.cc:334
+msgid "Building the project.."
+msgstr "Сборка проекта.."
+
+#: src/project/motorproject.cc:433
+msgid "Starting up the project.."
+msgstr "Создание проекта.."
+
+#: src/project/motorproject.cc:457
+#, c-format
+msgid "Project %s has been created"
+msgstr "Проект %s создан успешно"
+
+#: src/project/motorproject.cc:488
+#, c-format
+msgid "There is a motor project file %s in the source, use it?"
+msgstr "Найден файл проекта %s в каталоге. Будем использовать его?"
+
+#: src/project/motorproject.cc:533
+#, c-format
+msgid "Delete all files of the project %s as well?"
+msgstr "Удалить все файлы проекта %s?"
+
+#: src/project/motorproject.cc:546
+#, c-format
+msgid "Project %s has been removed"
+msgstr "Проект %s удален"
+
+#: src/project/motorproject.cc:644
+#, c-format
+msgid "VCS %s command wasn't successful. Retry?"
+msgstr "Команда %s системы контроля версий завершилась неудачей. Повторить?"
+
+#: src/project/motorproject.cc:649
+msgid "Add the file to the project locally anyway?"
+msgstr "Добавить файл в проект все равно?"
+
+#: src/project/sourcetemplate.cc:52
+#, c-format
+msgid "File %s already exits. Overwrite it?"
+msgstr "Файл %s уже существует. Перезаписать?"
+
+#: src/tagbrowser/motortagbrowser.cc:37
+msgid "Executing Exuberant Ctags.."
+msgstr "Запуск Exuberant Ctags.."
+
+#: src/tagbrowser/motortagbrowser.cc:51
+msgid "Cannot read the tags table"
+msgstr "Невозможно прочитать символы"
+
+#: src/ui/ncurses/ncursesui.cc:277
+msgid "add project to the registry: "
+msgstr "добавить проект в регистр: "
+
+#: src/ui/ncurses/ncursesui.cc:290
+#, c-format
+msgid "Already registered! Rename %s (%s) to: "
+msgstr ""
+
+#: src/ui/ncurses/ncursesui.cc:309
+#, c-format
+msgid "~%s~ is not a motor project"
+msgstr "~%s~ не является проектом motor"
+
+#: src/ui/ncurses/ncursesui.cc:314
+#, c-format
+msgid "~%s~ is an invalid name for a motor project file"
+msgstr "~%s~ не похоже на имя файла проекта motor"
+
+#: src/ui/ncurses/ncursesui.cc:318
+#, c-format
+msgid "Cannot access ~%s~"
+msgstr "Невозможно открыть ~%s~"
+
+#: src/ui/ncurses/ncursesui.cc:341
+msgid "Create/Import.."
+msgstr "Создать/Импорт.."
+
+#: src/ui/ncurses/ncursesui.cc:341 src/ui/ncurses/ncursesui.cc:1424
+#: src/ui/ncurses/ncursesui.cc:1430 src/ui/ncurses/ncursesui.cc:2140
+msgid "Add"
+msgstr "Добавить"
+
+#: src/ui/ncurses/ncursesui.cc:341 src/ui/ncurses/ncursesui.cc:1424
+#: src/ui/ncurses/ncursesui.cc:1430 src/ui/ncurses/ncursesui.cc:2140
+#: src/ui/ncurses/ncursesui.cc:2415
+msgid "Remove"
+msgstr "Удалить"
+
+#: src/ui/ncurses/ncursesui.cc:341 src/ui/ncurses/ncursesui.cc:1602
+#: src/ui/ncurses/uieditor.cc:401
+msgid "Open"
+msgstr "Открыть"
+
+#: src/ui/ncurses/ncursesui.cc:350
+msgid " Projects registry "
+msgstr " Реестр проектов "
+
+#: src/ui/ncurses/ncursesui.cc:355
+msgid " Add a project "
+msgstr " Добавить проект "
+
+#: src/ui/ncurses/ncursesui.cc:512
+msgid " File "
+msgstr " Файл "
+
+#: src/ui/ncurses/ncursesui.cc:513
+msgid " Edit "
+msgstr " Редактор "
+
+#: src/ui/ncurses/ncursesui.cc:514 src/ui/ncurses/ncursesui.cc:1804
+msgid " Project "
+msgstr " Проект "
+
+#: src/ui/ncurses/ncursesui.cc:515
+msgid " VCS "
+msgstr ""
+
+#: src/ui/ncurses/ncursesui.cc:516
+msgid " Debug "
+msgstr " Отладка "
+
+#: src/ui/ncurses/ncursesui.cc:517
+msgid " Window "
+msgstr " Окна "
+
+#: src/ui/ncurses/ncursesui.cc:520
+msgid " Load..         ^O"
+msgstr " Открыть..      ^O"
+
+#: src/ui/ncurses/ncursesui.cc:521
+msgid " Save           F2"
+msgstr " Сохранить      F2"
+
+#: src/ui/ncurses/ncursesui.cc:522
+msgid " Save as.."
+msgstr " Сохранить как.."
+
+#: src/ui/ncurses/ncursesui.cc:523
+msgid " Save all"
+msgstr " Сохранить все"
+
+#: src/ui/ncurses/ncursesui.cc:524
+msgid " Close          ^D"
+msgstr " Закрыть        ^D"
+
+#: src/ui/ncurses/ncursesui.cc:525
+msgid " Generate.."
+msgstr " Генерировать.. "
+
+#: src/ui/ncurses/ncursesui.cc:527
+msgid " Motor settings"
+msgstr " Настройки Motor "
+
+#: src/ui/ncurses/ncursesui.cc:528
+msgid " External keys"
+msgstr " Внешние кнопки"
+
+#: src/ui/ncurses/ncursesui.cc:529
+msgid " Regexper      A-R"
+msgstr ""
+
+#: src/ui/ncurses/ncursesui.cc:531
+msgid " Quit           ^X"
+msgstr " Выход          ^X"
+
+#: src/ui/ncurses/ncursesui.cc:534
+msgid " Toggle mark         F3"
+msgstr " Режим выделения     F3"
+
+#: src/ui/ncurses/ncursesui.cc:535
+msgid " Cut                A-X"
+msgstr " Вырезать           A-X"
+
+#: src/ui/ncurses/ncursesui.cc:536
+msgid " Copy               A-C"
+msgstr " Копировать         A-C"
+
+#: src/ui/ncurses/ncursesui.cc:537
+msgid " Paste              A-V"
+msgstr " Вставить           A-V"
+
+#: src/ui/ncurses/ncursesui.cc:539
+msgid " Toggle ins/overw   Ins"
+msgstr " Вставка/замена     Ins"
+
+#: src/ui/ncurses/ncursesui.cc:541
+msgid " Find                ^F"
+msgstr " Поиск               ^F"
+
+#: src/ui/ncurses/ncursesui.cc:542
+msgid " Find again          ^G"
+msgstr " Повтор поиска       ^G"
+
+#: src/ui/ncurses/ncursesui.cc:543
+msgid " Replace             ^R"
+msgstr " Замена              ^R"
+
+#: src/ui/ncurses/ncursesui.cc:544
+msgid " Go to line..       A-L"
+msgstr " Перейти к строке.. A-L"
+
+#: src/ui/ncurses/ncursesui.cc:546
+msgid " Shft block fwd   A-Tab"
+msgstr " Отступ вперед    A-Tab"
+
+#: src/ui/ncurses/ncursesui.cc:547
+msgid " Shft block back  A-Bsp"
+msgstr " Отступ назад     A-Bsp"
+
+#: src/ui/ncurses/ncursesui.cc:549
+msgid " Undo                ^U"
+msgstr " Отмена              ^U"
+
+#: src/ui/ncurses/ncursesui.cc:552
+msgid " Projects registry"
+msgstr " Реестр проектов"
+
+#: src/ui/ncurses/ncursesui.cc:554
+msgid " Files..             F11"
+msgstr " Файлы..             F11"
+
+#: src/ui/ncurses/ncursesui.cc:555
+msgid " Directories..      ^F11"
+msgstr " Каталоги..         ^F11"
+
+#: src/ui/ncurses/ncursesui.cc:556
+msgid " Project settings  S-F11"
+msgstr " Настройки проекта S-F11"
+
+#: src/ui/ncurses/ncursesui.cc:558
+msgid " Build                F9"
+msgstr " Запустить сборку     F9"
+
+#: src/ui/ncurses/ncursesui.cc:559
+msgid " Clean              S-F9"
+msgstr " Очистка            S-F9"
+
+#: src/ui/ncurses/ncursesui.cc:560
+msgid " Make a target..     A-T"
+msgstr " Выполнить make..    A-T"
+
+#: src/ui/ncurses/ncursesui.cc:561
+msgid " Regen. build stuff"
+msgstr " Пересозд. файлы сборки"
+
+#: src/ui/ncurses/ncursesui.cc:562
+msgid " Make a dist package"
+msgstr " Собрать дистрибутив"
+
+#: src/ui/ncurses/ncursesui.cc:564
+msgid " Find a symbol..     A-?"
+msgstr " Найти символ..      A-?"
+
+#: src/ui/ncurses/ncursesui.cc:565
+msgid " External output.."
+msgstr " Вывод внешних программ.."
+
+#: src/ui/ncurses/ncursesui.cc:568
+msgid " Check in/out"
+msgstr " Поиск изменений"
+
+#: src/ui/ncurses/ncursesui.cc:569
+msgid " Import"
+msgstr " Импортировать"
+
+#: src/ui/ncurses/ncursesui.cc:570
+msgid " Tag a release"
+msgstr " Отметить версию"
+
+#: src/ui/ncurses/ncursesui.cc:579
+msgid " Run program            F12"
+msgstr " Запустить программу    F12"
+
+#: src/ui/ncurses/ncursesui.cc:580
+msgid " Load core dump.."
+msgstr " Загрузить core dump.."
+
+#: src/ui/ncurses/ncursesui.cc:581
+msgid " Arguments..          S-F12"
+msgstr " Командная строка..   S-F12"
+
+#: src/ui/ncurses/ncursesui.cc:582
+msgid " Reset program         ^F12"
+msgstr " Прервать отладку      ^F12"
+
+#: src/ui/ncurses/ncursesui.cc:583
+msgid " Call stack..           A-S"
+msgstr " Стек вызова..          A-V"
+
+#: src/ui/ncurses/ncursesui.cc:585
+msgid " Set/Clear breakpoint    ^B"
+msgstr " Точка останова          ^B"
+
+#: src/ui/ncurses/ncursesui.cc:586
+msgid " Breakpoints            A-B"
+msgstr " Точки останова         A-B"
+
+#: src/ui/ncurses/ncursesui.cc:588
+msgid " Add watch               ^W"
+msgstr " Добавить переменную     ^W"
+
+#: src/ui/ncurses/ncursesui.cc:589
+msgid " Watches                A-W"
+msgstr " Наблюдаемые переменные A-W"
+
+#: src/ui/ncurses/ncursesui.cc:590
+msgid " Evaluate/Modify        A-E"
+msgstr " Вычисить/изменить      A-E"
+
+#: src/ui/ncurses/ncursesui.cc:592
+msgid " Trace into              F7"
+msgstr " Трассировка вглубь      F7"
+
+#: src/ui/ncurses/ncursesui.cc:593
+msgid " Step over               F8"
+msgstr " Следующая строка        F8"
+
+#: src/ui/ncurses/ncursesui.cc:594
+msgid " Go to cursor            F4"
+msgstr " Выполнить до..          F4"
+
+#: src/ui/ncurses/ncursesui.cc:597
+msgid " Next                 ^N"
+msgstr " Следующее            ^N"
+
+#: src/ui/ncurses/ncursesui.cc:598
+msgid " Previous             ^P"
+msgstr " Предыдущее           ^P"
+
+#: src/ui/ncurses/ncursesui.cc:600
+msgid " Window list          F5"
+msgstr " Список окон          F5"
+
+#: src/ui/ncurses/ncursesui.cc:601
+msgid " Last build messages  F6"
+msgstr " Сообщения сборки     F6"
+
+#: src/ui/ncurses/ncursesui.cc:792
+msgid "PROJECT: "
+msgstr "ПРОЕКТ: "
+
+#: src/ui/ncurses/ncursesui.cc:795
+msgid "FILE: "
+msgstr "ФАЙЛ: "
+
+#: src/ui/ncurses/ncursesui.cc:992
+msgid "Ok"
+msgstr ""
+
+#: src/ui/ncurses/ncursesui.cc:1048
+msgid "F1           Display this help screen\n"
+msgstr "F1           Показать этот экран помощи\n"
+
+#: src/ui/ncurses/ncursesui.cc:1049
+msgid "F10          Activate menu\n"
+msgstr "F10          Активизировать меню\n"
+
+#: src/ui/ncurses/ncursesui.cc:1050
+msgid ""
+"^X           Quit motor\n"
+"\n"
+msgstr ""
+"^X           Выход из motor\n"
+"\n"
+
+#: src/ui/ncurses/ncursesui.cc:1051
+msgid "F2           Save current file\n"
+msgstr "F2           Сохранить текущий файл\n"
+
+#: src/ui/ncurses/ncursesui.cc:1052
+msgid "^O           Load file\n"
+msgstr "^O           Открыть файл\n"
+
+#: src/ui/ncurses/ncursesui.cc:1053
+msgid "^D           Close current editor window\n"
+msgstr "^D           Закрыть текущее окно редактора\n"
+
+#: src/ui/ncurses/ncursesui.cc:1054
+msgid "F5           Editor files..\n"
+msgstr "F5           Список окон редактора..\n"
+
+#: src/ui/ncurses/ncursesui.cc:1055
+msgid "^N           Next editor window\n"
+msgstr "^N           Следующее окно редактора\n"
+
+#: src/ui/ncurses/ncursesui.cc:1056
+msgid ""
+"^P           Previous editor window\n"
+"\n"
+msgstr ""
+"^P           Предыдущее окно редактора\n"
+"\n"
+
+#: src/ui/ncurses/ncursesui.cc:1057
+msgid "Ins          Toggle insert/overwrite mode\n"
+msgstr "Ins          Переключение режим вставки/замены\n"
+
+#: src/ui/ncurses/ncursesui.cc:1058
+msgid "F3           Toggle block marking mode\n"
+msgstr "F3           Переключение режима отметки блока\n"
+
+#: src/ui/ncurses/ncursesui.cc:1059
+msgid "Alt-X, ^Del  Cut selected text\n"
+msgstr "Alt-X, ^Del  Вырезать отмеченный блок\n"
+
+#: src/ui/ncurses/ncursesui.cc:1060
+msgid "Alt-C, ^Ins  Copy selected text\n"
+msgstr "Alt-C, ^Ins  Копировать отмеченный блок\n"
+
+#: src/ui/ncurses/ncursesui.cc:1061
+msgid "Alt-V, ^Ins  Paste previously copied text\n"
+msgstr "Alt-V, ^Ins  Вставить блок\n"
+
+#: src/ui/ncurses/ncursesui.cc:1062
+msgid "Alt-Tab      Shift selected block forward\n"
+msgstr "Alt-Tab      Сдвиг отмеченного блока вправо\n"
+
+#: src/ui/ncurses/ncursesui.cc:1063
+msgid ""
+"Alt-Backsp   Shift selected block backward\n"
+"\n"
+msgstr ""
+"Alt-Backsp   Сдвиг отмеченного блока влево\n"
+"\n"
+
+#: src/ui/ncurses/ncursesui.cc:1064
+msgid "^U           Undo previous editor operation\n"
+msgstr "^U           Отмена предыдущей операции редактора\n"
+
+#: src/ui/ncurses/ncursesui.cc:1065
+msgid "^F           Find text in current file\n"
+msgstr "^F           Поиск в текущем файле\n"
+
+#: src/ui/ncurses/ncursesui.cc:1066
+msgid "^G           Find again\n"
+msgstr "^G           Продолжить поиск\n"
+
+#: src/ui/ncurses/ncursesui.cc:1067
+msgid "^R           Search and replace\n"
+msgstr "^R           Поиск и замена\n"
+
+#: src/ui/ncurses/ncursesui.cc:1068
+msgid ""
+"Alt-L        Goto line..\n"
+"\n"
+msgstr ""
+"Alt-L        Перейти к строке..\n"
+"\n"
+
+#: src/ui/ncurses/ncursesui.cc:1069
+msgid "Shift-F11    Project settings..\n"
+msgstr "Shift-F11    Настройки проекта..\n"
+
+#: src/ui/ncurses/ncursesui.cc:1070
+msgid "F11          Project files..\n"
+msgstr "F11          Файлы проекта..\n"
+
+#: src/ui/ncurses/ncursesui.cc:1071
+msgid ""
+"^F11         Project directories..\n"
+"\n"
+msgstr ""
+"^F11         Каталоги проекта..\n"
+"\n"
+
+#: src/ui/ncurses/ncursesui.cc:1072
+msgid "F9           Build a project\n"
+msgstr "F9           Собрать проект\n"
+
+#: src/ui/ncurses/ncursesui.cc:1073
+msgid "Shift-F9     Clean\n"
+msgstr "Shift-F9     Очистить\n"
+
+#: src/ui/ncurses/ncursesui.cc:1074
+msgid "Alt-T        Make a specific target..\n"
+msgstr "Alt-T        Выполнить заданную make-цель..\n"
+
+#: src/ui/ncurses/ncursesui.cc:1075
+msgid "F12          Run program\n"
+msgstr "F12          Запуск программы\n"
+
+#: src/ui/ncurses/ncursesui.cc:1076
+msgid "Shift-F12    Specify program arguments\n"
+msgstr "Shift-F12    Указать аргументы программы\n"
+
+#: src/ui/ncurses/ncursesui.cc:1077
+msgid ""
+"Alt-?        Find a symbol definition in the source\n"
+"\n"
+msgstr ""
+"Alt-?        Поиск определения символа в исходнике\n"
+"\n"
+
+#: src/ui/ncurses/ncursesui.cc:1078
+msgid "F4           Go to cursor\n"
+msgstr "F4           Отладка до курсора\n"
+
+#: src/ui/ncurses/ncursesui.cc:1079
+msgid "F7           Debug mode: trace into\n"
+msgstr "F7           Отладка: трассировка внутрь\n"
+
+#: src/ui/ncurses/ncursesui.cc:1080
+msgid ""
+"F8           Step over\n"
+"\n"
+msgstr ""
+"F8           Отладка: следующая строка\n"
+"\n"
+
+#: src/ui/ncurses/ncursesui.cc:1081
+msgid "^B           Set breakpoint at current line\n"
+msgstr "^B           Установить/снять точку останова\n"
+
+#: src/ui/ncurses/ncursesui.cc:1082
+msgid "Alt-B        Breakpoints..\n"
+msgstr "Alt-B        Точки останова..\n"
+
+#: src/ui/ncurses/ncursesui.cc:1083
+msgid "^W           Add watch\n"
+msgstr "^W           Добавить наблюдаемую переменную\n"
+
+#: src/ui/ncurses/ncursesui.cc:1084
+msgid "Alt-W        Watches..\n"
+msgstr "Alt-W        Наблюдаемые переменные..\n"
+
+#: src/ui/ncurses/ncursesui.cc:1085
+msgid ""
+"Alt-E        Evaluate/modify..\n"
+"\n"
+msgstr ""
+"Alt-E        Вычислить/изменить..\n"
+"\n"
+
+#: src/ui/ncurses/ncursesui.cc:1086
+msgid ""
+"Alt-R        Invoke the regexper tool\n"
+"\n"
+msgstr ""
+"Alt-R        Вызвать инструмент regexper\n"
+"\n"
+
+#: src/ui/ncurses/ncursesui.cc:1087
+msgid "Note: If your terminal doesn't allow using Alt-keys or\n"
+msgstr "Прим: Если вам не удается использовать клавиши Alt- и Fx,\n"
+
+#: src/ui/ncurses/ncursesui.cc:1088
+msgid "      Fx keys, you can use ESC 'letter or number' instead.\n"
+msgstr "     вы можете нажимать ESC 'буква или цифра' вместо.\n"
+
+#: src/ui/ncurses/ncursesui.cc:1089
+msgid "      '^' char means the key should be pressed with Ctrl."
+msgstr "      Символ '^' означает нажатие клавиши с Ctrl."
+
+#: src/ui/ncurses/ncursesui.cc:1091
+msgid " Help "
+msgstr " Помощь "
+
+#: src/ui/ncurses/ncursesui.cc:1184
+msgid "Warning: changing template will rearrange files in project. Proceed?"
+msgstr ""
+
+#: src/ui/ncurses/ncursesui.cc:1198
+msgid " Main "
+msgstr " Основное "
+
+#: src/ui/ncurses/ncursesui.cc:1199
+msgid " Version control "
+msgstr " Контроль версий "
+
+#: src/ui/ncurses/ncursesui.cc:1200
+msgid " Make "
+msgstr " Сборка "
+
+#: src/ui/ncurses/ncursesui.cc:1202
+#, c-format
+msgid " Version : %s "
+msgstr " Версия : %s "
+
+#: src/ui/ncurses/ncursesui.cc:1203 src/ui/ncurses/ncursesui.cc:1810
+#, c-format
+msgid " Template : %s "
+msgstr " Шаблон : %s "
+
+#: src/ui/ncurses/ncursesui.cc:1204 src/ui/ncurses/ncursesui.cc:1812
+#, c-format
+msgid " Root directory : %s "
+msgstr " Каталог проекта : %s "
+
+#: src/ui/ncurses/ncursesui.cc:1205 src/ui/ncurses/ncursesui.cc:1815
+#, c-format
+msgid " Use GNU gettext for internationalization : %s "
+msgstr " GNU gettext для перевода сообщений программы : %s "
+
+#: src/ui/ncurses/ncursesui.cc:1208
+#, c-format
+msgid " %s: %s in %s "
+msgstr " %s: %s в %s "
+
+#: src/ui/ncurses/ncursesui.cc:1212
+msgid " Not under version control "
+msgstr " Не находится под контролем версий "
+
+#: src/ui/ncurses/ncursesui.cc:1215 src/ui/ncurses/ncursesui.cc:1813
+#, c-format
+msgid " Makefile mode : %s "
+msgstr " Режим Makefile : %s "
+
+#: src/ui/ncurses/ncursesui.cc:1216
+#, c-format
+msgid " Compiler options : %s "
+msgstr " Опции компилятора : %s "
+
+#: src/ui/ncurses/ncursesui.cc:1217
+#, c-format
+msgid " Linker options : %s "
+msgstr " Опции линкера : %s "
+
+#: src/ui/ncurses/ncursesui.cc:1219
+msgid " Files.. "
+msgstr " Файлы.. "
+
+#: src/ui/ncurses/ncursesui.cc:1220
+msgid " Directories.. "
+msgstr " Каталоги.. "
+
+#: src/ui/ncurses/ncursesui.cc:1234
+msgid " Project settings "
+msgstr " Настройки проекта "
+
+#: src/ui/ncurses/ncursesui.cc:1238 src/ui/ncurses/ncursesui.cc:1794
+#: src/ui/ncurses/ncursesui.cc:2043 src/ui/ncurses/ncursesui.cc:2225
+#: src/ui/ncurses/ncursesui.cc:2275 src/ui/ncurses/ncursesui.cc:2724
+msgid "Change"
+msgstr "Изменить"
+
+#: src/ui/ncurses/ncursesui.cc:1248
+msgid "version: "
+msgstr "версия: "
+
+#: src/ui/ncurses/ncursesui.cc:1259
+msgid "Cannot modify the root directory. Please move the files manually"
+msgstr ""
+
+#: src/ui/ncurses/ncursesui.cc:1268
+msgid "Do you want to disable version control for the project?"
+msgstr "Хотите ли вы выключить контроль версий для этого проекта?"
+
+#: src/ui/ncurses/ncursesui.cc:1285
+msgid "additional compiler command line options: "
+msgstr "дополнительные опции компилятора: "
+
+#: src/ui/ncurses/ncursesui.cc:1292
+msgid "additional linker command line options: "
+msgstr "дополнительные опции линкера: "
+
+#: src/ui/ncurses/ncursesui.cc:1319
+msgid " <Ins> select; <Space> confirm; <Esc> cancel "
+msgstr ""
+
+#: src/ui/ncurses/ncursesui.cc:1422
+msgid " Project files "
+msgstr " Файлы проекта "
+
+#: src/ui/ncurses/ncursesui.cc:1424
+msgid "Edit"
+msgstr "Открыть"
+
+#: src/ui/ncurses/ncursesui.cc:1428
+msgid " Project directories "
+msgstr " Каталоги проекта "
+
+#: src/ui/ncurses/ncursesui.cc:1452
+msgid "No folders of this kind are defined in the template"
+msgstr "Фолдеров такого типа в темплейте проекта нет"
+
+#: src/ui/ncurses/ncursesui.cc:1471
+msgid "add file: "
+msgstr "добавить файл: "
+
+#: src/ui/ncurses/ncursesui.cc:1474
+msgid "add directory: "
+msgstr "добавить каталог: "
+
+#: src/ui/ncurses/ncursesui.cc:1477
+msgid "add symbol: "
+msgstr "добавить символ: "
+
+#: src/ui/ncurses/ncursesui.cc:1498
+#, c-format
+msgid "Cannot add ~%s~ to the ~%s~ folder"
+msgstr "Невозможно добавить ~%s~ в папку ~%s~"
+
+#: src/ui/ncurses/ncursesui.cc:1535
+msgid " Files.."
+msgstr " Файлы.. "
+
+#: src/ui/ncurses/ncursesui.cc:1536
+msgid " Open the project"
+msgstr " Открыть проект "
+
+#: src/ui/ncurses/ncursesui.cc:1596
+#, c-format
+msgid " Project %s "
+msgstr " Проект %s "
+
+#: src/ui/ncurses/ncursesui.cc:1694
+msgid "External output viewer, ~ESC~ to close"
+msgstr "Просмотр внешнего вывода, ~ESC~ - закрыть"
+
+#: src/ui/ncurses/ncursesui.cc:1755
+msgid "No build messages"
+msgstr "Сообщения о сборке отсутствуют"
+
+#: src/ui/ncurses/ncursesui.cc:1765
+msgid "At the end of the messages"
+msgstr "В конце сообщений"
+
+#: src/ui/ncurses/ncursesui.cc:1791
+msgid " Create a new project "
+msgstr " Создание нового проекта "
+
+#: src/ui/ncurses/ncursesui.cc:1794
+msgid "Create"
+msgstr "Создать"
+
+#: src/ui/ncurses/ncursesui.cc:1806
+#, c-format
+msgid " Creation mode : %s "
+msgstr " Создать : %s "
+
+#: src/ui/ncurses/ncursesui.cc:1807
+msgid "from scratch"
+msgstr "с нуля"
+
+#: src/ui/ncurses/ncursesui.cc:1808
+msgid "from files"
+msgstr "существующие файлы"
+
+#: src/ui/ncurses/ncursesui.cc:1808
+msgid "from VCS"
+msgstr "из системы контроля версий"
+
+#: src/ui/ncurses/ncursesui.cc:1810
+msgid "none"
+msgstr "нет"
+
+#: src/ui/ncurses/ncursesui.cc:1811
+#, c-format
+msgid " New project name : %s "
+msgstr " Название нового проекта : %s "
+
+#: src/ui/ncurses/ncursesui.cc:1814
+#, c-format
+msgid " GNU standard documentation : %s "
+msgstr " Стандартная документация GNU : %s "
+
+#: src/ui/ncurses/ncursesui.cc:1818
+msgid " Creation "
+msgstr " Создание "
+
+#: src/ui/ncurses/ncursesui.cc:1821
+#, c-format
+msgid " Generate inital source: %s "
+msgstr " Генерировать исходник: %s "
+
+#: src/ui/ncurses/ncursesui.cc:1823
+#, c-format
+msgid " VCS name : %s "
+msgstr " Система : %s "
+
+#: src/ui/ncurses/ncursesui.cc:1824
+#, c-format
+msgid " Repository : %s "
+msgstr " Репозиторий : %s "
+
+#: src/ui/ncurses/ncursesui.cc:1825
+#, c-format
+msgid " Module name : %s "
+msgstr " Название модуля : %s "
+
+#: src/ui/ncurses/ncursesui.cc:1826
+#, c-format
+msgid " Revision : %s "
+msgstr " Версия : %s "
+
+#: src/ui/ncurses/ncursesui.cc:1848
+msgid "No version control systems defined"
+msgstr "Ни одна система контроля версий не определена"
+
+#: src/ui/ncurses/ncursesui.cc:1859
+msgid "project name: "
+msgstr "имя проекта: "
+
+#: src/ui/ncurses/ncursesui.cc:1869
+msgid "root directory: "
+msgstr "каталог проекта: "
+
+#: src/ui/ncurses/ncursesui.cc:1884
+msgid "VCS repository to check out from: "
+msgstr "Репозиторий, из которого проект будет извлечен: "
+
+#: src/ui/ncurses/ncursesui.cc:1888
+msgid "VCS module name: "
+msgstr "Имя модуля в системе контроля версий: "
+
+#: src/ui/ncurses/ncursesui.cc:1899
+msgid "VCS revision: "
+msgstr "Версия в VCS: "
+
+#: src/ui/ncurses/ncursesui.cc:1911
+msgid "Project root directory must be set"
+msgstr "Каталог проекта должен быть задан"
+
+#: src/ui/ncurses/ncursesui.cc:1917
+msgid "Project name must be set"
+msgstr "Имя проекта должно быть задано"
+
+#: src/ui/ncurses/ncursesui.cc:1923
+msgid "Template must be set"
+msgstr "Шаблон должен быть задан"
+
+#: src/ui/ncurses/ncursesui.cc:1929
+#, c-format
+msgid "Project named %s already exists"
+msgstr "Проект с именем %s уже существует"
+
+#: src/ui/ncurses/ncursesui.cc:1935
+msgid "Project name cannot start with a number"
+msgstr "Название проекта не может начинаться с цифры"
+
+#: src/ui/ncurses/ncursesui.cc:1942
+msgid "VCS name, repository and module name must be specified"
+msgstr "Репозиторий и название модуля должны быть заданы"
+
+#: src/ui/ncurses/ncursesui.cc:1949
+msgid "root directory you specified does not exist. create?"
+msgstr "заданный каталог проекта не существует. создать?"
+
+#: src/ui/ncurses/ncursesui.cc:1955
+msgid "Access denied for the directory specified"
+msgstr "Отказано в доступе к заданному каталогу"
+
+#: src/ui/ncurses/ncursesui.cc:2020
+#, c-format
+msgid "No distribution methods defined in template %s"
+msgstr "Ни одим метод генерации дистрибутивов не определен для шаблона %s"
+
+#: src/ui/ncurses/ncursesui.cc:2034
+#, fuzzy
+msgid " Distribution package generation "
+msgstr " Параметры дистрибутивного пакета "
+
+#: src/ui/ncurses/ncursesui.cc:2043
+msgid "Go!"
+msgstr "Начать"
+
+#: src/ui/ncurses/ncursesui.cc:2051
+msgid " Format "
+msgstr " Формат "
+
+#: src/ui/ncurses/ncursesui.cc:2054
+msgid " Out directory "
+msgstr " Результирующий каталог "
+
+#: src/ui/ncurses/ncursesui.cc:2059
+#, fuzzy
+msgid " Parameters "
+msgstr " Проекты "
+
+#: src/ui/ncurses/ncursesui.cc:2085
+msgid "directory to put a dist to: "
+msgstr "каталог для дистрибутива: "
+
+#: src/ui/ncurses/ncursesui.cc:2104
+#, c-format
+msgid ""
+"Finished ~%s~: ~%lu~ errors, ~%lu~ warnings, ~%lu~ infos. ~F6~ to see the "
+"list"
+msgstr ""
+"Завершено ~%s~: ~%lu~ ошибок, ~%lu~ предупреждений, ~%lu~ инф. ~F6~ - список"
+
+#: src/ui/ncurses/ncursesui.cc:2107
+#, c-format
+msgid "~%s~ finished sucessfully"
+msgstr "~%s~ завершился успешно"
+
+#: src/ui/ncurses/ncursesui.cc:2121
+msgid "The project has been modified. Regenerating the build stuff.."
+msgstr "Проект был изменен. Идет пересоздание сборочных файлов.."
+
+#: src/ui/ncurses/ncursesui.cc:2137
+msgid " Make a target.. "
+msgstr " Выполнить make.. "
+
+#: src/ui/ncurses/ncursesui.cc:2140
+msgid "Make"
+msgstr "Сборка"
+
+#: src/ui/ncurses/ncursesui.cc:2157
+msgid "make a target: "
+msgstr "выполнить make: "
+
+#: src/ui/ncurses/ncursesui.cc:2219
+msgid " Evaluate/Modify "
+msgstr " Вычислить/изменить "
+
+#: src/ui/ncurses/ncursesui.cc:2238
+msgid " Expression "
+msgstr " Выражение "
+
+#: src/ui/ncurses/ncursesui.cc:2241
+msgid " Value "
+msgstr " Значение "
+
+#: src/ui/ncurses/ncursesui.cc:2242
+msgid "not available"
+msgstr "не доступно"
+
+#: src/ui/ncurses/ncursesui.cc:2253
+msgid "expression: "
+msgstr "выражение: "
+
+#: src/ui/ncurses/ncursesui.cc:2272
+msgid " Motor settings "
+msgstr " Настройки Motor "
+
+#: src/ui/ncurses/ncursesui.cc:2275 src/ui/ncurses/ncursesui.cc:2724
+msgid "Done"
+msgstr "Готово"
+
+#: src/ui/ncurses/ncursesui.cc:2293
+msgid " Show the run-time output "
+msgstr " Показ вывода "
+
+#: src/ui/ncurses/ncursesui.cc:2294
+#, c-format
+msgid " show compiler output : %s "
+msgstr " показывать работу компилятора : %s "
+
+#: src/ui/ncurses/ncursesui.cc:2295
+#, c-format
+msgid " show VCS output : %s "
+msgstr " показывать вывод VCS : %s "
+
+#: src/ui/ncurses/ncursesui.cc:2296
+#, c-format
+msgid " show make output : %s "
+msgstr " показывать вывод make : %s "
+
+#: src/ui/ncurses/ncursesui.cc:2298
+msgid " Debugger "
+msgstr " Отладчик "
+
+#: src/ui/ncurses/ncursesui.cc:2299
+#, c-format
+msgid " debug standard headers : %s "
+msgstr " отлаживать стандартные заголовки : %s "
+
+#: src/ui/ncurses/ncursesui.cc:2300
+#, c-format
+msgid " disable free tty check : %s "
+msgstr " отключить проверку сободного tty : %s "
+
+#: src/ui/ncurses/ncursesui.cc:2302
+msgid " Editor "
+msgstr " Редактор "
+
+#: src/ui/ncurses/ncursesui.cc:2303
+#, c-format
+msgid " enable \"smart tabs\" feature : %s "
+msgstr " опция \"smart tabs\" включена : %s "
+
+#: src/ui/ncurses/ncursesui.cc:2304
+#, c-format
+msgid " enable mcedit clipboard integration : %s "
+msgstr " поддержка клипборда mcedit : %s "
+
+#: src/ui/ncurses/ncursesui.cc:2306
+msgid " Directories and paths "
+msgstr " Каталоги и пути "
+
+#: src/ui/ncurses/ncursesui.cc:2307
+#, c-format
+msgid " default directory for projects : %s "
+msgstr " каталог для проектов по умолчанию : %s "
+
+#: src/ui/ncurses/ncursesui.cc:2318
+msgid "default directory for projects: "
+msgstr "каталог для проектов: "
+
+#: src/ui/ncurses/ncursesui.cc:2352
+msgid " External programs "
+msgstr " Внешние программы "
+
+#: src/ui/ncurses/ncursesui.cc:2359
+msgid "No external keys defined"
+msgstr "Ни одна внешняя кнопка не определена"
+
+#: src/ui/ncurses/ncursesui.cc:2391
+msgid "Press Enter to continue.."
+msgstr "Нажмите Enter.."
+
+#: src/ui/ncurses/ncursesui.cc:2409
+msgid " Breakpoints "
+msgstr " Точки останова "
+
+#: src/ui/ncurses/ncursesui.cc:2415
+msgid "Goto"
+msgstr "Перейти"
+
+#: src/ui/ncurses/ncursesui.cc:2475
+msgid " Files to generate "
+msgstr " Генерировать файлы.. "
+
+#: src/ui/ncurses/ncursesui.cc:2480
+msgid "Mark"
+msgstr "Отметить"
+
+#: src/ui/ncurses/ncursesui.cc:2480
+msgid "Generate"
+msgstr "Генерировать"
+
+#: src/ui/ncurses/ncursesui.cc:2522
+msgid "arguments: "
+msgstr "аргументы: "
+
+#: src/ui/ncurses/ncursesui.cc:2533
+msgid "Core dump to explore: "
+msgstr "Core dump для исследования: "
+
+#: src/ui/ncurses/ncursesui.cc:2539
+msgid " Core dump load results "
+msgstr " Результаты загрузки core dump "
+
+#: src/ui/ncurses/ncursesui.cc:2542
+msgid "Inspect stack"
+msgstr "Исследование стека"
+
+#: src/ui/ncurses/ncursesui.cc:2542 src/ui/ncurses/uieditor.cc:401
+msgid "Close"
+msgstr "Закрыть"
+
+#: src/ui/ncurses/ncursesui.cc:2571
+msgid " Call stack "
+msgstr " Стек вызова "
+
+#: src/ui/ncurses/ncursesui.cc:2575
+msgid "Info"
+msgstr "Подробнее"
+
+#: src/ui/ncurses/ncursesui.cc:2575
+msgid "Go to"
+msgstr "Перейти"
+
+#: src/ui/ncurses/ncursesui.cc:2596
+msgid "Function:"
+msgstr "Функция:"
+
+#: src/ui/ncurses/ncursesui.cc:2598
+msgid "Location:"
+msgstr "Местонахождение:"
+
+#: src/ui/ncurses/ncursesui.cc:2605
+msgid "Arguments:"
+msgstr "Аргументы:"
+
+#: src/ui/ncurses/ncursesui.cc:2608
+msgid " Stack item details "
+msgstr " Информация о записи стека "
+
+#: src/ui/ncurses/ncursesui.cc:2695
+#, c-format
+msgid "Project %s has been loaded"
+msgstr "Проект %s загружен успешно"
+
+#: src/ui/ncurses/ncursesui.cc:2700
+#, c-format
+msgid "%s not found, please select template"
+msgstr ""
+
+#: src/ui/ncurses/ncursesui.cc:2717
+#, c-format
+msgid " %s build options "
+msgstr ""
+
+#: src/ui/ncurses/ncursesui.cc:2734
+#, fuzzy
+msgid " General "
+msgstr "Генерировать"
+
+#: src/ui/ncurses/ncursesui.cc:2735
+#, fuzzy, c-format
+msgid " Enable optional build : %s "
+msgstr " Опции линкера : %s "
+
+#: src/ui/ncurses/ncursesui.cc:2738
+#, fuzzy
+msgid " Build "
+msgstr " Файл "
+
+#: src/ui/ncurses/ncursesui.cc:2739
+#, c-format
+msgid " Parameter name (--enable-xxx) : %s "
+msgstr ""
+
+#: src/ui/ncurses/ncursesui.cc:2740
+#, c-format
+msgid " Parameter help text : %s "
+msgstr ""
+
+#: src/ui/ncurses/ncursesui.cc:2741
+#, fuzzy, c-format
+msgid " Enabled by default : %s "
+msgstr " опция \"smart tabs\" включена : %s "
+
+#: src/ui/ncurses/ncursesui.cc:2749
+msgid "configure parameter name (--enable-xxx): "
+msgstr ""
+
+#: src/ui/ncurses/ncursesui.cc:2750
+msgid "help text: "
+msgstr ""
+
+#: src/ui/ncurses/uieditor.cc:236
+msgid "save as: "
+msgstr "сохранить: "
+
+#: src/ui/ncurses/uieditor.cc:273
+#, c-format
+msgid "Saving %s .."
+msgstr "Сохранение %s .."
+
+#: src/ui/ncurses/uieditor.cc:276
+#, c-format
+msgid "File %s saved successfully"
+msgstr "Файл %s сохранен"
+
+#: src/ui/ncurses/uieditor.cc:293
+#, c-format
+msgid "file %s was modified. save changes?"
+msgstr "файл %s был изменен. сохранить?"
+
+#: src/ui/ncurses/uieditor.cc:316
+msgid "load file: "
+msgstr "открыть файл: "
+
+#: src/ui/ncurses/uieditor.cc:343
+msgid "goto line: "
+msgstr "перейти к строке номер: "
+
+#: src/ui/ncurses/uieditor.cc:398
+msgid " Window list "
+msgstr " Список окон редактора "
+
+#: src/ui/ncurses/uieditor.cc:401 src/ui/ncurses/uigrepper.cc:214
+msgid "Switch to"
+msgstr "Перейти"
+
+#: src/ui/ncurses/uitagbrowser.cc:9
+msgid "Current file"
+msgstr "Текущий файл"
+
+#: src/ui/ncurses/uitagbrowser.cc:11
+msgid "Current project"
+msgstr "Текущий проект"
+
+#: src/ui/ncurses/uitagbrowser.cc:13
+msgid "Everything"
+msgstr "Все подряд"
+
+#: src/ui/ncurses/uitagbrowser.cc:76
+#, c-format
+msgid " Symbols [%s] "
+msgstr " Символы программы [%s] "
+
+#: src/ui/ncurses/uitagbrowser.cc:204
+#, fuzzy
+msgid ""
+"Symbols: type to find, ~Del~ clear, ~F2~ scope, ~F3~ filter, ~^R~ reload, "
+"~Enter~ source"
+msgstr ""
+"Символы: набирайте, ~Del~ очистить, ~F2~ область, ~R~ перечитать, ~Enter~ "
+"переход"
+
+#: src/ui/ncurses/uigrepper.cc:31
+msgid " Motor grepper: replace mode "
+msgstr " Поиск с заменой "
+
+#: src/ui/ncurses/uigrepper.cc:31
+msgid " Motor grepper "
+msgstr " Глобальный поиск "
+
+#: src/ui/ncurses/uigrepper.cc:34
+msgid "Change/Mark"
+msgstr "Изменить/Отметить"
+
+#: src/ui/ncurses/uigrepper.cc:34
+msgid "Grep"
+msgstr "Начать"
+
+#: src/ui/ncurses/uigrepper.cc:48
+msgid " Search "
+msgstr " Поиск "
+
+#: src/ui/ncurses/uigrepper.cc:49
+#, c-format
+msgid " Look for: %s "
+msgstr " Искать : %s "
+
+#: src/ui/ncurses/uigrepper.cc:53
+#, c-format
+msgid " Replace with: %s "
+msgstr " Заменять на : %s "
+
+#: src/ui/ncurses/uigrepper.cc:56
+#, c-format
+msgid " Area: %s "
+msgstr " Область поиска : %s "
+
+#: src/ui/ncurses/uigrepper.cc:57
+msgid "current file"
+msgstr "текущий файл"
+
+#: src/ui/ncurses/uigrepper.cc:58
+msgid "selected folders"
+msgstr "отдельные папки"
+
+#: src/ui/ncurses/uigrepper.cc:59
+msgid "all the project files"
+msgstr "все файлы проекта"
+
+#: src/ui/ncurses/uigrepper.cc:60
+msgid "connected projects"
+msgstr "присоединенные проекты"
+
+#: src/ui/ncurses/uigrepper.cc:64
+msgid " Folders "
+msgstr " Папки "
+
+#: src/ui/ncurses/uigrepper.cc:77
+msgid " Projects "
+msgstr " Проекты "
+
+#: src/ui/ncurses/uigrepper.cc:92
+msgid " Options "
+msgstr " Опции "
+
+#: src/ui/ncurses/uigrepper.cc:93
+#, c-format
+msgid " Case sensitive: %s "
+msgstr " Учитывать регистр: %s "
+
+#: src/ui/ncurses/uigrepper.cc:94
+#, c-format
+msgid " Whole words only: %s "
+msgstr " Только слова целиком: %s "
+
+#: src/ui/ncurses/uigrepper.cc:95
+#, c-format
+msgid " Regular expression: %s "
+msgstr " Регулярное выражение: %s "
+
+#: src/ui/ncurses/uigrepper.cc:109
+msgid "Look for: "
+msgstr "Искать: "
+
+#: src/ui/ncurses/uigrepper.cc:129
+msgid "Replace with: "
+msgstr "Заменять на: "
+
+#: src/ui/ncurses/uigrepper.cc:211
+msgid " Motor grepper: results "
+msgstr " Результаты поиска "
+
+#: src/ui/ncurses/uigrepper.cc:214
+msgid "New search"
+msgstr "Новый поиск"
+
+#: src/ui/ncurses/uigrepper.cc:309
+msgid "Replace this occurence?"
+msgstr "Заменить это вхождение?"
+
+#: src/ui/ncurses/uigrepper.cc:325
+msgid "Cancelled"
+msgstr "Отменено"
+
+#: src/ui/ncurses/uiwatcher.cc:68
+msgid "Watch expression: "
+msgstr "Выражение: "
+
+#: src/ui/ncurses/uiwatcher.cc:84
+msgid "change the value to: "
+msgstr "новое значение: "
+
+#: src/ui/ncurses/uiwatcher.cc:100
+msgid "(not avail)"
+msgstr "(не доступно)"
+
+#: src/ui/ncurses/uiwatcher.cc:114
+msgid "Watches: ~Ins~ add, ~Del~ remove, ~^D~ close, ~A-W~ return to editor"
+msgstr "Наблюдение: ~Ins~ добавить, ~Del~ удалить, ~^D~ закрыть, ~A-W~ перекл"
+
+#: src/vcs/motorvcs.cc:63
+msgid "Checking in.."
+msgstr "Сохранение в VCS.."
+
+#: src/vcs/motorvcs.cc:69
+msgid "Checking out.."
+msgstr "Извлечение из VCS.."
+
+#: src/vcs/motorvcs.cc:79
+msgid "Adding a file to VCS.."
+msgstr "Добавление файла в систему контроля версий.."
+
+#: src/vcs/motorvcs.cc:85
+msgid "Removing a file from VCS.."
+msgstr "Удаление файла из контроля версий.."
+
+#: src/vcs/motorvcs.cc:91
+msgid "Tagging a release.."
+msgstr "Идет отметка версии.."
+
+#: src/vcs/motorvcs.cc:97
+msgid "Importing into VCS.."
+msgstr "Происходит импорт в VCS.."
+
+#: src/vcs/motorvcs.cc:123
+msgid "Retrieving recent modifications.."
+msgstr "Извлечение последних модификаций.."
+
+#: src/vcs/motorvcs.cc:146
+msgid "VCS check complete. No changes found"
+msgstr "Поиск завершен. Изменений не найдено"
+
+#: src/vcs/motorvcs.cc:167
+msgid "Retrieving the diff record.."
+msgstr "Извлечение отчета об изменениях.."
+
+#: src/vcs/motorvcs.cc:174
+#, c-format
+msgid "Creating branch %s.."
+msgstr "Создание ветки %s.."
+
+#~ msgid " enter to select a file, esc to cancel "
+#~ msgstr " enter - выбрать файл, esc - отмена "
+
+#~ msgid " space to select a directory, esc to cancel "
+#~ msgstr " пробел - выбрать каталог, esc - отмена "
+
+#~ msgid "Running %s.."
+#~ msgstr "Выполнение %s.."
+
+#~ msgid "Project named %s is already registered"
+#~ msgstr "Проект с именем %s уже зарегистрирован"
+
+#~ msgid " Templates available "
+#~ msgstr " Доступные шаблоны "
+
+#~ msgid "Root dir must exist"
+#~ msgstr "Каталог проекта должен существовать"

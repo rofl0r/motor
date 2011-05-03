@@ -1,0 +1,81 @@
+/*
+*
+* The motor FAQ (frequently asked questions)
+* by Konstantin Klyagin <konst@konst.org.ua>
+*
+*/
+
+Q: How do I change the color scheme?
+
+A: There are four color schemes available by default. They are classic
+   (Borland-like blue scheme), dark (set by default, black background,
+   etc), mc (inspired by Midnight Commander) and mono. To change a default
+   color scheme for all the Motor users in your system, you should modify
+   the /usr/local/share/motor/themes file and for a specific user,
+   ~/.motor/themes. If it doesn't exist, just copy from /usr/local/share/motor.
+   To choose between default schemes, just modify the second line in the
+   file. "scheme <your preferred scheme name>", but if you want to create
+   your own scheme, look below in the file. Also the file named "syntax"
+   may be for interest in this case.
+
+Q: I can't get out from a dialog or a menu. When I press ESC, nothing
+   happens.
+
+A: Have you ever used mc (Midnight commander)? It requires users to
+   press ESC twice to close a dialog, menu, etc. It's not a problem, but
+   just a terminal specific issue.
+
+Q: Motor compiles way too slow on my box. What's wrong?
+
+A: C++ compiler optimization being a rather slow thing is on by default.
+   To turn it off, do the following.
+   [konst@morgue]$ CXXFLAGS=-O0 ./configure && make
+
+Q: The following error message is displayed every time I try to build
+   the software. What's wrong?
+
+    /usr/bin/ld: cannot find -lcurses
+    collect2: ld returned 1 exit status
+    make[2]: *** [motor] Error 1
+    make[2]: Leaving directory `/home/me/motor/motor-3.0.0/src'
+    make[1]: *** [install-recursive] Error 1
+    make[1]: Leaving directory `/home/me/motor/motor-3.0.0/src'
+    make: *** [install-recursive] Error 1
+
+A: You either miss an ncurses library or haven't got appropriate backward
+   compatibility links established. The latter is more possible. To fix
+   this issue the following commands from the root user:
+
+    # cd /usr/lib
+    # ln -sf libncurses.a libcurses.a
+
+   If this doesn't help, you do miss the whole ncurses library. Get it either
+   from your Linux distribution package or from
+   http://www.gnu.org/software/ncurses/ncurses.html
+
+Q: Please explain how I do free a tty to use the gdb front end.
+
+A: First, you can only use debugging locally. It means no ssh, telnet or
+   something. Motor must be ran in a local console.
+
+   Run this from root:
+
+   # for i in /dev/tty[0-9] /dev/tty1[1-2]; do fuser $i; done
+
+   At least one tty should be free, i.e. musn't be on the list which the
+   command displays. If it's not terminate a program running on a tty
+   you wanna use for debug. If it's used by a getty or something, remove
+   it from your /etc/inittab file.
+
+   Next, permissions. The free tty (not used by any program) should
+   allow you to write there. Check it the following way:
+
+   $ echo "test" >/dev/tty10
+
+   if you want motor to run on the 10th console. If you have a problem
+   with permissions, it says "permission denied". It can be corrected
+   with the following command (from root):
+
+   # chmod 666 /dev/tty10
+
+   Voila. Now you do have a free tty to use Motor's gdb front-end.

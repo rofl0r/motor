@@ -1,0 +1,94 @@
+%make
+
+CVS = cvs -d [value vcsroot] -z9
+
+vcs_commit:
+	@perl -e 'print $$ENV{MOTOR_VCSCOMMENT}' >.commitcomment
+	-$(CVS) commit -F .commitcomment ${MOTOR_VCSFILES}
+	@rm -f .commitcomment
+
+vcs_update:
+	$(CVS) update ${MOTOR_VCSFILES}
+
+vcs_addfile:
+	@for i in ${MOTOR_FNAME}; do \
+	    dname=`dirname $$i`; \
+	    if test -n "$$dname"; then \
+		if test ! -d $$dname; then mkdir $$dname; fi; \
+		if test ! -d $$dname/CVS; then $(CVS) add $$dname; fi; \
+	    fi; \
+	    touch $$i; \
+	    $(CVS) add $$i; \
+	done
+
+vcs_removefile:
+	@for i in ${MOTOR_FNAME}; do \
+	    $(CVS) remove -f $$i; \
+	done
+
+vcs_tag:
+	$(CVS) tag ${MOTOR_TAG}
+
+vcs_import: makesure
+	@-mkdir .vcsimport
+	@-for i in $(ALL_DIRS) $(sort $(dir $(BUILDF))); do mkdir .vcsimport/$$i; done
+	@for i in $(ALL_FILES) $(BUILDF); do ln -f `pwd`/$$i .vcsimport/$$i; done
+	@cd .vcsimport && $(CVS) import -m "Imported into the CVS repository" "[value vcsmodule]" $(PROJNAME) start
+	@rm -rf .vcsimport
+	@$(MAKE) -f Makefile.func vcs_checkout
+
+vcs_checkout:
+	@-find . -name CVS -type d -exec rm -rf {} \;
+	@rm -rf .vcscheckout && mkdir .vcscheckout
+	@cd .vcscheckout && $(CVS) checkout [if x{vcsrevision} ! x] -r [value vcsrevision][endif] [value vcsmodule]
+	@cp -pR .vcscheckout/[value vcsmodule]/* . && rm -rf .vcscheckout
+
+vcs_getchanges:
+	@perl -e ' \
+	    my $$dir, @ladd, @lrem, @lmod, @rmod; \
+	    system("cvs status >.cvslog 2>&1"); \
+	    open(F, "<", ".cvslog") or die; \
+	    while(<F>) { \
+		chomp; $$buf = $$_; \
+		$$dir = $$2."/" if $$buf =~ m/^cvs (server|status): Examining ([l]^.[r].*)$$/; \
+		print "$$buf\n" if $$buf =~ m/^cvs \[l].+ aborted\[r]: /; \
+		if(($$buf =~ m/^File: ([l]^[l]:space:[r][r]+)[l][l]:space:[r][r]+Status: (.+)$$/) || \
+		($$buf =~ m/File: no file ([l]^[l]:space:[r][r]+)[l][l]:space:[r][r]+Status: (.+)$$/)) { \
+		    $$fname = $$dir.$$1; \
+		    push @ladd, $$fname if $$2 eq "Locally Added"; \
+		    push @lrem, $$fname if $$2 eq "Locally Removed"; \
+		    push @lmod, $$fname if $$2 eq "Locally Modified"; \
+		    push @rmod, $$fname if $$2 eq "Needs Patch" or $$2 eq "Needs Checkout"; \
+		} \
+	    } \
+	    close(F); \
+	    unlink(".cvslog"); \
+	    print "LA:"; map { print " $$_"; } @ladd; print "\n"; \
+	    print "LR:"; map { print " $$_"; } @lrem; print "\n"; \
+	    print "LM:"; map { print " $$_"; } @lmod; print "\n"; \
+	    print "RM:"; map { print " $$_"; } @rmod; print "\n";'
+
+vcs_getdiff:
+	@-$(CVS) diff -u ${MOTOR_FNAME}
+
+vcs_unmodify:
+	$(CVS) update -C ${MOTOR_VCSFILES}
+
+vcs_branch:
+	@if test -n ${MOTOR_DIR}; then \
+	    mkdir -p ${MOTOR_DIR}; \
+	    cp -r [value rootdir]/* ${MOTOR_DIR}; \
+	    cd ${MOTOR_DIR}; \
+	else \
+	    cd [value rootdir]; \
+	fi
+	@$(CVS) tag -b ${MOTOR_TAG}
+
+.PHONY: vcs_commit vcs_update vcs_addfile vcs_removefile vcs_tag \
+    vcs_import vcs_checkout vcs_getchanges vcs_getdiff vcs_unmodify \
+    vcs_branch
+
+%error
+
+(cvs \[.+ aborted\]: [[:print:]]+)
+^(.*make.*: \*\*\* .*)$

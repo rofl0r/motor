@@ -1,0 +1,158 @@
+In version 1.4.3
+----------------
+
+    - Now it's possible to specify special value handlers in value substitution
+	ex: [value aaa{param1 test,nobr}bbb test]
+
+    - New function pparamslist_add_array_valuef() in parlist library
+	[Andrew Marchenko - adv@dp.nix.com.ua]
+
+    - Renamed functions in strfn module (because old names causes conflict with
+	standard functions on FreeBSD):
+
+	isdecnumber -> strisdecnumber
+	ishexnumber -> strishexnumber
+
+    - New functions in strfn module:
+	strend
+	strcasestr
+
+    - Header files was changed for use parser with C++ compilier
+
+In version 1.4.2
+----------------
+
+    - Enabled value substitution in set tag value, in exec tag procedure name
+	and parameters
+
+    - Parser is going to be GNU licensed
+
+    - Fixed comments masking bug (if the "///" present and "//" is following
+	after that)
+
+    - Changed directory structure
+
+In version 1.4.1
+----------------
+
+    - Makefiles changed.
+
+    - Fixed bug for until cycles ([loop] tag without start;stop;step).
+
+    - New function pparamslist_clear_array_ in parlist.h.
+
+    - Changed function for process nohtml_br value.
+
+In version 1.4.0
+----------------
+
+    - New tag [exec procname parameters]. Now it's possible to call yours
+	external procedures from template. See parser_language for details.
+
+    - New functions in parlist module (see parlist.h for details):
+	pparamslist_add_ptr
+	pparamslist_set_ptr
+	pparamslist_set_format
+
+    - Tag "value" is equivalent to tag "svalue". The "svalue" tag is supported
+	to allow compability with prevous versions.
+
+In version 1.3.3
+----------------
+
+    - WARNING! Removed old tag "endloop". Use "loopend" tag.
+
+    - Some changes in documentation
+
+In version 1.3.2
+----------------
+
+    - Now it's possible to use more than one type identifier (comma separated
+	in svalue tag.
+
+    - Changed some functions declarations. Replaced "char *" to "const char *"
+	if it possible.
+
+    - Bugfix. The second call of parser function use now "pre off".
+
+In version 1.3.1
+----------------
+
+    - Bugfix for sub-lists in parameters list
+
+In version 1.3.0
+----------------
+
+    - New source parsing ideology:
+	Now parser can load files in two ways. It can either load file
+	from disk to memory (malloc(),read(),free()) or use file mapping
+	mechanism (mmap()+munmap).
+    
+    - I strongly suggest you to use new function for parsing - strparse.
+	Old functions fstrparse and sstrparse now are wrappers for it.
+
+In version 1.2.1
+----------------
+
+    - Tag "include" can specify expression with {}
+
+    - Added parameter to "include" tag that specify type of include:
+	"template" - template file (parse and include), default
+	"plain" - include plain text (no parse)
+
+    - WARNING! The strchrs function was removed. Use strpbrk
+	function.
+
+    - New types in parser_cgi module
+	noquot - removes quotes from text
+	nohtml - replace HTML special chars to its analogs and remove carriage
+	    returns
+	nohtml_br - replace HTML special chars to its analogs but don't remove
+	    carriage returns
+	html - replace HTML special chars to its analogs and replace '\n' char
+	    to "<br>"
+
+    - New functions in strfn library
+	strreplacechars
+	get_noquot_text
+	get_nohtml_text
+
+    - New function pparamslist_add_format() in parlist library
+	[Andrew Marchenko - adv@dp.nix.com.ua]
+
+    - Added comment mask. Now substring "///" in tag parsed as "//" string
+	and it's no comment.
+
+In version 1.2.0
+----------------
+
+    - WARNING! Replaced tags "set" -> "move", "setv" -> "set".
+
+    - Added "strchrs" function into "strfn" module. It find first occurence of
+	characters set in string.
+	
+    - New tag "eval" can evaluate simple integer expression. Brackets not
+	supported yet.
+
+    - Added syntax file for mcedit
+
+
+In version 1.1.0:
+-----------------
+
+    - New library was added. It's library for manipulate linked lists.
+
+    - Added new mechanism of "svalue" tag processing.
+	Now main program can add "svalue" tag processing functions to parser as
+	much as it need. First not NULL result will be used as "svalue" tag
+	text.
+
+    - WARNING! Removed "mimevalue", "jsvalue" and "nobrvalue" tags.
+	This features was moved into parser_cgi module as "svalue ... mime",
+	"svalue ... js" and "svalue ... nobr".
+
+
+In version 1.0.1:
+-----------------
+
+    - First released version

@@ -1,0 +1,254 @@
+<HTML><TITLE>Introducing Motor: a Programming IDE for Linux</TITLE>
+<BODY BGCOLOR=White>
+
+<TABLE BORDER=0>
+<TR><TD></TD><TD WIDTH="60%">
+
+<H2>What is Motor</H2>
+
+<P align="justify">
+
+Motor is an integrated IDE that works in the console and provides the
+developer with a useful mcedit-like editor, front-end to the compiler,
+linker, debugger (gdb), concurrent version system (cvs) and other useful
+things. It can also generate distribution packages in any format. Almost
+everything is done with templates, so any kind of language or
+distribution can be added easily.
+		
+</P>
+
+<P align="justify">
+
+Some of you may remember RHIDE, another text-mode programming IDE
+available for Linux. It had been ported to Linux from DOS where it had
+been a part of DJGPP tools. I liked the idea of such an IDE, but I
+disliked its DOS habits. For example, to be able to process Alt-Fx  keys
+it blocked switching local consoles. Well, they could be switched, but
+with Alt-Ctrl-Fx. This was the first thing that disturbed me. Also it
+took about 80% processor time and the user interface was too heavy to
+work on remotely. It lacked internal support for various GNU development
+tools a lot of UNIX programmers can't imagine working without. All that
+inspired me to write Motor.
+
+</P>
+
+<H2>Getting and Installing Motor</H2>
+
+<P align="justify">
+
+I don't think Motor differs dramatically from other Linux program as to
+the installation process. All you need is the tarball or the rpm file,
+which can be downloaded from the motor homepage at <A
+HREF="http://konst.org.ua/motor/">http://konst.org.ua/motor/</A>
+
+</P>
+
+<P align="justify">
+Let's assume the version number is 1.14.19
+</P>
+
+<P align="justify">
+To install from the tarball do the following:
+</P>
+
+<P align="justify"><B>
+tar zxvf motor-1.14.19.tar.gz<BR>
+cd motor-1.14.19<BR>
+./configure<BR>
+make<BR>
+make install
+</B></P>
+
+<P align="justify">
+And if you've got the rpm:
+</P>
+
+<P align="justify"><B>
+rpm -ihv motor-1.14.19-1.Linux-i386.rpm
+</B></P>
+
+<H2>"Hello, world!": a Simple Project Using Motor</H2>
+
+<P align="justify">
+
+Now, we will write a simple "Hello, world!" program in C with motor.
+Then we'll make a distribution package so the program looked like a real
+GNU application.      
+      
+</P>
+
+<CENTER><IMG SRC="images/snapshot01.png"></CENTER><br>
+
+<P align="justify">
+
+What to start with? Of course, by typing 'motor' on the command line to
+execute the program. Assuming your project list is empty, the project
+creation dialog is displayed. As you can see, it's possible to set
+various parameters here. But for the program we'll write, you should
+select "from scratch" mode, "terminal program/C" template and set the
+project name to "helloworld", for example. The project root directory
+will be set in appropriate way then. If you don't like the project files
+to be located straight in your home directory, you  can change that too.
+A little hint. You can choose a directory using the file browser, which
+is invoked by Ctrl-T. This key works in all the file/pathname input
+lines. Also leave the "GNU standard documentation" and "Generate initial
+source" items unchanged. Now, just move cursor to "Create" and press
+enter.
+				    
+</P>
+
+<CENTER><IMG SRC="images/snapshot02.png"></CENTER><br>
+
+<P align="justify">
+
+The list of project files is displayed. Simply select helloworld.cc here
+and press Enter. Now we are in the main screen of Motor. The screen
+consists of the editor window filling most of it and two bars. In the
+top it's a status bar and a messages bar in the bottom. The menu bar
+will appear in the top if you press F10. Let's take a quick tour into
+the project organisation. All the parameters can be viewed and modified
+in the project settings dialog invoked with Shift-F11 key or through the
+menu.
+		      
+</P>
+
+<P align="justify">
+
+With this dialog you can modify parameters of the project such as the
+command line options passed to compiler or linker, cvs repository and
+some make issues. Also you can get to the list of files and directories.
+Now let's select "Files" and see which files were added to our project
+on creation. As we set "Generate initial source" and "GNU standard
+documentation" options to "yes", our project is already populated with
+some files. They are helloworld.c and a set of documentation files in
+the "Miscellaneous" folder. To open a file here just move the cursor to
+it and press Enter. But, let's continue editing our source code. We can
+return to it either by opening helloworld.c from the dialog or closing
+the dialog with ESC-ESC.
+			      
+</P>
+
+<P align="justify">
+
+All we see in the editor window now is a piece of C source generated
+from the template. We should remove everything between "{" and "}" to
+make the main() function empty. Then we fill it with a single printf
+call needed to print out the phrase we want to see ...
+	 
+</P>
+
+<P align="justify">
+
+printf("Hello, world!\n");
+
+</P>
+
+<P align="justify">
+
+The program source is ready now. What next? We should build the
+executable and run it to see how it works. Taking a quick tour though
+the menu bar will help you find the key to be used to  build a project.
+It's F9. If no errors occur (hope, there are no errors in our "Hello,
+world" ;), "Compiled successfully" will be written in the line at the
+bottom of the  screen. That means the executable is ready to run. Press
+F12. Voila! Small note. Motor runs the program on separate console so
+you should have a free local tty. After execution you can see the
+program output by switching to that console. Assuming the first free tty
+on our box was /dev/tty9, simply press Alt-F9 and see "Hello, world!"
+printed by the program.
+				 
+</P>
+
+<P align="justify">
+
+No need to explain how to debug "Hello, world!", since such programs 
+usually don't need it ;) But if you want to try this feature, you can
+execute it line-by-line using the F8 key. Other debug-mode keys are
+listed in the "Debug" submenu.
+	 
+</P>
+
+<P align="justify">
+
+But as far as we remember, building an executable is not our final goal.
+Now we want to see how it can be easily turned into a real GNU program
+that is distributed as tar.gz or rpm packages. In Motor it can be done
+with a single dialog. To open it, go to the "Project" menu and select
+"Make a package".
+	    
+</P>
+
+<H3>Generating tar.gz and a configure script</H3>
+
+<CENTER><IMG SRC="images/snapshot03.png"></CENTER><br>
+
+<P align="justify">
+
+Select "tar.gz" as a type of distribution and turn on autoconf usage.
+Also we want the binary to be installed to /bin directory with prefix
+set to where the user wants it to reside. That means we have to add an
+install rule. Every time we select "add" here, we are asked two
+questions: file name and destination directory. So, first we enter
+"helloworld" and then "$(PREFIX)/bin/". Now, select "Generate". For the
+first when no configure.in file exists, motor generates it
+automatically. Leave it unchanged if you don't know what to write there.
+I strongly suggest you read autoconf info with the "info autoconf"
+command to find out how to write configure.in. Then you should revise it
+and open the dialog again. Now, everything is ready. After selecting
+"Generate" item, the tarball will appear in the specified output
+directory.
+				    
+</P>
+
+<H3>Generating .rpm</H3>
+
+<P align="justify">
+
+This move will be a little more complicated. The point is that rpm
+requires a special .spec file. So first you have to invoke the "project
+files" dialog with F11 and add helloworld.spec file to the
+"Miscellaneous files" folder. If you don't know what to write here,  I
+suggest you consult the rpm docs. If you have rpm version 4.0,  they're
+located in /usr/doc/rpm-4.0 or /usr/share/doc/rpm-4.0 directory. When
+.spec file is ready open the distribution generation dialog again,
+select type .rpm and "Generate".
+		     
+</P>
+
+<H2>Contributing to Motor Development</H2>
+
+<P align="justify">
+
+As it usually happens with my programs -- any comments, ideas,
+bug-reports and patches you make while using Motor, are welcome. Mail 
+them to <A HREF="mailto:konst@konst.org.ua?subject=motor">me
+directly</A>. There is also a section for programs written using  Motor
+at its homepage. If you don't mind listing your program  there, you can
+fill out a form and the information will appear  on the motor web site.
+	       
+</P>
+
+<H2>About the author</H2>
+
+<P align="justify">
+
+<IMG SRC="images/konstsm.jpg" ALIGN=LEFT>
+
+Konstantin "konst" Klyagin, lives in Kharkov, Ukraine. He is a 4th year 
+student of the Kharkov State Polytechnical University, going next  year
+to get a BS in System Analysis. He currently works as a programmer for
+the <A HREF="http://www.nixsolutions.com/">"NIX Solutions"</A> company.
+Has got about 10 years overall  programming experience. Personal
+interests relate to computers, networking, programming, IT, Linux,
+digital innovations and also art, painting, history, politics, heavy
+music, girls, and having fun. He can be contacted at <A
+HREF="mailto:konst@konst.org.ua?subject=motor">konst@konst.org.ua</A>.
+Konst's personal site URL is <A
+HREF="http://konst.org.ua/">http://konst.org.ua/</A>.
+
+</P>
+
+</TD><TD></TD></TR>
+</TABLE>
+
+</BODY></HTML>

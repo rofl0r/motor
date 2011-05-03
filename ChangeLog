@@ -1,0 +1,521 @@
+1.0.0
+-----
+
+First public release. With this version of motor it's possible to
+organize project files (sources, headers, libraries, etc), edit, compile
+and debug programs without a need to leave the IDE and run any other
+programs, automatically check in/out updated project files from/to your
+CVS repositories and import projects into them. Also it can generate
+distribution packages of projects.
+
+1.2.3
+-----
+
+Some compilation problems were fixed.
+Some interface related bugs fixed.
+Some code cleanups made.
+
+Editor window (activated with F5) list improved.
+
+Shifting selected text one tab forward and backward feature added to the
+internal text editor.
+
+One customization feature added. Now a file named filetypes
+in /usr/local/share/motor or ~/.motor/ directory describes regexs and
+types of files matching to them.
+
+1.4.7
+-----
+
+Now it's possible to access the motor configuration dialog from the
+project creation window.
+
+A bug with finding an appropriate syntax for a file in editor fixed.
+
+"Include project info" option added to the package generation dialog. It
+causes motor to put the project information file named
+motor.project.info into the distribution package. It can be used by
+motor on another system when the source is unpacked and new project is
+created in "from files" mode.
+
+Very annoying bug related to "from cvs" project creation mode fixed. The mode
+didn't work and sometimes it even could delete a local cvs repository.
+
+The source editor was improved. Undo feature added.
+
+Quite a very big source rewrite took place. I've implemented project
+templates support wanting to make it support almost any languages and
+development tools. Since templates need an extensible definition
+language, I used the parser library written by my co-worker Roman
+Khnykin <romaroma@rr.org.ua>. It's a wonderful library that allows a
+programmer not to think about any text output in his programs. If you're
+intrested you can find it in the motor source distribution in parser/
+directory. Other template defining issues are explained in the README
+file.
+
+1.7.12
+------
+
+NOTE:	If you are upgrading your motor from version 1.0.0, you should
+	"rm -rf ~/.motor" so this version could work properly.
+
+A bug in distribution generation module was fixed. It caused motor not
+to check for configure.in presence if "use autoconf" option was on.
+
+Another bug in the distribution generation module. Because of this one
+motor generated a little bit wrong Makefile when "add connected
+libraries" options was on.
+
+Added a template for generating .tar.gz distribution of library/static
+project.
+
+Several interface improvements were made.
+
+Another bug was found in the CVS integration module. Because of it the
+module worked only partitially.
+
+RPM support has been added. Now motor can generate RPM distributions of
+projects of any of standard types. Special thanks to Avi Alkalay
+<aviram@yahoo.com> for some RPM explanations. 
+
+Now motor checks for CVS being installed. If it doesn't find it all the
+CVS operations are blocked. Thanks to Graham Swallow
+<gps@trix.dircon.co.uk> for a report.
+
+One more config file added. Its name is external and it allows users to
+define external programs invoked with shortcut keys.
+
+Evaluate/Modify dialog has been included into motor's debugging
+facilities.
+
+Now it's possible to define user color schemes for motor. The config
+file name is themes.
+
+1.9.14
+------
+
+Fixed a bug. Motor didn't allow to quick jump to a line in the source
+containing an error or warning after compilation.
+
+Another bug has been fixed. "Go to cursor" feature in internal GDB
+front-end didn't work in sources from connected libraries.
+
+Some blocks operations were improved in the internal editor.
+
+Now motor detects the line in source where signal was received.
+
+1.11.16
+-------
+
+Fixed a bug with incorrect breakpoints handling.
+
+Now motor can leave generated Makefile.motor files on disk. Also it
+allows you to replace standard "make -f Makefile.motor" command with
+your command line needed to make a project.
+
+Gettextized. I made a .po file for Russian language. So, .po's for
+various languages are welcome now :)
+
+Fixed several bugs in the editor module.
+
+1.14.19
+-------
+
+F8 and F7 keys didn't work when used to start a debug session.
+
+New useful feature added, its name is "Motor grepper". It allows to grep
+a single file, a set of folders or even connected libraries to find a
+substring or a line matching a regexp.
+
+Now it's possible to specify additional commands for building and
+installing the project to be executed after a usual procedure of
+performing a task.
+
+Now the grepper tool invoked with Alt-F can perform searches in files of
+connected projects.
+
+File-Generate.. item added to the menu and also appropriate feature appeared.
+
+New version of the parser library by Roman Khnykin is used.
+
+2.0.0
+-----
+
+Source code symbols browser added. It allows to browse symbols found by
+ctags and quickly move between definitions in the source.
+
+Lots of code clean-ups. The source was improved dramatically :)
+
+Ported to FreeBSD at last. Thanks to Gregory Edigarov <greg@thing-fish.net>
+and Alexander Zhouravlev <bofh@memphis.mephi.ru>
+
+"Help" dialog invoked with F1 has been added.
+
+CVS import now works more correctly. If doesn't import all files in the
+project root directory any more. It adds only files listed in the
+project settings.
+
+Quoted text is now displayed more correctly in the internal editor.
+
+Two features have been added to the internal gdb front-end: load core
+dump file and view call stack.
+
+Tutorial/ has been added to the distribution. You can find there two
+HOWTO-style articles I wrote about motor.
+
+2.3.1
+-----
+
+Many small fixes were made in the editor module.
+
+Modifications were not comitted into CVS if comment was empty. Fixed.
+
+Arguments were not reloaded correctly with gdb on changing with Ctrl-F12.
+
+The build need on F8, F9 and F12 was checked not the best way. Improved :)
+
+2.6.3
+-----
+
+Some interface fixes.
+
+Added a default scheme mc that makes motor look like Midnight Commander,
+a popular file manager.
+
+Fixed a bug with loading files in DOS CRLF format incorrectly.
+
+Ported to OpenBSD.
+
+Polish translation by Krzysztof Krzy¿aniak <eloy@pawnhearts.eu.org> added to
+the package.
+
+If gdb wasn't installed motor hanged trying to run a program. Fixed.
+
+The ctags program name has been changed to etags everywhere, since the
+parameters motor passed to it and the format for output file recognized
+was actually from etags, not ctags. In my Redhat system ctags was a part
+of the Exuberant Ctags package, and a link to etags :)
+
+2.15.7
+------
+
+First, I'd like to introduce a completely new idea of the project
+building procedure. There are two major points. First is that now motor
+uses its own generated special Makefile.func files. Everything about
+cvs, compilers and debug is done with its reserved targets. And second,
+(tada), at last I've added the automake support to motor. Now you can
+generate completely GNU standard compatible distributions and use its
+great functionality. Most of changes in this version are related to
+previously described additions.
+
+Several useful parameters were added to the "Motor settings" dialog.
+"Show compiler output" and "Show cvs output" are useful to enable or
+disable displaying the run-time output of appropriate external programs.
+"Debug standard headers" turns on or off the ability to step inside the
+system standard headers when you debug C or C++ programs.
+
+"External output" item has been added to the "Project" dialog. You can
+view all the output of external programs motor executes.
+
+"Make a package" dialog has been improved dramatically. Now it doesn't
+require you to enter lots of extra info, it just asks for a type of
+resulting package and the path to place it to. Nothing else :) tar.gz
+and rpm formats are supported.
+
+"Build stuff" folder has been added to all the default templates. It
+contains files such as configure.in, Makefile.am, *.spec, etc.
+
+Removed the obsolete Buildrules file from templates. Now motor uses
+Parserules to parse the compiler (and other external programs' if
+needed) output.
+
+"terminal program/java" template has been added to the default template
+set.
+
+Gettext support added. No you can turn it on for the project with the
+"Project settings" dialog.
+
+Config file named Debug was added to the set of template files.
+
+Chinese translation by Zeyun Liang <liangn@kali.com.cn> was added.
+
+"Regen. build stuff" item was added to the "Project" menu. If "makefile
+mode" options of the project is set to "automake" it causes regeneration
+of Makefile.am's and stuff.
+
+Another new item in the "Project" menu named "Make a target" allows you
+to run various targets of your project Makefile.
+
+2.17.13
+-------
+
+Fixed a bug caused breakpoints positions being lost after closing a
+project and opening it again.
+
+Fixed a silent file save bug in editor. If the user hadn't a write
+permission on a file being edited, though motor reported save success
+all changes were lost.
+
+Fixed motor's not passing command line arguments to a program ran
+without gdb.
+
+Some syntax highlight related problems in the internal editor module
+were fixed.
+
+Now C and C++ source are compiled with -O0 flag by default to avoid
+nasty surprises with debugging.
+
+Couldn't mark/unmark connected projects in the grepper dialog. Fixed.
+
+Fixed a possibility to create two different projects with the same name.
+
+A little UI improvement. External output window became higher.
+
+2.20.14
+-------
+
+It's turned out that such a great pure GNU/Linux distribution named
+Debian lacks the gmake binary though make is there. Complete
+disappointment. Since now the motor ./configure scripts checks make for
+being GNU and if it is, uses it instead of gmake.
+
+The GNU copyright notice was added to every source file as the Vice
+President of FSF requested me with e-mail message (no shit :)
+
+The -a, --ascii command line parameter was added. When it's specified
+motor draws its boxes and frames with ascii characters, dashes and
+pipes, instead of using pseudo-graphics.
+
+Syntax highlight problem in editor was fixed. C comments /* */ were not
+displayed correctly from time to time.
+
+"Default directory for new projects" parameter was added to the "Motor
+settings" dialog.
+
+3.0.0
+-----
+
+First, I need to say this version is a major rewrite. At a first glance
+you could notice that the directory structure was changed dramatically.
+But that's not the only thing that suffered a lot of changes. I
+re-projected all the program classes, so that now every part is quite
+separate, so performing further source modifications is gonna be much
+easier. It also makes me proud of the work I made is that now UI is
+separated from other parts of the program. This means there is a
+possibility to make a GNOME version of motor, I also consider making a
+readline based one. Because of the re-write you can find some things
+looking a bit different. That's ok, I just tried to improve everything I
+saw :)
+
+I want to put a short notice here. The project format was changed, so
+now you must re-create them with the new version of motor. Also, project
+templates are not 100% compatible. Lots of configuration issues were
+changed so that now it's much more flexible.
+
+Fixed some compilation problems centericq caused with C++ compilers
+that have no support for namespaces.
+
+Version control systems and debuggers are now fully configurable. For
+details, just take a look inside the $prefix/share/motor directory.
+
+Motor is now able to take a version of project from configure.in during
+import ("from files" creation mode).
+
+I used a need for the rewrite to completely replace an old
+grepper/finder tool with a new and nice dialog with a lot of functions.
+
+Some exotic languages support was added (anyone knows what for? :) You
+can now use --enable-locales-fix parameter with ./configure to make
+motor display some Chinese and Japanese characters if it doesn't. You
+can also turn on a basic support for Hebrew and Arabic with --with-fribidi.
+Note, to use the latter you should have the fribidi library installed.
+It's available at http://imagic.weizmann.ac.il/~dov/freesw/FriBidi
+
+Hot keys now work in the top menu.
+
+Manpage was added.
+
+PS: I'm sure this version has a bunch of bugs, but the more you find and
+    report the more are fixed :)
+
+3.1.0
+-----
+
+This release is mostly intended to fix some post-rewrite bugs.
+
+Applied a patch by Tony Lambiris <methodic@slartibartfast.angrypacket.com>
+which makes it possible to compile motor under OpenBSD.
+
+"./configure" scripts motor generated for its projects failed to run
+with some versions of bash, because of AC_CONFIG_SUBDIRS() macro with no
+parameters in configure.in. Now if there is no connected libraries this
+macro isn't inserted.
+
+Presence of free console for debugger wasn't checked. Fixed along with a
+bunch of other issues in the debugger front-end module.
+
+Now it's possible to compile the program with GCC >= 3.0.0.
+
+Fixed several bugs in the grepper tool that caused "selected folders"
+and "connected projects" not to work at all.
+
+External key bindings were fixed.
+
+Now it's possible to disable free tty check, so that motor doesn't ask
+you to run the program in the same console every time.
+
+It was possible to open several times a physically not existing file
+which was on the project file list.
+
+Invoking grepper having no open files caused a segfault. Fixed.
+
+Fixed some bugs in the VCS front-end module. It could neither detect
+remotely added nor locally removed files.
+
+Also, the VCS module was impoved, so that it assesses the repository
+much more frequently. It could take ages to wait until all the changes
+in a project are in repository.
+
+It's now possible to open either a connected lib or one of its files
+with the "Project files" dialog.
+
+A check for the ncurses lib was added to the motor autoconf setup.
+
+A VERY initial and raw template for perl programs was added. It doesn't
+even support debugging yet.
+
+An anonymous CVS synchronization script was included into the motor
+package. Its name is motorsync. Use it if you wanna have the latest
+development version of the software.
+
+3.1.5
+-----
+
+Pascal syntax definition was added. Some bugs related to Pascal style
+quotes were fixed.
+
+FAQ now covers the process of freeing up a console for debugging.
+
+Regexper tool was added. It can be invoked either from menu or with
+Alt-R hotkey. It's possible to insert regular expressions or substrings
+into the source or copy them into clipboard.
+
+Default templates were improved.
+
+"enable mcedit clipboard integration" options was added to the motor
+configuration dialog. It makes motor use Midnight Commander's clipboard
+file for its operations. Very useful to cut'n'paste text blocks between
+the applications.
+
+"disable smart tabs" option was also added to the same place. This one
+controls behavior of the Enter key. When it's on the motor's internal
+editor makes an align every time you press the key. Otherwise the cursor
+always goes to the 0 position.
+
+Now it's possible to specify a revision of CVS module to checkout in the
+project creation dialog.
+
+Some bugs in grepper regexp mode were fixed.
+
+Syntax for gettext .po files was added.
+
+Stack info fixed. Didn't work in the previous version.
+
+3.2.0
+-----
+
+This version is intended to be a bugfix release. Below go descriptions
+for some of the major ones.
+
+configure.in wasn't created in the project root directory in "from
+files" project creation mode with automake support turned on.
+
+Grepper tool didn't do anything in "connected projects" search mode.
+
+Fixed some Makefile.func issues in templates which caused problems under
+FreeBSD, and didn't allow "dist" automake default target to work well in
+resulting packages.
+
+3.2.2
+-----
+
+Current file search and files loading into the editor was sped-up
+dramatically. Finally.
+
+The bug that caused breakpoints not to be saved correctly was fixed.
+
+The breakpoints view dialog was improved by adding "Goto" button.
+Current item in the dialog is now set dependent on current editor
+position.
+
+Tag browser dialog was improved. It's now possible to switch between
+three view scopes: current file, current project and everything which
+stands for the current project along with all connected libraries.
+
+3.2.3
+-----
+
+The --debugtty parameter was added to make it possible to explicitely
+specify a console where the output of a program being debugged will be
+redirected. Useful in X environment, where you can easily debug your
+programs in another xterm window this way.
+
+The search-and-replace feature in the internal editor didn't work in the
+"current file" scope.
+
+Several screen redraw related problems were eliminated.
+
+Now the projects with the "-" character in name get processed correctly
+by auto-generated autoconf/automake stuff.
+
+Command line parameters didn't get passed to the programs being debugged
+in some cases. Fixed.
+
+Fixed several issues that resulted into inability to compile the program
+with gcc 3.x.
+
+3.2.4
+-----
+
+More rules to track linking errors were added.
+
+If it's not possible to import a particular file into the version
+control system, a question is asked whether the IDE should add the file
+only locally.
+
+In the "from files" creation mode, when a project is created, the
+generated Makefile.in and Makefile files are not imported anymore.
+
+When the IDE refuses to add a file with a certain extension to a project
+folder, the reason is displayed in the status line in the bottom of the
+screen.
+
+3.3.0
+-----
+
+Information about projects are now stored in each project's directory
+under the generic name <projectname>.motor.
+
+The tag browser dialog was improved. Now it's possible to turn off
+displaying of some symbols.
+
+The distribution package definitions in templates now provide additional
+parameters. Like now, you can specify the target parameter for RPM from
+the interface directly.
+
+Some problems in parsing of the CVS output were fixed.
+
+Now it's possible to add multiple files to a project using the motor's
+file selection dialog.
+
+Fixed a segfault on project creation that used to happen with motor
+compiled with newer gcc.
+
+Fixed some problems in motorsync script.
+
+3.4.0
+-----
+
+This is a bugfix release. Its main points are the fixed rpm packages of
+projects generation bug, a compile error in the parser module compiled with the
+recent GCC and CVS diff viewing now works again.

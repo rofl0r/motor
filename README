@@ -1,0 +1,490 @@
+Motor documentation
+    by konst, 2002-2003
+
+Contents
+--------
+
+1. Introduction
+    1.1. Creation history
+    1.2. Features overview
+    1.3. Requirements
+    1.4. First time start
+2. User interface
+    2.1. The ESC key
+    2.2. The main screen
+    2.3. Menus
+    2.4. Dialogs
+    2.5. Hotkeys in dialogs
+    2.6. Some UI tips
+3. Configuration
+    3.1. The "Motor settings" dialog
+    3.2. External keys
+    3.3. Color schemes
+4. Projects
+    4.1. Project creation
+    4.2. Project files and directories
+    4.3. The "Project settings" dialog
+    4.4. Building programs
+    4.5. Distribution package generation
+    4.6. External output view, error messages
+    4.7. Templates
+	4.7.1. Standard templates overview
+	4.7.2. Custom templates
+5. Internal editor
+    5.1. Block operations
+	5.1.1. Cut and paste
+	5.1.2. Indentation
+    5.2. Switching between editor windows
+    5.3. Undo/redo
+6. Debugger front-end
+    6.1. Using debugger, requirements
+    6.2. Step-by-step execution
+    6.3. Breakpoints
+    6.4. Watches
+    6.5. Call stack
+    6.6. Core dumps exploration
+    6.7. Custom debuggers
+7. Version control systems integration
+    7.1. Creation from CVS
+    7.2. Importing an existing project
+    7.3. The "Check/in out" dialog
+    7.4. Release tags
+    7.5. Version control systems customization
+8. Useful features
+    8.1. Grepper
+    8.2. Regexper
+    8.3. Tag browser
+9. Advanced features
+    9.5. Latest CVS snapshots
+10. Lynx
+    10.1. The program homepage
+	10.1.1. Motor mailing list
+    10.2. thekonst.net
+    10.3. Other programs I write
+
+
+1. Introduction
+---------------
+
+  Motor is a text mode based programming environment for Linux. It
+consists of a powerful editor with syntax highlight feature, project
+manager, makefile generator, gcc and gdb front-end, etc. Deep CVS
+integration is also provided. A symbol browser is provided to make it
+easier to move between various definitions in the source, and the
+regexper tool helps you to create and debug regular expressions.
+
+
+1.1. Creation history
+---------------------
+
+  I think that every program must comply with an ideology of the
+operating system it's written for and it's a very important part of
+success of a software product, so when I started writing motor I'd
+deceided to create a useful tool for open source programmers that would
+comply with an ideology of Linux as much as possible. When I use an
+"igeology" term, first of all I mean the way the program works in
+general, the OS facilities usage and an interface concept (for this kind
+of programs).
+
+  There was a limited set of programs used almost by all of Linux
+programmers in developing their open source programs. Usually they were
+a text editor (I prefered mcedit), gcc/g++ compiler, make, gdb, cvs,
+autoconf and some other tools. Programming IDE should integrate all of
+them in an entrie user interface to help a programmer to organize his
+projects the way he likes, to debug programs seeing the source and
+modify it in the same time, etc.. I know, most of those tools comply
+with Linux ideology quite well, but they relate to the command-line
+interface concept. Some people find it useful, but as for me, I prefer a
+bit higher level of visuality. It should be something like Midnight
+Commander, that is de-facto a standard for text user interface for
+Linux. That's what I tried to make.
+
+
+1.2. Features overview
+----------------------
+
+  Every part of the IDE is configurable. You can define any kind of
+debugger and version control system, syntax highlight, compiler messages
+to parse, add additional actions, etc. Though in some parts it's not
+that trivial, but who says it's gotta be so? :)
+
+  Internal editor has the following highlights. Of course, it can open
+multiple files at once, has a standard set of block operations with some
+nice additions like shifting whole blocks to make it easier to add
+indents to your source. The find tool allows you to use regular
+expressions, search in the whole project or its particular folders, you
+can even perform searches in several projects. And sure there is a
+possibility to use an external editor in cause if you don't like such a
+cute thingie :)
+
+  Actually there are many features already implemented, which I will
+tell you about in this documentation. And there is more to follow, of
+course.
+
+
+1.3. Requirements
+-----------------
+
+  It's not difficult to build the motor executable, for there is a very
+small set of tools it will need. Apart from the C++ compiler you should
+only install ncurses, which is a CRT screen handling and optimization
+package, at least of 4.2 version. You can find it by the following URL.
+  http://dickey.his.com/ncurses/ncurses.html
+
+  Well, with such a trivial build there must be a trick. Right, in order
+to use it you'll need much more software installed. It would be rather
+stupid to expect a small IDE to do all the job, like build processing,
+version control, code debugging and tags extracting. Motor is just a
+front-end for the standard tools, designed especially for these aims.
+So, here is the list.
+
+  GNU Make
+  GNU Debugger (gdb)
+  autoconf and automake
+  CVS (Concurrent Version System)
+  RedHat Package Manager (if you want to generate such packages)
+
+  Also, the template scripts will use such standard command line tools,
+like sed, grep, egrep, etc.. But usually they're included into any
+modern UNIX distribution, so there is nothing to worry about.
+
+
+1.4. First time start
+---------------------
+
+
+2. User interface
+-----------------
+
+  The text UI motor has, as well as UI of other programs for console I
+have written, is very simple. There are menus, windows, menus and input
+lines. In the bottom line of the screen there is a status bar. It
+usually contains hints about what to press to invoke various menus,
+dialogs, and perform various actions.
+
+
+2.1. The ESC key
+----------------
+
+  This key is used for termination of input, if you wanna cancel the
+operation you wanted to perform. Let's say, the "Motor settings" dialog
+is invoked. As button bar says, you can use the item "Change" to change
+values. There is also the "Done" button, which will save changes.
+Obviously if you don't want to do the latter, there is ESC. The only
+hint here is that you have to press the ESC key twice. It's a common
+practice for console based UNIX programs (Midnight commander is a good
+example), because checking for only one ESC would spoil arrow key
+processing. The point is that they have correspond sequences that start
+with an ASCII#27 character which is actually ESC.
+
+  If you still want to press a simple key combination to close a dialog
+or cancel something, try Alt-ESC. Though it's not guaranteed to work on
+all terminals.
+
+  The ESC key can also help you to issue shortcuts and key combinations
+such as Alt-? or F<x>. The former, if Alt-Shift-/ doesn't work can be
+produced by first pressing ESC and then Shift-/ (i.e. "?"). And instead
+of any F-key the ESC and then a number can be used.
+
+
+2.2. The main screen
+--------------------
+
+2.3. Menus
+----------
+
+2.4. Dialogs
+------------
+
+2.5. Hotkeys in dialogs
+-----------------------
+
+  Dialogs in motor usually have a bar with buttons. To access a button
+without moving the highlighted bar over it with the arrow keys you can
+use shortcuts. It's enough to press the first capital letter of a button
+name to access the function behind it.
+
+
+2.6. Some UI tips
+-----------------
+
+  There at some quite standard key combinations supported by motor. Here
+they go.
+
+    Ctrl-L
+      Redraws the screen in any place of program execution. If output of
+    some kind of background programs or system messages spoil your screen
+    just press it to refresh the motor screen.
+
+    Ctrl-Y
+      In editor removes entire current line.
+
+    Ctrl-K
+      Single line edit mode.
+      Kills entire content.
+
+    Ctrl-U
+      Single line edit mode.
+      Kills a part of line to the left from cursor.
+
+    Alt-H
+      Single line edit mode.
+      Invokes history of recently entered lines.
+
+3. Configuration
+----------------
+
+3.1. The "Motor settings" dialog
+--------------------------------
+
+3.2. External keys
+------------------
+
+3.3. Color schemes
+------------------
+
+  It's possible to customise colors in motor user interface. It's done
+with the help of the ~/.motor/themes configuration file. The default one
+can be found in the /usr/share/motor or /usr/local/share/motor
+directory. Just copy it to ~/.motor and edit by preference. Its contents
+are self-descriptive, and parameter names mean exactly that they're
+named after. Please note, that among the standard color names it's
+possible to specify "transparent" which is useful when the program is
+used in terminals with background images set.
+
+
+4. Projects
+-----------
+
+4.1. Project creation
+---------------------
+
+4.2. Project files and directories
+----------------------------------
+
+4.3. The "Project settings" dialog
+----------------------------------
+
+4.4. Building programs
+----------------------
+
+4.5. Distribution package generation
+------------------------------------
+
+4.6. External output view, error messages
+-----------------------------------------
+
+4.7. Templates
+--------------
+
+4.7.1. Standard templates overview
+----------------------------------
+
+4.7.2. Custom templates
+-----------------------
+
+5. Internal editor
+------------------
+
+5.1. Block operations
+---------------------
+
+5.1.1. Cut and paste
+--------------------
+
+5.1.2. Indentation
+------------------
+
+5.2. Switching between editor windows
+-------------------------------------
+
+5.3. Undo/redo
+--------------
+
+6. Debugger front-end
+---------------------
+
+6.1. Using debugger, requirements
+---------------------------------
+
+6.2. Step-by-step execution
+---------------------------
+
+6.3. Breakpoints
+----------------
+
+6.4. Watches
+------------
+
+6.5. Call stack
+---------------
+
+6.6. Core dumps exploration
+---------------------------
+
+6.7. Custom debuggers
+---------------------
+
+7. Version control systems integration
+--------------------------------------
+
+7.1. Creation from CVS
+----------------------
+
+7.2. Importing an existing project
+----------------------------------
+
+7.3. The "Check/in out" dialog
+------------------------------
+
+7.4. Release tags
+-----------------
+
+7.5. Version control systems customization
+------------------------------------------
+
+8. Useful features
+------------------
+
+8.1. Grepper
+------------
+
+8.2. Regexper
+-------------
+
+8.3. Tag browser
+----------------
+
+9. Advanced features
+--------------------
+
+9.5. Latest CVS snapshots
+-------------------------
+
+10. Lynx
+--------
+
+  This section contains links and references that may be of interest for
+you.
+
+
+10.1. The program homepage
+--------------------------
+
+The motor homepage can be found at
+    http://thekonst.net/motor/
+
+On the same page there is the latest version for you to download.
+
+
+10.1.1. Motor mailing list
+--------------------------
+
+  There is a mailing list for motor which is used by the program users
+to discuss their ideas, bug reports, fixes, and other stuff. You would
+rather want to use it instead of direct mailing to me.
+
+  To subscribe go to the motor home page (URL above) or send a message
+to motor-request@linuxpl.org with "subscribe" in the subject field. To
+post a message to the list, send it to motor@linuxpl.org after you
+subscribe. The archive can be found at http://eloy.linux.net.pl/motor/
+
+
+10.2. thekonst.net
+------------------
+
+  If you want to find out more about my recent activities, news,
+software developments and other things I'm involved in, visit my web
+site at http://thekonst.net/
+
+
+10.3. Other programs I write
+----------------------------
+
+To find out more about my software developments use the following URL:
+    http://thekonst.net/konstware/
+
+There is also an "articles" section at
+    http://thekonst.net/writings/
+
+
+11. Help to the project I would appreciate
+------------------------------------------
+
+  What if you think that motor is the best text console based IDE
+around? What if motor is an IDE you'd been waiting whole of your life,
+and want to express your appreciation somehow? Helping the author you
+help the project itself to keep rolling. It's not something vital I
+require to keep on writing and improving motor, neither you have to do
+it. I quite enjoy making it in my spare time, and happy of the fact
+there are no deadlines and obligations from my side. It's just my hobby.
+
+  So how you can express appreciation to the way I waste my spare time,
+so that to make me a bit more happy and satisfied by my activities?
+
+
+11.1. Feedback
+--------------
+
+  You can write some feedback saying what you liked and what is missing
+in the program. Also, don't be silent if you notice bugs. Just check
+everything attentively and send a detailed bug-report to the mailing
+list.
+
+
+11.2. Patches
+-------------
+
+  Don't wait for me to implement a feature you'd like to have in motor.
+Please have in mind that whole the source code is available and you can
+modify it yourself, then make a patch and send it to me. I'd like you to
+follow my style of formatting the code. Please don't make any changes
+not related to the feature you implement, it makes your patch difficult
+to commit.
+
+
+11.3. Promoting the little program
+----------------------------------
+
+  I bet you read some computers related magazines and visit various
+Linux related sites. Please don't keep silence instead of screaming out
+your adoration for the little nice program. Submit it to a software site
+or catalogue or/and encourage the authors of your favourite magazine to
+take a look at it and possibly write about motor. Interviews, speeches,
+presedential elections ;) and stuff are also possible, just contact me
+for more details.
+
+
+11.4. Donations
+---------------
+
+  If you're a materialist guy like me, you might want to present me
+something what I can touch, put on a sandwich or into my pocket. Here it
+goes.
+
+
+11.4.1. Money
+-------------
+
+  The most universal way. Depending on a sum I will be able to drink one
+more beer or tequila to the health of motor users or buy a piece of
+hardware, electronic gagdet or the newest model of "Porsche" ;) Contact
+me and I'll discuss a way I can receive your donation.
+
+
+11.4.2. Hardware
+----------------
+
+  Since usually I write motor at home, it's always nice to upgrade the
+computer it's being developed with. It can increase the speed and
+pleasure I get during the process.
+
+
+11.4.3. Other stuff
+-------------------
+
+  Other stuff like t-shirts, souvenirs, albums or postcards with nice
+views of the nature in places where you live, baseball tickets ;) are
+also welcome.
+
+$Id: README,v 1.5 2003/07/22 21:47:51 konst Exp $

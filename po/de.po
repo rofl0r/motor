@@ -1,0 +1,1506 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: motor 3.1.5\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-07-09 02:19+0300\n"
+"PO-Revision-Date: 2002-01-14 00:02+CET\n"
+"Last-Translator: Frank Gruender <elwood@mc5sys.in-berlin.de>\n"
+"Language-Team: German <de@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/debugger/motordebugger.cc:107
+msgid "Debugging is not supported by the project template"
+msgstr "Debuggen des Projekt-Templates wird nicht unterstuetzt"
+
+#: src/debugger/motordebugger.cc:151
+#, c-format
+msgid "Cannot debug %s"
+msgstr "Kann %s nicht debuggen"
+
+#: src/debugger/motordebugger.cc:157
+msgid "No free tty to start a debug session. Run without debugging?"
+msgstr "Keine freies tty, um Debugging zu starten. Ohne Debugging starten?"
+
+#: src/debugger/motordebugger.cc:176
+msgid "It's impossible to run this kind of projects"
+msgstr "Unmoeglich diese Art von Projekten zu starten"
+
+#: src/debugger/motordebugger.cc:201
+#, c-format
+msgid "Running %s.. Ctrl-C to break"
+msgstr ""
+
+#: src/debugger/motordebugger.cc:213
+#, c-format
+msgid "Killed %s"
+msgstr ""
+
+#: src/debugger/motordebugger.cc:221
+msgid "The source was modified. Do you want to rebuild the program?"
+msgstr "Die Quellen wurden geändert. Programm neu generieren?"
+
+#: src/debugger/motordebugger.cc:239 src/debugger/motordebugger.cc:258
+#, fuzzy, c-format
+msgid "Continuing running %s.. Ctrl-C to break"
+msgstr "Programmlauf fortfahren %s.. "
+
+#: src/debugger/motordebugger.cc:273
+msgid "Debugger stopped"
+msgstr "Debugger wurd gestoppt"
+
+#: src/debugger/motordebugger.cc:307
+msgid "Reading the stack info.."
+msgstr "Lese die Stackinformationen.."
+
+#: src/debugger/motordebugger.cc:327
+msgid "Stack info has been fetched"
+msgstr ""
+
+#: src/debugger/motordebugger.cc:329
+msgid "Cannot read the stack"
+msgstr "Kann Stack nicht lesen"
+
+#: src/debugger/motordebugger.cc:342
+msgid "Loading core dump.."
+msgstr "Lade core dump"
+
+#: src/debugger/motordebugger.cc:346
+msgid "Core dump load done"
+msgstr "Core-dump wurde geladen"
+
+#: src/debugger/motordebugger.cc:602
+#, c-format
+msgid "Stopped at breakpoint %s"
+msgstr "Am Haltepunkt %s gestoppt"
+
+#: src/debugger/motordebugger.cc:607
+#, c-format
+msgid "Terminated %s"
+msgstr "Abgebrochen %s"
+
+#: src/debugger/motordebugger.cc:613
+#, c-format
+msgid "Cannot start %s"
+msgstr "Kann %s nicht starten"
+
+#: src/debugger/motordebugger.cc:619
+#, c-format
+msgid "Interrupted: %s"
+msgstr "Unterbrochen: %s"
+
+#: src/executor/motorexecutor.cc:21
+msgid "Executing "
+msgstr "Ausfuehren "
+
+#: src/grepper/motorgrepper.cc:88
+msgid "The regexp specified cannot be compiled"
+msgstr ""
+
+#: src/grepper/motorgrepper.cc:93
+#, c-format
+msgid "%d files grepped, %d matches found"
+msgstr "%d Datei(en) gegreppt, %d Eintraege gefunden"
+
+#: src/grepper/motorgrepper.cc:108
+#, c-format
+msgid "Grepping %s.."
+msgstr "Greppen von %s.."
+
+#: src/project/motorfolder.cc:85
+#, c-format
+msgid "Directory %s does not exist. Create it?"
+msgstr "Verzeichnis %s existiert nicht. Erstellen?"
+
+#: src/project/motorfolder.cc:88
+msgid "Unable to create the directory"
+msgstr "Kann Verzeichnis nicht erstellen"
+
+#: src/project/motorfolder.cc:95
+#, c-format
+msgid "%s is ~not~ a directory"
+msgstr "%s ist ~kein~ Verzeichnis"
+
+#: src/project/motorproject.cc:77
+msgid "Unable to find the project root directory"
+msgstr "Kann das Projekt nicht im Root-Verzeichnis finden"
+
+#: src/project/motorproject.cc:321
+msgid "Generating a distribution package of the project.."
+msgstr "Erstelle ein Distributions-Paket vom Projekt.."
+
+#: src/project/motorproject.cc:334
+msgid "Building the project.."
+msgstr "Erstelle das Projekt.."
+
+#: src/project/motorproject.cc:433
+msgid "Starting up the project.."
+msgstr ""
+
+#: src/project/motorproject.cc:457
+#, c-format
+msgid "Project %s has been created"
+msgstr "Projekt %s wurde erstellt"
+
+#: src/project/motorproject.cc:488
+#, c-format
+msgid "There is a motor project file %s in the source, use it?"
+msgstr ""
+
+#: src/project/motorproject.cc:533
+#, c-format
+msgid "Delete all files of the project %s as well?"
+msgstr "Sollen alle Dateien des Projekts %s geloescht werden?"
+
+#: src/project/motorproject.cc:546
+#, c-format
+msgid "Project %s has been removed"
+msgstr "Projekt %s wurde verschoben"
+
+#: src/project/motorproject.cc:644
+#, c-format
+msgid "VCS %s command wasn't successful. Retry?"
+msgstr "VCS %s-Kommando war nicht erfolgreich. Wiederholen?"
+
+#: src/project/motorproject.cc:649
+#, fuzzy
+msgid "Add the file to the project locally anyway?"
+msgstr "Sollen alle Dateien des Projekts %s geloescht werden?"
+
+#: src/project/sourcetemplate.cc:52
+#, c-format
+msgid "File %s already exits. Overwrite it?"
+msgstr "Datei %s existiert bereits. Ueberschreiben?"
+
+#: src/tagbrowser/motortagbrowser.cc:37
+msgid "Executing Exuberant Ctags.."
+msgstr "Ueberfluessige ctags ausfuehren.."
+
+#: src/tagbrowser/motortagbrowser.cc:51
+msgid "Cannot read the tags table"
+msgstr "Kann Tag-Tabelle nicht lesen"
+
+#: src/ui/ncurses/ncursesui.cc:277
+#, fuzzy
+msgid "add project to the registry: "
+msgstr " Projekt-Register "
+
+#: src/ui/ncurses/ncursesui.cc:290
+#, c-format
+msgid "Already registered! Rename %s (%s) to: "
+msgstr ""
+
+#: src/ui/ncurses/ncursesui.cc:309
+#, fuzzy, c-format
+msgid "~%s~ is not a motor project"
+msgstr "%s ist ~kein~ Verzeichnis"
+
+#: src/ui/ncurses/ncursesui.cc:314
+#, c-format
+msgid "~%s~ is an invalid name for a motor project file"
+msgstr ""
+
+#: src/ui/ncurses/ncursesui.cc:318
+#, fuzzy, c-format
+msgid "Cannot access ~%s~"
+msgstr "Kann %s nicht starten"
+
+#: src/ui/ncurses/ncursesui.cc:341
+msgid "Create/Import.."
+msgstr ""
+
+#: src/ui/ncurses/ncursesui.cc:341 src/ui/ncurses/ncursesui.cc:1424
+#: src/ui/ncurses/ncursesui.cc:1430 src/ui/ncurses/ncursesui.cc:2140
+msgid "Add"
+msgstr "Hinzufügen"
+
+#: src/ui/ncurses/ncursesui.cc:341 src/ui/ncurses/ncursesui.cc:1424
+#: src/ui/ncurses/ncursesui.cc:1430 src/ui/ncurses/ncursesui.cc:2140
+#: src/ui/ncurses/ncursesui.cc:2415
+msgid "Remove"
+msgstr "Entfernen"
+
+#: src/ui/ncurses/ncursesui.cc:341 src/ui/ncurses/ncursesui.cc:1602
+#: src/ui/ncurses/uieditor.cc:401
+msgid "Open"
+msgstr "Öffnen"
+
+#: src/ui/ncurses/ncursesui.cc:350
+msgid " Projects registry "
+msgstr " Projekt-Register "
+
+#: src/ui/ncurses/ncursesui.cc:355
+msgid " Add a project "
+msgstr " Projekt hinzufuegen "
+
+#: src/ui/ncurses/ncursesui.cc:512
+msgid " File "
+msgstr " Datei "
+
+#: src/ui/ncurses/ncursesui.cc:513
+msgid " Edit "
+msgstr " Bearbeiten "
+
+#: src/ui/ncurses/ncursesui.cc:514 src/ui/ncurses/ncursesui.cc:1804
+msgid " Project "
+msgstr " Projekt "
+
+#: src/ui/ncurses/ncursesui.cc:515
+msgid " VCS "
+msgstr " VCS "
+
+#: src/ui/ncurses/ncursesui.cc:516
+msgid " Debug "
+msgstr " Debug "
+
+#: src/ui/ncurses/ncursesui.cc:517
+msgid " Window "
+msgstr " Fenster "
+
+#: src/ui/ncurses/ncursesui.cc:520
+msgid " Load..         ^O"
+msgstr " Oeffnen..      ^O"
+
+#: src/ui/ncurses/ncursesui.cc:521
+msgid " Save           F2"
+msgstr " Speichern      F2"
+
+#: src/ui/ncurses/ncursesui.cc:522
+msgid " Save as.."
+msgstr " Speichern unter.."
+
+#: src/ui/ncurses/ncursesui.cc:523
+msgid " Save all"
+msgstr " Alles speichern"
+
+#: src/ui/ncurses/ncursesui.cc:524
+msgid " Close          ^D"
+msgstr " Schließen      ^D"
+
+#: src/ui/ncurses/ncursesui.cc:525
+msgid " Generate.."
+msgstr " Erstellen.."
+
+#: src/ui/ncurses/ncursesui.cc:527
+msgid " Motor settings"
+msgstr " Einstellungen"
+
+#: src/ui/ncurses/ncursesui.cc:528
+msgid " External keys"
+msgstr " Externe Tasten"
+
+#: src/ui/ncurses/ncursesui.cc:529
+msgid " Regexper      A-R"
+msgstr ""
+
+#: src/ui/ncurses/ncursesui.cc:531
+msgid " Quit           ^X"
+msgstr " Beenden        ^X"
+
+#: src/ui/ncurses/ncursesui.cc:534
+msgid " Toggle mark         F3"
+msgstr " Markierung umschalten F3"
+
+#: src/ui/ncurses/ncursesui.cc:535
+msgid " Cut                A-X"
+msgstr " Ausschneiden         A-X"
+
+#: src/ui/ncurses/ncursesui.cc:536
+msgid " Copy               A-C"
+msgstr " Kopieren             A-C"
+
+#: src/ui/ncurses/ncursesui.cc:537
+msgid " Paste              A-V"
+msgstr " Einfügen             A-V"
+
+#: src/ui/ncurses/ncursesui.cc:539
+msgid " Toggle ins/overw   Ins"
+msgstr " Einfügen/Überschr   Einfg"
+
+#: src/ui/ncurses/ncursesui.cc:541
+msgid " Find                ^F"
+msgstr " Suchen                ^F"
+
+#: src/ui/ncurses/ncursesui.cc:542
+msgid " Find again          ^G"
+msgstr " Erneut suchen         ^G"
+
+#: src/ui/ncurses/ncursesui.cc:543
+msgid " Replace             ^R"
+msgstr " Ersetzen              ^R"
+
+#: src/ui/ncurses/ncursesui.cc:544
+msgid " Go to line..       A-L"
+msgstr " Gehe zu Zeile..      A-L"
+
+#: src/ui/ncurses/ncursesui.cc:546
+msgid " Shft block fwd   A-Tab"
+msgstr " Block -> schieben  A-Tab"
+
+#: src/ui/ncurses/ncursesui.cc:547
+msgid " Shft block back  A-Bsp"
+msgstr " Block <- schieben  A-Bsp"
+
+#: src/ui/ncurses/ncursesui.cc:549
+msgid " Undo                ^U"
+msgstr " Rückgängig            ^U"
+
+#: src/ui/ncurses/ncursesui.cc:552
+msgid " Projects registry"
+msgstr " Projekt-Register"
+
+#: src/ui/ncurses/ncursesui.cc:554
+msgid " Files..             F11"
+msgstr " Dateien..           F11"
+
+#: src/ui/ncurses/ncursesui.cc:555
+msgid " Directories..      ^F11"
+msgstr " Verzeichnisse..    ^F11"
+
+#: src/ui/ncurses/ncursesui.cc:556
+msgid " Project settings  S-F11"
+msgstr " Projekteinstell.  S-F11"
+
+#: src/ui/ncurses/ncursesui.cc:558
+msgid " Build                F9"
+msgstr " Erstellen            F9"
+
+#: src/ui/ncurses/ncursesui.cc:559
+msgid " Clean              S-F9"
+msgstr " Löschen            S-F9"
+
+#: src/ui/ncurses/ncursesui.cc:560
+msgid " Make a target..     A-T"
+msgstr " Ziel erstellen..    A-T"
+
+#: src/ui/ncurses/ncursesui.cc:561
+msgid " Regen. build stuff"
+msgstr ""
+
+#: src/ui/ncurses/ncursesui.cc:562
+msgid " Make a dist package"
+msgstr " Dist.-Paket erstellen"
+
+#: src/ui/ncurses/ncursesui.cc:564
+msgid " Find a symbol..     A-?"
+msgstr " Symbol suchen..     A-?"
+
+#: src/ui/ncurses/ncursesui.cc:565
+msgid " External output.."
+msgstr " Externe Ausgabe.."
+
+#: src/ui/ncurses/ncursesui.cc:568
+msgid " Check in/out"
+msgstr " Pruefe ein/aus"
+
+#: src/ui/ncurses/ncursesui.cc:569
+msgid " Import"
+msgstr " Importieren"
+
+#: src/ui/ncurses/ncursesui.cc:570
+msgid " Tag a release"
+msgstr " Release taggen"
+
+#: src/ui/ncurses/ncursesui.cc:579
+msgid " Run program            F12"
+msgstr " Starte Programm           F12"
+
+#: src/ui/ncurses/ncursesui.cc:580
+msgid " Load core dump.."
+msgstr " Lade core dump.."
+
+#: src/ui/ncurses/ncursesui.cc:581
+msgid " Arguments..          S-F12"
+msgstr " Argumente..             S-F12"
+
+#: src/ui/ncurses/ncursesui.cc:582
+msgid " Reset program         ^F12"
+msgstr " Prozeß zurücksetzen      ^F12"
+
+#: src/ui/ncurses/ncursesui.cc:583
+msgid " Call stack..           A-S"
+msgstr " Stack aufrufen..          A-S"
+
+#: src/ui/ncurses/ncursesui.cc:585
+msgid " Set/Clear breakpoint    ^B"
+msgstr " Setzen/Löschen Haltepunkt  ^B"
+
+#: src/ui/ncurses/ncursesui.cc:586
+msgid " Breakpoints            A-B"
+msgstr " Haltepunkte               A-B"
+
+#: src/ui/ncurses/ncursesui.cc:588
+msgid " Add watch               ^W"
+msgstr " Überw.Ausdruck hinzufügen  ^W"
+
+#: src/ui/ncurses/ncursesui.cc:589
+msgid " Watches                A-W"
+msgstr " Haltepunkte               A-W"
+
+#: src/ui/ncurses/ncursesui.cc:590
+msgid " Evaluate/Modify        A-E"
+msgstr " Auswerten/Ändern          A-E"
+
+#: src/ui/ncurses/ncursesui.cc:592
+msgid " Trace into              F7"
+msgstr " Einzelschritt              F7"
+
+#: src/ui/ncurses/ncursesui.cc:593
+msgid " Step over               F8"
+msgstr " Überspringen               F8"
+
+#: src/ui/ncurses/ncursesui.cc:594
+msgid " Go to cursor            F4"
+msgstr " Gehe zur Cursorposition    F4"
+
+#: src/ui/ncurses/ncursesui.cc:597
+msgid " Next                 ^N"
+msgstr " Naechstes            ^N"
+
+#: src/ui/ncurses/ncursesui.cc:598
+msgid " Previous             ^P"
+msgstr " Vorheriges           ^P"
+
+#: src/ui/ncurses/ncursesui.cc:600
+msgid " Window list          F5"
+msgstr " Fensterliste         F5"
+
+#: src/ui/ncurses/ncursesui.cc:601
+msgid " Last build messages  F6"
+msgstr " Letzte Meldungen     F6"
+
+#: src/ui/ncurses/ncursesui.cc:792
+msgid "PROJECT: "
+msgstr "PROJEKT: "
+
+#: src/ui/ncurses/ncursesui.cc:795
+msgid "FILE: "
+msgstr "DATEI: "
+
+#: src/ui/ncurses/ncursesui.cc:992
+msgid "Ok"
+msgstr "Ok"
+
+#: src/ui/ncurses/ncursesui.cc:1048
+msgid "F1           Display this help screen\n"
+msgstr "F1           Diese Hilfe anzeigen\n"
+
+#: src/ui/ncurses/ncursesui.cc:1049
+msgid "F10          Activate menu\n"
+msgstr "F10          Menue aktivieren\n"
+
+#: src/ui/ncurses/ncursesui.cc:1050
+msgid ""
+"^X           Quit motor\n"
+"\n"
+msgstr ""
+"^X           Motor beenden\n"
+"\n"
+
+#: src/ui/ncurses/ncursesui.cc:1051
+msgid "F2           Save current file\n"
+msgstr "F2           Aktuelle Datei speichern\n"
+
+#: src/ui/ncurses/ncursesui.cc:1052
+msgid "^O           Load file\n"
+msgstr "^O           Datei laden\n"
+
+#: src/ui/ncurses/ncursesui.cc:1053
+msgid "^D           Close current editor window\n"
+msgstr "^D           Aktuelles Editorfenster schließen\n"
+
+#: src/ui/ncurses/ncursesui.cc:1054
+msgid "F5           Editor files..\n"
+msgstr "F5           Editor-Dateien..\n"
+
+#: src/ui/ncurses/ncursesui.cc:1055
+msgid "^N           Next editor window\n"
+msgstr "^N           Nächstes Editorfenster\n"
+
+#: src/ui/ncurses/ncursesui.cc:1056
+msgid ""
+"^P           Previous editor window\n"
+"\n"
+msgstr ""
+"^P           Vorheriges Editorfenster\n"
+"\n"
+
+#: src/ui/ncurses/ncursesui.cc:1057
+msgid "Ins          Toggle insert/overwrite mode\n"
+msgstr "Ins          Einfügen/Überschreiben umschalten\n"
+
+#: src/ui/ncurses/ncursesui.cc:1058
+msgid "F3           Toggle block marking mode\n"
+msgstr "F3           Blockmarkierung umschalten\n"
+
+#: src/ui/ncurses/ncursesui.cc:1059
+msgid "Alt-X, ^Del  Cut selected text\n"
+msgstr "Alt-X, ^Entf Gewählten Text ausschneiden\n"
+
+#: src/ui/ncurses/ncursesui.cc:1060
+msgid "Alt-C, ^Ins  Copy selected text\n"
+msgstr "Alt-C, ^Einfg Ausgewählten Text kopieren\n"
+
+#: src/ui/ncurses/ncursesui.cc:1061
+msgid "Alt-V, ^Ins  Paste previously copied text\n"
+msgstr "Alt-V, ^Einfg Text einfügen\n"
+
+#: src/ui/ncurses/ncursesui.cc:1062
+msgid "Alt-Tab      Shift selected block forward\n"
+msgstr "Alt-Tab      Block nach rechts verschieben\n"
+
+#: src/ui/ncurses/ncursesui.cc:1063
+msgid ""
+"Alt-Backsp   Shift selected block backward\n"
+"\n"
+msgstr ""
+"Alt-Backsp   Block nach links verschieben\n"
+"\n"
+
+#: src/ui/ncurses/ncursesui.cc:1064
+msgid "^U           Undo previous editor operation\n"
+msgstr "^U           Vorherige Operationen im Editor rückgängig machen\n"
+
+#: src/ui/ncurses/ncursesui.cc:1065
+msgid "^F           Find text in current file\n"
+msgstr "^F           Text in der aktuellen Datei suchen\n"
+
+#: src/ui/ncurses/ncursesui.cc:1066
+msgid "^G           Find again\n"
+msgstr "^G           Weiter suchen\n"
+
+#: src/ui/ncurses/ncursesui.cc:1067
+msgid "^R           Search and replace\n"
+msgstr "^R           Suchen und ersetzen\n"
+
+#: src/ui/ncurses/ncursesui.cc:1068
+msgid ""
+"Alt-L        Goto line..\n"
+"\n"
+msgstr ""
+"Alt-L        Gehe zur Zeile..\n"
+"\n"
+
+#: src/ui/ncurses/ncursesui.cc:1069
+msgid "Shift-F11    Project settings..\n"
+msgstr "Shift-F11    Projekt-Einstellungen..\n"
+
+#: src/ui/ncurses/ncursesui.cc:1070
+msgid "F11          Project files..\n"
+msgstr "F11          Projekt-Dateien\n"
+
+#: src/ui/ncurses/ncursesui.cc:1071
+msgid ""
+"^F11         Project directories..\n"
+"\n"
+msgstr ""
+"^F11         Projekt-Verzeichnisse..\n"
+"\n"
+
+#: src/ui/ncurses/ncursesui.cc:1072
+msgid "F9           Build a project\n"
+msgstr "F9           Projekt generieren\n"
+
+#: src/ui/ncurses/ncursesui.cc:1073
+msgid "Shift-F9     Clean\n"
+msgstr "Shift-F9     Löschen\n"
+
+#: src/ui/ncurses/ncursesui.cc:1074
+msgid "Alt-T        Make a specific target..\n"
+msgstr "Alt-T        Erstelle bestimmtes Ziel..\n"
+
+#: src/ui/ncurses/ncursesui.cc:1075
+msgid "F12          Run program\n"
+msgstr "F12          Programm starten\n"
+
+#: src/ui/ncurses/ncursesui.cc:1076
+msgid "Shift-F12    Specify program arguments\n"
+msgstr "Shift-F12    Programm-Argumente festlegen\n"
+
+#: src/ui/ncurses/ncursesui.cc:1077
+msgid ""
+"Alt-?        Find a symbol definition in the source\n"
+"\n"
+msgstr ""
+"Alt-?        Suche eine Symboldefinition im Quelltext\n"
+"\n"
+
+#: src/ui/ncurses/ncursesui.cc:1078
+msgid "F4           Go to cursor\n"
+msgstr "F4           Gehe zur Cursorposition\n"
+
+#: src/ui/ncurses/ncursesui.cc:1079
+msgid "F7           Debug mode: trace into\n"
+msgstr "F7           Debug-Modus: trace into\n"
+
+#: src/ui/ncurses/ncursesui.cc:1080
+msgid ""
+"F8           Step over\n"
+"\n"
+msgstr ""
+"F8           Ueberspringen\n"
+"\n"
+
+#: src/ui/ncurses/ncursesui.cc:1081
+msgid "^B           Set breakpoint at current line\n"
+msgstr "^B           Setze Haltepunkt auf aktuelle Zeile\n"
+
+#: src/ui/ncurses/ncursesui.cc:1082
+msgid "Alt-B        Breakpoints..\n"
+msgstr "Alt-B        Haltepunkte..\n"
+
+#: src/ui/ncurses/ncursesui.cc:1083
+msgid "^W           Add watch\n"
+msgstr "^W           Watch hinzufügen\n"
+
+#: src/ui/ncurses/ncursesui.cc:1084
+msgid "Alt-W        Watches..\n"
+msgstr "Alt-W        Watches..\n"
+
+#: src/ui/ncurses/ncursesui.cc:1085
+msgid ""
+"Alt-E        Evaluate/modify..\n"
+"\n"
+msgstr ""
+"Alt-E        Auswerten/Ändern..\n"
+"\n"
+
+#: src/ui/ncurses/ncursesui.cc:1086
+msgid ""
+"Alt-R        Invoke the regexper tool\n"
+"\n"
+msgstr ""
+
+#: src/ui/ncurses/ncursesui.cc:1087
+msgid "Note: If your terminal doesn't allow using Alt-keys or\n"
+msgstr "Hinweis: Wenn Ihr Terminal die Benutzung von Alt-Tasten oder\n"
+
+#: src/ui/ncurses/ncursesui.cc:1088
+msgid "      Fx keys, you can use ESC 'letter or number' instead.\n"
+msgstr "         F-Tasten nicht zuläßt, dann geben Sie ESC 'Buchstabe\n"
+
+#: src/ui/ncurses/ncursesui.cc:1089
+msgid "      '^' char means the key should be pressed with Ctrl."
+msgstr "         oder Zahl' ein. Das ^ kennzeichnet die Strg-Taste."
+
+#: src/ui/ncurses/ncursesui.cc:1091
+msgid " Help "
+msgstr " Hilfe "
+
+#: src/ui/ncurses/ncursesui.cc:1184
+msgid "Warning: changing template will rearrange files in project. Proceed?"
+msgstr ""
+
+#: src/ui/ncurses/ncursesui.cc:1198
+msgid " Main "
+msgstr " Haupt "
+
+#: src/ui/ncurses/ncursesui.cc:1199
+msgid " Version control "
+msgstr " Versions-Kontrolle"
+
+#: src/ui/ncurses/ncursesui.cc:1200
+msgid " Make "
+msgstr " Make "
+
+#: src/ui/ncurses/ncursesui.cc:1202
+#, c-format
+msgid " Version : %s "
+msgstr " Version : %s "
+
+#: src/ui/ncurses/ncursesui.cc:1203 src/ui/ncurses/ncursesui.cc:1810
+#, c-format
+msgid " Template : %s "
+msgstr " Vorlage : %s "
+
+#: src/ui/ncurses/ncursesui.cc:1204 src/ui/ncurses/ncursesui.cc:1812
+#, c-format
+msgid " Root directory : %s "
+msgstr " Root-Verzeichnis : %s "
+
+#: src/ui/ncurses/ncursesui.cc:1205 src/ui/ncurses/ncursesui.cc:1815
+#, c-format
+msgid " Use GNU gettext for internationalization : %s "
+msgstr ""
+
+#: src/ui/ncurses/ncursesui.cc:1208
+#, c-format
+msgid " %s: %s in %s "
+msgstr " %s: %s von %s "
+
+#: src/ui/ncurses/ncursesui.cc:1212
+msgid " Not under version control "
+msgstr " Nicht unter Versions-Kontrolle"
+
+#: src/ui/ncurses/ncursesui.cc:1215 src/ui/ncurses/ncursesui.cc:1813
+#, c-format
+msgid " Makefile mode : %s "
+msgstr " Makefile-Modus : %s "
+
+#: src/ui/ncurses/ncursesui.cc:1216
+#, c-format
+msgid " Compiler options : %s "
+msgstr " Compiler-Optionen : %s "
+
+#: src/ui/ncurses/ncursesui.cc:1217
+#, c-format
+msgid " Linker options : %s "
+msgstr " Linker-Optionen : %s "
+
+#: src/ui/ncurses/ncursesui.cc:1219
+msgid " Files.. "
+msgstr " Dateien.. "
+
+#: src/ui/ncurses/ncursesui.cc:1220
+msgid " Directories.. "
+msgstr " Verzeichnisse.. "
+
+#: src/ui/ncurses/ncursesui.cc:1234
+msgid " Project settings "
+msgstr " Projekt-Einstellungen "
+
+#: src/ui/ncurses/ncursesui.cc:1238 src/ui/ncurses/ncursesui.cc:1794
+#: src/ui/ncurses/ncursesui.cc:2043 src/ui/ncurses/ncursesui.cc:2225
+#: src/ui/ncurses/ncursesui.cc:2275 src/ui/ncurses/ncursesui.cc:2724
+msgid "Change"
+msgstr "Ändern"
+
+#: src/ui/ncurses/ncursesui.cc:1248
+msgid "version: "
+msgstr "Version: "
+
+#: src/ui/ncurses/ncursesui.cc:1259
+msgid "Cannot modify the root directory. Please move the files manually"
+msgstr ""
+
+#: src/ui/ncurses/ncursesui.cc:1268
+msgid "Do you want to disable version control for the project?"
+msgstr ""
+
+#: src/ui/ncurses/ncursesui.cc:1285
+msgid "additional compiler command line options: "
+msgstr "weitere Compiler-Kommandozeilen-Optionen: "
+
+#: src/ui/ncurses/ncursesui.cc:1292
+msgid "additional linker command line options: "
+msgstr "weitere Linker-Kommandozeilen-Optionen: "
+
+#: src/ui/ncurses/ncursesui.cc:1319
+msgid " <Ins> select; <Space> confirm; <Esc> cancel "
+msgstr ""
+
+#: src/ui/ncurses/ncursesui.cc:1422
+msgid " Project files "
+msgstr " Projekt-Dateien "
+
+#: src/ui/ncurses/ncursesui.cc:1424
+msgid "Edit"
+msgstr "Bearbeiten"
+
+#: src/ui/ncurses/ncursesui.cc:1428
+msgid " Project directories "
+msgstr " Projekt-Verzeichnisse "
+
+#: src/ui/ncurses/ncursesui.cc:1452
+msgid "No folders of this kind are defined in the template"
+msgstr "Keine Verzeichnisse dieser Art in der Vorlage definiert"
+
+#: src/ui/ncurses/ncursesui.cc:1471
+msgid "add file: "
+msgstr "Datei hinzufuegen: "
+
+#: src/ui/ncurses/ncursesui.cc:1474
+msgid "add directory: "
+msgstr "Verzeichnis hinzufuegen: "
+
+#: src/ui/ncurses/ncursesui.cc:1477
+msgid "add symbol: "
+msgstr "Symbol hinzufuegen: "
+
+#: src/ui/ncurses/ncursesui.cc:1498
+#, fuzzy, c-format
+msgid "Cannot add ~%s~ to the ~%s~ folder"
+msgstr "Kann Tag-Tabelle nicht lesen"
+
+#: src/ui/ncurses/ncursesui.cc:1535
+msgid " Files.."
+msgstr " Dateien.. "
+
+#: src/ui/ncurses/ncursesui.cc:1536
+msgid " Open the project"
+msgstr " Oeffne das Projekt"
+
+#: src/ui/ncurses/ncursesui.cc:1596
+#, c-format
+msgid " Project %s "
+msgstr " Projekt %s "
+
+#: src/ui/ncurses/ncursesui.cc:1694
+msgid "External output viewer, ~ESC~ to close"
+msgstr "Externer Ausgabebetrachter, ~ESC~ zum Schliessen"
+
+#: src/ui/ncurses/ncursesui.cc:1755
+msgid "No build messages"
+msgstr "Keine Erstellungs-Meldungen"
+
+#: src/ui/ncurses/ncursesui.cc:1765
+msgid "At the end of the messages"
+msgstr "Am Ende der Meldungen"
+
+#: src/ui/ncurses/ncursesui.cc:1791
+msgid " Create a new project "
+msgstr " Neues Projekt erstellen "
+
+#: src/ui/ncurses/ncursesui.cc:1794
+msgid "Create"
+msgstr "Erstellen"
+
+#: src/ui/ncurses/ncursesui.cc:1806
+#, c-format
+msgid " Creation mode : %s "
+msgstr " Erstellungsmodus : %s "
+
+#: src/ui/ncurses/ncursesui.cc:1807
+msgid "from scratch"
+msgstr "Neu beginnen"
+
+#: src/ui/ncurses/ncursesui.cc:1808
+msgid "from files"
+msgstr "aus Dateien"
+
+#: src/ui/ncurses/ncursesui.cc:1808
+msgid "from VCS"
+msgstr "von VCS"
+
+#: src/ui/ncurses/ncursesui.cc:1810
+msgid "none"
+msgstr "Nein"
+
+#: src/ui/ncurses/ncursesui.cc:1811
+#, c-format
+msgid " New project name : %s "
+msgstr " Neuer Projektname : %s "
+
+#: src/ui/ncurses/ncursesui.cc:1814
+#, c-format
+msgid " GNU standard documentation : %s "
+msgstr " GNU-Standard-Dokumentation : %s "
+
+#: src/ui/ncurses/ncursesui.cc:1818
+msgid " Creation "
+msgstr " Erstellung "
+
+#: src/ui/ncurses/ncursesui.cc:1821
+#, c-format
+msgid " Generate inital source: %s "
+msgstr " Erstelle Startquellen: %s "
+
+#: src/ui/ncurses/ncursesui.cc:1823
+#, c-format
+msgid " VCS name : %s "
+msgstr " VCS-Name : %s "
+
+#: src/ui/ncurses/ncursesui.cc:1824
+#, c-format
+msgid " Repository : %s "
+msgstr " Repository : %s "
+
+#: src/ui/ncurses/ncursesui.cc:1825
+#, c-format
+msgid " Module name : %s "
+msgstr " Modulname : %s "
+
+#: src/ui/ncurses/ncursesui.cc:1826
+#, c-format
+msgid " Revision : %s "
+msgstr " Revision : %s "
+
+#: src/ui/ncurses/ncursesui.cc:1848
+msgid "No version control systems defined"
+msgstr " Kein Versions-Kontrollsystem eingestellt"
+
+#: src/ui/ncurses/ncursesui.cc:1859
+msgid "project name: "
+msgstr "Projektname: "
+
+#: src/ui/ncurses/ncursesui.cc:1869
+msgid "root directory: "
+msgstr "Root-Verzeichnis: "
+
+#: src/ui/ncurses/ncursesui.cc:1884
+msgid "VCS repository to check out from: "
+msgstr "VCS Repository zum auschecken von: "
+
+#: src/ui/ncurses/ncursesui.cc:1888
+msgid "VCS module name: "
+msgstr "VCS-Modulname: "
+
+#: src/ui/ncurses/ncursesui.cc:1899
+msgid "VCS revision: "
+msgstr "VCS-Revision: "
+
+#: src/ui/ncurses/ncursesui.cc:1911
+msgid "Project root directory must be set"
+msgstr "Projekt-Root-Verzeichnis muß eingestellt werden"
+
+#: src/ui/ncurses/ncursesui.cc:1917
+msgid "Project name must be set"
+msgstr "Projektname müssen eingestellt werden"
+
+#: src/ui/ncurses/ncursesui.cc:1923
+msgid "Template must be set"
+msgstr "Vorlage muß eingestellt werden"
+
+#: src/ui/ncurses/ncursesui.cc:1929
+#, c-format
+msgid "Project named %s already exists"
+msgstr "Projekt %s existiert bereits"
+
+#: src/ui/ncurses/ncursesui.cc:1935
+msgid "Project name cannot start with a number"
+msgstr "Der Projektname darf nicht mit einer Zahl beginnen"
+
+#: src/ui/ncurses/ncursesui.cc:1942
+msgid "VCS name, repository and module name must be specified"
+msgstr "VCS-Name, Repository und Modulname müssen eingestellt sein"
+
+#: src/ui/ncurses/ncursesui.cc:1949
+msgid "root directory you specified does not exist. create?"
+msgstr "Angegebenes Root-Verzeichnis existiert nicht. Erstellen?"
+
+#: src/ui/ncurses/ncursesui.cc:1955
+msgid "Access denied for the directory specified"
+msgstr "Zugriff auf das angegebene Verzeichnis nicht zugelassen"
+
+#: src/ui/ncurses/ncursesui.cc:2020
+#, c-format
+msgid "No distribution methods defined in template %s"
+msgstr "Keine Distributions-Methode in der Vorlage %s definiert"
+
+#: src/ui/ncurses/ncursesui.cc:2034
+#, fuzzy
+msgid " Distribution package generation "
+msgstr " Parameter Distributions-Packet "
+
+#: src/ui/ncurses/ncursesui.cc:2043
+msgid "Go!"
+msgstr "Los!"
+
+#: src/ui/ncurses/ncursesui.cc:2051
+msgid " Format "
+msgstr " Format "
+
+#: src/ui/ncurses/ncursesui.cc:2054
+msgid " Out directory "
+msgstr "Ausgabe-Verzeichnis "
+
+#: src/ui/ncurses/ncursesui.cc:2059
+#, fuzzy
+msgid " Parameters "
+msgstr " Projekte "
+
+#: src/ui/ncurses/ncursesui.cc:2085
+msgid "directory to put a dist to: "
+msgstr "Verzeichnis f.d. Distribution: "
+
+#: src/ui/ncurses/ncursesui.cc:2104
+#, c-format
+msgid ""
+"Finished ~%s~: ~%lu~ errors, ~%lu~ warnings, ~%lu~ infos. ~F6~ to see the "
+"list"
+msgstr ""
+"Beendet ~%s~: ~%lu~ Fehler, ~%lu~ Warnungen, ~%lu~ Hinweise. ~F6~ zeigt die "
+"Liste"
+
+#: src/ui/ncurses/ncursesui.cc:2107
+#, c-format
+msgid "~%s~ finished sucessfully"
+msgstr "~%s~ wurde erfolgreich beendet"
+
+#: src/ui/ncurses/ncursesui.cc:2121
+msgid "The project has been modified. Regenerating the build stuff.."
+msgstr "Das Projekt wurde geaendert. Erstelle neu.."
+
+#: src/ui/ncurses/ncursesui.cc:2137
+msgid " Make a target.. "
+msgstr " Ziel erstellen.. "
+
+#: src/ui/ncurses/ncursesui.cc:2140
+msgid "Make"
+msgstr "Erstellen"
+
+#: src/ui/ncurses/ncursesui.cc:2157
+msgid "make a target: "
+msgstr "Ziel erstellen: "
+
+#: src/ui/ncurses/ncursesui.cc:2219
+msgid " Evaluate/Modify "
+msgstr " Auswerten/Ändern "
+
+#: src/ui/ncurses/ncursesui.cc:2238
+msgid " Expression "
+msgstr " Ausdruck "
+
+#: src/ui/ncurses/ncursesui.cc:2241
+msgid " Value "
+msgstr " Wert "
+
+#: src/ui/ncurses/ncursesui.cc:2242
+msgid "not available"
+msgstr "nicht verfügbar"
+
+#: src/ui/ncurses/ncursesui.cc:2253
+msgid "expression: "
+msgstr "Ausdruck: "
+
+#: src/ui/ncurses/ncursesui.cc:2272
+msgid " Motor settings "
+msgstr " Einstellungen "
+
+#: src/ui/ncurses/ncursesui.cc:2275 src/ui/ncurses/ncursesui.cc:2724
+msgid "Done"
+msgstr "Fertig"
+
+#: src/ui/ncurses/ncursesui.cc:2293
+msgid " Show the run-time output "
+msgstr " Laufzeit-Ausgaben anzeigen "
+
+#: src/ui/ncurses/ncursesui.cc:2294
+#, c-format
+msgid " show compiler output : %s "
+msgstr " Compiler-Ausgabe anzeigen : %s "
+
+#: src/ui/ncurses/ncursesui.cc:2295
+#, c-format
+msgid " show VCS output : %s "
+msgstr " VCS-Ausgabe anzeigen : %s "
+
+#: src/ui/ncurses/ncursesui.cc:2296
+#, c-format
+msgid " show make output : %s "
+msgstr " make-Ausgabe anzeigen : %s "
+
+#
+#: src/ui/ncurses/ncursesui.cc:2298
+msgid " Debugger "
+msgstr " Debugger "
+
+#: src/ui/ncurses/ncursesui.cc:2299
+#, c-format
+msgid " debug standard headers : %s "
+msgstr " Standard-Header debuggen : %s "
+
+#: src/ui/ncurses/ncursesui.cc:2300
+#, c-format
+msgid " disable free tty check : %s "
+msgstr " Pruefung auf freies tty ausschalten : %s "
+
+#: src/ui/ncurses/ncursesui.cc:2302
+msgid " Editor "
+msgstr " Editor "
+
+#: src/ui/ncurses/ncursesui.cc:2303
+#, c-format
+msgid " enable \"smart tabs\" feature : %s "
+msgstr " Smart-Tabs Funktion einschalten : %s "
+
+#: src/ui/ncurses/ncursesui.cc:2304
+#, c-format
+msgid " enable mcedit clipboard integration : %s "
+msgstr " mcedit-Clipboardintegration einschalten : %s "
+
+#: src/ui/ncurses/ncursesui.cc:2306
+msgid " Directories and paths "
+msgstr " Verzeichnisse und Pfade "
+
+#: src/ui/ncurses/ncursesui.cc:2307
+#, c-format
+msgid " default directory for projects : %s "
+msgstr " Vorgabe-Verzeichnis f. Projekte: %s "
+
+#: src/ui/ncurses/ncursesui.cc:2318
+msgid "default directory for projects: "
+msgstr "Vorgabe-Verzeichnis f. Projekte: %s "
+
+#: src/ui/ncurses/ncursesui.cc:2352
+msgid " External programs "
+msgstr " Externe Programme "
+
+#: src/ui/ncurses/ncursesui.cc:2359
+msgid "No external keys defined"
+msgstr "Keine externen Tasten definiert"
+
+#: src/ui/ncurses/ncursesui.cc:2391
+msgid "Press Enter to continue.."
+msgstr "Drücke Enter um fortzufahren.."
+
+#: src/ui/ncurses/ncursesui.cc:2409
+msgid " Breakpoints "
+msgstr " Haltepunkte "
+
+#: src/ui/ncurses/ncursesui.cc:2415
+#, fuzzy
+msgid "Goto"
+msgstr "Gehe zu"
+
+#: src/ui/ncurses/ncursesui.cc:2475
+msgid " Files to generate "
+msgstr ""
+
+#: src/ui/ncurses/ncursesui.cc:2480
+msgid "Mark"
+msgstr "Markieren"
+
+#: src/ui/ncurses/ncursesui.cc:2480
+msgid "Generate"
+msgstr "Erstellen"
+
+#: src/ui/ncurses/ncursesui.cc:2522
+msgid "arguments: "
+msgstr "Argumente: "
+
+#: src/ui/ncurses/ncursesui.cc:2533
+msgid "Core dump to explore: "
+msgstr " Core-dump zur Untersuchung: "
+
+#: src/ui/ncurses/ncursesui.cc:2539
+#, fuzzy
+msgid " Core dump load results "
+msgstr " Core-dump wurde korrekt geladen "
+
+#: src/ui/ncurses/ncursesui.cc:2542
+msgid "Inspect stack"
+msgstr "Stack untersuchen"
+
+#: src/ui/ncurses/ncursesui.cc:2542 src/ui/ncurses/uieditor.cc:401
+msgid "Close"
+msgstr "Schließen"
+
+#: src/ui/ncurses/ncursesui.cc:2571
+msgid " Call stack "
+msgstr " Stack aufrufen "
+
+#: src/ui/ncurses/ncursesui.cc:2575
+msgid "Info"
+msgstr "Info"
+
+#: src/ui/ncurses/ncursesui.cc:2575
+msgid "Go to"
+msgstr "Gehe zu"
+
+#: src/ui/ncurses/ncursesui.cc:2596
+msgid "Function:"
+msgstr "Funktion:"
+
+#: src/ui/ncurses/ncursesui.cc:2598
+msgid "Location:"
+msgstr "Ort:"
+
+#: src/ui/ncurses/ncursesui.cc:2605
+msgid "Arguments:"
+msgstr "Argumente:"
+
+#: src/ui/ncurses/ncursesui.cc:2608
+msgid " Stack item details "
+msgstr " Details zu Stack-Eintraegen "
+
+#: src/ui/ncurses/ncursesui.cc:2695
+#, c-format
+msgid "Project %s has been loaded"
+msgstr "Projekt %s wurde geladen"
+
+#: src/ui/ncurses/ncursesui.cc:2700
+#, c-format
+msgid "%s not found, please select template"
+msgstr ""
+
+#: src/ui/ncurses/ncursesui.cc:2717
+#, c-format
+msgid " %s build options "
+msgstr ""
+
+#: src/ui/ncurses/ncursesui.cc:2734
+#, fuzzy
+msgid " General "
+msgstr "Erstellen"
+
+#: src/ui/ncurses/ncursesui.cc:2735
+#, fuzzy, c-format
+msgid " Enable optional build : %s "
+msgstr " Linker-Optionen : %s "
+
+#: src/ui/ncurses/ncursesui.cc:2738
+#, fuzzy
+msgid " Build "
+msgstr " Datei "
+
+#: src/ui/ncurses/ncursesui.cc:2739
+#, c-format
+msgid " Parameter name (--enable-xxx) : %s "
+msgstr ""
+
+#: src/ui/ncurses/ncursesui.cc:2740
+#, c-format
+msgid " Parameter help text : %s "
+msgstr ""
+
+#: src/ui/ncurses/ncursesui.cc:2741
+#, fuzzy, c-format
+msgid " Enabled by default : %s "
+msgstr " Smart-Tabs Funktion einschalten : %s "
+
+#: src/ui/ncurses/ncursesui.cc:2749
+msgid "configure parameter name (--enable-xxx): "
+msgstr ""
+
+#: src/ui/ncurses/ncursesui.cc:2750
+msgid "help text: "
+msgstr ""
+
+#: src/ui/ncurses/uieditor.cc:236
+msgid "save as: "
+msgstr "Speichern unter: "
+
+#: src/ui/ncurses/uieditor.cc:273
+#, c-format
+msgid "Saving %s .."
+msgstr "Speichern von %s .."
+
+#: src/ui/ncurses/uieditor.cc:276
+#, c-format
+msgid "File %s saved successfully"
+msgstr "Datei %s wurde erfolgreich gespeichert"
+
+#: src/ui/ncurses/uieditor.cc:293
+#, c-format
+msgid "file %s was modified. save changes?"
+msgstr "Datei %s wurde geändert. Änderungen speichern?"
+
+#: src/ui/ncurses/uieditor.cc:316
+msgid "load file: "
+msgstr "Lade Datei: "
+
+#: src/ui/ncurses/uieditor.cc:343
+msgid "goto line: "
+msgstr "gehe zur Zeile: "
+
+#: src/ui/ncurses/uieditor.cc:398
+msgid " Window list "
+msgstr " Fensterliste "
+
+#: src/ui/ncurses/uieditor.cc:401 src/ui/ncurses/uigrepper.cc:214
+msgid "Switch to"
+msgstr "Wechseln zu"
+
+#: src/ui/ncurses/uitagbrowser.cc:9
+#, fuzzy
+msgid "Current file"
+msgstr "Aktuelle Datei"
+
+#: src/ui/ncurses/uitagbrowser.cc:11
+#, fuzzy
+msgid "Current project"
+msgstr " Oeffne das Projekt"
+
+#: src/ui/ncurses/uitagbrowser.cc:13
+#, fuzzy
+msgid "Everything"
+msgstr "Ausfuehren "
+
+#: src/ui/ncurses/uitagbrowser.cc:76
+#, c-format
+msgid " Symbols [%s] "
+msgstr ""
+
+#: src/ui/ncurses/uitagbrowser.cc:204
+#, fuzzy
+msgid ""
+"Symbols: type to find, ~Del~ clear, ~F2~ scope, ~F3~ filter, ~^R~ reload, "
+"~Enter~ source"
+msgstr ""
+"Symbol-Browser: Eingabe zur Suche, ~Entf~ löscht, ~Enter~ zu den Quellen"
+
+#: src/ui/ncurses/uigrepper.cc:31
+msgid " Motor grepper: replace mode "
+msgstr " Motor grepper: Ersetzungsmodus "
+
+#: src/ui/ncurses/uigrepper.cc:31
+msgid " Motor grepper "
+msgstr " Motor-Grepper "
+
+#: src/ui/ncurses/uigrepper.cc:34
+msgid "Change/Mark"
+msgstr "Ändern/Markieren"
+
+#: src/ui/ncurses/uigrepper.cc:34
+msgid "Grep"
+msgstr "Grep"
+
+#: src/ui/ncurses/uigrepper.cc:48
+msgid " Search "
+msgstr " Suche "
+
+#: src/ui/ncurses/uigrepper.cc:49
+#, c-format
+msgid " Look for: %s "
+msgstr " Suche nach: %s "
+
+#: src/ui/ncurses/uigrepper.cc:53
+#, c-format
+msgid " Replace with: %s "
+msgstr " Tausche mit: %s "
+
+#: src/ui/ncurses/uigrepper.cc:56
+#, c-format
+msgid " Area: %s "
+msgstr " Bereich: %s "
+
+#: src/ui/ncurses/uigrepper.cc:57
+msgid "current file"
+msgstr "Aktuelle Datei"
+
+#: src/ui/ncurses/uigrepper.cc:58
+msgid "selected folders"
+msgstr "Ausgewählte Verzeichnisse"
+
+#: src/ui/ncurses/uigrepper.cc:59
+msgid "all the project files"
+msgstr "Alle Projektdateien"
+
+#: src/ui/ncurses/uigrepper.cc:60
+msgid "connected projects"
+msgstr "Verbundene Projekte"
+
+#: src/ui/ncurses/uigrepper.cc:64
+msgid " Folders "
+msgstr " Verzeichnisse "
+
+#: src/ui/ncurses/uigrepper.cc:77
+msgid " Projects "
+msgstr " Projekte "
+
+#: src/ui/ncurses/uigrepper.cc:92
+msgid " Options "
+msgstr " Optionen "
+
+#: src/ui/ncurses/uigrepper.cc:93
+#, c-format
+msgid " Case sensitive: %s "
+msgstr " Klein/Groszschreibung: %s "
+
+#: src/ui/ncurses/uigrepper.cc:94
+#, c-format
+msgid " Whole words only: %s "
+msgstr " Nur ganze Woerter: %s "
+
+#: src/ui/ncurses/uigrepper.cc:95
+#, c-format
+msgid " Regular expression: %s "
+msgstr " Regulaerer Ausdruck: %s "
+
+#: src/ui/ncurses/uigrepper.cc:109
+msgid "Look for: "
+msgstr "Suche nach: "
+
+#: src/ui/ncurses/uigrepper.cc:129
+msgid "Replace with: "
+msgstr "Ersetzen durch: "
+
+#: src/ui/ncurses/uigrepper.cc:211
+msgid " Motor grepper: results "
+msgstr " Motor grepper: Ergebnisse "
+
+#: src/ui/ncurses/uigrepper.cc:214
+msgid "New search"
+msgstr "Neue Suche"
+
+#: src/ui/ncurses/uigrepper.cc:309
+msgid "Replace this occurence?"
+msgstr "Dieses Vorkommen ersetzen?"
+
+#: src/ui/ncurses/uigrepper.cc:325
+msgid "Cancelled"
+msgstr "Abgebrochen"
+
+#: src/ui/ncurses/uiwatcher.cc:68
+msgid "Watch expression: "
+msgstr "Ausdruck beobachten: "
+
+#: src/ui/ncurses/uiwatcher.cc:84
+msgid "change the value to: "
+msgstr "Ersetze den Wert durch: "
+
+#: src/ui/ncurses/uiwatcher.cc:100
+msgid "(not avail)"
+msgstr "(nicht verfügbar)"
+
+#: src/ui/ncurses/uiwatcher.cc:114
+msgid "Watches: ~Ins~ add, ~Del~ remove, ~^D~ close, ~A-W~ return to editor"
+msgstr ""
+"Ausdrücke: ~Einf~ einfügen, ~Entf~ entfernen, ~^D~ schließen, ~A-W~ Editor"
+
+#: src/vcs/motorvcs.cc:63
+msgid "Checking in.."
+msgstr "Einchecken.."
+
+#: src/vcs/motorvcs.cc:69
+msgid "Checking out.."
+msgstr "Auschecken.."
+
+#: src/vcs/motorvcs.cc:79
+msgid "Adding a file to VCS.."
+msgstr "Datei zu VCS hinzufuegen.."
+
+#: src/vcs/motorvcs.cc:85
+msgid "Removing a file from VCS.."
+msgstr "Datei von VCS entfernen.."
+
+#: src/vcs/motorvcs.cc:91
+msgid "Tagging a release.."
+msgstr "Die Freigabe taggen"
+
+#: src/vcs/motorvcs.cc:97
+msgid "Importing into VCS.."
+msgstr " Nach VCS importieren.."
+
+#: src/vcs/motorvcs.cc:123
+msgid "Retrieving recent modifications.."
+msgstr "Empfange gerade Aenderungen.."
+
+#: src/vcs/motorvcs.cc:146
+msgid "VCS check complete. No changes found"
+msgstr "VCS Ueberpruefung beendet. Keine Aenderungen gefunden"
+
+#: src/vcs/motorvcs.cc:167
+msgid "Retrieving the diff record.."
+msgstr "Empfange den diff-Bericht.."
+
+#: src/vcs/motorvcs.cc:174
+#, c-format
+msgid "Creating branch %s.."
+msgstr "Erstelle Branch %s.."
+
+#~ msgid " enter to select a file, esc to cancel "
+#~ msgstr " ENTER um Datei auszuwaehlen, ESC für Abbruch"
+
+#, fuzzy
+#~ msgid " space to select a directory, esc to cancel "
+#~ msgstr " ENTER um Verzeichnis auszuwaehlen, ESC für Abbruch"
+
+#~ msgid "Running %s.."
+#~ msgstr "Ausführen von %s.."
+
+#, fuzzy
+#~ msgid "Project named %s is already registered"
+#~ msgstr "Projekt %s existiert bereits"
+
+#~ msgid " Templates available "
+#~ msgstr " Vorlagen verfügbar "
+
+#~ msgid "Root dir must exist"
+#~ msgstr "Root-Verzeichnis muß existieren"

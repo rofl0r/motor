@@ -1,0 +1,46 @@
+%general
+scheme mc
+
+%colorscheme classic
+input		black/cyan	bold
+status_norm	black/white
+status_hlight	red/white	bold
+border		black/cyan
+menu_norm	black/cyan
+menu_bar	white/black	bold
+menu_hlight	white/cyan	bold
+debug_current	black/cyan
+debug_breakp	white/red	bold
+
+%colorscheme mono
+input		black/white	bold
+status_norm	black/white	bold
+status_hlight	black/white
+border		black/white
+menu_norm	black/white	bold
+menu_bar	white/black	bold
+menu_hlight	black/white
+debug_current	black/white
+debug_breakp	white/black	bold
+
+%colorscheme dark
+input		black/white	bold
+status_norm	black/white
+status_hlight	red/white
+border		blue/white
+menu_norm	black/white
+menu_bar	white/black	bold
+menu_hlight	red/white
+debug_current	black/white
+debug_breakp	white/red	bold
+
+%colorscheme mc
+input		black/cyan	bold
+status_norm	black/cyan
+status_hlight	red/cyan
+border		black/white
+menu_norm	black/white
+menu_bar	white/black	bold
+menu_hlight	yellow/white	bold
+debug_current	yellow/red	bold
+debug_breakp	white/red	bold
