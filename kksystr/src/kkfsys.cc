@@ -24,7 +24,7 @@
 
 #include "kkfsys.h"
 
-unsigned long kfilesize(char *fname) {
+unsigned long kfilesize(const char *fname) {
     struct stat buf;
     if(!stat(fname, &buf)) return buf.st_size; else return 0;
 }
@@ -45,16 +45,16 @@ int fcopy(const char *source, const char *dest) {
     if(inpf = fopen(source, "r")) {
 	if(outf = fopen(dest, "w")) {
 	    ret = bc = 0;
-	    
+
 	    while((bc = fread(buf, 1, 8192, inpf))) {
 		fwrite(buf, bc, 1, outf);
 		ret += bc;
 		if(bc < 8192) break;
 	    }
-	    
+
 	    fclose(inpf);
 	}
-	
+
 	fclose(outf);
     }
 

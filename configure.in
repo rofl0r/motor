@@ -6,6 +6,7 @@ AM_CONFIG_HEADER(config.h)
 AC_PROG_CC
 AC_PROG_CXX
 AC_PROG_RANLIB
+AC_USE_SYSTEM_EXTENSIONS
 
 ###	use option --enable-locales-fix to fix problems with double-byte
 ###	encodings on systems with broken locale, iscntrl()
@@ -64,6 +65,9 @@ AC_CHECK_LIB(ncurses, main,,
 
 ALL_LINGUAS="ru pl de zh_CN"
 AM_GNU_GETTEXT
+
+MKINSTALLDIRS=mkinstalldirs
+AC_SUBST(MKINSTALLDIRS)
 
 AC_OUTPUT([Makefile
     src/Makefile

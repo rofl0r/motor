@@ -26,22 +26,22 @@
 
 horizontalbar::horizontalbar(int x, int y, int nc, int sc, ...):
 done(false), item(0), previtem(-1), scolor(sc), ncolor(nc) {
-    char *p;
+    const char *p;
     va_list ap;
 
     setcoords(x, y);
     va_start(ap, sc);
-    while(p = va_arg(ap, char *)) items.push_back((string) p);
+    while(p = va_arg(ap, const char *)) items.push_back((string) p);
     va_end(ap);
 }
 
 horizontalbar::horizontalbar(int nc, int sc, ...):
 done(false), item(0), previtem(-1), scolor(sc), ncolor(nc) {
-    char *p;
+    const char *p;
     va_list ap;
 
     va_start(ap, sc);
-    while(p = va_arg(ap, char *)) items.push_back((string) p);
+    while(p = va_arg(ap, const char *)) items.push_back((string) p);
     va_end(ap);
 }
 
@@ -72,7 +72,7 @@ void horizontalbar::movebar(int k) {
 	    item = -1;
 	    break;
     }
-    
+
     switch(k) {
 	case KEY_RIGHT:
 	case KEY_UP:
@@ -107,7 +107,7 @@ void horizontalbar::update() {
 
 void horizontalbar::align(bamode m) {
     vector<string>::iterator i;
-    
+
     switch(m) {
 	case baleft:
 	    for(i = items.begin(); i != items.end(); i++) {

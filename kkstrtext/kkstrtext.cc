@@ -41,17 +41,17 @@ char *strimlead(char *str)  { return trimlead(str, " \t");  }
 char *strimtrail(char *str) { return trimtrail(str, " \t"); }
 char *strim(char *str)      { return trim(str, " \t");      }
 
-char *trimlead(char *str, char *chr) {
+char *trimlead(char *str, const char *chr) {
     while(strchr(chr, str[0]) && strlen(str)) strcpy(str, str + 1);
     return str;
 }
 
-char *trimtrail(char *str, char *chr) {
+char *trimtrail(char *str, const char *chr) {
     while(strchr(chr, str[strlen(str)-1]) && strlen(str)) str[strlen(str)-1] = 0;
     return str;
 }
 
-char *trim(char *str, char *chr) {
+char *trim(char *str, const char *chr) {
     return trimlead(trimtrail(str, chr), chr);
 }
 
@@ -65,13 +65,13 @@ char *time2str(const time_t *t, char *mask, char *sout) {
 
     for(i = 0; i < strlen(mask); i++) {
 	len = 0;
-    
+
 	if(strchr("DMYhms", ch = mask[i])) {
 	    j = i; len = 1;
 	    while(mask[++j] == ch) len++;
 	    sprintf(b, "%%0%dd", len);
 	    i += len-1;
-      
+
 	    switch(ch) {
 		case 'D': sprintf(b1, b, s->tm_mday); break;
 		case 'M': sprintf(b1, b, s->tm_mon+1); break;
@@ -100,10 +100,10 @@ time_t str2time(char *sdate, char *mask, time_t *t) {
     char ch, b[10];
 
     s = (struct tm*) malloc(sizeof(struct tm));
-  
+
     for(i = 0; i < strlen(mask); i++) {
 	len = 0;
-    
+
 	if(strchr("DMYhms", ch = mask[i])) {
 	    j = i; len = 1;
 	    while(mask[++j] == ch) len++;
@@ -115,7 +115,7 @@ time_t str2time(char *sdate, char *mask, time_t *t) {
 		b[k+1] = 0;
 		b[k] = sdate[j];
 	    }
-      
+
 	    switch(ch) {
 		case 'D': s->tm_mday=atoi(b); break;
 		case 'M': s->tm_mon=atoi(b); s->tm_mon--; break;
@@ -189,7 +189,7 @@ char *mime(char *dst, const char *src) {
     char c;
 
     for(s = 0, d = 0; src[s]; s++) {
-	if((src[s] >= 'a' && src[s] <= 'z') || 
+	if((src[s] >= 'a' && src[s] <= 'z') ||
 	   (src[s] >= 'A' && src[s] <= 'Z') ||
 	   (src[s] >= '0' && src[s] <= '9')) dst[d++] = src[s]; else {
 	    if(src[s] != ' ') {
@@ -202,7 +202,7 @@ char *mime(char *dst, const char *src) {
 		dst[d++] = '+';
 	}
     }
-  
+
     dst[d] = '\0';
     return(dst);
 }
@@ -299,7 +299,7 @@ const char *strqpbrk(const char *s, int offset, const char *accept, const char *
     char qchar = 0;
     const char *ret = 0, *p = s;
     char *cset = (char *) malloc(strlen(accept)+strlen(q)+1);
-    
+
     strcpy(cset, accept);
     strcat(cset, q);
 
@@ -358,7 +358,7 @@ const char *strqstr(const char *s, const char *str, const char *q, const char *e
 	    quote = !quote;
 	    r++;
 	}
-	
+
 	if(!quote) {
 	    ret = p;
 	    break;
@@ -370,7 +370,7 @@ const char *strqstr(const char *s, const char *str, const char *q, const char *e
     return ret;
 }
 
-char *strinsert(char *buf, int pos, char *ins) {
+char *strinsert(char *buf, int pos, const char *ins) {
     char *p = strdup(buf+pos);
     memcpy(buf+pos+strlen(ins), p, strlen(p)+1);
     memcpy(buf+pos, ins, strlen(ins));
@@ -406,7 +406,7 @@ string justfname(const string &fname) {
 
 string justpathname(const string &fname) {
     int pos;
-    
+
     if((pos = fname.rfind("/")) != -1) {
 	return fname.substr(0, pos);
     } else {
@@ -451,7 +451,7 @@ string textscreen(const string &text) {
 
     for(int i = 0; i < r.size(); i++) {
 	if(!isalnum(r[i])) r.insert(i++, "\\");
-    }   
+    }
 
     return r;
 }
@@ -472,7 +472,7 @@ string getword(string &base, const string &delim) {
     bool found = false;
 
     base = leadcut(base, delim);
-    
+
     for(i = 0, sub = base; i < sub.size(); i++)
     if(strchr(delim.c_str(), sub[i])) {
 	sub.resize(i);
@@ -513,7 +513,7 @@ string getrword(string &base, const string &delim) {
     int i;
 
     base = trailcut(base, delim);
-    
+
     for(i = base.size()-1, sub = base; i >= 0; i--)
     if(strchr(delim.c_str(), base[i])) {
 	sub = base.substr(i+1);
@@ -532,7 +532,7 @@ string getrwordquote(string &base, const string &quote, const string &delim) {
     int i;
 
     base = trailcut(base, delim);
-    
+
     for(i = base.size()-1, sub = base; i >= 0; i--)
     if(strchr(quote.c_str(), base[i])) {
 	inquote = !inquote;
@@ -572,7 +572,7 @@ int rtabmargin(bool fake, int curpos, const char *p) {
 int ltabmargin(bool fake, int curpos, const char *p) {
     int ret = -1, near, n = 0;
     const char *cp;
-    
+
     if(p) {
 	cp = p+curpos;
 
@@ -591,12 +591,12 @@ int ltabmargin(bool fake, int curpos, const char *p) {
 	if(near <= curpos-n) {
 	    if((ret = curpos-n) != 0) ret++;
 	} else ret = near;
-	
+
     } else {
 	if(fake) ret = (curpos/(TAB_SIZE/2))*(TAB_SIZE/2);
 	else ret = (curpos/TAB_SIZE)*TAB_SIZE;
     }
-    
+
     return ret;
 }
 

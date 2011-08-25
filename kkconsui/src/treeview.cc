@@ -84,13 +84,13 @@ int treeview::addleaff(const char *fmt, ...) {
 int treeview::addnodef(int parent, int color, int ref, const char *fmt, ...) {
     string buf;
     VGETSTRING(buf, fmt);
-    return addnode(parent, color, (void *) ref, buf);
+    return addnode(parent, color, intptr_t (ref), buf);
 }
 
 int treeview::addleaff(int parent, int color, int ref, const char *fmt, ...) {
     string buf;
     VGETSTRING(buf, fmt);
-    return addleaf(parent, color, (void *) ref, buf);
+    return addleaf(parent, color, intptr_t (ref), buf);
 }
 
 int treeview::addnode(const string &text) {
@@ -131,11 +131,11 @@ int treeview::addleaf(int parent, int color, void *ref, const string &text) {
 }
 
 int treeview::addnode(int parent, int color, int ref, const string &text) {
-    return addnode(parent, color, (void *) ref, text);
+    return addnode(parent, color, intptr_t (ref), text);
 }
 
 int treeview::addleaf(int parent, int color, int ref, const string &text) {
-    return addleaf(parent, color, (void *) ref, text);
+    return addleaf(parent, color, intptr_t (ref), text);
 }
 
 int treeview::getid(void *ref) {
