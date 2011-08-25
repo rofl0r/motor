@@ -22,6 +22,7 @@ ncursesui thisui;
 
 #define LOOKER_HEIGHT		(LINES-2)
 #define OUTLINES_LIMIT		512
+#define NULL_CONST_STR		((const char *) 0)
 
 #define getcolor(c)	uiconf.getcolor(c)
 
@@ -62,7 +63,7 @@ void ncursesui::execute(int argc, char **argv) {
     log();
 
     if(project.empty()) pload();
-    
+
     if(!project.empty()) {
         initmenubar();
 
@@ -84,7 +85,7 @@ void ncursesui::pload(const projectname pname) {
 	if(nname.empty()) {
 	    nname = selectproject(selectorcreate);
 	}
-        
+
         if(!(fin = nname.empty())) {
             np = motorproject(nname);
 
@@ -338,7 +339,7 @@ const projectname ncursesui::selectproject(mgrmode amode, vector<string> templs)
 
     if(amode == selectorcreate) {
 	db.setbar(new horizontalbar(getcolor(cp_menu), getcolor(cp_menusel),
-    	    _("Create/Import.."), _("Add"), _("Remove"), _("Open"), 0));
+    	    _("Create/Import.."), _("Add"), _("Remove"), _("Open"), NULL_CONST_STR));
 
 	db.addkey(KEY_IC, 1);
 	db.addkey(KEY_DC, 2);
@@ -515,7 +516,7 @@ void ncursesui::initmenubar() {
     menubar.additem(_(" VCS "));
     menubar.additem(_(" Debug "));
     menubar.additem(_(" Window "));
-    
+
     m = menubar.pulldown(0);
     m->additem(_(" Load..         ^O"));
     m->additem(_(" Save           F2"));
@@ -825,7 +826,7 @@ bool ncursesui::hotkey(int k) {
 	    if(ed.getfid()) {
                 ed.getpos(0, &line);
 		debugger.tocursor(ed.getfid(), line+1);
-	    }	    
+	    }
 	    break;
 
         case KEY_F( 5):
@@ -947,7 +948,7 @@ bool ncursesui::hotkey(int k) {
         case ALT('t'):
 	    maketarget();
 	    break;
-        
+
         case CTRL('x'):
 	    terminate = true;
 	    break;
@@ -989,7 +990,7 @@ void ncursesui::textbox(const string &text, const string &title) {
     db.setbrowser(new textbrowser(getcolor(cp_menu)));
 
     db.setbar(new horizontalbar(getcolor(cp_menu),
-	getcolor(cp_menusel), _("Ok"), 0));
+	getcolor(cp_menusel), _("Ok"), NULL_CONST_STR));
 
     db.getwindow()->set_title(getcolor(cp_menuhl), title);
     db.getbrowser()->setbuf(text);
@@ -1235,7 +1236,7 @@ bool ncursesui::projectsettings() {
     db.settree(new treeview(getcolor(cp_menu), getcolor(cp_menusel),
 	getcolor(cp_menu), getcolor(cp_menu)));
     db.setbar(new horizontalbar(getcolor(cp_menu), getcolor(cp_menusel),
-	_("Change"), 0));
+	_("Change"), NULL_CONST_STR));
 
     nfiles = ed.getfcount();
     for(bool fin = false; nfiles == ed.getfcount() && !fin; ) {
@@ -1422,13 +1423,13 @@ bool ncursesui::projectcontents(projeditaction pea, bool setcurrent) {
 	case pfiles:
 	    head = _(" Project files ");
     	    db.setbar(new horizontalbar(getcolor(cp_menu),
-		getcolor(cp_menusel), _("Add"), _("Remove"), _("Edit"), 0));
+		getcolor(cp_menusel), _("Add"), _("Remove"), _("Edit"), NULL_CONST_STR));
     	    db.getbar()->item = 2;
 	    break;
 	case pdirs:
 	    head = _(" Project directories ");
     	    db.setbar(new horizontalbar(getcolor(cp_menu),
-		getcolor(cp_menusel), _("Add"), _("Remove"), 0));
+		getcolor(cp_menusel), _("Add"), _("Remove"), NULL_CONST_STR));
 	    break;
     }
 
@@ -1600,7 +1601,7 @@ string ncursesui::selectprojectfile(motorproject mp) {
 	    getcolor(cp_menu), getcolor(cp_menu)));
 
 	db.setbar(new horizontalbar(getcolor(cp_menu),
-	    getcolor(cp_menusel), _("Open"), 0));
+	    getcolor(cp_menusel), _("Open"), NULL_CONST_STR));
 
 	treeview &tree = *db.gettree();
 	populatecontentstree(tree, mp, pfiles, false);
@@ -1658,7 +1659,7 @@ void ncursesui::writeoutput(const string &text) {
 
 	for(; il != outlines.end(); il++, ln++) {
     	    mvhline(ln, 0, ' ', COLS);
-        
+
 	    if(il->substr(0, 1) == "\001") {
         	kwriteat(0, ln, il->c_str()+1, boldcolor(0));
     	    } else {
@@ -1792,7 +1793,7 @@ bool ncursesui::createproject() {
         _(" Create a new project ")));
 
     db.setbar(new horizontalbar(getcolor(cp_menu), getcolor(cp_menusel),
-	_("Change"), _("Create"), 0));
+	_("Change"), _("Create"), NULL_CONST_STR));
 
     db.settree(new treeview(getcolor(cp_menu), getcolor(cp_menusel),
         getcolor(cp_menu), getcolor(cp_menu)));
@@ -1855,7 +1856,7 @@ bool ncursesui::createproject() {
                     case 11:
                         templname = selecttemplate(templname);
                         break;
-                        
+
                     case 12:
                         if(input(motorui::text, pname, _("project name: ")) == motorui::yes) {
                             buf = rootdir.substr(0, conf.getdefaultprojectsdir().size());
@@ -1865,7 +1866,7 @@ bool ncursesui::createproject() {
                             }
                         }
                         break;
-                        
+
                     case 13:
 			input(motorui::directory, rootdir, _("root directory: "));
                         if(pname.empty()) pname = justfname(rootdir);
@@ -1877,7 +1878,7 @@ bool ncursesui::createproject() {
 				motorproject::automake :
                         	motorproject::manual;
                         break;
-                        
+
                     case 15: gnudoc = !gnudoc; break;
                     case 16: gensource = !gensource; break;
 
@@ -2041,7 +2042,7 @@ void ncursesui::dist() {
         getcolor(cp_menu), getcolor(cp_menu)));
 
     db.setbar(new horizontalbar(getcolor(cp_menu),
-        getcolor(cp_menusel), _("Change"), _("Go!"), 0));
+        getcolor(cp_menusel), _("Change"), _("Go!"), NULL_CONST_STR));
 
     di = project.distbegin();
     treeview &tree = *db.gettree();
@@ -2138,7 +2139,7 @@ void ncursesui::maketarget() {
 	_(" Make a target.. ")));
     db.setmenu(new verticalmenu(getcolor(cp_menu), getcolor(cp_menusel)));
     db.setbar(new horizontalbar(getcolor(cp_menu), getcolor(cp_menusel),
-	_("Add"), _("Remove"), _("Make"), 0));
+	_("Add"), _("Remove"), _("Make"), NULL_CONST_STR));
 
     db.addkey(KEY_IC, 0);
     db.addkey(KEY_DC, 1);
@@ -2223,7 +2224,7 @@ void ncursesui::evaluate(const string &e) {
         getcolor(cp_menu), getcolor(cp_menu)));
 
     db.setbar(new horizontalbar(getcolor(cp_menu),
-        getcolor(cp_menusel), _("Change"), 0));
+        getcolor(cp_menusel), _("Change"), NULL_CONST_STR));
 
     if(!e.empty()) re = e;
 
@@ -2273,7 +2274,7 @@ void ncursesui::settings() {
 	_(" Motor settings ")));
 
     db.setbar(new horizontalbar(getcolor(cp_menu),
-	getcolor(cp_menusel), _("Change"), _("Done"), 0));
+	getcolor(cp_menusel), _("Change"), _("Done"), NULL_CONST_STR));
 
     db.settree(new treeview(getcolor(cp_menu), getcolor(cp_menusel),
         getcolor(cp_menu), getcolor(cp_menu)));
@@ -2413,7 +2414,7 @@ void ncursesui::showbreakpoints() {
         getcolor(cp_menu), getcolor(cp_menu)));
 
     db.setbar(new horizontalbar(getcolor(cp_menu),
-        getcolor(cp_menusel), _("Remove"), _("Goto"), 0));
+        getcolor(cp_menusel), _("Remove"), _("Goto"), NULL_CONST_STR));
 
     db.addkey(KEY_DC, 0);
     db.getbar()->item = 1;
@@ -2478,7 +2479,7 @@ void ncursesui::generate() {
     db.setmenu(new verticalmenu(getcolor(cp_menu), getcolor(cp_menusel)));
 
     db.setbar(new horizontalbar(getcolor(cp_menu), getcolor(cp_menusel),
-	_("Mark"), _("Generate"), 0));
+	_("Mark"), _("Generate"), NULL_CONST_STR));
 
     db.addkey(' ', 0);
     verticalmenu &menu = *db.getmenu();
@@ -2540,7 +2541,7 @@ void ncursesui::loadcore() {
 	        _(" Core dump load results ")));
 
             db.setbar(new horizontalbar(getcolor(cp_menu),
-                getcolor(cp_menusel), _("Inspect stack"), _("Close"), 0));
+                getcolor(cp_menusel), _("Inspect stack"), _("Close"), NULL_CONST_STR));
 
             db.setbrowser(new textbrowser(getcolor(cp_menu)));
             db.getbrowser()->setbuf(r);
@@ -2573,7 +2574,7 @@ bool ncursesui::showstack() {
 
 	db.setmenu(new verticalmenu(getcolor(cp_menu), getcolor(cp_menusel)));
         db.setbar(new horizontalbar(getcolor(cp_menu), getcolor(cp_menusel),
-	    _("Info"), _("Go to"), 0));
+	    _("Info"), _("Go to"), NULL_CONST_STR));
 
 	db.getbar()->item = 1;
 
@@ -2722,7 +2723,7 @@ bool ncursesui::editbuildoptions(motorfile &f) const {
         getcolor(cp_menu), getcolor(cp_menu)));
 
     db.setbar(new horizontalbar(getcolor(cp_menu),
-        getcolor(cp_menusel), _("Change"), _("Done"), 0));
+        getcolor(cp_menusel), _("Change"), _("Done"), NULL_CONST_STR));
 
     treeview &tree = *db.gettree();
 
