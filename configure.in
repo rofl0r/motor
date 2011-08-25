@@ -66,6 +66,9 @@ AC_CHECK_LIB(ncurses, main,,
 ALL_LINGUAS="ru pl de zh_CN"
 AM_GNU_GETTEXT
 
+MKINSTALLDIRS=mkinstalldirs
+AC_SUBST(MKINSTALLDIRS)
+
 AC_OUTPUT([Makefile
     src/Makefile
     src/debugger/Makefile
