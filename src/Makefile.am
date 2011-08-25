@@ -10,7 +10,7 @@ INCLUDES = -I$(top_srcdir)/kkstrtext -I$(top_srcdir)/kksystr/include \
     -I$(top_srcdir)/src/tagbrowser -I$(top_srcdir)/src/vcs \
     -I$(top_srcdir)/parser/include
 
-CPPFLAGS = -DSHARE_DIR=\"$(pkgdatadir)\" -DLOCALE_DIR=\"$(datadir)/locale\"
+AM_CPPFLAGS = -DSHARE_DIR=\"$(pkgdatadir)\" -DLOCALE_DIR=\"$(datadir)/locale\"
 
 bin_PROGRAMS = motor
 motor_SOURCES = main.cc motormisc.cc
