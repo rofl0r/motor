@@ -119,9 +119,9 @@ __KTOOL_BEGIN_C
 
 char *strcut(char *strin, int frompos, int count);
 
-char *trimlead(char *str, char *chr);
-char *trimtrail(char *str, char *chr);
-char *trim(char *str, char *chr);
+char *trimlead(char *str, const char *chr);
+char *trimtrail(char *str, const char *chr);
+char *trim(char *str, const char *chr);
 
 char *strimlead(char *str);
 char *strimtrail(char *str);
@@ -138,14 +138,14 @@ const char *strqcasestr(
     const char *str,
     const char *q,
     const char *esc = "");
-    
+
 const char *strqstr(const char *s,
     const char *str,
     const char *q,
     const char *esc = "");
 
 char *strccat(char *dest, char c);
-char *strinsert(char *buf, int pos, char *ins);
+char *strinsert(char *buf, int pos, const char *ins);
 char *strcinsert(char *buf, int pos, char ins);
 
 int strchcount(char *s, char *accept);

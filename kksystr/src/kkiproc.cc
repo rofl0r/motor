@@ -105,7 +105,7 @@ time_t lastkeypress() {
     } else {
 	time(&t);
     }
-     
+
 #endif
 
     return t;
@@ -132,7 +132,7 @@ int dataready(int fd, int dowait) {
     return rc;
 }
 
-char *getprocentry(char *fname) {
+char *getprocentry(const char *fname) {
     FILE *f = fopen(fname, "r");
     static char *p = 0;
     int fsize = kfilesize(fname);
