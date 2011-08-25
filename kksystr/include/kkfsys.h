@@ -47,7 +47,7 @@ bool samefile(const string &fname1, const string &fname2);
 
 __KTOOL_BEGIN_C
 
-unsigned long kfilesize(char *fname);
+unsigned long kfilesize(const char *fname);
 void freads(FILE *f, char *s, int maxlen);
 int fcopy(const char *source, const char *dest);
 int fmove(const char *source, const char *dest);

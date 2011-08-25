@@ -89,13 +89,13 @@ void verticalmenu::additemf(int color, void *ref, const char *fmt, ...) {
 }
 
 void verticalmenu::additem(int color, int ref, const string &text) {
-    additem(color, (void *) ref, text);
+    additem(color, intptr_t (ref), text);
 }
 
 void verticalmenu::additemf(int color, int ref, const char *fmt, ...) {
     string buf;
     VGETSTRING(buf, fmt);
-    additem(color, (void *) ref, buf);
+    additem(color, intptr_t (ref), buf);
 }
 
 void verticalmenu::addline() {
@@ -145,7 +145,7 @@ bool verticalmenu::shownelem(int n, int selected) {
 		    switch(c = buf[i-x1]) {
 			case 1:
 			    if(hlight = !hlight)
-				attrset(selected && (item.kind == ITEM_NORM) ? 
+				attrset(selected && (item.kind == ITEM_NORM) ?
 				    scolor : item.color);
 			    else attrset(ncolor);
 
@@ -192,14 +192,14 @@ void verticalmenu::showall() {
     } else if(firstdisp < 0) {
 	firstdisp = 0;
     }
-    
+
     attrset(ncolor);
 
     for(p = firstdisp; (p < firstdisp+y2-y1) && (p < items.size()); p++) {
 	kgotoxy(x1, y1+p-firstdisp);
 	shownelem(p, 0);
     }
-    
+
     for(; p < firstdisp+y2-y1; p++) {
 	mvhline(y1+p-firstdisp, x1, ' ', x2-x1);
     }
@@ -246,12 +246,12 @@ int verticalmenu::open() {
 		    finished = true;
 		    checkclear();
 		    break;
-	
+
 		case 27:
 		    checkclear();
 		    return 0;
 		    break;
-	
+
 		case KEY_UP:
 		    if(curelem > 0) {
 			shownelem(curelem, 0);
@@ -286,14 +286,14 @@ int verticalmenu::open() {
 		    if(!items.empty()) {
 			if(curelem < items.size()-1) {
 			    shownelem(curelem++, 0);
-			
+
 			    if(curelem > firstdisp+y2-y1-1) {
 				firstdisp += y2 - y1;
 				intredraw();
 			    } else {
 				bool lastone;
 				int savecur = curelem-1;
-			
+
 				while(curelem < items.size()) {
 				    if(!(lastone = shownelem(curelem, 1)))
 				    curelem++; else break;
@@ -310,7 +310,7 @@ int verticalmenu::open() {
 			}
 		    }
 		    break;
-	
+
 		case KEY_PPAGE:
 		    if((curelem -= y2-y1) < 0) {
 			if(finished = exitonedges) continue;
@@ -333,7 +333,7 @@ int verticalmenu::open() {
 
 		    intredraw();
 		    break;
-      
+
 		case KEY_HOME:
 		    curelem = firstdisp = 0;
 		    intredraw();
@@ -346,7 +346,7 @@ int verticalmenu::open() {
 		    intredraw();
 		    finished = finished || exitonedges;
 		    break;
-      
+
 		default:
 		    if(otherkeys) {
 			if((go = (*otherkeys)(*this, k)) != -1) {
@@ -547,7 +547,7 @@ void horizontalmenu::redraw() {
 void horizontalmenu::draw() {
     vector<horizontalmenuitem>::iterator i;
     int n;
-    
+
     attrset(ncolor);
     mvhline(coordy, 0, ' ', COLS);
 
@@ -588,7 +588,7 @@ bool horizontalmenu::open(int *hor, int *pulld) {
 	}
 
 	osel = selected;
-	 
+
 	switch(ch) {
 	    case KEY_RIGHT:
 		if(++selected >= menus.size()) selected = 0;
