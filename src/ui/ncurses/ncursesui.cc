@@ -13,7 +13,7 @@
 
 #include "kkfsys.h"
 
-#include <strstream>
+#include <sstream>
 #include <iostream>
 
 #include <sys/wait.h>
@@ -1115,7 +1115,7 @@ vector<motorui::editfile> ncursesui::geteditfiles() {
 vector<string> ncursesui::geteditfile(const string &fname) {
     int saven, i;
     string buf;
-    strstream st;
+    stringstream st;
     vector<string> r;
 
     for(i = 0; i < ed.getfcount(); i++) {
