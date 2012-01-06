@@ -2,7 +2,7 @@
 #include "motorproject.h"
 #include "motorexecutor.h"
 
-#include <strstream>
+#include <sstream>
 
 motortagbrowser::motortagbrowser()
     : scope(Everything), readok(false)
@@ -26,7 +26,7 @@ vector<motortagbrowser::record> motortagbrowser::fetch(const string &prefix, con
 }
 
 void motortagbrowser::readtags() {
-    strstream st;
+    stringstream st;
     string buf;
     record tr;
 
