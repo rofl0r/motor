@@ -13,7 +13,7 @@
 
 #include "kkfsys.h"
 
-#include <sstream>
+#include <strstream>
 #include <iostream>
 
 #include <sys/wait.h>
@@ -1115,7 +1115,7 @@ vector<motorui::editfile> ncursesui::geteditfiles() {
 vector<string> ncursesui::geteditfile(const string &fname) {
     int saven, i;
     string buf;
-    stringstream st;
+    strstream st;
     vector<string> r;
 
     for(i = 0; i < ed.getfcount(); i++) {
@@ -1406,8 +1406,7 @@ void ncursesui::populatecontentstree(treeview &tree, motorproject &mp, projedita
 }
 
 bool ncursesui::projectcontents(projeditaction pea, bool setcurrent) {
-    int n, b, id;
-    intptr_t citem;
+    int n, b, citem, id;
     dialogbox db;
     string buf, head, fname;
     motorfolder *fold;

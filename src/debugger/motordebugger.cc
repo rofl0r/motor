@@ -7,7 +7,7 @@
 
 #include "kkiproc.h"
 
-#include <sstream>
+#include <strstream>
 #include <iostream>
 #include <memory>
 #include <fcntl.h>
@@ -56,7 +56,7 @@ motordebugger::~motordebugger() {
 
 bool motordebugger::getfreeterm() {
     int fd, vt;
-    stringstream tstr;
+    strstream tstr;
     ofstream f;
     bool r;
 
@@ -69,7 +69,7 @@ bool motordebugger::getfreeterm() {
 	    if(r = (vt != -1)) {
 		tstr << TTY_PREFIX << TTY_NUMBER;
 		termname = tstr.str();
-		termname.resize(tstr.width());
+		termname.resize(tstr.pcount());
 		termnumber = vt;
 	    }
 
@@ -124,7 +124,7 @@ void motordebugger::init() {
 		dup2(inpipe[1], STDOUT_FILENO);
 		dup2(inpipe[1], STDERR_FILENO);
 		dup2(outpipe[0], STDIN_FILENO);
-
+            
         	close(inpipe[0]);
         	close(inpipe[1]);
         	close(outpipe[0]);
