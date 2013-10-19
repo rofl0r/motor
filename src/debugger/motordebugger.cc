@@ -19,6 +19,12 @@
 #include <sys/consio.h>
 #elif __OpenBSD__
 #include <dev/wscons/wsdisplay_usl_io.h>
+#elif __APPLE__
+#include <sys/ioctl.h>
+// couldn't find anything, so porting directly
+#define VT_OPENQRY      0x5600
+#define VT_ACTIVATE     0x5606
+#define VT_WAITACTIVE   0x5607
 #else
 #include <sys/vt.h>
 #endif

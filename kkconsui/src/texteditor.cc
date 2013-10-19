@@ -792,7 +792,10 @@ void texteditor::showline(int ln, int startx, int distance, int extrax) {
     const char *p;
 
     if(!(cs = (char *) curfile->lines->at(ln))) return;
-    char cp[i = (strlen(cs)+1)*4];
+
+    i = (strlen(cs)+1)*4;
+
+    char cp[i];
     char buf[i];
 
     eolstart = i;
