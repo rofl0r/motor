@@ -1,13 +1,12 @@
 *.o
 *.a
 *~
-Makefile
 config.cache
 config.h
 config.log
 config.status
 po/Makefile.in
 po/POTFILES
-src/motor
+motor
 stamp-h
 
