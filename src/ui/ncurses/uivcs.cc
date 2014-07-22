@@ -98,7 +98,7 @@ void uivcs::check() {
 	switch(b) {
 	    case 0:
 		if(!i) {
-                    i = (size_t) tree.getref(tree.getid(n));
+                    i = (int) tree.getref(tree.getid(n));
 		    ic = ch.begin()+i-1;
 
                     found = (ik = find(naffect.begin(), naffect.end(),

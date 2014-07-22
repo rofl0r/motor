@@ -44,7 +44,6 @@
 */
 
 #include "texteditor.h"
-#include <stddef.h>
 
 #define CURLINE       (curfile ? (curfile->sy+curfile->y) : 0)
 #define CURCOL        (curfile ? (curfile->sx+curfile->x) : 0)
@@ -1944,11 +1943,11 @@ void texteditor::undorecordfree(void *p) {
 }
 
 int texteditor::findint(void *p1, void *p2) {
-    return *(size_t *) p1 != (size_t) p2;
+    return *(int *) p1 != (int) p2;
 }
 
 int texteditor::findhighline(void *p1, void *p2) {
-    return *(size_t *) p1 != ((highline *) p2)->line;
+    return *(int *) p1 != ((highline *) p2)->line;
 }
 
 void texteditor::shiftmarkedblock(int delta) {
