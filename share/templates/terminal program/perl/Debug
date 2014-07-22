@@ -1,0 +1,82 @@
+#
+# General settings for this debugger
+#
+# Some regular expressions here need positional statements
+# represented with the following latin letters
+#
+# F - file name
+# L - line number
+# I - id (of a breakpoint)
+# N - name
+# A - arguments
+#
+
+%options
+nodebug
+
+#
+# Commands to be executed on events
+#
+
+%init
+
+%onterminate
+
+#
+# Various commands
+#
+
+%cmdbreakmain
+
+%cmdbreakpoint
+
+%cmdkill
+q
+
+%cmdnext
+n
+
+%cmdstep
+s
+
+%cmdrun
+r
+
+%cmdcontinue
+c
+
+%cmdloadcore
+
+%cmdstack
+
+%cmdbreakpointdel
+
+%cmdsetvar
+
+%cmdgetvar
+
+#
+# Debugger messages
+#
+
+%msgprompt
+(DB\<[0-9]+\> )$
+
+%msgterminated
+
+%msgcantstart
+
+%msginterrupted
+
+%msgbreakpoint
+
+%msgsetbreakpoint
+
+%msgvalue
+
+%msgstdheader
+
+%msglocation
+^.+::\((.+):([0-9]+)\):		FL
+
+%msgstack

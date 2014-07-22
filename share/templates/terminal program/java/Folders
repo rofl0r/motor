@@ -1,0 +1,24 @@
+%fsource
+element		file
+name		Source files
+mask		\.(java)$
+
+%fdoc
+element		file
+name		Documentation
+mask		(\/|^)(AUTHORS|NEWS|INSTALL|README|COPYING|THANKS|TODO|FAQ|ChangeLog|CHANGES)$|\.(html|txt|doc)$
+
+%fbuild
+element		file
+name		Build stuff
+mask		(\/|^)(Makefile|configure\.in|Makefile\.am|.*\.spec|config\.h\.in)$
+
+%fmisc
+element		file
+name		Miscellaneous files
+mask		*
+reject		(\/|^)(CVS|autom4te\.cache)\/|\.(class|mo|pot)$|(\/|^)(configure|core|Makefile\.func|mkinstalldirs|missing|install-sh|\.cvsignore|aclocal\.m4|POTFILES\.in)$|config\.(cache|log|status)$
+
+%dheader
+element		dir
+name		Class directories

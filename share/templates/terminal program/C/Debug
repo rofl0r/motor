@@ -1,0 +1,110 @@
+#
+# General settings for this debugger
+#
+# Some regular expressions here need positional statements
+# represented with the following latin letters
+#
+# F - file name
+# L - line number
+# I - id (of a breakpoint)
+# N - name
+# A - arguments
+#
+
+%options
+
+#
+# Commands to be executed on events
+#
+
+%init
+set confirm off
+set print null-stop
+set height 0
+set print pretty on
+
+%onterminate
+delete breakpoints
+
+#
+# Various commands
+#
+
+%cmdbreakmain
+break main
+run [value args]
+
+%cmdbreakpoint
+break [value filename extractfname]:[value line]
+
+%cmdkill
+kill
+
+%cmdnext
+next
+
+%cmdstep
+step
+
+%cmdrun
+run [value args]
+
+%cmdcontinue
+continue
+
+%cmdloadcore
+core [value filename]
+
+%cmdstack
+info stack
+
+%cmdbreakpointdel
+delete [value id]
+
+%cmdsetvar
+set var [value var_name] = [value var_value]
+
+%cmdgetvar
+print [value var_name]
+
+#
+# Debugger messages
+#
+
+%msgprompt
+(\(gdb\) )$
+
+%msgterminated
+Program exited
+The program is no longer exists
+The program is not being run
+
+%msgcantstart
+No executable file specified.
+
+%msginterrupted
+(Program received signal [a-zA-Z ,.]+)
+
+%msgbreakpoint
+Breakpoint ([0-9]+),	I
+
+%msgsetbreakpoint
+Breakpoint ([0-9]+) at .* line ([0-9]+)		IL
+
+%msgvalue
+\$[0-9]+ = [[:alnum:]]+ (\".*\")
+\$[0-9]+ = (.*)[^[:print:]]+$
+
+%msgstdheader
+^\/usr\/.*include.*$
+
+%msglocation
+[^[:print:]]?([[:alnum:][:space:][:punct:]]+):([0-9]+):[0-9]+:beg:[[:alnum:]]+[^[:print:]]?	FL
+
+%msgstack
+^[^[:print:]]*#[[:digit:]]+[[:space:]]+([^[:space:]]+) \(([^()]*)\) at ([^:]+):([[:digit:]]+)						NAFL
+^[^[:print:]]*#[[:digit:]]+[[:space:]]+[^[:space:]]+ in ([^[:space:]]+) \(([^()]*)\)[^[:print:]]*[[:space:]]+at ([^:]+):([[:digit:]]+)	NAFL
+^[^[:print:]]*#[[:digit:]]+[[:space:]]+[^[:space:]]+ in ([^[:space:]]+) \(([^()]*)\)[^[:print:]]*[[:space:]]+from [[:print:]]+		NAFL
+[[:graph:]]?[[:digit:]]+[[:space:]]+([^[:space:]]+) \(([^()]*)\) at ([^:]+):([[:digit:]]+)						NAFL
+[[:graph:]]?[[:digit:]]+[[:space:]]+[^[:space:]]+ in ([^[:space:]]+) \(([^()]*)\)[^[:print:]]*[[:space:]]+at ([^:]+):([[:digit:]]+)	NAFL
+[[:graph:]]?[[:digit:]]+[[:space:]]+[^[:space:]]+ in ([^[:space:]]+) \(([^()]*)\)[^[:print:]]*[[:space:]]+from [[:print:]]+		NA

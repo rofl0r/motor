@@ -1,0 +1,17 @@
+#
+# Distribution package types definitions
+#
+
+%dist tar.gz
+target	dist
+
+%dist rpm
+target	rpm
+
+#
+# Source code tag browser settings
+# ctags letters that mean a kind of a symbol and the sybol names
+#
+
+%tagnames
+s	subroutine

@@ -1,0 +1,23 @@
+%fscript
+element		file
+name		Scripts
+mask		\.(pl|PL)$
+reject		(\/|^)(intl|po)\/
+
+%fdoc
+element		file
+name		Documentation
+mask		(\/|^)(AUTHORS|NEWS|INSTALL|README|COPYING|THANKS|TODO|FAQ|ChangeLog|CHANGES|ABOUT-NLS)$|\.(html|txt|doc)$
+reject		(\/|^)intl\/
+
+%fbuild
+element		file
+name		Build stuff
+mask		(\/|^)(Makefile|configure\.in|Makefile\.am|.*\.spec|config\.h\.in)$
+reject		(\/|^)(intl|po)\/
+
+%fmisc
+element		file
+name		Miscellaneous files
+mask		*
+reject		(\/|^)(CVS|intl|\.deps|autom4te\.cache)\/|\.(a|o|mo|gmo|pot|P)$|(\/|^)(configure|core|Makefile\.func|mkinstalldirs|missing|install-sh|\.cvsignore|aclocal\.m4|config\.h|config\.h\.in|acconfig\.h|stamp-.*)$|config\.(cache|log|status)$|(\/|^)po\/.*\.(gmo|in|c)$|(\/|^)po\/POTFILES

@@ -1,0 +1,31 @@
+#
+# Distribution package types definitions
+#
+
+%dist tar.gz
+target	dist
+
+%dist rpm
+target	rpm
+parameter	rpmtarget	Target platform
+default		rpmtarget 	i386-pc-linux-gnu
+
+#
+# Source code tag browser settings
+# ctags letters that mean a kind of a symbol and the sybol names
+#
+
+%tagnames
+c	class
+s	struct
+g	enum
+t	typedef
+f	func
+m	data
+e	enumer
+d	macro
+n	namesp
+u	union
+v	var
+p	prototype
+x	extern
