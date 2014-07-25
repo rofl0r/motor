@@ -61,7 +61,7 @@ motordebugger::~motordebugger() {
 #endif
 
 bool motordebugger::getfreeterm() {
-    int fd, vt;
+    INT fd, vt;
     stringstream tstr;
     ofstream f;
     bool r;
@@ -292,7 +292,7 @@ void motordebugger::step() {
     gonext(debuggercommand::step);
 }
 
-void motordebugger::tocursor(const string &fname, int line) {
+void motordebugger::tocursor(const string &fname, INT line) {
     checkrebuildneed();
     if(!factive) init();
 
@@ -379,7 +379,7 @@ string motordebugger::getvar(const string &vname) {
 
 void motordebugger::readoutput() {
     char rbuf[514];
-    int br, fd, psize;
+    INT br, fd, psize;
     fd_set fds;
     struct timeval tv;
     vector<debuggermessage>::const_iterator im;
@@ -428,7 +428,7 @@ void motordebugger::addbreakpoint(const breakpoint &bp) {
     vector<breakpoint>::iterator ib;
 
     if((ib = find(breakpoints.begin(), breakpoints.end(),
-    pair<string, int>(bp.getfname(), bp.getline())))
+    pair<string, INT>(bp.getfname(), bp.getline())))
     == breakpoints.end()) {
 	breakpoints.push_back(bp);
 
@@ -443,7 +443,7 @@ void motordebugger::addbreakpoint(const breakpoint &bp) {
 void motordebugger::removebreakpoint(const breakpoint &bp) {
     vector<breakpoint>::iterator ib;
 
-    if((ib = find(breakpoints.begin(), breakpoints.end(), pair<string, int>(bp.getfname(), bp.getline()))) != breakpoints.end()) {
+    if((ib = find(breakpoints.begin(), breakpoints.end(), pair<string, INT>(bp.getfname(), bp.getline()))) != breakpoints.end()) {
 	breakpoints.erase(ib);
 
 	if(running()) {
@@ -455,7 +455,7 @@ void motordebugger::removebreakpoint(const breakpoint &bp) {
 }
 
 bool motordebugger::isbreakpoint(const breakpoint &bp) const {
-    return find(breakpoints.begin(), breakpoints.end(), pair<string, int>(bp.getfname(), bp.getline())) != breakpoints.end();
+    return find(breakpoints.begin(), breakpoints.end(), pair<string, INT>(bp.getfname(), bp.getline())) != breakpoints.end();
 }
 
 vector<breakpoint> motordebugger::getbreakpoints() const {
@@ -566,7 +566,7 @@ void motordebugger::getlocation() {
 void motordebugger::react() {
     breakpoint bp;
     string fname, id;
-    int line;
+    INT line;
     vector<breakpoint>::iterator ib;
 
     if(lastdmsg) {
@@ -657,8 +657,8 @@ void motordebugger::setparser(const string &name, const string &value) {
 }
 
 void motordebugger::switchterm(termswitchdirection d) {
-    static int vtfd = -1;
-    static int curvt;
+    static INT vtfd = -1;
+    static INT curvt;
 
     switch(d) {
 	case there:
@@ -689,7 +689,7 @@ string motordebugger::getfname() const {
     return lfname;
 }
 
-int motordebugger::getline() const {
+INT motordebugger::getline() const {
     return lline;
 }
 

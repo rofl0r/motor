@@ -25,7 +25,7 @@
 #include "kkstrtext.h"
 #include <errno.h>
 
-char *strcut(char *strin, int frompos, int count) {
+char *strcut(char *strin, INT frompos, INT count) {
     if(count > 0) {
 	if(count > strlen(strin)-frompos) count = strlen(strin)-frompos;
 	char *buf = (char *) malloc(strlen(strin) - frompos - count + 1);
@@ -58,7 +58,7 @@ char *trim(char *str, char *chr) {
 char *time2str(const time_t *t, char *mask, char *sout) {
     struct tm *s;
     char ch, b[10], b1[20];
-    int len, i, j;
+    INT len, i, j;
 
     sout[0] = 0;
     s = localtime(t);
@@ -96,7 +96,7 @@ char *time2str(const time_t *t, char *mask, char *sout) {
 
 time_t str2time(char *sdate, char *mask, time_t *t) {
     struct tm *s;
-    int i, len, j, k;
+    INT i, len, j, k;
     char ch, b[10];
 
     s = (struct tm*) malloc(sizeof(struct tm));
@@ -167,8 +167,8 @@ string toutf8(const string &text) {
 }
 
 char *unmime(char *text) {
-    register int s, d;
-    int htm;
+    register INT s, d;
+    INT htm;
 
     for(s = 0, d = 0; text[s] != 0; s++) {
 	if(text[s] == '+') text[d++] = ' '; else
@@ -185,7 +185,7 @@ char *unmime(char *text) {
 }
 
 char *mime(char *dst, const char *src) {
-    register int s, d;
+    register INT s, d;
     char c;
 
     for(s = 0, d = 0; src[s]; s++) {
@@ -208,16 +208,16 @@ char *mime(char *dst, const char *src) {
 }
 
 char *strccat(char *dest, char c) {
-    int k = strlen(dest);
+    INT k = strlen(dest);
     dest[k] = c;
     dest[k+1] = 0;
     return dest;
 }
 
-vector<int> getquotelayout(const string &haystack, const string &qs, const string &aescs) {
-    vector<int> r;
+vector<INT> getquotelayout(const string &haystack, const string &qs, const string &aescs) {
+    vector<INT> r;
     string needle, escs;
-    int pos, prevpos, curpos;
+    INT pos, prevpos, curpos;
     char cchar, qchar, prevchar;
 
     qchar = 0;
@@ -254,10 +254,10 @@ vector<int> getquotelayout(const string &haystack, const string &qs, const strin
     return r;
 }
 
-vector<int> getsymbolpositions(const string &haystack, const string &needles, const string &qoutes, const string &esc) {
-    vector<int> r, qp, nr;
-    vector<int>::iterator iq, ir;
-    int pos, st, ed, cpos;
+vector<INT> getsymbolpositions(const string &haystack, const string &needles, const string &qoutes, const string &esc) {
+    vector<INT> r, qp, nr;
+    vector<INT>::iterator iq, ir;
+    INT pos, st, ed, cpos;
 
     for(cpos = 0; (pos = haystack.substr(cpos).find_first_of(needles)) != -1; ) {
 	r.push_back(cpos+pos);
@@ -292,7 +292,7 @@ vector<int> getsymbolpositions(const string &haystack, const string &needles, co
 	continue; \
     }
 
-const char *strqpbrk(const char *s, int offset, const char *accept, const char *q, const char *esc) {
+const char *strqpbrk(const char *s, INT offset, const char *accept, const char *q, const char *esc) {
     if(!s) return 0;
     if(!s[0]) return 0;
 
@@ -326,7 +326,7 @@ const char *strqpbrk(const char *s, int offset, const char *accept, const char *
 
 const char *strqcasestr(const char *s, const char *str, const char *q, const char *esc) {
     char quote = 0;
-    int i;
+    INT i;
 
     for(i = 0; i < strlen(s); i++) {
 	if(strchr(q, s[i])) {
@@ -370,7 +370,7 @@ const char *strqstr(const char *s, const char *str, const char *q, const char *e
     return ret;
 }
 
-char *strinsert(char *buf, int pos, char *ins) {
+char *strinsert(char *buf, INT pos, char *ins) {
     char *p = strdup(buf+pos);
     memcpy(buf+pos+strlen(ins), p, strlen(p)+1);
     memcpy(buf+pos, ins, strlen(ins));
@@ -378,7 +378,7 @@ char *strinsert(char *buf, int pos, char *ins) {
     return buf;
 }
 
-char *strcinsert(char *buf, int pos, char ins) {
+char *strcinsert(char *buf, INT pos, char ins) {
     char *p = strdup(buf+pos);
     memcpy(buf+pos+1, p, strlen(p)+1);
     buf[pos] = ins;
@@ -386,15 +386,15 @@ char *strcinsert(char *buf, int pos, char ins) {
     return buf;
 }
 
-int strchcount(char *s, char *accept) {
+INT strchcount(char *s, char *accept) {
     char *p = s-1;
-    int ret = 0;
+    INT ret = 0;
     while(p = strpbrk(p+1, accept)) ret++;
     return ret;
 }
 
-int stralone(char *buf, char *startword, int wordlen, char *delim) {
-    int leftdelim = 0, rightdelim = 0;
+INT stralone(char *buf, char *startword, INT wordlen, char *delim) {
+    INT leftdelim = 0, rightdelim = 0;
     leftdelim = (buf != startword && strchr(delim, *(startword-1))) || buf == startword;
     rightdelim = !*(startword+wordlen) || strchr(delim, *(startword+wordlen));
     return leftdelim && rightdelim;
@@ -405,7 +405,7 @@ string justfname(const string &fname) {
 }
 
 string justpathname(const string &fname) {
-    int pos;
+    INT pos;
     
     if((pos = fname.rfind("/")) != -1) {
 	return fname.substr(0, pos);
@@ -422,7 +422,7 @@ void charpointerfree(void *p) {
 void nothingfree(void *p) {
 }
 
-int stringcompare(void *s1, void *s2) {
+INT stringcompare(void *s1, void *s2) {
     if(!s1 || !s2) {
 	return s1 != s2;
     } else {
@@ -430,17 +430,17 @@ int stringcompare(void *s1, void *s2) {
     }
 }
 
-int intcompare(void *s1, void *s2) {
+INT intcompare(void *s1, void *s2) {
     return s1 != s2;
 }
 
-string i2str(int i) {
+string i2str(INT i) {
     char buf[64];
     sprintf(buf, "%d", i);
     return (string) buf;
 }
 
-string ui2str(int i) {
+string ui2str(INT i) {
     char buf[64];
     sprintf(buf, "%du", i);
     return (string) buf;
@@ -449,7 +449,7 @@ string ui2str(int i) {
 string textscreen(const string &text) {
     string r = text;
 
-    for(int i = 0; i < r.size(); i++) {
+    for(INT i = 0; i < r.size(); i++) {
 	if(!isalnum(r[i])) r.insert(i++, "\\");
     }   
 
@@ -457,18 +457,18 @@ string textscreen(const string &text) {
 }
 
 string leadcut(const string &base, const string &delim) {
-    int pos = base.find_first_not_of(delim);
+    INT pos = base.find_first_not_of(delim);
     return (pos != -1) ? base.substr(pos) : "";
 }
 
 string trailcut(const string &base, const string &delim) {
-    int pos = base.find_last_not_of(delim);
+    INT pos = base.find_last_not_of(delim);
     return (pos != -1) ? base.substr(0, pos+1) : "";
 }
 
 string getword(string &base, const string &delim) {
     string sub;
-    int i;
+    INT i;
     bool found = false;
 
     base = leadcut(base, delim);
@@ -489,7 +489,7 @@ string getword(string &base, const string &delim) {
 const string getwordquote(string &base, string quote, string delim) {
     string sub;
     bool inquote = false;
-    int i;
+    INT i;
 
     base = leadcut(base, delim);
 
@@ -510,7 +510,7 @@ const string getwordquote(string &base, string quote, string delim) {
 
 string getrword(string &base, const string &delim) {
     string sub;
-    int i;
+    INT i;
 
     base = trailcut(base, delim);
     
@@ -529,7 +529,7 @@ string getrword(string &base, const string &delim) {
 string getrwordquote(string &base, const string &quote, const string &delim) {
     string sub;
     bool inquote = false;
-    int i;
+    INT i;
 
     base = trailcut(base, delim);
     
@@ -547,8 +547,8 @@ string getrwordquote(string &base, const string &quote, const string &delim) {
     return sub;
 }
 
-int rtabmargin(bool fake, int curpos, const char *p) {
-    int ret = -1, n, near;
+INT rtabmargin(bool fake, INT curpos, const char *p) {
+    INT ret = -1, n, near;
 
     if(p && (curpos != strlen(p))) {
 	n = strspn(p+curpos, " ");
@@ -569,8 +569,8 @@ int rtabmargin(bool fake, int curpos, const char *p) {
     return ret;
 }
 
-int ltabmargin(bool fake, int curpos, const char *p) {
-    int ret = -1, near, n = 0;
+INT ltabmargin(bool fake, INT curpos, const char *p) {
+    INT ret = -1, near, n = 0;
     const char *cp;
     
     if(p) {
@@ -600,8 +600,8 @@ int ltabmargin(bool fake, int curpos, const char *p) {
     return ret;
 }
 
-void breakintolines(string text, vector<string> &lst, int linelen) {
-    int dpos, nlen;
+void breakintolines(string text, vector<string> &lst, INT linelen) {
+    INT dpos, nlen;
     string sub;
     vector<string>::iterator i;
 
@@ -629,7 +629,7 @@ void breakintolines(string text, vector<string> &lst, int linelen) {
 }
 
 void breakintolines(const string &text, vector<string> &lst) {
-    int npos, dpos, tpos;
+    INT npos, dpos, tpos;
     string sub;
 
     tpos = 0;
@@ -661,7 +661,7 @@ void breakintolines(const string &text, vector<string> &lst) {
 void find_gather_quoted(vector<quotedblock> &lst, const string &str,
 const string &quote, const string &escape) {
     bool inquote = false;
-    int npos = 0, qch;
+    INT npos = 0, qch;
     quotedblock qb;
 
     while((npos = str.find_first_of(quote, npos)) != -1) {
@@ -685,11 +685,11 @@ const string &quote, const string &escape) {
     }
 }
 
-int find_quoted(const string &str, const string &needle, int offs,
+INT find_quoted(const string &str, const string &needle, INT offs,
 const string &quote, const string &escape) {
     vector<quotedblock> positions;
     vector<quotedblock>::iterator qi;
-    int npos = offs;
+    INT npos = offs;
     bool found;
 
     find_gather_quoted(positions, str, quote, escape);
@@ -705,11 +705,11 @@ const string &quote, const string &escape) {
     return !found ? npos : -1;
 }
 
-int find_quoted_first_of(const string &str, const string &needle, int offs,
+INT find_quoted_first_of(const string &str, const string &needle, INT offs,
 const string &quote, const string &escape) {
     vector<quotedblock> positions;
     vector<quotedblock>::iterator qi;
-    int npos = offs;
+    INT npos = offs;
     bool found;
 
     find_gather_quoted(positions, str, quote, escape);
@@ -725,9 +725,9 @@ const string &quote, const string &escape) {
     return !found ? npos : -1;
 }
 
-void splitlongtext(string text, vector<string> &lst, int size, const string cont) {
+void splitlongtext(string text, vector<string> &lst, INT size, const string cont) {
     string sub;
-    int npos;
+    INT npos;
 
     lst.clear();
 
@@ -779,7 +779,7 @@ string strdateandtime(struct tm *tms, const string &fmt) {
     return buf;
 }
 
-bool iswholeword(const string &s, int so, int eo) {
+bool iswholeword(const string &s, INT so, INT eo) {
     bool rm, lm;
     const string wdelims = "[](),.; <>-+{}=|&%~*/:?@";
 
@@ -789,8 +789,8 @@ bool iswholeword(const string &s, int so, int eo) {
     return rm && lm;
 }
 
-int hex2int(const string &ahex) {
-    int r, i;
+INT hex2int(const string &ahex) {
+    INT r, i;
 
     r = 0;
 
@@ -852,7 +852,7 @@ string ruscase(const string &s, const string &mode) {
     static const string lower = "ÁÂ×ÇÄÅÖÚÉÊËÌÍÎÏÐÒÓÔÕÆÈÃÞÛÝØßÙÜÀÑ";
     static const string upper = "áâ÷çäåöúéêëìíîïðòóôõæèãþûýøÿùüàñ";
     string r, tfrom, tto;
-    int pos, tpos;
+    INT pos, tpos;
 
     if(mode == "tolower") {
 	tfrom = upper;
@@ -885,7 +885,7 @@ string siconv(const string &atext, const string &fromcs, const string &tocs) {
 #ifdef HAVE_ICONV
     iconv_t cd = iconv_open(tocs.c_str(), fromcs.c_str());
 
-    if(((int) cd) != -1) {
+    if(((INT) cd) != -1) {
 	string r, text(atext);
 	size_t inleft, outleft, soutleft;
 	char *inbuf, *outbuf, *sinbuf, *soutbuf;
@@ -927,9 +927,9 @@ string siconv(const string &atext, const string &fromcs, const string &tocs) {
     return atext;
 }
 
-string cuthtml(const string &html, int flags) {
+string cuthtml(const string &html, INT flags) {
     string r, tag, buf, token;
-    int npos, pos, tpos;
+    INT npos, pos, tpos;
 
     for(pos = 0; (npos = html.find("<", pos)) != -1; pos = npos) {
 	tpos = npos;
@@ -981,7 +981,7 @@ string cuthtml(const string &html, int flags) {
 }
 
 char *utf8_to_str(const char *pin) {
-    int n = 0, i = 0, inlen;
+    INT n = 0, i = 0, inlen;
     unsigned char *result;
     const unsigned char *in = (unsigned char *) pin;
 
@@ -1014,8 +1014,8 @@ char *utf8_to_str(const char *pin) {
 }
 
 char *str_to_utf8(const char *pin) {
-    int n = 0, i = 0;
-    int inlen;
+    INT n = 0, i = 0;
+    INT inlen;
     char *result = NULL;
     const unsigned char *in = (unsigned char *) pin;
 
@@ -1054,7 +1054,7 @@ string striprtf(const string &s, const string &charset) {
     string r, spec, unichar, tmp;
     char pre = 0;
     bool bprint, bspec, bunicode;
-    int bparen = -1;
+    INT bparen = -1;
 
     bprint = true;
     bspec = bunicode = false;

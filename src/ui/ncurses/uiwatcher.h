@@ -10,9 +10,9 @@ class uiwatcher {
     private:
 	bool fvisible;
 	verticalmenu m;
-	int startpos, curpos;
+	INT startpos, curpos;
 
-	static int keyhandler(verticalmenu &m, int k);
+	static INT keyhandler(verticalmenu &m, INT k);
 
     public:
 	uiwatcher();

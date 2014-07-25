@@ -11,14 +11,14 @@ textinputline::textinputline() {
 textinputline::~textinputline() {
 }
 
-void textinputline::setcoords(int x, int y, int len) {
+void textinputline::setcoords(INT x, INT y, INT len) {
     x1 = x;
     y1 = y2 = y;
     length = len;
     x2 = x1+length;
 }
 
-bool textinputline::keymove(int key) {
+bool textinputline::keymove(INT key) {
     bool r = true;
 
     switch(key) {
@@ -48,7 +48,7 @@ bool textinputline::keymove(int key) {
 void textinputline::exechistory() {
     vector<string>::iterator i;
     static verticalmenu m;
-    int wy1, wx2, n;
+    INT wy1, wx2, n;
 
     if(!history.empty()) {
 	m.clear();
@@ -78,7 +78,7 @@ void textinputline::exechistory() {
 }
 
 void textinputline::redraw() {
-    int displen;
+    INT displen;
 
     if(position > value.size()) {
 	position = value.size();
@@ -223,7 +223,7 @@ void textinputline::setpasswordchar(char npc) {
     passwordchar = npc;
 }
 
-void textinputline::setcolor(int acolor, int ahistcolor, int ahistcurcolor) {
+void textinputline::setcolor(INT acolor, INT ahistcolor, INT ahistcurcolor) {
     color = acolor;
 
     if(!(histcolor = ahistcolor)) histcolor = color;
@@ -238,6 +238,6 @@ void textinputline::removeselector() {
     selector = 0;
 }
 
-int textinputline::getlastkey() const {
+INT textinputline::getlastkey() const {
     return lastkey;
 }

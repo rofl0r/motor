@@ -20,7 +20,7 @@ class ncursesui: public motorui {
 	enum mgrmode { selectonly, selectorcreate };
 	enum projeditaction { psettings, pfiles, pdirs };
 
-	vector<int> boldcolors;
+	vector<INT> boldcolors;
 	bool terminate, outopen, texteditok, watchesactive;
 
 	textinputline inp;
@@ -32,8 +32,8 @@ class ncursesui: public motorui {
 	map<string, string> distparams;
 
 	static void sighandler(int signum);
-        static int texteditboxkeys(texteditor &ed, int k);
-	static bool horizontalmenukeys(horizontalmenu &hm, int k);
+        static INT texteditboxkeys(texteditor &ed, INT k);
+	static bool horizontalmenukeys(horizontalmenu &hm, INT k);
 
 	const projectname selectproject(mgrmode amode = selectonly, vector<string> templs = vector<string>());
 	string selecttemplate(const string &def = "", const string &title = _(" Templates available ")) const;
@@ -50,7 +50,7 @@ class ncursesui: public motorui {
 	horizontalmenu menubar;
 	vector<motorexecutor::message>::const_iterator currentmsg;
 
-	void commandline(int argc, char **argv);
+	void commandline(INT argc, char **argv);
 	void usage();
 
 	void mainloop();
@@ -91,7 +91,7 @@ class ncursesui: public motorui {
 	ncursesui();
 	~ncursesui();
 
-	void execute(int argc, char **argv);
+	void execute(INT argc, char **argv);
 	void redraw();
 
 	askresult ask(const string &answersallowed, const string &text);
@@ -99,7 +99,7 @@ class ncursesui: public motorui {
 	askresult input(inputkind kind, string &result, const string &prompt);
 
 	void reloadeditfiles();
-	void loadeditfile(const editfile ef, int options = 0);
+	void loadeditfile(const editfile ef, INT options = 0);
 
 	vector<editfile> geteditfiles();
 	vector<string> geteditfile(const string &fname);
@@ -112,14 +112,14 @@ class ncursesui: public motorui {
 
 	bool editmodified() const;
 
-	void executordone(const string &target, int nerr, int nwarn, int ninfo);
-	void externalexec(int options, const string &cmd);
+	void executordone(const string &target, INT nerr, INT nwarn, INT ninfo);
+	void externalexec(INT options, const string &cmd);
 	void setdebugcurrentline(const editfile ef);
 
 	void statusupdate();
 
 	bool isterminated();
-	bool hotkey(int k);
+	bool hotkey(INT k);
 
 	bool autosave();
 	void writeoutput(const string &text);

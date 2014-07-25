@@ -23,10 +23,10 @@ class motorui {
 	class editfile {
 	    public:
 		editfile();
-		editfile(const string &afname, int ax, int ay);
+		editfile(const string &afname, INT ax, INT ay);
 
 		string fname;
-		int x, y;
+		INT x, y;
 
 		bool operator == (const string &afname);
 		bool operator != (const string &afname);
@@ -39,7 +39,7 @@ class motorui {
 	motorui();
 	~motorui();
 
-	virtual void execute(int argc, char **argv);
+	virtual void execute(INT argc, char **argv);
 	virtual void redraw();
 
 	virtual askresult ask(const string &answersallowed, const string &text);
@@ -48,7 +48,7 @@ class motorui {
 	virtual void log(const string &text = "");
 	virtual void logf(const char *fmt, ...);
 
-	virtual void loadeditfile(const editfile ef, int options = 0);
+	virtual void loadeditfile(const editfile ef, INT options = 0);
 	virtual void reloadeditfiles();
 	virtual void setdebugcurrentline(const editfile ef);
 	virtual vector<editfile> geteditfiles();
@@ -63,11 +63,11 @@ class motorui {
 	virtual void setoutputblockmode(bool fblock);
 	virtual void writeoutput(const string &text);
 	virtual void doneoutput();
-	virtual void executordone(const string &target, int nerr,
-	    int nwarn, int ninfo);
+	virtual void executordone(const string &target, INT nerr,
+	    INT nwarn, INT ninfo);
 
-	virtual void externalexec(int options, const string &cmd);
-	virtual void externalexecf(int options, const char *fmt, ...);
+	virtual void externalexec(INT options, const string &cmd);
+	virtual void externalexecf(INT options, const char *fmt, ...);
 
 	virtual void setdesktop(const vector< pair<string, string> > &asettings);
 	virtual vector< pair<string, string > > getdesktop() const;

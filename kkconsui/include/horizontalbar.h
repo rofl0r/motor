@@ -18,18 +18,18 @@ class horizontalbar : public abstractuicontrol {
     protected:
     public:
 	bool done;
-	int item, ncolor, scolor, previtem;
+	INT item, ncolor, scolor, previtem;
 	vector<string> items;
 
-	horizontalbar(int x, int y, int nc, int sc, ...);
-	horizontalbar(int nc, int sc, ...);
+	horizontalbar(INT x, INT y, INT nc, INT sc, ...);
+	horizontalbar(INT nc, INT sc, ...);
 	~horizontalbar();
 
-	void movebar(int k);
+	void movebar(INT k);
 	virtual void redraw();
 	void update();
 	void align(bamode m);
-	void setcoords(int x, int y);
+	void setcoords(INT x, INT y);
 };
 
 __KTOOL_END_NAMESPACE

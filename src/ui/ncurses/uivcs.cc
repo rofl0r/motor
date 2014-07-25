@@ -31,7 +31,7 @@ bool uivcs::enabled() {
 void uivcs::check() {
     bool found;
     dialogbox db;
-    int n, b, i, nodes[motorvcs::remotely_modified+1];
+    INT n, b, i, nodes[motorvcs::remotely_modified+1];
     string comment, buf;
 
     if(!enabled()) return;
@@ -82,7 +82,7 @@ void uivcs::check() {
 	    if(!(n = nodes[ic->second])) {
 		found = find(naffect.begin(), naffect.end(), ic->second) != naffect.end();
 		n = nodes[ic->second] = tree.addnodef(0, getcolor(cp_menuhl),
-		    0, " [%c]%s", found ? 'x' : ' ', nodenames[ic->second].c_str());
+		    NULL, " [%c]%s", found ? 'x' : ' ', nodenames[ic->second].c_str());
 	    }
 
 	    found = find(affect.begin(), affect.end(), ic->first) != affect.end();
@@ -98,7 +98,7 @@ void uivcs::check() {
 	switch(b) {
 	    case 0:
 		if(!i) {
-                    i = (int) tree.getref(tree.getid(n));
+                    i = (INT) tree.getref(tree.getid(n));
 		    ic = ch.begin()+i-1;
 
                     found = (ik = find(naffect.begin(), naffect.end(),
@@ -197,7 +197,7 @@ void uivcs::import() {
     vector<string> vcses;
     vector<string>::iterator iv;
     string module, repos;
-    int i, n, b, citem;
+    INT i, n, b, citem;
     bool start = false;
 
     if((vcses = manager.getvcslist()).empty()) {
@@ -207,7 +207,7 @@ void uivcs::import() {
 	iv = vcses.begin();
     }
 
-    db.setwindow(new textwindow(0, 0, (int) (DIALOG_WIDTH*0.9), (int) (DIALOG_HEIGHT*0.45),
+    db.setwindow(new textwindow(0, 0, (INT) (DIALOG_WIDTH*0.9), (INT) (DIALOG_HEIGHT*0.45),
         getcolor(cp_menufr), TW_CENTERED,
 	getcolor(cp_menuhl), _(" Import into VCS ")));
 
@@ -223,10 +223,10 @@ void uivcs::import() {
     for(bool fin = false; !fin; ) {
         tree.clear();
 
-        i = tree.addnode(0, getcolor(cp_menuhl), 0, _(" VCS name "));
+        i = tree.addnode(0, getcolor(cp_menuhl), NULL, _(" VCS name "));
         tree.addleaf(i, 0, 1, " " + *iv + " ");
 
-	i = tree.addnode(0, getcolor(cp_menuhl), 0, _(" Import parameters "));
+	i = tree.addnode(0, getcolor(cp_menuhl), NULL, _(" Import parameters "));
 	tree.addleaff(i, 0, 2, _(" Repository : %s "), repos.c_str());
 	tree.addleaff(i, 0, 3, _(" Module name : %s "), module.c_str());
 
@@ -262,7 +262,7 @@ void uivcs::import() {
 
 void uivcs::forkbranch() {
     dialogbox db;
-    int n, b, i, citem;
+    INT n, b, i, citem;
     string tag, destdir, buf;
     bool fcreat, firstiter;
 
@@ -285,10 +285,10 @@ void uivcs::forkbranch() {
     for(bool fin = false; !fin; ) {
         t.clear();
 
-        i = t.addnode(0, getcolor(cp_menuhl), 0, _(" Branch tag "));
+        i = t.addnode(0, getcolor(cp_menuhl), NULL, _(" Branch tag "));
         t.addleaf(i, 0, 1, " " + tag + " ");
 
-        i = t.addnode(0, getcolor(cp_menuhl), 0, _(" Fork options "));
+        i = t.addnode(0, getcolor(cp_menuhl), NULL, _(" Fork options "));
 	t.addleaff(i, 0, 2, _(" Create a separate project : %s "), BOOL_TO_STR(fcreat));
 
 	if(fcreat) {

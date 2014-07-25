@@ -5,14 +5,14 @@ breakpoint::breakpoint() {
     line = 0;
 }
 
-breakpoint::breakpoint(const string &aid, const string &afname, int aline, bool apermanent) {
+breakpoint::breakpoint(const string &aid, const string &afname, INT aline, bool apermanent) {
     fname = afname;
     line = aline;
     id = aid;
     fpermanent = apermanent;
 }
 
-breakpoint::breakpoint(const string &afname, int aline) {
+breakpoint::breakpoint(const string &afname, INT aline) {
     fname = afname;
     line = aline;
     fpermanent = true;
@@ -35,7 +35,7 @@ string breakpoint::getfname() const {
     return fname;
 }
 
-int breakpoint::getline() const {
+INT breakpoint::getline() const {
     return line;
 }
 
@@ -51,10 +51,10 @@ bool breakpoint::operator != (const string &aid) const {
     return !(*this == aid);
 }
 
-bool breakpoint::operator == (const pair<string, int> aloc) const {
+bool breakpoint::operator == (const pair<string, INT> aloc) const {
     return (justfname(aloc.first) == justfname(fname)) && (aloc.second == line);
 }
 
-bool breakpoint::operator != (const pair<string, int> aloc) const {
+bool breakpoint::operator != (const pair<string, INT> aloc) const {
     return !(*this == aloc);
 }

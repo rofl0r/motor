@@ -24,7 +24,7 @@
 
 #include "horizontalbar.h"
 
-horizontalbar::horizontalbar(int x, int y, int nc, int sc, ...):
+horizontalbar::horizontalbar(INT x, INT y, INT nc, INT sc, ...):
 done(false), item(0), previtem(-1), scolor(sc), ncolor(nc) {
     const char *p;
     va_list ap;
@@ -35,7 +35,7 @@ done(false), item(0), previtem(-1), scolor(sc), ncolor(nc) {
     va_end(ap);
 }
 
-horizontalbar::horizontalbar(int nc, int sc, ...):
+horizontalbar::horizontalbar(INT nc, INT sc, ...):
 done(false), item(0), previtem(-1), scolor(sc), ncolor(nc) {
     const char *p;
     va_list ap;
@@ -48,7 +48,7 @@ done(false), item(0), previtem(-1), scolor(sc), ncolor(nc) {
 horizontalbar::~horizontalbar() {
 }
 
-void horizontalbar::movebar(int k) {
+void horizontalbar::movebar(INT k) {
     previtem = item;
     done = false;
 
@@ -84,7 +84,7 @@ void horizontalbar::movebar(int k) {
 }
 
 void horizontalbar::redraw() {
-    int cx = x1, n;
+    INT cx = x1, n;
     vector<string>::iterator i;
 
     for(i = items.begin(), n = 0; i != items.end(); n++, i++) {
@@ -94,7 +94,7 @@ void horizontalbar::redraw() {
 }
 
 void horizontalbar::update() {
-    int cx = x1, n;
+    INT cx = x1, n;
     vector<string>::iterator i;
 
     for(i = items.begin(), n = 0; i != items.end(); i++, n++) {
@@ -118,7 +118,7 @@ void horizontalbar::align(bamode m) {
     }
 }
 
-void horizontalbar::setcoords(int x, int y) {
+void horizontalbar::setcoords(INT x, INT y) {
     x1 = x, y1 = y;
 }
 

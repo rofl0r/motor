@@ -35,7 +35,7 @@ class motorproject:
 	string cflags, lflags, destdir, vcsname;
 	makemodekind makemode;
 	bool gettextized, fdmake, fdcomp, fdvcs;
-	int options;
+	INT options;
 
 	void writemakefunc();
 	void arrangebuildstuff();
@@ -48,7 +48,7 @@ class motorproject:
 
     public:
 	motorproject();
-	motorproject(const projectname aname, int aoptions = 0);
+	motorproject(const projectname aname, INT aoptions = 0);
 
 	~motorproject();
 
@@ -60,7 +60,7 @@ class motorproject:
 
 	void chdir();
 
-	bool create(int options = 0);
+	bool create(INT options = 0);
 	bool build();
 	void clean();
 	void dist(const string &targetname, const string &destdir);
@@ -84,9 +84,9 @@ class motorproject:
 
 	void settemplate(const string &atemplate);
 	void generate();
-	void import(const string &mask, const string &root, int options = 0);
+	void import(const string &mask, const string &root, INT options = 0);
 
-	bool addfile(const motorfile afile, int options = 0);
+	bool addfile(const motorfile afile, INT options = 0);
 	void removefile(const motorfile afile, motorfile::filekind akind = motorfile::source);
 
 	string getprojfname() const;

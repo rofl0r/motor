@@ -6,10 +6,10 @@ motorui::motorui(): outputblocked(false) {
 motorui::~motorui() {
 }
 
-void motorui::execute(int argc, char **argv) {
+void motorui::execute(INT argc, char **argv) {
 }
 
-void motorui::loadeditfile(const editfile ef, int options) {
+void motorui::loadeditfile(const editfile ef, INT options) {
 }
 
 void motorui::reloadeditfiles() {
@@ -74,16 +74,16 @@ bool motorui::autosave() {
     return false;
 }
 
-void motorui::executordone(const string &target, int nerr, int nwarn, int ninfo) {
+void motorui::executordone(const string &target, INT nerr, INT nwarn, INT ninfo) {
 }
 
 void motorui::setdebugcurrentline(const editfile ef) {
 }
 
-void motorui::externalexec(int options, const string &cmd) {
+void motorui::externalexec(INT options, const string &cmd) {
 }
 
-void motorui::externalexecf(int options, const char *fmt, ...) {
+void motorui::externalexecf(INT options, const char *fmt, ...) {
     char buf[512];
 
     va_list ap;
@@ -121,7 +121,7 @@ motorui::askresult motorui::notemplate(string &templname) const {
 motorui::editfile::editfile(): x(0), y(0) {
 }
 
-motorui::editfile::editfile(const string &afname, int ax, int ay):
+motorui::editfile::editfile(const string &afname, INT ax, INT ay):
 fname(afname), x(ax), y(ay) {
 }
 

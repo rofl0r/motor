@@ -19,7 +19,7 @@ uieditor::~uieditor() {
 }
 
 void uieditor::setsyntaxhighlight() {
-    int schemenumber = -1;
+    INT schemenumber = -1;
     vector<uiconfiguration::syntaxitem>::iterator i;
 
     if(getfid())
@@ -38,7 +38,7 @@ void uieditor::loadsettings() {
 void uieditor::readsyntaxhighlight() {
     ifstream f;
     string buf, sect, sub;
-    int i, fg, bg, pairseq = 1, id, colornormal, colorbackground;
+    INT i, fg, bg, pairseq = 1, id, colornormal, colorbackground;
     hl_kind h;
     vector<uiconfiguration::syntaxcolorpair> syntaxcolorpairs;
     vector<uiconfiguration::syntaxcolorpair>::iterator iscp;
@@ -119,8 +119,8 @@ void uieditor::readsyntaxhighlight() {
     }
 }
 
-int uieditor::keyhandler(texteditor &e, int k) {
-    int modifiers = getctrlkeys();
+INT uieditor::keyhandler(texteditor &e, INT k) {
+    INT modifiers = getctrlkeys();
 
     switch(k) {
 	case KEY_F( 2):
@@ -184,8 +184,8 @@ int uieditor::keyhandler(texteditor &e, int k) {
     return thisui.isterminated() ? -1 : 0;
 }
 
-void uieditor::switchwindow(int delta) {
-    int next = getfnum() + delta;
+void uieditor::switchwindow(INT delta) {
+    INT next = getfnum() + delta;
 
     if(next >= getfcount()) next = 0; else
     if(next < 0) next = getfcount()-1;
@@ -223,7 +223,7 @@ bool uieditor::fsave(savemode amode) {
     bool fin, ret = true;
     ofstream f;
     const char *fname;
-    int i, savefnum = -1;
+    INT i, savefnum = -1;
     string buf;
 
     if(!getfcount()) return true;
@@ -320,9 +320,9 @@ void uieditor::loadfile() {
 }
 
 void uieditor::idlefunc(texteditor &ref) {
-    static int x = -1, y = -1;
+    static INT x = -1, y = -1;
     static bool imode, bmode;
-    int nx, ny;
+    INT nx, ny;
 
     ed.getpos(&nx, &ny);
 
@@ -337,7 +337,7 @@ void uieditor::idlefunc(texteditor &ref) {
 }
 
 void uieditor::gotoline() {
-    int n;
+    INT n;
     static string sline;
 
     if(ui.input(motorui::text, sline, _("goto line: ")) == motorui::yes) {
@@ -350,7 +350,7 @@ void uieditor::markbreakpoints() {
     vector<breakpoint> bps;
     vector<breakpoint>::iterator ibp;
     string fname;
-    int i;
+    INT i;
 
     bps = debugger.getbreakpoints();
 
@@ -371,7 +371,7 @@ void uieditor::markbreakpoints() {
 #define atcuraccept(c) (c && (isalnum(c) || strchr("_", c)))
 
 string uieditor::atcursor() {
-    int row, col, i;
+    INT row, col, i;
     const char *p, *st;
     string ret;
     
@@ -388,7 +388,7 @@ string uieditor::atcursor() {
 }
 
 void uieditor::windowlist() {
-    int i, b;
+    INT i, b;
     char *p;
     dialogbox db;
     
@@ -444,13 +444,13 @@ void uieditor::windowlist() {
     redraw();
 }
 
-void uieditor::resizebottom(int lines) {
+void uieditor::resizebottom(INT lines) {
     setcoords(0, 1, COLS, LINES-lines-1);
     redraw();
 }
 
 bool uieditor::anymodified() {
-    int cfile, i;
+    INT cfile, i;
     bool r;
 
     r = false;
@@ -464,13 +464,13 @@ bool uieditor::anymodified() {
     return r;
 }
 
-int uieditor::load(const string &buf, const string &id) {
+INT uieditor::load(const string &buf, const string &id) {
     texteditor::load(buf, id);
     setsyntaxhighlight();
     return 0;
 }
 
-int uieditor::load(ifstream &f, const string &id) {
+INT uieditor::load(ifstream &f, const string &id) {
     texteditor::load(f, id);
     setsyntaxhighlight();
     return 0;

@@ -63,7 +63,7 @@
 #endif
 
 #ifndef ALT
-#define ALT(x) (0x200 | (unsigned int) x)
+#define ALT(x) (0x200 | (unsigned INT) x)
 #endif
 
 #define SHIFT_PRESSED   1
@@ -76,30 +76,30 @@ extern void (*kt_resize_event)(void);
 
 void printchar(char c);
 void printstring(const string &s);
-int string2key(const string &adef);
+INT string2key(const string &adef);
 
-string makebidi(const string &buf, int lpad = 0);
-int findcolor(const string &s);
+string makebidi(const string &buf, INT lpad = 0);
+INT findcolor(const string &s);
 
 __KTOOL_BEGIN_C
 
 void kinterface();
 void kendinterface();
 
-int keypressed(bool wait = false);
-int emacsbind(int k);
+INT keypressed(bool wait = false);
+INT emacsbind(INT k);
 
-int getkey();
-int getctrlkeys();
+INT getkey();
+INT getctrlkeys();
 
-void kwriteatf(int x, int y, int c, const char *fmt, ...);
-void kwriteat(int x, int y, const char *msg, int c);
-void kgotoxy(int x, int y);
+void kwriteatf(INT x, INT y, INT c, const char *fmt, ...);
+void kwriteat(INT x, INT y, const char *msg, INT c);
+void kgotoxy(INT x, INT y);
 void hidecursor();
 void showcursor();
-void setbeep(int freq, int duration);
-int kwherex();
-int kwherey();
+void setbeep(INT freq, INT duration);
+INT kwherex();
+INT kwherey();
 
 __KTOOL_END_C
 

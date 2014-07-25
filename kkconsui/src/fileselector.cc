@@ -13,8 +13,8 @@ fileselector::fileselector(): idle(0), otherkeys(0) {
 fileselector::~fileselector() {
 }
 
-void fileselector::setcolor(int acnormal, int acselected, int accurrent,
-int acfile) {
+void fileselector::setcolor(INT acnormal, INT acselected, INT accurrent,
+INT acfile) {
     cnormal = acnormal;
     cselected = acselected;
     cfile = acfile;
@@ -75,7 +75,7 @@ void fileselector::generatemenu() {
 }
 
 void fileselector::exec() {
-    int n, mode;
+    INT n, mode;
     item *i;
     char buf[512];
     dhistitem di;
@@ -173,7 +173,7 @@ void fileselector::menuidle(verticalmenu &m) {
     }
 }
 
-int fileselector::menukeys(verticalmenu &m, int k) {
+INT fileselector::menukeys(verticalmenu &m, INT k) {
     string fname;
     struct stat st;
     item *i;
@@ -234,7 +234,7 @@ int fileselector::menukeys(verticalmenu &m, int k) {
     return -1;
 }
 
-void fileselector::setoptions(int noptions) {
+void fileselector::setoptions(INT noptions) {
     options = noptions;
 }
 
@@ -251,7 +251,7 @@ vector<string> fileselector::getselected() {
     return selected;
 }
 
-int fileselector::getlastkey() {
+INT fileselector::getlastkey() {
     return m.getlastkey();
 }
 

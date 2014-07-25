@@ -46,7 +46,7 @@ void linkedlist::add(void *p) {
     count++;
 }
 
-void linkedlist::insert(int n, void *p) {
+void linkedlist::insert(INT n, void *p) {
     flinkedlist *l = flist, *k = new flinkedlist;
     
     if(n <= count) {
@@ -59,7 +59,7 @@ void linkedlist::insert(int n, void *p) {
     } else add(p);
 }
 
-void linkedlist::remove(int n) {
+void linkedlist::remove(INT n) {
     flinkedlist *l = flist, *pr;
 
     if((n < count) && (n >= 0)) {
@@ -96,7 +96,7 @@ void linkedlist::empty() {
     count = 0;
 }
 
-void* linkedlist::at(int n) {
+void* linkedlist::at(INT n) {
     flinkedlist *l = flist;
 
     if((n < count) && (n >= 0) && l) {
@@ -118,7 +118,7 @@ void* linkedlist::find(void *p, listcompare *compare) {
     return 0;
 }
 
-int linkedlist::findnum(void *p, listcompare *compare) {
+INT linkedlist::findnum(void *p, listcompare *compare) {
     void *l;
 
     for(i = 0; i < count; i++) {
@@ -130,7 +130,7 @@ int linkedlist::findnum(void *p, listcompare *compare) {
 }
 
 void linkedlist::sort(listcompare *compare) {
-    int i;
+    INT i;
     flinkedlist *f;
     void *tempdata;
 
@@ -144,7 +144,7 @@ void linkedlist::sort(listcompare *compare) {
     }
 }
 
-void linkedlist::replace(int n, void *p) {
+void linkedlist::replace(INT n, void *p) {
     flinkedlist *l = flist;
 
     if(n < count) {

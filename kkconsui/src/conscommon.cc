@@ -72,8 +72,8 @@ void kendinterface() {
     endwin();
 }
 
-int getkey() {
-    int k, n, fin = 0, r = 0;
+INT getkey() {
+    INT k, n, fin = 0, r = 0;
     fd_set rd;
     struct timeval tv;
 
@@ -118,17 +118,17 @@ int getkey() {
     return k;
 }
 
-int getctrlkeys() {
+INT getctrlkeys() {
 #ifdef __linux__
     unsigned char modifiers = 6;
     if(ioctl(0, TIOCLINUX, &modifiers) < 0) return 0;
-    return (int) modifiers;
+    return (INT) modifiers;
 #else
     return 0;
 #endif
 }
 
-int emacsbind(int k) {
+INT emacsbind(INT k) {
     switch(k) {
 	case CTRL('b'): return KEY_LEFT;
 	case CTRL('f'): return KEY_RIGHT;
@@ -148,7 +148,7 @@ void printchar(char c) {
 }
 
 void printstring(const string &s) {
-    int i;
+    INT i;
     string ds;
 
     for(i = 0; i < s.size(); i++)
@@ -157,15 +157,15 @@ void printstring(const string &s) {
     printw("%s", ds.c_str());
 }
 
-int kwherex() {
+INT kwherex() {
     return getcurx(stdscr);
 }
 
-int kwherey() {
+INT kwherey() {
     return getcury(stdscr);
 }
 
-void kwriteatf(int x, int y, int c, const char *fmt, ...) {
+void kwriteatf(INT x, INT y, INT c, const char *fmt, ...) {
     char buf[65535];
     va_list ap;
     
@@ -177,14 +177,14 @@ void kwriteatf(int x, int y, int c, const char *fmt, ...) {
     refresh();
 }
 
-void kwriteat(int x, int y, const char *msg, int c) {
+void kwriteat(INT x, INT y, const char *msg, INT c) {
     attrset(c);
     mvprintw(y, x, "");
     printstring(msg);
     refresh();
 }
 
-int keypressed(bool wait) {
+INT keypressed(bool wait) {
     struct timeval tv;
     fd_set readfds;
     tv.tv_sec = tv.tv_usec = 0;
@@ -196,11 +196,11 @@ int keypressed(bool wait) {
     return FD_ISSET(0, &readfds);
 }
 
-void kgotoxy(int x, int y) {
+void kgotoxy(INT x, INT y) {
     move(y, x);
 }
 
-void setbeep(int freq, int duration) {
+void setbeep(INT freq, INT duration) {
     // freq: 21-32766
     // duration: 0-2000
     // freq or duration == -2  ==>  set the default value
@@ -214,8 +214,8 @@ void setbeep(int freq, int duration) {
     fflush(stdout);
 }
 
-int string2key(const string &adef) {
-    int r;
+INT string2key(const string &adef) {
+    INT r;
     string d, ck;
     string::iterator ic;
 
@@ -249,12 +249,12 @@ extern "C" {
 #include <fribidi/fribidi.h>
 }
 
-string makebidi(const string &buf, int lpad) {
+string makebidi(const string &buf, INT lpad) {
     if(!use_fribidi) return buf;
 
     FriBidiChar *us, *out_us;
     char *outstring, *cbuf;
-    int size;
+    INT size;
     FriBidiCharType base;
     string r, pad;
 
@@ -288,14 +288,14 @@ string makebidi(const string &buf, int lpad) {
 
 #else
 
-string makebidi(const string &buf, int lpad) {
+string makebidi(const string &buf, INT lpad) {
     return buf;
 }
 
 #endif
 
-int findcolor(const string &s) {
-    int i;
+INT findcolor(const string &s) {
+    INT i;
     string::iterator is;
 
     string colors[] = {"TRANSPARENT", "BLACK", "RED", "GREEN",

@@ -15,7 +15,7 @@ class motorconfiguration {
     public:
 	class extkey {
 	    private:
-		int keycode;
+		INT keycode;
 		string command, keyname;
 
 	    public:
@@ -26,8 +26,8 @@ class motorconfiguration {
 		void exec() const;
 		string description() const;
 
-		bool operator == (int akeycode) const;
-		bool operator != (int akeycode) const;
+		bool operator == (INT akeycode) const;
+		bool operator != (INT akeycode) const;
 	};
 
     protected:

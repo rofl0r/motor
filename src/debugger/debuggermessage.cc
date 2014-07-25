@@ -21,12 +21,12 @@ void debuggermessage::definitionadd(const string &text) {
 
 string debuggermessage::getvalue(const string &paramname) const {
     string r;
-    int npos = porder.find(paramname);
+    INT npos = porder.find(paramname);
     if(npos >= 0 && npos < values.size()) r = values[npos];
     return r;
 }
 
-string debuggermessage::getvalue(int n) const {
+string debuggermessage::getvalue(INT n) const {
     string r;
     if(n >= 0 && n < values.size()) r = values[n];
     return r;
@@ -48,7 +48,7 @@ bool debuggermessage::operator == (const string &amsg) const {
     regex_t r;
     regmatch_t rm[10];
     bool rc;
-    int k;
+    INT k;
     vector< pair<string, string> >::const_iterator i;
 
     rc = false;
@@ -78,6 +78,6 @@ bool debuggermessage::operator != (const string &amsg) const {
     return !(*this == amsg);
 }
 
-int debuggermessage::getmatchendpos() const {
+INT debuggermessage::getmatchendpos() const {
     return matchend;
 }

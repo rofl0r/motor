@@ -10,7 +10,7 @@ class motormanager {
     private:
 	vector<string> container;
 
-	static int addtemplate(const char *file, const struct stat *sb, int flag);
+	static INT addtemplate(const char *file, const struct stat *sb, INT flag);
 
     public:
 	motormanager();

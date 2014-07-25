@@ -38,20 +38,20 @@
 #define	FFIND_LINK	2
 #define	FFIND_DIR	4
 
-vector<string> filefind(const string &mask, const string &aroot, int mode = FFIND_FILE);
+vector<string> filefind(const string &mask, const string &aroot, INT mode = FFIND_FILE);
 
 string readlink(const string &fname);
-string pathfind(const string &name, const string &path, int amode = F_OK);
+string pathfind(const string &name, const string &path, INT amode = F_OK);
 bool mksubdirs(string dir);
 bool samefile(const string &fname1, const string &fname2);
 
 __KTOOL_BEGIN_C
 
 unsigned long kfilesize(char *fname);
-void freads(FILE *f, char *s, int maxlen);
-int fcopy(const char *source, const char *dest);
-int fmove(const char *source, const char *dest);
-int stubnftw(const char *dir, int (*fn)(const char *file, const struct stat *sb, int flag), int depth, int flags);
+void freads(FILE *f, char *s, INT maxlen);
+INT fcopy(const char *source, const char *dest);
+INT fmove(const char *source, const char *dest);
+INT stubnftw(const char *dir, INT (*fn)(const char *file, const struct stat *sb, INT flag), INT depth, INT flags);
 
 __KTOOL_END_C
 

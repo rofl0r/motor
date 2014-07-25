@@ -13,7 +13,7 @@ class motordebugger {
     protected:
 	FILE *fpread, *fpwrite;
 	string outbuf, lfname, termname, result, forcedtty;
-	int lline, cpid, termnumber;
+	INT lline, cpid, termnumber;
 	bool factive, frunning, fcommand, rebuildasked, alwaysjustrun;
 	pparamslist *plist;
 	const debuggermessage *lastdmsg;
@@ -59,7 +59,7 @@ class motordebugger {
 	void next();
 	void step();
 	vector<stackitem> getstack();
-	void tocursor(const string &fname, int line);
+	void tocursor(const string &fname, INT line);
 
 	string loadcore(const string &corefname);
 
@@ -78,7 +78,7 @@ class motordebugger {
 
 	bool running() const;
 	string getfname() const;
-	int getline() const;
+	INT getline() const;
 
 	void forceusetty(const string &tname);
 	void done();

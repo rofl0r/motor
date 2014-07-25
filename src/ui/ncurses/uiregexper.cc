@@ -25,7 +25,7 @@ string uiregexper::getregexp() const {
 void uiregexper::exec() {
     regex_t r;
     regmatch_t rm[64];
-    int i, b, n, nmatched;
+    INT i, b, n, nmatched;
     string clipbuf, buf;
     ofstream f;
 
@@ -51,25 +51,25 @@ void uiregexper::exec() {
 	tree.clear();
 	nmatched = 0;
 
-	n = tree.addnode(0, 0, 0, _(" Regular expression "));
-	tree.addleaf(n, 0, 0, " " + regexp + " ");
-	n = tree.addnode(0, 0, 0, _(" Test string "));
-	tree.addleaf(n, 0, 0, " " + example + " ");
-	n = tree.addnode(0, 0, 0, _(" Match results "));
+	n = tree.addnode(0, 0, NULL, _(" Regular expression "));
+	tree.addleaf(n, 0, NULL, " " + regexp + " ");
+	n = tree.addnode(0, 0, NULL, _(" Test string "));
+	tree.addleaf(n, 0, NULL, " " + example + " ");
+	n = tree.addnode(0, 0, NULL, _(" Match results "));
 
 	if(!regcomp(&r, regexp.c_str(), REG_EXTENDED)) {
 	    if(!regexec(&r, example.c_str(), 64, rm, 0)) {
 		for(i = 0; (i < 64) && (rm[i].rm_so != -1) && (rm[i].rm_eo != -1); i++) {
-		    tree.addleaff(n, 0, 0, " [%d, %d] '%s' ", rm[i].rm_so, rm[i].rm_eo,
+		    tree.addleaff(n, 0, NULL, " [%d, %d] '%s' ", rm[i].rm_so, rm[i].rm_eo,
 			example.substr(rm[i].rm_so, rm[i].rm_eo-rm[i].rm_so).c_str());
 		    nmatched++;
 		}
 	    } else {
-		tree.addleaf(n, 0, 0, _(" Does not match "));
+		tree.addleaf(n, 0, NULL, _(" Does not match "));
 	    }
 	    regfree(&r);
 	} else {
-	    tree.addleaf(n, 0, 0, _(" Error in the expression "));
+	    tree.addleaf(n, 0, NULL, _(" Error in the expression "));
 	}
 
 	fin = !db.open(n, b);

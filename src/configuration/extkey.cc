@@ -34,10 +34,10 @@ string motorconfiguration::extkey::description() const {
     return keyname + " " + command;
 }
 
-bool motorconfiguration::extkey::operator == (int akeycode) const {
+bool motorconfiguration::extkey::operator == (INT akeycode) const {
     return keycode == akeycode;
 }
 
-bool motorconfiguration::extkey::operator != (int akeycode) const {
+bool motorconfiguration::extkey::operator != (INT akeycode) const {
     return !(*this == akeycode);
 }

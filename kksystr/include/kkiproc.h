@@ -19,7 +19,7 @@
 
 __KTOOL_BEGIN_C
 
-int dataready(int fd, int dowait);
+INT dataready(INT fd, INT dowait);
 
 time_t lastkeypress();
 void detach(char *logfile);
@@ -31,7 +31,7 @@ __KTOOL_END_C
 
 #ifdef __sun__
 
-void setenv(const string &name, const string &value, int replace);
+void setenv(const string &name, const string &value, INT replace);
 
 #endif
 

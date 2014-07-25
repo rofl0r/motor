@@ -166,7 +166,7 @@ vector<string> projectfiles::extractdirectories() {
     vector<motorfolder>::iterator ifold;
     vector<motorfile>::const_iterator ifile;
     string pname;
-    int pos;
+    INT pos;
 
     for(ifold = foldbegin(); ifold != foldend(); ifold++) {
 	if(ifold->getcontentkind() == motorfile::source) {

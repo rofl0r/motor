@@ -24,14 +24,14 @@
 
 #include "textbrowser.h"
 
-textbrowser::textbrowser(int nx1, int ny1, int nx2, int ny2, int clr) {
+textbrowser::textbrowser(INT nx1, INT ny1, INT nx2, INT ny2, INT clr) {
     setcoords(nx1, ny1, nx2, ny2);
     setcolor(clr);
     idle = 0;
     otherkeys = 0;
 }
 
-textbrowser::textbrowser(int clr) {
+textbrowser::textbrowser(INT clr) {
     setcolor(clr);
     idle = 0;
     otherkeys = 0;
@@ -40,11 +40,11 @@ textbrowser::textbrowser(int clr) {
 textbrowser::~textbrowser() {
 }
 
-void textbrowser::setcolor(int clr) {
+void textbrowser::setcolor(INT clr) {
     ncolor = clr;
 }
 
-void textbrowser::setcoords(int nx1, int ny1, int nx2, int ny2) {
+void textbrowser::setcoords(INT nx1, INT ny1, INT nx2, INT ny2) {
     x1 = nx1;
     x2 = nx2;
     y1 = ny1;
@@ -60,8 +60,8 @@ bool textbrowser::empty() {
     return lines.empty();
 }
 
-void textbrowser::draw(int line) {
-    int i, k;
+void textbrowser::draw(INT line) {
+    INT i, k;
     string buf;
     attrset(ncolor);
 
@@ -86,9 +86,9 @@ void textbrowser::setbuf(const string &p) {
     if((endline = lines.size()-y2+y1+1) < 0) endline = 0;
 }
 
-int textbrowser::open() {
+INT textbrowser::open() {
     bool go;
-    int res, ch;
+    INT res, ch;
 
     finished = aborted = false;
     
@@ -128,7 +128,7 @@ int textbrowser::open() {
     return res;
 }
 
-void textbrowser::move(int k) {
+void textbrowser::move(INT k) {
     switch(k) {
 	case KEY_UP: if(--line < 0) line = 0; break;
 	case KEY_DOWN: if(++line > endline) line = endline; break;

@@ -38,7 +38,7 @@ vector<motorfile>::iterator motorfolder::end() {
     return files.end();
 }
 
-bool motorfolder::addfile(const motorfile afile, int options) {
+bool motorfolder::addfile(const motorfile afile, INT options) {
     regex_t ra, rr;
     struct stat st;
     bool ret = true;

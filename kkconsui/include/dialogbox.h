@@ -20,11 +20,11 @@ class dialogbox {
 
         class keybarassociation {
             public:
-                int key, baritem;
-                keybarassociation(int nkey, int nbarit);
+                INT key, baritem;
+                keybarassociation(INT nkey, INT nbarit);
 
-                bool operator == (const int akey);
-                bool operator != (const int akey);
+                bool operator == (const INT akey);
+                bool operator != (const INT akey);
         };
 
         bool freemenu, freetree, freewindow, freebar, freebrowser, first;
@@ -39,11 +39,11 @@ class dialogbox {
 
         static void menuidle(verticalmenu &caller);
         static void browseridle(textbrowser &caller);
-        static int menukeys(verticalmenu &caller, int k);
-        static int browserkeys(textbrowser &caller, int k);
+        static INT menukeys(verticalmenu &caller, INT k);
+        static INT browserkeys(textbrowser &caller, INT k);
 
     public:
-        int (*otherkeys)(dialogbox &caller, int k);
+        INT (*otherkeys)(dialogbox &caller, INT k);
             // function called on pressing of non-standard menu keys
             // should return a number of selected menu item or -1 to
             // continue browsing
@@ -66,13 +66,13 @@ class dialogbox {
         textbrowser *getbrowser();
 
         void redraw();
-        bool open(int &menuitem, int &baritem, void **ref = 0);
-        bool open(int &menuitem);
+        bool open(INT &menuitem, INT &baritem, void **ref = 0);
+        bool open(INT &menuitem);
         bool open();
         void close();
 
         void clearkeys();
-        void addkey(int key, int baritem);
+        void addkey(INT key, INT baritem);
 	void addautokeys();
 };
 

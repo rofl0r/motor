@@ -14,6 +14,7 @@ TEMPLATES=$(sort $(wildcard share/templates/* share/templates/*/* share/template
 LIBS=-lintl -lncurses
 LDFLAGS=
 CFLAGS=-O0 -g3
+CPPFLAGS=-DINT=intptr_t -DUINT=uintptr_t
 CXXFLAGS=$(CFLAGS)
 
 -include config.mak

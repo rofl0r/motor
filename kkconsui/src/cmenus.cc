@@ -24,14 +24,14 @@
 
 #include "cmenus.h"
 
-verticalmenu::verticalmenu(int px1, int py1, int px2, int py2, int pncolor, int pscolor)
+verticalmenu::verticalmenu(INT px1, INT py1, INT px2, INT py2, INT pncolor, INT pscolor)
 : abstractuicontrol() {
     initmembers();
     setcolor(pncolor, pscolor);
     setcoords(px1, py1, px2, py2);
 }
 
-verticalmenu::verticalmenu(int pncolor, int pscolor)
+verticalmenu::verticalmenu(INT pncolor, INT pscolor)
 : abstractuicontrol() {
     initmembers();
     setcolor(pncolor, pscolor);
@@ -44,7 +44,7 @@ void verticalmenu::initmembers() {
     clearonfocuslost = cycled = exitonedges = false;
 }
 
-void verticalmenu::setcolor(int pncolor, int pscolor) {
+void verticalmenu::setcolor(INT pncolor, INT pscolor) {
     ncolor = pncolor, scolor = pscolor;
 }
 
@@ -56,7 +56,7 @@ bool verticalmenu::empty() {
     return items.empty();
 }
 
-void verticalmenu::setcoords(int nx1, int ny1, int nx2, int ny2) {
+void verticalmenu::setcoords(INT nx1, INT ny1, INT nx2, INT ny2) {
     x1 = nx1;
     x2 = nx2;
     y1 = ny1;
@@ -70,10 +70,10 @@ void verticalmenu::additemf(const char *fmt, ...) {
 }
 
 void verticalmenu::additem(const string &text) {
-    additem(ncolor, 0, text);
+    additem(ncolor, NULL, text);
 }
 
-void verticalmenu::additem(int color, void *ref, const string &text) {
+void verticalmenu::additem(INT color, void *ref, const string &text) {
     verticalmenuitem i;
     i.text = text;
     i.color = color ? color : ncolor;
@@ -82,17 +82,17 @@ void verticalmenu::additem(int color, void *ref, const string &text) {
     items.push_back(i);
 }
 
-void verticalmenu::additemf(int color, void *ref, const char *fmt, ...) {
+void verticalmenu::additemf(INT color, void *ref, const char *fmt, ...) {
     string buf;
     VGETSTRING(buf, fmt);
     additem(color, ref, buf);
 }
 
-void verticalmenu::additem(int color, int ref, const string &text) {
+void verticalmenu::additem(INT color, INT ref, const string &text) {
     additem(color, (void *) ref, text);
 }
 
-void verticalmenu::additemf(int color, int ref, const char *fmt, ...) {
+void verticalmenu::additemf(INT color, INT ref, const char *fmt, ...) {
     string buf;
     VGETSTRING(buf, fmt);
     additem(color, (void *) ref, buf);
@@ -102,7 +102,7 @@ void verticalmenu::addline() {
     addline(ncolor, 0);
 }
 
-void verticalmenu::addline(int color, const char *fmt, ...) {
+void verticalmenu::addline(INT color, const char *fmt, ...) {
     verticalmenuitem i;
     char buf[10240];
     va_list ap;
@@ -121,9 +121,9 @@ void verticalmenu::addline(int color, const char *fmt, ...) {
     items.push_back(i);
 }
 
-bool verticalmenu::shownelem(int n, int selected) {
+bool verticalmenu::shownelem(INT n, INT selected) {
     bool hlight = true;
-    int extra = 0;
+    INT extra = 0;
     unsigned char c;
     string buf;
 
@@ -140,7 +140,7 @@ bool verticalmenu::shownelem(int n, int selected) {
 
 	    buf = item.text; //makebidi(item.text, x2-x1);
 
-	    for(int i = x1; i < x2+extra; i++) {
+	    for(INT i = x1; i < x2+extra; i++) {
 		if(i-x1 < buf.size()) {
 		    switch(c = buf[i-x1]) {
 			case 1:
@@ -175,7 +175,7 @@ bool verticalmenu::shownelem(int n, int selected) {
 }
 
 void verticalmenu::showall() {
-    unsigned int p, k;
+    UINT p, k;
 
     if(curelem < 0) {
 	 curelem = 0;
@@ -221,8 +221,8 @@ void verticalmenu::scale() {
     if(!window.empty()) window.y2 = y2;
 }
 
-int verticalmenu::open() {
-    int go, k;
+INT verticalmenu::open() {
+    INT go, k;
 
     if(!window.empty()) window.open();
 
@@ -259,7 +259,7 @@ int verticalmenu::open() {
 			    firstdisp = curelem - y2 + y1 + 1;
 			    intredraw();
 			} else {
-			    int savecurelem = curelem+1;
+			    INT savecurelem = curelem+1;
 
 			    while(curelem >= 0)
 			    if(!shownelem(curelem, 1)) {
@@ -292,7 +292,7 @@ int verticalmenu::open() {
 				intredraw();
 			    } else {
 				bool lastone;
-				int savecur = curelem-1;
+				INT savecur = curelem-1;
 			
 				while(curelem < items.size()) {
 				    if(!(lastone = shownelem(curelem, 1)))
@@ -364,33 +364,33 @@ int verticalmenu::open() {
     return curelem+1;
 }
 
-int verticalmenu::getcount() {
+INT verticalmenu::getcount() {
     return items.size();
 }
 
-int verticalmenu::getlastkey() {
+INT verticalmenu::getlastkey() {
     return lastkey;
 }
 
-void *verticalmenu::getref(int n) {
+void *verticalmenu::getref(INT n) {
     return (n >= 0) && (n < items.size()) ? items[n].ref : 0;
 }
 
-int verticalmenu::getpos() {
+INT verticalmenu::getpos() {
     return curelem;
 }
 
-void verticalmenu::getpos(int &cur, int &first) {
+void verticalmenu::getpos(INT &cur, INT &first) {
     cur = curelem;
     first = firstdisp;
 }
 
-void verticalmenu::setpos(int cur, int first) {
+void verticalmenu::setpos(INT cur, INT first) {
     curelem = cur;
     if(first != -1) firstdisp = first;
 }
 
-void verticalmenu::setitemcolor(int pos, int color) {
+void verticalmenu::setitemcolor(INT pos, INT color) {
     if((pos >= 0) && (pos < items.size())) {
 	items[pos].color = color;
     }
@@ -401,9 +401,9 @@ void verticalmenu::setwindow(textwindow nwindow) {
     setcoords(window.x1+1, window.y1+1, window.x2, window.y2);
 }
 
-void verticalmenu::remove(int pos) {
+void verticalmenu::remove(INT pos) {
     vector<verticalmenuitem>::iterator ii;
-    int i;
+    INT i;
 
     if((pos >= 0) && (pos < items.size())) {
 	for(i = 0, ii = items.begin(); ii != items.end() && i < pos; i++, ii++);
@@ -454,7 +454,7 @@ verticalmenu::~verticalmenu() {
 
 horizontalmenu *currenthmenu;
 
-horizontalmenu::horizontalmenu(int x, int y, int normcolor, int selcolor, int framecolor) {
+horizontalmenu::horizontalmenu(INT x, INT y, INT normcolor, INT selcolor, INT framecolor) {
     ncolor = normcolor;
     scolor = selcolor;
     fcolor = framecolor;
@@ -474,7 +474,7 @@ horizontalmenu::~horizontalmenu() {
 #define HM_LEFT         50002
 #define HM_CLOSE        50003
 
-int horizontalmenu::menu_otherkeys(verticalmenu &ref, int k) {
+INT horizontalmenu::menu_otherkeys(verticalmenu &ref, INT k) {
     switch(k) {
 	case KEY_RIGHT : return HM_RIGHT;
 	case KEY_LEFT  : return HM_LEFT;
@@ -489,7 +489,7 @@ int horizontalmenu::menu_otherkeys(verticalmenu &ref, int k) {
     return -1;
 }
 
-void horizontalmenu::additem(int color, const string &text) {
+void horizontalmenu::additem(INT color, const string &text) {
     horizontalmenuitem i;
     i.text = text;
     i.color = color ? color : ncolor;
@@ -500,7 +500,7 @@ void horizontalmenu::additem(const string &text) {
     additem(0, text);
 }
 
-void horizontalmenu::additemf(int color, const char *fmt, ...) {
+void horizontalmenu::additemf(INT color, const char *fmt, ...) {
     va_list ap;
     char buf[1024];
     va_start(ap, fmt);
@@ -518,17 +518,17 @@ void horizontalmenu::additemf(const char *fmt, ...) {
     additem(0, buf);
 }
 
-int horizontalmenu::getx(int n) {
-    int i, l = 0;
+INT horizontalmenu::getx(INT n) {
+    INT i, l = 0;
     for(i = 0; i < n; i++) l += menus[i].text.size();
     if(n > 0) l += n*2;
     return l+coordx;
 }
 
-int horizontalmenu::menulen(int n) {
+INT horizontalmenu::menulen(INT n) {
     verticalmenu m = menus[n].menu;
     vector<verticalmenu::verticalmenuitem>::iterator i;
-    int l = 0;
+    INT l = 0;
 
     for(i = m.items.begin(); i != m.items.end(); i++) {
 	if(!i->text.empty() && (i->text.size() > l)) l = i->text.size();
@@ -538,7 +538,7 @@ int horizontalmenu::menulen(int n) {
 }
 
 void horizontalmenu::redraw() {
-    int sv = selected;
+    INT sv = selected;
     selected = -1;
     draw();
     selected = sv;
@@ -546,7 +546,7 @@ void horizontalmenu::redraw() {
 
 void horizontalmenu::draw() {
     vector<horizontalmenuitem>::iterator i;
-    int n;
+    INT n;
     
     attrset(ncolor);
     mvhline(coordy, 0, ' ', COLS);
@@ -560,7 +560,7 @@ void horizontalmenu::draw() {
     refresh();
 }
 
-void horizontalmenu::moveelem(int old) {
+void horizontalmenu::moveelem(INT old) {
     attrset(menus[old].color);
     kgotoxy(getx(old), coordy);
     printstring(menus[old].text);
@@ -570,9 +570,9 @@ void horizontalmenu::moveelem(int old) {
     printstring(menus[selected].text);
 }
 
-bool horizontalmenu::open(int *hor, int *pulld) {
+bool horizontalmenu::open(INT *hor, INT *pulld) {
     bool done = false;
-    int ch, osel, oact = 0;
+    INT ch, osel, oact = 0;
     verticalmenu *m;
 
     if((selected < 0) || (selected >= menus.size())) selected = 0;
@@ -610,7 +610,7 @@ bool horizontalmenu::open(int *hor, int *pulld) {
 		    m->window.x2 = m->x2;
 		    currenthmenu = this;
 
-		    int r = m->open();
+		    INT r = m->open();
 
 		    switch(r) {
 			case HM_RIGHT: oact = KEY_RIGHT; break;
@@ -663,7 +663,7 @@ void horizontalmenu::restoreline() {
     screenbuffer.restore();
 }
 
-verticalmenu *horizontalmenu::pulldown(int n) {
+verticalmenu *horizontalmenu::pulldown(INT n) {
     if((n >= 0) && (n < menus.size())) {
 	menus[n].menu.setcolor(ncolor, scolor);
 	menus[n].menu.otherkeys = &menu_otherkeys;

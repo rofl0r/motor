@@ -22,7 +22,7 @@ uitagbrowser::uitagbrowser(): mpos(0) {
 uitagbrowser::~uitagbrowser() {
 }
 
-int uitagbrowser::mkeys(verticalmenu &m, int k) {
+INT uitagbrowser::mkeys(verticalmenu &m, INT k) {
     string oldsearch = uitb.search;
 
     switch(k) {
@@ -78,7 +78,7 @@ void uitagbrowser::title() {
 }
 
 void uitagbrowser::changemode() {
-    int n;
+    INT n;
     verticalmenu cm(uiconf.getcolor(cp_menufr), uiconf.getcolor(cp_menusel));
     cm.setwindow(textwindow(w.x1, w.y1, w.x1+20, 0, uiconf.getcolor(cp_menufr)));
 
@@ -95,7 +95,7 @@ void uitagbrowser::changemode() {
     cm.close();
 
     if(n) {
-	int c = (int) cm.getref(n-1);
+	INT c = (INT) cm.getref(n-1);
 
 	if(c != tagbrowser.getscope()) {
 	    tagbrowser.setscope((motortagbrowser::viewscope) c);
@@ -104,7 +104,7 @@ void uitagbrowser::changemode() {
     }
 }
 
-int uitagbrowser::multiplekeys(verticalmenu &m, int k) {
+INT uitagbrowser::multiplekeys(verticalmenu &m, INT k) {
     switch(k) {
 	case ' ':
 	case 'x':
@@ -116,7 +116,7 @@ int uitagbrowser::multiplekeys(verticalmenu &m, int k) {
 
 void uitagbrowser::changefilter() {
     bool finished = false;
-    int saveelem, pos;
+    INT saveelem, pos;
     char c;
     bool iter;
     string nfilter = filter;
@@ -142,7 +142,7 @@ void uitagbrowser::changefilter() {
 	switch(cm.open()) {
 	    case -2:
 		iter = false;
-		c = (char) (int) cm.getref(cm.getpos());
+		c = (char) (INT) cm.getref(cm.getpos());
 
 		while((pos = nfilter.find(c)) != -1) {
 		    nfilter.erase(pos, 1);
@@ -176,7 +176,7 @@ void uitagbrowser::reload() {
 }
 
 void uitagbrowser::makemenu(verticalmenu &m) {
-    int len;
+    INT len;
     string buf, desc, skind;
     vector<motortagbrowser::record>::iterator it;
 
@@ -213,7 +213,7 @@ void uitagbrowser::input() {
 }
 
 void uitagbrowser::exec() {
-    int n, k;
+    INT n, k;
     bool r;
 
     if(search.empty())
@@ -240,7 +240,7 @@ void uitagbrowser::exec() {
     m.setpos(mpos);
 
     if(r = (n = m.open())) {
-        k = (int) m.getref(n-1);
+        k = (INT) m.getref(n-1);
         mpos = n-1;
     }
 

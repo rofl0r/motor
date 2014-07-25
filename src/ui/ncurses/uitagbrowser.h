@@ -13,15 +13,15 @@ class uitagbrowser {
 	textwindow w;
 	verticalmenu m;
 	bool modified;
-	int mpos;
+	INT mpos;
 	vector<motortagbrowser::record> tags;
 
-	static int mkeys(verticalmenu &m, int k);
-	static int multiplekeys(verticalmenu &m, int k);
+	static INT mkeys(verticalmenu &m, INT k);
+	static INT multiplekeys(verticalmenu &m, INT k);
 
 	void makemenu(verticalmenu &m);
 	void input();
-	bool open(string &fname, int &lineno);
+	bool open(string &fname, INT &lineno);
 
 	void changemode();
 	void changefilter();
