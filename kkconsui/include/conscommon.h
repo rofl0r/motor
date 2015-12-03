@@ -63,7 +63,7 @@
 #endif
 
 #ifndef ALT
-#define ALT(x) (0x200 | (unsigned INT) x)
+#define ALT(x) (0x200 | (UINT) x)
 #endif
 
 #define SHIFT_PRESSED   1
