@@ -28,8 +28,8 @@ textwindow::textwindow() {
     x1 = x2 = y1 = y2 = options = 0;
 }
 
-textwindow::textwindow(INT xx1, INT yy1, INT xx2, INT yy2, INT wcolor,
-INT noptions, INT tcolor, const char *tfmt, ...) {
+textwindow::textwindow(int xx1, int yy1, int xx2, int yy2, int wcolor,
+int noptions, int tcolor, const char *tfmt, ...) {
     char buf[10240];
 
     setoptions(noptions);
@@ -55,14 +55,14 @@ textwindow::textwindow(const textwindow &aw): abstractuicontrol(aw) {
 textwindow::~textwindow() {
 }
 
-void textwindow::setcoords(INT ax1, INT ay1, INT ax2, INT ay2) {
+void textwindow::setcoords(int ax1, int ay1, int ax2, int ay2) {
     x1 = ax1;
     x2 = ax2;
     y1 = ay1;
     y2 = ay2;
 
     if(options & TW_CENTERED) {
-	INT h = y2-y1, w = x2-x1;
+	int h = y2-y1, w = x2-x1;
 	y1 = (LINES-h)/2;
 	y2 = y1 + h;
 	x1 = (COLS-w)/2;
@@ -70,16 +70,16 @@ void textwindow::setcoords(INT ax1, INT ay1, INT ax2, INT ay2) {
     }
 }
 
-void textwindow::setcolor(INT awc) {
+void textwindow::setcolor(int awc) {
     wc = awc;
 }
 
-void textwindow::setoptions(INT aoptions) {
+void textwindow::setoptions(int aoptions) {
     options = aoptions;
     setcoords(x1, y1, x2, y2);
 }
 
-void textwindow::set_titlef(INT color, const char *fmt, ...) {
+void textwindow::set_titlef(int color, const char *fmt, ...) {
     va_list ap;
     char buf[10240];
 
@@ -90,7 +90,7 @@ void textwindow::set_titlef(INT color, const char *fmt, ...) {
     set_title(color, buf);
 }
 
-void textwindow::set_title(INT color, const string &atitle) {
+void textwindow::set_title(int color, const string &atitle) {
     title = atitle;
     tc = color;
     
@@ -101,7 +101,7 @@ void textwindow::set_title(INT color, const string &atitle) {
     }
 }
 
-void textwindow::writef(INT x, INT y, const char *fmt, ...) {
+void textwindow::writef(int x, int y, const char *fmt, ...) {
     char buf[10240];
     va_list ap;
 
@@ -112,7 +112,7 @@ void textwindow::writef(INT x, INT y, const char *fmt, ...) {
     write(x, y, wc, buf);
 }
 
-void textwindow::writef(INT x, INT y, INT c, const char *fmt, ...) {
+void textwindow::writef(int x, int y, int c, const char *fmt, ...) {
     char buf[10240];
     va_list ap;
 
@@ -123,12 +123,12 @@ void textwindow::writef(INT x, INT y, INT c, const char *fmt, ...) {
     write(x, y, c, buf);
 }
 
-void textwindow::write(INT x, INT y, const string &text) {
+void textwindow::write(int x, int y, const string &text) {
     write(x, y, wc, text);
 }
 
-void textwindow::write(INT x, INT y, INT c, const string &text) {
-    INT i;
+void textwindow::write(int x, int y, int c, const string &text) {
+    int i;
     string dtext;
 
     if(fisopen && (y < y2-y1)) {
@@ -141,13 +141,13 @@ void textwindow::write(INT x, INT y, INT c, const string &text) {
     }
 }
 
-void textwindow::gotoxy(INT x, INT y) {
+void textwindow::gotoxy(int x, int y) {
     if(fisopen) kgotoxy(x1 + x, y1 + y);
 }
 
 void textwindow::redraw() {
     if(fisopen) {
-	INT i;
+	int i;
 	attrset(wc);
 
 	if(options & TW_NOBORDER) {
@@ -183,7 +183,7 @@ void textwindow::open() {
     }
 }
 
-void textwindow::separatey(INT y) {
+void textwindow::separatey(int y) {
     attrset(wc);
     mvhline(y1 + y, x1 + 1, HLINE, x2 - x1 - 1);
     mvaddch(y1 + y, x1, LTEE);
@@ -191,7 +191,7 @@ void textwindow::separatey(INT y) {
     refresh();
 }
 
-void textwindow::separatex(INT x) {
+void textwindow::separatex(int x) {
     attrset(wc);
     mvvline(y1 + 1, x1 + x, VLINE, y2 - y1 - 1);
     mvaddch(y1, x1 + x, TTEE);

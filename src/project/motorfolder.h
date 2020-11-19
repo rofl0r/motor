@@ -41,7 +41,7 @@ class motorfolder {
 	vector<motorfile>::iterator end();
 	    // begin and end interators of the file list
 
-	bool addfile(const motorfile afile, INT options = 0);
+	bool addfile(const motorfile afile, int options = 0);
 	    // returns true if the file was accepted
 
 	bool removefile(const motorfile afile);

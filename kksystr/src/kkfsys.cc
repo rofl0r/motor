@@ -29,17 +29,17 @@ unsigned long kfilesize(char *fname) {
     if(!stat(fname, &buf)) return buf.st_size; else return 0;
 }
 
-void freads(FILE *f, char *s, INT maxlen) {
+void freads(FILE *f, char *s, int maxlen) {
     s[0] = 0;
     fgets(s, maxlen, f);
 
-    for(INT i = strlen(s)-1; ; i--)
+    for(int i = strlen(s)-1; ; i--)
     if(i >= 0 && strchr("\r\n", s[i])) s[i] = 0; else break;
 }
 
-INT fcopy(const char *source, const char *dest) {
+int fcopy(const char *source, const char *dest) {
     FILE *inpf, *outf;
-    INT ret = -1, bc;
+    int ret = -1, bc;
     char buf[8192];
 
     if(inpf = fopen(source, "r")) {
@@ -61,15 +61,15 @@ INT fcopy(const char *source, const char *dest) {
     return ret;
 }
 
-INT fmove(const char *source, const char *dest) {
-    INT ret = fcopy(source, dest);
+int fmove(const char *source, const char *dest) {
+    int ret = fcopy(source, dest);
     if(ret != -1) unlink(source);
     return ret;
 }
 
-void stepftw(const char *fname, INT *stopwalk, INT (*fn)(const char *file, const struct stat *sb, INT flag)) {
+void stepftw(const char *fname, int *stopwalk, int (*fn)(const char *file, const struct stat *sb, int flag)) {
     struct stat st;
-    INT flag;
+    int flag;
 
     flag = FTW_F;
 
@@ -101,11 +101,11 @@ void stepftw(const char *fname, INT *stopwalk, INT (*fn)(const char *file, const
     }
 }
 
-INT stubnftw(const char *dir, INT (*fn)(const char *file, const struct stat *sb, INT flag), INT depth, INT flags) {
+int stubnftw(const char *dir, int (*fn)(const char *file, const struct stat *sb, int flag), int depth, int flags) {
     DIR *dr;
     struct dirent *ent;
     char *fname;
-    INT stopwalk = 0;
+    int stopwalk = 0;
 
     if(!flags) {
 	stepftw(dir, &stopwalk, fn);
@@ -129,7 +129,7 @@ INT stubnftw(const char *dir, INT (*fn)(const char *file, const struct stat *sb,
     return stopwalk;
 }
 
-string pathfind(const string &name, const string &path, INT amode) {
+string pathfind(const string &name, const string &path, int amode) {
     string token, current, buf = path;
 
     while(!(token = getword(buf, ":")).empty()) {
@@ -164,7 +164,7 @@ bool mksubdirs(string dir) {
 
 string readlink(const string &fname) {
     char rfname[1024];
-    INT n;
+    int n;
 
     if((n = ::readlink(fname.c_str(), rfname, 1024)) != -1) {
 	rfname[n] = 0;
@@ -191,7 +191,7 @@ bool samefile(const string &fname1, const string &fname2) {
     if((mode & m) && !regexec(&r, fname.c_str(), 0, 0, 0)) \
 	lst.push_back(fname);
 
-vector<string> filefind(const string &mask, const string &aroot, INT mode) {
+vector<string> filefind(const string &mask, const string &aroot, int mode) {
     vector<string> lst, rlst;
     vector<string>::iterator is;
     regex_t r;

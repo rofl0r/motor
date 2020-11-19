@@ -14,75 +14,75 @@ __KTOOL_BEGIN_NAMESPACE
 class treeview : public abstractuicontrol {
     private:
 	struct treeviewnode {
-	    INT id, parentid, color;
+	    int id, parentid, color;
 	    bool isnode, isopen;
 	    string text;
 	    void *ref;
 
-	    bool operator == (const INT aid);
+	    bool operator == (const int aid);
 	    bool operator == (const void *aref);
-	    bool operator != (const INT aid);
+	    bool operator != (const int aid);
 	    bool operator != (const void *aref);
 	};
 
-	INT bgcolor, selectcolor, nodecolor, leafcolor, idseq;
+	int bgcolor, selectcolor, nodecolor, leafcolor, idseq;
 
 	vector<treeviewnode> items;
 	vector<treeviewnode> nestlevel;
 	vector<treeviewnode> refdeps;
 
-	bool islast(INT id);
-	void drawnest(INT y);
-	void genmenu(INT parent);
+	bool islast(int id);
+	void drawnest(int y);
+	void genmenu(int parent);
 	void init();
 
     public:
-	INT curelem;
+	int curelem;
 	bool collapsable;
 	verticalmenu menu;
 
-	treeview(INT nx1, INT ny1, INT nx2, INT ny2, INT nbgcolor, INT nselectcolor, INT nnodecolor, INT nleafcolor);
-	treeview(INT nbgcolor, INT nselectcolor, INT nnodecolor, INT nleafcolor);
+	treeview(int nx1, int ny1, int nx2, int ny2, int nbgcolor, int nselectcolor, int nnodecolor, int nleafcolor);
+	treeview(int nbgcolor, int nselectcolor, int nnodecolor, int nleafcolor);
 	treeview();
 	~treeview();
 
 	bool empty();
 
-	INT addnode(INT parent, INT color, void *ref, const string &text);
-	INT addnode(INT parent, INT color, INT ref, const string &text);
-	INT addnode(const string &text);
+	int addnode(int parent, int color, void *ref, const string &text);
+	int addnode(int parent, int color, int ref, const string &text);
+	int addnode(const string &text);
 
-	INT addnodef(INT parent, INT color, void *ref, const char *fmt, ...);
-	INT addnodef(INT parent, INT color, INT ref, const char *fmt, ...);
-	INT addnodef(const char *fmt, ...);
+	int addnodef(int parent, int color, void *ref, const char *fmt, ...);
+	int addnodef(int parent, int color, int ref, const char *fmt, ...);
+	int addnodef(const char *fmt, ...);
 
-	INT addleaf(INT parent, INT color, void *ref, const string &text);
-	INT addleaf(INT parent, INT color, INT ref, const string &text);
-	INT addleaf(const string &text);
+	int addleaf(int parent, int color, void *ref, const string &text);
+	int addleaf(int parent, int color, int ref, const string &text);
+	int addleaf(const string &text);
 
-	INT addleaff(INT parent, INT color, void *ref, const char *fmt, ...);
-	INT addleaff(INT parent, INT color, INT ref, const char *fmt, ...);
-	INT addleaff(const char *fmt, ...);
+	int addleaff(int parent, int color, void *ref, const char *fmt, ...);
+	int addleaff(int parent, int color, int ref, const char *fmt, ...);
+	int addleaff(const char *fmt, ...);
 
-	void opennode(INT mpos);
-	void closenode(INT mpos);
+	void opennode(int mpos);
+	void closenode(int mpos);
 
-	INT getcount();
-	INT getid(INT mpos);
-	INT getid(void *ref);
-	bool isnode(INT id);
-	bool isnodeopen(INT id);
+	int getcount();
+	int getid(int mpos);
+	int getid(void *ref);
+	bool isnode(int id);
+	bool isnodeopen(int id);
 
-	INT getparent(INT id);
-	void *getref(INT id);
+	int getparent(int id);
+	void *getref(int id);
 
 	void clear();
 
 	void redraw();
-	void *open(INT *n);
+	void *open(int *n);
 
-	void setcur(INT id);
-	void setcoords(INT nx1, INT ny1, INT nx2, INT ny2);
+	void setcur(int id);
+	void setcoords(int nx1, int ny1, int nx2, int ny2);
 };
 
 __KTOOL_END_NAMESPACE

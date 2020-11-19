@@ -13,7 +13,7 @@
 
 #include "kkfsys.h"
 
-#include <sstream>
+#include <strstream>
 #include <iostream>
 
 #include <sys/wait.h>
@@ -22,7 +22,6 @@ ncursesui thisui;
 
 #define LOOKER_HEIGHT		(LINES-2)
 #define OUTLINES_LIMIT		512
-#define NULL_CONST_STR		((const char *) 0)
 
 #define getcolor(c)	uiconf.getcolor(c)
 
@@ -32,7 +31,7 @@ ncursesui::ncursesui(): terminate(false), outopen(false) {
 ncursesui::~ncursesui() {
     if(terminate) {
 	kendinterface();
-	for(INT i = 0; i < LINES; i++) cout << endl;
+	for(int i = 0; i < LINES; i++) cout << endl;
     }
 }
 
@@ -47,7 +46,7 @@ void ncursesui::sighandler(int signum) {
     signal(SIGINT, &sighandler);
 }
 
-void ncursesui::execute(INT argc, char **argv) {
+void ncursesui::execute(int argc, char **argv) {
     string pname;
 
     kinterface();
@@ -63,7 +62,7 @@ void ncursesui::execute(INT argc, char **argv) {
     log();
 
     if(project.empty()) pload();
-
+    
     if(!project.empty()) {
         initmenubar();
 
@@ -85,7 +84,7 @@ void ncursesui::pload(const projectname pname) {
 	if(nname.empty()) {
 	    nname = selectproject(selectorcreate);
 	}
-
+        
         if(!(fin = nname.empty())) {
             np = motorproject(nname);
 
@@ -104,11 +103,11 @@ void ncursesui::pload(const projectname pname) {
 }
 
 motorui::askresult ncursesui::ask(const string &answersallowed, const string &text) {
-    INT line = /*watcher.visible() ? LINES-uiconf.getwatchlines()-2 :*/ LINES-2;
+    int line = /*watcher.visible() ? LINES-uiconf.getwatchlines()-2 :*/ LINES-2;
     screenarea sarea(0, line, COLS, line);
     string msg;
     string::const_iterator c;
-    INT key;
+    int key;
 
     attrset(getcolor(cp_input));
     mvhline(line, 0, ' ', COLS);
@@ -168,9 +167,9 @@ void ncursesui::log(const string &text) {
     refresh();
 }
 
-void ncursesui::loadeditfile(const motorui::editfile ef, INT options) {
+void ncursesui::loadeditfile(const motorui::editfile ef, int options) {
     ifstream f;
-    INT i;
+    int i;
     char buf[512];
     string fname;
     bool found;
@@ -236,8 +235,8 @@ void ncursesui::loadeditfile(const motorui::editfile ef, INT options) {
     statusupdate();
 }
 
-void ncursesui::commandline(INT argc, char **argv) {
-    INT r;
+void ncursesui::commandline(int argc, char **argv) {
+    int r;
     string slong;
 
     for(r = 1; argv[r]; r++) {
@@ -327,11 +326,11 @@ const projectname ncursesui::selectproject(mgrmode amode, vector<string> templs)
     vector<projectname>::iterator i;
     vector<projectname> pnames;
     vector<string>::iterator is;
-    vector< pair<string, INT> >::iterator itnode;
-    vector< pair<string, INT> > tnodes;
+    vector< pair<string, int> >::iterator itnode;
+    vector< pair<string, int> > tnodes;
 
     dialogbox db;
-    INT j, baritem, menuitem, cid, lpid;
+    int j, baritem, menuitem, cid, lpid;
     string templatelast, head;
     projectname pname;
     motorproject mp;
@@ -339,14 +338,14 @@ const projectname ncursesui::selectproject(mgrmode amode, vector<string> templs)
 
     if(amode == selectorcreate) {
 	db.setbar(new horizontalbar(getcolor(cp_menu), getcolor(cp_menusel),
-    	    _("Create/Import.."), _("Add"), _("Remove"), _("Open"), NULL_CONST_STR));
+    	    _("Create/Import.."), _("Add"), _("Remove"), _("Open"), 0));
 
 	db.addkey(KEY_IC, 1);
 	db.addkey(KEY_DC, 2);
 
         db.getbar()->item = 3;
 
-	db.setwindow(new textwindow(0, 0, (INT) (DIALOG_WIDTH*0.8),
+	db.setwindow(new textwindow(0, 0, (int) (DIALOG_WIDTH*0.8),
     	    DIALOG_HEIGHT, getcolor(cp_menufr), TW_CENTERED,
     	    getcolor(cp_menuhl), _(" Projects registry ")));
 
@@ -376,8 +375,8 @@ const projectname ncursesui::selectproject(mgrmode amode, vector<string> templs)
                 	continue;
 
 		if(itnode == tnodes.end()) {
-		    j = tree.addnode(0, getcolor(cp_menuhl), NULL, " " + i->gettemplatename() + " ");
-		    tnodes.push_back(pair<string, INT>(i->gettemplatename(), j));
+		    j = tree.addnode(0, getcolor(cp_menuhl), 0, " " + i->gettemplatename() + " ");
+		    tnodes.push_back(pair<string, int>(i->gettemplatename(), j));
 		    itnode = tnodes.end()-1;
 		}
 
@@ -441,11 +440,11 @@ const projectname ncursesui::selectproject(mgrmode amode, vector<string> templs)
 string ncursesui::selecttemplate(const string &def, const string &title) const {
     dialogbox db;
     string ret, lw, buf;
-    INT n, b, nnode, citem, id, cpid = -1;
+    int n, b, nnode, citem, id, cpid = -1;
     vector<string> tlist;
     vector<string>::iterator it;
-    vector< pair<string, INT> > nodes;
-    vector< pair<string, INT> >::iterator in;
+    vector< pair<string, int> > nodes;
+    vector< pair<string, int> >::iterator in;
 
     tlist = manager.gettemplatelist();
 
@@ -461,8 +460,8 @@ string ncursesui::selecttemplate(const string &def, const string &title) const {
 	    if(in->first == buf) nnode = in->second;
 
 	if(!nnode) {
-	    nnode = db.gettree()->addnode(0, getcolor(cp_menuhl), NULL, " " + buf + " ");
-	    nodes.push_back(pair<string, INT>(buf, nnode));
+	    nnode = db.gettree()->addnode(0, getcolor(cp_menuhl), 0, " " + buf + " ");
+	    nodes.push_back(pair<string, int>(buf, nnode));
 	}
 
 	id = db.gettree()->addleaf(nnode, 0, it-tlist.begin()+1, " " + lw + " ");
@@ -516,7 +515,7 @@ void ncursesui::initmenubar() {
     menubar.additem(_(" VCS "));
     menubar.additem(_(" Debug "));
     menubar.additem(_(" Window "));
-
+    
     m = menubar.pulldown(0);
     m->additem(_(" Load..         ^O"));
     m->additem(_(" Save           F2"));
@@ -603,7 +602,7 @@ void ncursesui::initmenubar() {
 }
 
 void ncursesui::execmenubar() {
-    INT h = 0, p = 0;
+    int h = 0, p = 0;
     string buf;
 
     if(menubar.open(&h, &p))
@@ -765,13 +764,13 @@ void ncursesui::execmenubar() {
     }
 }
 
-bool ncursesui::horizontalmenukeys(horizontalmenu &hm, INT k) {
+bool ncursesui::horizontalmenukeys(horizontalmenu &hm, int k) {
     bool r = thisui.hotkey(k);
     return thisui.terminate || r;
 }
 
 void ncursesui::workareaupdate() {
-    INT i;
+    int i;
 
     if(ed.getfcount()) {
 	ed.redraw();
@@ -786,7 +785,7 @@ void ncursesui::workareaupdate() {
 }
 
 void ncursesui::statusupdate() {
-    INT x, y;
+    int x, y;
     string pname, fname;
 
     if(!project.empty())
@@ -811,8 +810,8 @@ void ncursesui::statusupdate() {
     ed.updatecursor();
 }
 
-bool ncursesui::hotkey(INT k) {
-    INT modifiers = getctrlkeys(), line;
+bool ncursesui::hotkey(int k) {
+    int modifiers = getctrlkeys(), line;
     vector<motorconfiguration::extkey>::const_iterator ek;
     string buf;
     bool r = true;
@@ -826,7 +825,7 @@ bool ncursesui::hotkey(INT k) {
 	    if(ed.getfid()) {
                 ed.getpos(0, &line);
 		debugger.tocursor(ed.getfid(), line+1);
-	    }
+	    }	    
 	    break;
 
         case KEY_F( 5):
@@ -948,7 +947,7 @@ bool ncursesui::hotkey(INT k) {
         case ALT('t'):
 	    maketarget();
 	    break;
-
+        
         case CTRL('x'):
 	    terminate = true;
 	    break;
@@ -990,7 +989,7 @@ void ncursesui::textbox(const string &text, const string &title) {
     db.setbrowser(new textbrowser(getcolor(cp_menu)));
 
     db.setbar(new horizontalbar(getcolor(cp_menu),
-	getcolor(cp_menusel), _("Ok"), NULL_CONST_STR));
+	getcolor(cp_menusel), _("Ok"), 0));
 
     db.getwindow()->set_title(getcolor(cp_menuhl), title);
     db.getbrowser()->setbuf(text);
@@ -999,7 +998,7 @@ void ncursesui::textbox(const string &text, const string &title) {
     db.close();
 }
 
-INT ncursesui::texteditboxkeys(texteditor &ed, INT k) {
+int ncursesui::texteditboxkeys(texteditor &ed, int k) {
     switch(k) {
         case CTRL('x'):
 	    thisui.texteditok = true;
@@ -1093,7 +1092,7 @@ void ncursesui::help() {
 }
 
 vector<motorui::editfile> ncursesui::geteditfiles() {
-    INT saven, i, x, y;
+    int saven, i, x, y;
     vector<motorui::editfile> v;
 
     saven = ed.getfnum();
@@ -1113,9 +1112,9 @@ vector<motorui::editfile> ncursesui::geteditfiles() {
 }
 
 vector<string> ncursesui::geteditfile(const string &fname) {
-    INT saven, i;
+    int saven, i;
     string buf;
-    stringstream st;
+    strstream st;
     vector<string> r;
 
     for(i = 0; i < ed.getfcount(); i++) {
@@ -1135,8 +1134,8 @@ vector<string> ncursesui::geteditfile(const string &fname) {
 }
 
 string ncursesui::inputskel(const string &initval, const string &text, bool selmode) {
-    INT line = LINES-2;
-    INT mright = COLS-text.size();
+    int line = LINES-2;
+    int mright = COLS-text.size();
     screenarea sarea(0, line, COLS, line);
 
     attrset(getcolor(cp_input));
@@ -1162,7 +1161,7 @@ string ncursesui::inputskel(const string &initval, const string &text, bool selm
 void ncursesui::initelements() {
     inp.setcolor(getcolor(cp_input), getcolor(cp_menufr));
 
-    selwindow = textwindow(0, 0, (INT) (DIALOG_WIDTH*0.8),
+    selwindow = textwindow(0, 0, (int) (DIALOG_WIDTH*0.8),
 	DIALOG_HEIGHT, getcolor(cp_menufr), TW_CENTERED);
 
     selector.setcolor(getcolor(cp_menu), getcolor(cp_menuhl),
@@ -1196,9 +1195,9 @@ void ncursesui::populatesettingstree(treeview &tree) {
     tree.clear();
     project.getflags(cflags, lflags);
 
-    INT nmain = tree.addnode(0, getcolor(cp_menuhl), NULL, _(" Main "));
-    INT nvcs = tree.addnode(0, getcolor(cp_menuhl), NULL, _(" Version control "));
-    INT nmake = tree.addnode(0, getcolor(cp_menuhl), NULL, _(" Make "));
+    int nmain = tree.addnode(0, getcolor(cp_menuhl), 0, _(" Main "));
+    int nvcs = tree.addnode(0, getcolor(cp_menuhl), 0, _(" Version control "));
+    int nmake = tree.addnode(0, getcolor(cp_menuhl), 0, _(" Make "));
 
     tree.addleaff(nmain, 0, 10, _(" Version : %s "), project.getversion().c_str());
     tree.addleaff(nmain, 0, 11, _(" Template : %s "), project.gettemplatename().c_str());
@@ -1222,7 +1221,7 @@ void ncursesui::populatesettingstree(treeview &tree) {
 }
 
 bool ncursesui::projectsettings() {
-    INT n, b, nfiles;
+    int n, b, nfiles;
     void *p;
     dialogbox db;
     string cflags, lflags, buf;
@@ -1236,14 +1235,14 @@ bool ncursesui::projectsettings() {
     db.settree(new treeview(getcolor(cp_menu), getcolor(cp_menusel),
 	getcolor(cp_menu), getcolor(cp_menu)));
     db.setbar(new horizontalbar(getcolor(cp_menu), getcolor(cp_menusel),
-	_("Change"), NULL_CONST_STR));
+	_("Change"), 0));
 
     nfiles = ed.getfcount();
     for(bool fin = false; nfiles == ed.getfcount() && !fin; ) {
 	populatesettingstree(*db.gettree());
         if(fin = !db.open(n, b, &p)) break;
 
-        switch((INT) p) {
+        switch((intptr_t)p) {
             case 10:
 		if(input(motorui::text, buf = project.getversion(),
 		_("version: ")) == motorui::yes) {
@@ -1315,7 +1314,7 @@ motorui::askresult ncursesui::input(motorui::inputkind kind, string &result,
 const string &prompt) {
     string text;
     bool fselmode;
-    INT fseloptions = 0;
+    int fseloptions = 0;
 
     selwindow.set_title(getcolor(cp_menuhl), _(" <Ins> select; <Space> confirm; <Esc> cancel "));
 
@@ -1357,7 +1356,7 @@ typedef pair<motorfile *, motorfolder *> shitpair;
 vector<shitpair> treeshit;
 
 void ncursesui::populatecontentstree(treeview &tree, motorproject &mp, projeditaction pea, bool setcurrent) {
-    INT foldid, id, cfid = -1, i, sid;
+    int foldid, id, cfid = -1, i, sid;
     vector<motorfolder>::iterator ifold;
     vector<motorfile>::iterator ifile;
     static vector<string> cnodes;
@@ -1369,7 +1368,7 @@ void ncursesui::populatecontentstree(treeview &tree, motorproject &mp, projedita
 	    id = tree.getid(i);
 
 	    if(tree.isnode(id))
-		if(sid = (INT) tree.getref(id))
+		if(sid = (intptr_t) tree.getref(id))
 		    if(!tree.isnodeopen(id))
 			cnodes.push_back(treeshit[sid-1].second->gettagname());
 	}
@@ -1406,7 +1405,7 @@ void ncursesui::populatecontentstree(treeview &tree, motorproject &mp, projedita
 }
 
 bool ncursesui::projectcontents(projeditaction pea, bool setcurrent) {
-    INT n, b, citem, id;
+    int n, b, citem, id;
     dialogbox db;
     string buf, head, fname;
     motorfolder *fold;
@@ -1422,13 +1421,13 @@ bool ncursesui::projectcontents(projeditaction pea, bool setcurrent) {
 	case pfiles:
 	    head = _(" Project files ");
     	    db.setbar(new horizontalbar(getcolor(cp_menu),
-		getcolor(cp_menusel), _("Add"), _("Remove"), _("Edit"), NULL_CONST_STR));
+		getcolor(cp_menusel), _("Add"), _("Remove"), _("Edit"), 0));
     	    db.getbar()->item = 2;
 	    break;
 	case pdirs:
 	    head = _(" Project directories ");
     	    db.setbar(new horizontalbar(getcolor(cp_menu),
-		getcolor(cp_menusel), _("Add"), _("Remove"), NULL_CONST_STR));
+		getcolor(cp_menusel), _("Add"), _("Remove"), 0));
 	    break;
     }
 
@@ -1583,7 +1582,7 @@ bool ncursesui::projectcontents(projeditaction pea, bool setcurrent) {
 }
 
 string ncursesui::selectprojectfile(motorproject mp) {
-    INT n, b, citem;
+    int n, b, citem;
     string rc;
     dialogbox db;
     motorfolder *fold;
@@ -1600,7 +1599,7 @@ string ncursesui::selectprojectfile(motorproject mp) {
 	    getcolor(cp_menu), getcolor(cp_menu)));
 
 	db.setbar(new horizontalbar(getcolor(cp_menu),
-	    getcolor(cp_menusel), _("Open"), NULL_CONST_STR));
+	    getcolor(cp_menusel), _("Open"), 0));
 
 	treeview &tree = *db.gettree();
 	populatecontentstree(tree, mp, pfiles, false);
@@ -1632,7 +1631,7 @@ bool ncursesui::autosave() {
 
 void ncursesui::writeoutput(const string &text) {
     vector<string>::iterator il;
-    INT pos, len = COLS-2, ln;
+    int pos, len = COLS-2, ln;
     string line;
 
     if(text.empty()) {
@@ -1658,7 +1657,7 @@ void ncursesui::writeoutput(const string &text) {
 
 	for(; il != outlines.end(); il++, ln++) {
     	    mvhline(ln, 0, ' ', COLS);
-
+        
 	    if(il->substr(0, 1) == "\001") {
         	kwriteat(0, ln, il->c_str()+1, boldcolor(0));
     	    } else {
@@ -1703,7 +1702,7 @@ void ncursesui::showoutput() {
 void ncursesui::pointmessage() {
     string lmsg;
     string::iterator i;
-    INT k;
+    int k;
 
     if(!currentmsg->fname.empty())
 	loadeditfile(editfile(currentmsg->fname, 0, currentmsg->line));
@@ -1722,7 +1721,7 @@ void ncursesui::pointmessage() {
 }
 
 void ncursesui::showmessages() {
-    INT h, pos;
+    int h, pos;
     verticalmenu rm;
     vector<motorexecutor::message>::const_iterator i;
     bool curfound = false, start = false;
@@ -1770,7 +1769,7 @@ void ncursesui::nextmessage() {
 
 bool ncursesui::createproject() {
     dialogbox db;
-    INT nopt, nproj, citem, n, b;
+    int nopt, nproj, citem, n, b;
     bool ret = false, gnudoc, gettextized, gensource;
     enum {cmscratch, cmfiles, cmvcs} mode = cmscratch;
     string templname, pname, rootdir, vcsroot, vcsmodule, vcsrevision, buf, savename;
@@ -1792,7 +1791,7 @@ bool ncursesui::createproject() {
         _(" Create a new project ")));
 
     db.setbar(new horizontalbar(getcolor(cp_menu), getcolor(cp_menusel),
-	_("Change"), _("Create"), NULL_CONST_STR));
+	_("Change"), _("Create"), 0));
 
     db.settree(new treeview(getcolor(cp_menu), getcolor(cp_menusel),
         getcolor(cp_menu), getcolor(cp_menu)));
@@ -1802,7 +1801,7 @@ bool ncursesui::createproject() {
     for(bool fin = false; !fin; ) {
         tree.clear();
 
-        nproj = tree.addnode(0, getcolor(cp_menuhl), NULL, _(" Project "));
+        nproj = tree.addnode(0, getcolor(cp_menuhl), 0, _(" Project "));
 
         tree.addleaff(nproj, 0, 10, _(" Creation mode : %s "),
             mode == cmscratch ? _("from scratch") :
@@ -1816,7 +1815,7 @@ bool ncursesui::createproject() {
         tree.addleaff(nproj, 0, 19, _(" Use GNU gettext for internationalization : %s "), BOOL_TO_STR(gettextized));
 
         if(mode != cmfiles) {
-            nopt = tree.addnode(0, getcolor(cp_menuhl), NULL, _(" Creation "));
+            nopt = tree.addnode(0, getcolor(cp_menuhl), 0, _(" Creation "));
 
 	    if(mode == cmscratch) {
         	tree.addleaff(nopt, 0, 16, _(" Generate inital source: %s "), BOOL_TO_STR(gensource));
@@ -1855,7 +1854,7 @@ bool ncursesui::createproject() {
                     case 11:
                         templname = selecttemplate(templname);
                         break;
-
+                        
                     case 12:
                         if(input(motorui::text, pname, _("project name: ")) == motorui::yes) {
                             buf = rootdir.substr(0, conf.getdefaultprojectsdir().size());
@@ -1865,7 +1864,7 @@ bool ncursesui::createproject() {
                             }
                         }
                         break;
-
+                        
                     case 13:
 			input(motorui::directory, rootdir, _("root directory: "));
                         if(pname.empty()) pname = justfname(rootdir);
@@ -1877,7 +1876,7 @@ bool ncursesui::createproject() {
 				motorproject::automake :
                         	motorproject::manual;
                         break;
-
+                        
                     case 15: gnudoc = !gnudoc; break;
                     case 16: gensource = !gensource; break;
 
@@ -2008,7 +2007,7 @@ bool ncursesui::createproject() {
 }
 
 void ncursesui::dist() {
-    INT maxl, i, b, fid;
+    int maxl, i, b, fid;
     bool r, fin, first;
     textwindow *wdist;
     dialogbox db;
@@ -2041,7 +2040,7 @@ void ncursesui::dist() {
         getcolor(cp_menu), getcolor(cp_menu)));
 
     db.setbar(new horizontalbar(getcolor(cp_menu),
-        getcolor(cp_menusel), _("Change"), _("Go!"), NULL_CONST_STR));
+        getcolor(cp_menusel), _("Change"), _("Go!"), 0));
 
     di = project.distbegin();
     treeview &tree = *db.gettree();
@@ -2049,17 +2048,17 @@ void ncursesui::dist() {
     for(fin = r = false, first = true; !fin && !r; ) {
         tree.clear();
 
-        i = tree.addnode(0, getcolor(cp_menuhl), NULL, _(" Format "));
-        fid = tree.addleaf(i, 0, NULL, " " + di->getname() + " ");
+        i = tree.addnode(0, getcolor(cp_menuhl), 0, _(" Format "));
+        fid = tree.addleaf(i, 0, 0, " " + di->getname() + " ");
 
-        i = tree.addnode(0, getcolor(cp_menuhl), NULL, _(" Out directory "));
-        tree.addleaf(i, 0, NULL, " " + distdir + " ");
+        i = tree.addnode(0, getcolor(cp_menuhl), 0, _(" Out directory "));
+        tree.addleaf(i, 0, 0, " " + distdir + " ");
 
 	for(pi = di->parambegin(); pi != di->paramend(); ++pi) {
 	    if(pi == di->parambegin())
-	        i = tree.addnode(0, getcolor(cp_menuhl), NULL, _(" Parameters "));
+	        i = tree.addnode(0, getcolor(cp_menuhl), 0, _(" Parameters "));
 
-	    tree.addleaff(i, 0, NULL, " %s : %s ", pi->title.c_str(), distparams[pi->name].c_str());
+	    tree.addleaff(i, 0, 0, " %s : %s ", pi->title.c_str(), distparams[pi->name].c_str());
 	}
 
         if(first) {
@@ -2100,7 +2099,7 @@ void ncursesui::dist() {
     }
 }
 
-void ncursesui::executordone(const string &target, INT nerr, INT nwarn, INT ninfo) {
+void ncursesui::executordone(const string &target, int nerr, int nwarn, int ninfo) {
     if(nerr || nwarn || ninfo) {
 	logf(_("Finished ~%s~: ~%lu~ errors, ~%lu~ warnings, ~%lu~ infos. ~F6~ to see the list"),
     	    target.c_str(), nerr, nwarn, ninfo);
@@ -2126,19 +2125,19 @@ void ncursesui::projectedit(projeditaction pea, bool setcurrent) {
 }
 
 void ncursesui::maketarget() {
-    static INT pos = 0;
+    static int pos = 0;
     static vector<string> targets;
     dialogbox db;
     string buf, tomake;
     vector<string>::iterator is;
-    INT i, b;
+    int i, b;
 
     db.setwindow(new textwindow(0, 0, DIALOG_WIDTH, DIALOG_HEIGHT,
 	getcolor(cp_menufr), TW_CENTERED, getcolor(cp_menuhl),
 	_(" Make a target.. ")));
     db.setmenu(new verticalmenu(getcolor(cp_menu), getcolor(cp_menusel)));
     db.setbar(new horizontalbar(getcolor(cp_menu), getcolor(cp_menusel),
-	_("Add"), _("Remove"), _("Make"), NULL_CONST_STR));
+	_("Add"), _("Remove"), _("Make"), 0));
 
     db.addkey(KEY_IC, 0);
     db.addkey(KEY_DC, 1);
@@ -2180,7 +2179,7 @@ void ncursesui::maketarget() {
 }
 
 void ncursesui::setdebugcurrentline(const editfile ef) {
-    static INT prevfn, prevline;
+    static int prevfn, prevline;
     static string prevfname;
     vector<breakpoint> bps;
     vector<breakpoint>::iterator ibp;
@@ -2191,7 +2190,7 @@ void ncursesui::setdebugcurrentline(const editfile ef) {
         if(ed.getfid(prevfn)) {
             bps = debugger.getbreakpoints();
 
-            if((ibp = find(bps.begin(), bps.end(), pair<string, INT>(ed.getfid(prevfn), prevline))) != bps.end())
+            if((ibp = find(bps.begin(), bps.end(), pair<string, int>(ed.getfid(prevfn), prevline))) != bps.end())
                 if(ibp->permanent())
                     ed.highlight(prevfn, ibp->getline(), cp_debug_breakpoint);
         }
@@ -2212,10 +2211,10 @@ void ncursesui::setdebugcurrentline(const editfile ef) {
 void ncursesui::evaluate(const string &e) {
     dialogbox db;
     string val, buf;
-    INT i, b, nexp;
+    int i, b, nexp;
     static string re;
 
-    db.setwindow(new textwindow(0, 0, DIALOG_WIDTH, (INT) (DIALOG_HEIGHT*0.45),
+    db.setwindow(new textwindow(0, 0, DIALOG_WIDTH, (int) (DIALOG_HEIGHT*0.45),
         getcolor(cp_menufr), TW_CENTERED,
 	getcolor(cp_menuhl), _(" Evaluate/Modify ")));
 
@@ -2223,7 +2222,7 @@ void ncursesui::evaluate(const string &e) {
         getcolor(cp_menu), getcolor(cp_menu)));
 
     db.setbar(new horizontalbar(getcolor(cp_menu),
-        getcolor(cp_menusel), _("Change"), NULL_CONST_STR));
+        getcolor(cp_menusel), _("Change"), 0));
 
     if(!e.empty()) re = e;
 
@@ -2236,11 +2235,11 @@ void ncursesui::evaluate(const string &e) {
 
         tree.clear();
 
-        i = tree.addnode(0, getcolor(cp_menuhl), NULL, _(" Expression "));
-        nexp = tree.addleaf(i, 0, NULL, " " + re + " ");
+        i = tree.addnode(0, getcolor(cp_menuhl), 0, _(" Expression "));
+        nexp = tree.addleaf(i, 0, 0, " " + re + " ");
 
-        i = tree.addnode(0, getcolor(cp_menuhl), NULL, _(" Value "));
-        tree.addleaf(i, 0, NULL, " " + (val.empty() ? _("not available") : val) + " ");
+        i = tree.addnode(0, getcolor(cp_menuhl), 0, _(" Value "));
+        tree.addleaf(i, 0, 0, " " + (val.empty() ? _("not available") : val) + " ");
 
         if(re.empty()) {
             i = 2;
@@ -2264,7 +2263,7 @@ void ncursesui::evaluate(const string &e) {
 
 void ncursesui::settings() {
     dialogbox db;
-    INT n, b, citem;
+    int n, b, citem;
     bool fdispvcs, fdispmake, fdispcomp, fdebugstd, fchecktty, fmcedclip, fsmarttab;
     string fdefprojdir;
 
@@ -2273,7 +2272,7 @@ void ncursesui::settings() {
 	_(" Motor settings ")));
 
     db.setbar(new horizontalbar(getcolor(cp_menu),
-	getcolor(cp_menusel), _("Change"), _("Done"), NULL_CONST_STR));
+	getcolor(cp_menusel), _("Change"), _("Done"), 0));
 
     db.settree(new treeview(getcolor(cp_menu), getcolor(cp_menusel),
         getcolor(cp_menu), getcolor(cp_menu)));
@@ -2291,20 +2290,20 @@ void ncursesui::settings() {
     for(bool fin = false; !fin; ) {
 	tree.clear();
 
-	n = tree.addnode(0, getcolor(cp_menuhl), NULL, _(" Show the run-time output "));
+	n = tree.addnode(0, getcolor(cp_menuhl), 0, _(" Show the run-time output "));
 	tree.addleaff(n, 0, 1, _(" show compiler output : %s "), BOOL_TO_STR(fdispcomp));
 	tree.addleaff(n, 0, 2, _(" show VCS output : %s "), BOOL_TO_STR(fdispvcs));
 	tree.addleaff(n, 0, 3, _(" show make output : %s "), BOOL_TO_STR(fdispmake));
 
-	n = tree.addnode(0, getcolor(cp_menuhl), NULL, _(" Debugger "));
+	n = tree.addnode(0, getcolor(cp_menuhl), 0, _(" Debugger "));
         tree.addleaff(n, 0, 5, _(" debug standard headers : %s "), BOOL_TO_STR(fdebugstd));
         tree.addleaff(n, 0, 7, _(" disable free tty check : %s "), BOOL_TO_STR(!fchecktty));
 
-	n = tree.addnode(0, getcolor(cp_menuhl), NULL, _(" Editor "));
+	n = tree.addnode(0, getcolor(cp_menuhl), 0, _(" Editor "));
 	tree.addleaff(n, 0, 9, _(" enable \"smart tabs\" feature : %s "), BOOL_TO_STR(fsmarttab));
 	tree.addleaff(n, 0, 8, _(" enable mcedit clipboard integration : %s "), BOOL_TO_STR(fmcedclip));
 
-	n = tree.addnode(0, getcolor(cp_menuhl), NULL, _(" Directories and paths "));
+	n = tree.addnode(0, getcolor(cp_menuhl), 0, _(" Directories and paths "));
 	tree.addleaff(n, 0, 6, _(" default directory for projects : %s "), fdefprojdir.c_str());
 
 	if(!db.open(n, b, (void **) &citem)) break;
@@ -2340,7 +2339,7 @@ void ncursesui::settings() {
 }
 
 void ncursesui::extkeylist() {
-    INT count, i;
+    int count, i;
     vector<motorconfiguration::extkey>::const_iterator ik;
     verticalmenu m(getcolor(cp_menufr), getcolor(cp_menusel));
 
@@ -2349,7 +2348,7 @@ void ncursesui::extkeylist() {
 	    m.additem(" " + ik->description());
 	}
 
-	m.setwindow(textwindow(1, 1, (INT) (COLS*0.8), count > LINES-4 ? LINES-4 : count+2,
+	m.setwindow(textwindow(1, 1, (int) (COLS*0.8), count > LINES-4 ? LINES-4 : count+2,
 	    getcolor(cp_menufr), 0, getcolor(cp_menuhl), _(" External programs ")));
 
 	i = m.open();
@@ -2376,8 +2375,8 @@ void ncursesui::reloadeditfiles() {
     }
 }
 
-void ncursesui::externalexec(INT options, const string &cmd) {
-    INT i;
+void ncursesui::externalexec(int options, const string &cmd) {
+    int i;
     string s;
 
     if(autosave()) {
@@ -2400,7 +2399,7 @@ void ncursesui::externalexec(INT options, const string &cmd) {
 
 void ncursesui::showbreakpoints() {
     dialogbox db;
-    INT n, b, i;
+    int n, b, i;
     vector<breakpoint> bps;
     vector<breakpoint>::iterator ib;
     editfile ef;
@@ -2413,7 +2412,7 @@ void ncursesui::showbreakpoints() {
         getcolor(cp_menu), getcolor(cp_menu)));
 
     db.setbar(new horizontalbar(getcolor(cp_menu),
-        getcolor(cp_menusel), _("Remove"), _("Goto"), NULL_CONST_STR));
+        getcolor(cp_menusel), _("Remove"), _("Goto"), 0));
 
     db.addkey(KEY_DC, 0);
     db.getbar()->item = 1;
@@ -2424,7 +2423,7 @@ void ncursesui::showbreakpoints() {
         tree.clear();
 
 	if(ed.getfid()) {
-	    INT x, y;
+	    int x, y;
 	    ed.getpos(&x, &y);
 	    ef = editfile(ed.getfid(), x, y+1);
 	}
@@ -2464,7 +2463,7 @@ void ncursesui::showbreakpoints() {
 }
 
 void ncursesui::generate() {
-    INT n, b;
+    int n, b;
     dialogbox db;
     vector<sourcetemplate> tg;
     vector<sourcetemplate>::const_iterator it;
@@ -2478,7 +2477,7 @@ void ncursesui::generate() {
     db.setmenu(new verticalmenu(getcolor(cp_menu), getcolor(cp_menusel)));
 
     db.setbar(new horizontalbar(getcolor(cp_menu), getcolor(cp_menusel),
-	_("Mark"), _("Generate"), NULL_CONST_STR));
+	_("Mark"), _("Generate"), 0));
 
     db.addkey(' ', 0);
     verticalmenu &menu = *db.getmenu();
@@ -2528,7 +2527,7 @@ void ncursesui::arguments() {
 void ncursesui::loadcore() {
     dialogbox db;
     string corefname, r;
-    INT n, b;
+    int n, b;
 
     if(input(motorui::file, corefname = project.getrootdir() + "/core",
     _("Core dump to explore: ")) == motorui::yes) {
@@ -2540,7 +2539,7 @@ void ncursesui::loadcore() {
 	        _(" Core dump load results ")));
 
             db.setbar(new horizontalbar(getcolor(cp_menu),
-                getcolor(cp_menusel), _("Inspect stack"), _("Close"), NULL_CONST_STR));
+                getcolor(cp_menusel), _("Inspect stack"), _("Close"), 0));
 
             db.setbrowser(new textbrowser(getcolor(cp_menu)));
             db.getbrowser()->setbuf(r);
@@ -2560,8 +2559,8 @@ bool ncursesui::showstack() {
     dialogbox db;
     vector<stackitem> stack;
     vector<stackitem>::iterator i;
-    static INT savecount = 0, citem;
-    INT n, b;
+    static int savecount = 0, citem;
+    int n, b;
     string desc;
 
     start = false;
@@ -2573,7 +2572,7 @@ bool ncursesui::showstack() {
 
 	db.setmenu(new verticalmenu(getcolor(cp_menu), getcolor(cp_menusel)));
         db.setbar(new horizontalbar(getcolor(cp_menu), getcolor(cp_menusel),
-	    _("Info"), _("Go to"), NULL_CONST_STR));
+	    _("Info"), _("Go to"), 0));
 
 	db.getbar()->item = 1;
 
@@ -2663,14 +2662,14 @@ void ncursesui::setdesktop(const vector< pair<string, string> > &asettings) {
 }
 
 vector< pair<string, string > > ncursesui::getdesktop() const {
-    INT pn;
+    int pn;
     vector< pair<string, string> > r;
 
     r.push_back(pair<string, string>("ncurses_watchactive",
 	watcher.visible() ? "1" : "0"));
 
     r.push_back(pair<string, string>("distdir", distdir));
-    r.push_back(pair<string, string>("tagbrowser_scope", i2str((INT) tagbrowser.getscope())));
+    r.push_back(pair<string, string>("tagbrowser_scope", i2str((int) tagbrowser.getscope())));
     r.push_back(pair<string, string>("tagbrowser_filter", uitb.getfilter()));
 
     pn = 0;
@@ -2709,11 +2708,11 @@ motorui::askresult ncursesui::notemplate(string &templname) const {
 
 bool ncursesui::editbuildoptions(motorfile &f) const {
     dialogbox db;
-    INT i, n, b, citem;
+    int i, n, b, citem;
     bool enabled, start;
     motorfile::build bd = f.getbuild();
 
-    db.setwindow(new textwindow(0, 0, (INT) (DIALOG_WIDTH*0.9), (INT) (DIALOG_HEIGHT*0.6),
+    db.setwindow(new textwindow(0, 0, (int) (DIALOG_WIDTH*0.9), (int) (DIALOG_HEIGHT*0.6),
         getcolor(cp_menufr), TW_CENTERED,
 	getcolor(cp_menuhl), _(" %s build options "),
 	f.getfname().c_str()));
@@ -2722,7 +2721,7 @@ bool ncursesui::editbuildoptions(motorfile &f) const {
         getcolor(cp_menu), getcolor(cp_menu)));
 
     db.setbar(new horizontalbar(getcolor(cp_menu),
-        getcolor(cp_menusel), _("Change"), _("Done"), NULL_CONST_STR));
+        getcolor(cp_menusel), _("Change"), _("Done"), 0));
 
     treeview &tree = *db.gettree();
 
@@ -2732,11 +2731,11 @@ bool ncursesui::editbuildoptions(motorfile &f) const {
     for(bool fin = false; !fin; ) {
         tree.clear();
 
-        i = tree.addnode(0, getcolor(cp_menuhl), NULL, _(" General "));
+        i = tree.addnode(0, getcolor(cp_menuhl), 0, _(" General "));
         tree.addleaff(i, 0, 1, _(" Enable optional build : %s "), BOOL_TO_STR(enabled));
 
 	if(enabled) {
-	    i = tree.addnode(0, getcolor(cp_menuhl), NULL, _(" Build "));
+	    i = tree.addnode(0, getcolor(cp_menuhl), 0, _(" Build "));
 	    tree.addleaff(i, 0, 2, _(" Parameter name (--enable-xxx) : %s "), bd.param.c_str());
 	    tree.addleaff(i, 0, 3, _(" Parameter help text : %s "), bd.help.c_str());
 	    tree.addleaff(i, 0, 4, _(" Enabled by default : %s "), BOOL_TO_STR(bd.def));

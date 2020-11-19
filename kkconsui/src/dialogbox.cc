@@ -84,7 +84,7 @@ textbrowser *dialogbox::getbrowser() {
     return browser;
 }
 
-bool dialogbox::open(INT &menuitem, INT &baritem, void **ref) {
+bool dialogbox::open(int &menuitem, int &baritem, void **ref) {
     bool ret = false;
     list<keybarassociation>::iterator i;
 
@@ -105,7 +105,7 @@ bool dialogbox::open(INT &menuitem, INT &baritem, void **ref) {
 	ret = menuitem;
     } else if(bar) {
 	bool fin, proceed;
-	INT k;
+	int k;
 	menuitem = 0;
 
 	for(bool fin = false; !fin; ) {
@@ -156,13 +156,13 @@ bool dialogbox::open(INT &menuitem, INT &baritem, void **ref) {
     return ret;
 }
 
-bool dialogbox::open(INT &menuitem) {
-    INT bi;
+bool dialogbox::open(int &menuitem) {
+    int bi;
     return open(menuitem, bi);
 }
 
 bool dialogbox::open() {
-    INT menuitem, bi;
+    int menuitem, bi;
     return open(menuitem, bi);
 }
 
@@ -180,7 +180,7 @@ void dialogbox::redraw() {
 	    bar->redraw();
 	}
 
-	INT x1 = window->x1 + (window->isbordered() ? 1 : 0);
+	int x1 = window->x1 + (window->isbordered() ? 1 : 0);
 
 	if(menu) {
 	    menu->setcoords(x1, window->y1+1, window->x2, bar ? window->y2-2 : window->y2);
@@ -192,7 +192,7 @@ void dialogbox::redraw() {
 	    tree->menu.idle = &menuidle;
 	    tree->menu.otherkeys = &menukeys;
 	} else if(browser) {
-	    INT x2 = window->x2 - (window->isbordered() ? 1 : 0);
+	    int x2 = window->x2 - (window->isbordered() ? 1 : 0);
 
 	    browser->setcoords(window->x1+1, window->y1+1, x2,
 		bar ? window->y2-2 : window->y2);
@@ -214,12 +214,12 @@ void dialogbox::clearkeys() {
     kba.clear();
 }
 
-void dialogbox::addkey(INT key, INT baritem) {
+void dialogbox::addkey(int key, int baritem) {
     kba.push_back(keybarassociation(key, baritem));
 }
 
 void dialogbox::addautokeys() {
-    INT key;
+    int key;
     vector<string>::const_iterator i;
     string::const_iterator c;
 
@@ -255,10 +255,10 @@ void dialogbox::browseridle(textbrowser &caller) {
     }
 }
 
-INT dialogbox::menukeys(verticalmenu &caller, INT k) {
+int dialogbox::menukeys(verticalmenu &caller, int k) {
     list<keybarassociation>::iterator i;
     bool found;
-    INT ip;
+    int ip;
     dialogbox *sit;
 
     switch(k) {
@@ -273,7 +273,7 @@ INT dialogbox::menukeys(verticalmenu &caller, INT k) {
 	case '+':
 	    if(it->tree)
 	    if(it->tree->collapsable) {
-		INT nid = it->tree->getid(it->tree->menu.getpos());
+		int nid = it->tree->getid(it->tree->menu.getpos());
 
 		if(it->tree->isnode(nid)) {
 		    if(it->tree->isnodeopen(nid)) it->tree->closenode(nid);
@@ -311,10 +311,10 @@ INT dialogbox::menukeys(verticalmenu &caller, INT k) {
     return -1;
 }
 
-INT dialogbox::browserkeys(textbrowser &caller, INT k) {
+int dialogbox::browserkeys(textbrowser &caller, int k) {
     list<keybarassociation>::iterator i;
     bool found;
-    INT ip;
+    int ip;
     dialogbox *sit;
 
     switch(k) {
@@ -354,15 +354,15 @@ INT dialogbox::browserkeys(textbrowser &caller, INT k) {
 
 // ----------------------------------------------------------------------------
 
-dialogbox::keybarassociation::keybarassociation(INT nkey, INT nbarit) {
+dialogbox::keybarassociation::keybarassociation(int nkey, int nbarit) {
     key = nkey;
     baritem = nbarit;
 }
 
-bool dialogbox::keybarassociation::operator == (const INT akey) {
+bool dialogbox::keybarassociation::operator == (const int akey) {
     return key == akey;
 }
 
-bool dialogbox::keybarassociation::operator != (const INT akey) {
+bool dialogbox::keybarassociation::operator != (const int akey) {
     return !(*this == akey);
 }

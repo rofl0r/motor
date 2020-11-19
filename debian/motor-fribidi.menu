@@ -1,0 +1,2 @@
+?package(motor-fribidi):needs="text" section="Apps/Programming"\
+  title="Motor FriBiDi" command="/usr/bin/motor-fribidi"

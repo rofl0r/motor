@@ -32,8 +32,8 @@ vector<projectname> motormanager::getprojectlist() {
     return result;
 }
 
-INT motormanager::addtemplate(const char *file, const struct stat *sb, INT flag) {
-    INT pos;
+int motormanager::addtemplate(const char *file, const struct stat *sb, int flag) {
+    int pos;
     string tname = file, buf;
 
     if(flag == FTW_F)
@@ -67,7 +67,7 @@ vector<string> motormanager::getvcslist() {
     struct dirent *e;
     vector<string> r;
     string dname, fname;
-    INT i, dp;
+    int i, dp;
 
     for(i = 0; i < 2; i++) {
 	if(i) {

@@ -1,0 +1,10 @@
+Document: motor
+Title: Motor manual
+Author: Konstantin Nickolayevich Klyagin <konst@konst.org.ua>
+Abstract: This manual describes what motor is and how it can be used to 
+ making project, programming etc.
+Section: devel
+
+Format: HTML
+Index: /usr/share/doc/motor-common/tutorial/index.html
+Files: /usr/share/doc/motor-common/tutorial/*.html

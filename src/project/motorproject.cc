@@ -14,7 +14,7 @@
 motorproject::motorproject(): gettextized(false) {
 }
 
-motorproject::motorproject(const projectname aname, INT aoptions) {
+motorproject::motorproject(const projectname aname, int aoptions) {
     gettextized = false;
     options = aoptions;
     absorb(aname);
@@ -422,7 +422,7 @@ void motorproject::writemakefunc() {
     chdir();
 }
 
-bool motorproject::create(INT options) {
+bool motorproject::create(int options) {
     bool ret = true;
 
     if(getversion().empty()) {
@@ -555,7 +555,7 @@ bool motorproject::remove() {
     return rc;
 }
 
-void motorproject::import(const string &mask, const string &root, INT options) {
+void motorproject::import(const string &mask, const string &root, int options) {
     DIR *d;
     regex_t r;
     struct dirent *de;
@@ -690,7 +690,7 @@ void motorproject::addgnudoc() {
     executor.clearvars();
 }
 
-bool motorproject::addfile(const motorfile afile, INT options) {
+bool motorproject::addfile(const motorfile afile, int options) {
     bool r;
     vector<motorfolder>::iterator ifold;
 

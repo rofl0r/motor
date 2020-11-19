@@ -1,0 +1,2 @@
+?package(motor):needs="text" section="Apps/Programming"\
+  title="Motor" command="/usr/bin/motor"

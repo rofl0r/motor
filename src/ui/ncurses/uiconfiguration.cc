@@ -15,7 +15,7 @@ uiconfiguration::uiconfiguration() {
 uiconfiguration::~uiconfiguration() {
 }
 
-INT uiconfiguration::getcolor(INT paircode) const {
+int uiconfiguration::getcolor(int paircode) const {
     return find(boldcolors.begin(), boldcolors.end(), paircode) != boldcolors.end() ?
         boldcolor(paircode) : normalcolor(paircode);
 }
@@ -23,7 +23,7 @@ INT uiconfiguration::getcolor(INT paircode) const {
 void uiconfiguration::readthemes() {
     ifstream f;
     string buf, sub, color, sect;
-    INT nspos, ntpos, npos, npair, nfg, nbg, i;
+    int nspos, ntpos, npos, npair, nfg, nbg, i;
     bool schemeread = false;
     
     boldcolors.clear();
@@ -141,7 +141,7 @@ string uiconfiguration::getclipboardfname() const {
     return r;
 }
 
-INT uiconfiguration::getwatchlines() const {
+int uiconfiguration::getwatchlines() const {
     return 6;
 }
 
@@ -167,7 +167,7 @@ void uiconfiguration::setsmarttab(bool asmarttab) {
 
 // ----------------------------------------------------------------------------
 
-uiconfiguration::syntaxcolorpair::syntaxcolorpair(INT aid, INT apair, bool abold) {
+uiconfiguration::syntaxcolorpair::syntaxcolorpair(int aid, int apair, bool abold) {
     id = aid;
     pair = apair;
     bold = abold;
@@ -176,7 +176,7 @@ uiconfiguration::syntaxcolorpair::syntaxcolorpair(INT aid, INT apair, bool abold
 uiconfiguration::syntaxcolorpair::~syntaxcolorpair() {
 }
 
-INT uiconfiguration::syntaxcolorpair::getpairnumber() {
+int uiconfiguration::syntaxcolorpair::getpairnumber() {
     return pair;
 }
 
@@ -184,17 +184,17 @@ bool uiconfiguration::syntaxcolorpair::isbold() {
     return bold;
 }
 
-bool uiconfiguration::syntaxcolorpair::operator == (const INT &aid) {
+bool uiconfiguration::syntaxcolorpair::operator == (const int &aid) {
     return id == aid;
 }
 
-bool uiconfiguration::syntaxcolorpair::operator != (const INT &aid) {
+bool uiconfiguration::syntaxcolorpair::operator != (const int &aid) {
     return !(*this == aid);
 }
 
 // ----------------------------------------------------------------------------
 
-uiconfiguration::syntaxitem::syntaxitem(const string &afname, INT id) {
+uiconfiguration::syntaxitem::syntaxitem(const string &afname, int id) {
     first = afname;
     second = id;
 }

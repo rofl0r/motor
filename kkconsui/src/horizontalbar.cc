@@ -24,31 +24,31 @@
 
 #include "horizontalbar.h"
 
-horizontalbar::horizontalbar(INT x, INT y, INT nc, INT sc, ...):
+horizontalbar::horizontalbar(int x, int y, int nc, int sc, ...):
 done(false), item(0), previtem(-1), scolor(sc), ncolor(nc) {
-    const char *p;
+    char *p;
     va_list ap;
 
     setcoords(x, y);
     va_start(ap, sc);
-    while(p = va_arg(ap, const char *)) items.push_back((string) p);
+    while(p = va_arg(ap, char *)) items.push_back((string) p);
     va_end(ap);
 }
 
-horizontalbar::horizontalbar(INT nc, INT sc, ...):
+horizontalbar::horizontalbar(int nc, int sc, ...):
 done(false), item(0), previtem(-1), scolor(sc), ncolor(nc) {
-    const char *p;
+    char *p;
     va_list ap;
 
     va_start(ap, sc);
-    while(p = va_arg(ap, const char *)) items.push_back((string) p);
+    while(p = va_arg(ap, char *)) items.push_back((string) p);
     va_end(ap);
 }
 
 horizontalbar::~horizontalbar() {
 }
 
-void horizontalbar::movebar(INT k) {
+void horizontalbar::movebar(int k) {
     previtem = item;
     done = false;
 
@@ -72,7 +72,7 @@ void horizontalbar::movebar(INT k) {
 	    item = -1;
 	    break;
     }
-
+    
     switch(k) {
 	case KEY_RIGHT:
 	case KEY_UP:
@@ -84,7 +84,7 @@ void horizontalbar::movebar(INT k) {
 }
 
 void horizontalbar::redraw() {
-    INT cx = x1, n;
+    int cx = x1, n;
     vector<string>::iterator i;
 
     for(i = items.begin(), n = 0; i != items.end(); n++, i++) {
@@ -94,7 +94,7 @@ void horizontalbar::redraw() {
 }
 
 void horizontalbar::update() {
-    INT cx = x1, n;
+    int cx = x1, n;
     vector<string>::iterator i;
 
     for(i = items.begin(), n = 0; i != items.end(); i++, n++) {
@@ -107,7 +107,7 @@ void horizontalbar::update() {
 
 void horizontalbar::align(bamode m) {
     vector<string>::iterator i;
-
+    
     switch(m) {
 	case baleft:
 	    for(i = items.begin(); i != items.end(); i++) {
@@ -118,7 +118,7 @@ void horizontalbar::align(bamode m) {
     }
 }
 
-void horizontalbar::setcoords(INT x, INT y) {
+void horizontalbar::setcoords(int x, int y) {
     x1 = x, y1 = y;
 }
 

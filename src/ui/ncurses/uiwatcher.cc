@@ -11,9 +11,9 @@ uiwatcher::uiwatcher() {
 uiwatcher::~uiwatcher() {
 }
 
-INT uiwatcher::keyhandler(verticalmenu &m, INT k) {
+int uiwatcher::keyhandler(verticalmenu &m, int k) {
     vector<string> ws;
-    INT r;
+    int r;
 
     m.clearonfocuslost = false;
     r = -1;
@@ -105,7 +105,7 @@ void uiwatcher::update() {
 }
 
 void uiwatcher::exec() {
-    INT i;
+    int i;
     vector<string> ws;
     vector<string>::iterator iw;
 

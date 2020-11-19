@@ -4,7 +4,7 @@
 
 parserule::parserule(const string &atarget, const string &amask, messagekind akind) {
     string tmbuf;
-    INT npos;
+    int npos;
 
     target = atarget;
     kind = akind;
@@ -40,7 +40,7 @@ parserule::~parserule() {
 
 bool parserule::exec(const string &buf) const {
     bool ret = false;
-    INT i;
+    int i;
     regmatch_t rexm[10];
 
     if(!rexcompiled)
@@ -60,7 +60,7 @@ bool parserule::exec(const string &buf) const {
 
 string parserule::getvalue(const string &n) const {
     string r;
-    INT npos = 0;
+    int npos = 0;
 
     if(!n.empty()) npos = porder.find(n);
     if(npos >= 0 && npos < values.size()) r = values[npos];

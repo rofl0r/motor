@@ -1,0 +1,54 @@
+.TH MOTOR 1 "July 05, 2001"
+
+.SH NAME
+.B motor
+\- text mode based programming environment for Linux/Unix
+
+.SH SYNOPSIS
+.B "motor "
+[
+.B option
+] ... [
+.B project
+]
+
+.SH DESCRIPTION
+This manual page documents briefly the
+.B motor
+command.
+.PP
+\fBmotor\fP is a text mode based programming environment for Linux. It
+consists of a powerful editor with syntax highlight feature, project
+manager, makefile generator, gcc and gdb front-end, etc. Deep CVS
+integration is also provided. It can also generate distribution packages 
+in any format. Almost everything is done using templates, thus any kind of 
+language or distribution can be added easily.  
+
+.SH OPTIONS
+.TP
+\fB\-a\fR, \fB\-\-ascii\fR
+use ascii characters to draw lines and boxes
+.TP
+\fB\-h\fR, \fB\-\-help\fR
+display command line usage
+
+.SH "SEE ALSO"
+.BR make (1),
+.BR gcc (1),
+.BR cvs (1),
+.BR ctags (1),
+.BR gdb (1)
+
+.SH VERSION
+motor 3.1.0
+
+.SH BUG REPORT
+Report any bugs to motor-bugs@konst.org.ua
+
+.SH AUTHOR
+This page and the motor IDE itself are written by Konstatin Klyagin
+<konst@konst.org.ua>. The first version of this man page was by Krzysztof
+Krzyzaniak <eloy@transilvania.eu.org>.
+
+.SH WEB
+http://konst.org.ua/motor/

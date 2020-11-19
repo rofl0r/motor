@@ -1,0 +1,122 @@
+#!/usr/bin/make -f
+# Sample debian/rules that uses debhelper.
+# Modified by Krzysztof Krzyzaniak (eloy)
+# GNU copyright 1997 to 1999 by Joey Hess.
+
+PACKAGE = motor
+#include /usr/share/dpatch/dpatch.make
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+# This has to be exported to make some magic below work.
+export DH_OPTIONS
+
+# This is the debhelper compatability version to use.
+export DH_COMPAT=5
+
+#architecture
+build: patch build-arch build-indep
+
+build-arch: build-arch-stamp
+build-arch-stamp:
+	dh_testdir
+	./configure --prefix=/usr --mandir=\$${prefix}/share/man \
+	--infodir=\$${prefix}/share/info
+	$(MAKE)
+	mv src/motor src/motor-stock
+	$(MAKE) distclean
+	-rm -f config.cache
+	./configure --prefix=/usr --mandir=\$${prefix}/share/man \
+	--infodir=\$${prefix}/share/info --with-fribidi
+	$(MAKE)
+	mv src/motor src/motor-fribidi	
+	touch build-arch-stamp
+
+build-indep: build-indep-stamp
+
+build-indep-stamp:
+	touch build-indep-stamp
+
+clean: unpatch
+	dh_testdir
+	dh_testroot
+	-rm *-stamp
+	-$(MAKE) distclean
+	-rm po/*.gmo
+	-rm intl/libintl.h
+	-rm src/motor-stock src/motor-fribidi
+ifneq "$(wildcard /usr/share/misc/config.sub)" ""
+	cp -f /usr/share/misc/config.sub config.sub
+endif
+ifneq "$(wildcard /usr/share/misc/config.guess)" ""
+	cp -f /usr/share/misc/config.guess config.guess
+endif		
+		-rm config.log
+	dh_clean
+
+install: build
+	dh_testdir
+	dh_testroot
+	dh_installdirs
+	$(MAKE) install-data prefix=$(CURDIR)/debian/motor-common/usr
+	install -d debian/motor-common/usr/share/doc/motor-common/
+	install -m 755 misc/motorsync $(CURDIR)/debian/motor-common/usr/share/doc/motor-common/
+	install -m644 debian/overrides.lintian \
+		$(CURDIR)/debian/motor-common/usr/share/lintian/overrides/motor-common
+	rm -rf debian/motor-common/usr/share/man/				      
+	dh_installdocs -p motor-common
+	dh_installchangelogs -p motor-common ChangeLog
+	cp src/motor-stock src/motor
+	install -m 755 src/motor $(CURDIR)/debian/motor/usr/bin/
+	install -m 755 src/motor-fribidi $(CURDIR)/debian/motor-fribidi/usr/bin/
+	dh_installman -p motor motor.1
+	dh_installman -p motor-fribidi motor-fribidi.1	
+#	cp -a $(CURDIR)/debian/motor-common/usr/share/doc/motor-common/ \
+#	   $(CURDIR)/debian/motor/usr/share/doc/motor
+#	cp -a $(CURDIR)/debian/motor-common/usr/share/doc/motor-common/ \
+#	   $(CURDIR)/debian/motor-fribidi/usr/share/doc/motor-fribidi
+#	-rm $(CURDIR)/debian/motor-fribidi/usr/share/doc/motor-fribidi/changelog.Debian
+#	-rm $(CURDIR)/debian/motor/usr/share/doc/motor/changelog.Debian
+
+# Build architecture-independent files here.
+binary-indep: build install 
+	dh_testdir -i
+	dh_testroot -i
+	dh_installdocs -i -pmotor-common
+	dh_installexamples -i
+	dh_installinfo
+	dh_installmenu -i
+	dh_link -i
+	dh_strip -i
+	dh_compress -i
+	dh_fixperms -i
+	dh_shlibdeps -i
+	dh_installdeb -i
+	dh_gencontrol -i
+	dh_md5sums -i
+	dh_builddeb -i
+
+# Build architecture-dependent files here.
+binary-arch: build install
+	dh_testdir -a
+	dh_testroot -a
+	dh_installdocs -a
+	dh_installexamples -a
+	dh_installinfo -a
+	dh_installmenu -a
+	dh_link -a
+	dh_strip -a
+	dh_installchangelogs -a
+	dh_compress -a
+	dh_fixperms -a
+	dh_shlibdeps -a
+	dh_installdeb -a
+	dh_shlibdeps -a
+	dh_gencontrol -a
+	dh_md5sums -a
+	dh_builddeb -a
+
+
+binary: binary-arch binary-indep
+.PHONY: build clean binary install binary-arch install binary-indep patch unpatch

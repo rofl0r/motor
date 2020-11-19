@@ -7,24 +7,18 @@
 
 #include "kkiproc.h"
 
-#include <sstream>
+#include <strstream>
 #include <iostream>
-#include <memory>
 #include <fcntl.h>
 #include <sys/ioctl.h>
 #include <sys/wait.h>
 #include <signal.h>
+#include <memory>
 
 #ifdef __FreeBSD__
 #include <sys/consio.h>
 #elif __OpenBSD__
 #include <dev/wscons/wsdisplay_usl_io.h>
-#elif __APPLE__
-#include <sys/ioctl.h>
-// couldn't find anything, so porting directly
-#define VT_OPENQRY      0x5600
-#define VT_ACTIVATE     0x5606
-#define VT_WAITACTIVE   0x5607
 #else
 #include <sys/vt.h>
 #endif
@@ -61,8 +55,8 @@ motordebugger::~motordebugger() {
 #endif
 
 bool motordebugger::getfreeterm() {
-    INT fd, vt;
-    stringstream tstr;
+    int fd, vt;
+    strstream tstr;
     ofstream f;
     bool r;
 
@@ -75,7 +69,7 @@ bool motordebugger::getfreeterm() {
 	    if(r = (vt != -1)) {
 		tstr << TTY_PREFIX << TTY_NUMBER;
 		termname = tstr.str();
-		termname.resize(tstr.width());
+		termname.resize(tstr.pcount());
 		termnumber = vt;
 	    }
 
@@ -292,7 +286,7 @@ void motordebugger::step() {
     gonext(debuggercommand::step);
 }
 
-void motordebugger::tocursor(const string &fname, INT line) {
+void motordebugger::tocursor(const string &fname, int line) {
     checkrebuildneed();
     if(!factive) init();
 
@@ -379,7 +373,7 @@ string motordebugger::getvar(const string &vname) {
 
 void motordebugger::readoutput() {
     char rbuf[514];
-    INT br, fd, psize;
+    int br, fd, psize;
     fd_set fds;
     struct timeval tv;
     vector<debuggermessage>::const_iterator im;
@@ -428,7 +422,7 @@ void motordebugger::addbreakpoint(const breakpoint &bp) {
     vector<breakpoint>::iterator ib;
 
     if((ib = find(breakpoints.begin(), breakpoints.end(),
-    pair<string, INT>(bp.getfname(), bp.getline())))
+    pair<string, int>(bp.getfname(), bp.getline())))
     == breakpoints.end()) {
 	breakpoints.push_back(bp);
 
@@ -443,7 +437,7 @@ void motordebugger::addbreakpoint(const breakpoint &bp) {
 void motordebugger::removebreakpoint(const breakpoint &bp) {
     vector<breakpoint>::iterator ib;
 
-    if((ib = find(breakpoints.begin(), breakpoints.end(), pair<string, INT>(bp.getfname(), bp.getline()))) != breakpoints.end()) {
+    if((ib = find(breakpoints.begin(), breakpoints.end(), pair<string, int>(bp.getfname(), bp.getline()))) != breakpoints.end()) {
 	breakpoints.erase(ib);
 
 	if(running()) {
@@ -455,7 +449,7 @@ void motordebugger::removebreakpoint(const breakpoint &bp) {
 }
 
 bool motordebugger::isbreakpoint(const breakpoint &bp) const {
-    return find(breakpoints.begin(), breakpoints.end(), pair<string, INT>(bp.getfname(), bp.getline())) != breakpoints.end();
+    return find(breakpoints.begin(), breakpoints.end(), pair<string, int>(bp.getfname(), bp.getline())) != breakpoints.end();
 }
 
 vector<breakpoint> motordebugger::getbreakpoints() const {
@@ -566,7 +560,7 @@ void motordebugger::getlocation() {
 void motordebugger::react() {
     breakpoint bp;
     string fname, id;
-    INT line;
+    int line;
     vector<breakpoint>::iterator ib;
 
     if(lastdmsg) {
@@ -657,8 +651,8 @@ void motordebugger::setparser(const string &name, const string &value) {
 }
 
 void motordebugger::switchterm(termswitchdirection d) {
-    static INT vtfd = -1;
-    static INT curvt;
+    static int vtfd = -1;
+    static int curvt;
 
     switch(d) {
 	case there:
@@ -689,7 +683,7 @@ string motordebugger::getfname() const {
     return lfname;
 }
 
-INT motordebugger::getline() const {
+int motordebugger::getline() const {
     return lline;
 }
 

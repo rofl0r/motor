@@ -12,7 +12,7 @@ class uigrepper {
 	bool initmode, replacemode;
 	vector<motorui::editfile>::const_iterator currentgrep;
 	string pattern, replacement;
-	INT grepoptions;
+	int grepoptions;
 
 	bool fregexp, fcase, fwhole;
 	motorgrepper::grepmode grepmode;

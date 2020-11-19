@@ -20,12 +20,12 @@ void projectdesk::setarguments(const string &aarguments) {
     arguments = aarguments;
 }
 
-void projectdesk::loadeditfile(const string &afname, INT x, INT y) {
+void projectdesk::loadeditfile(const string &afname, int x, int y) {
     fedit.push_back(motorui::editfile(afname, x, y));
 }
 
 bool projectdesk::load(const projectname aname) {
-    INT ex, ey;
+    int ex, ey;
     string sect, buf, tmbuf;
     ifstream f;
 

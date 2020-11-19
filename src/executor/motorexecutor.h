@@ -13,7 +13,7 @@ class motorexecutor {
 	struct message {
 	    parserule::messagekind kind;
 	    string fname, description;
-	    INT line;
+	    int line;
 	};
 
     private:
@@ -22,7 +22,7 @@ class motorexecutor {
 	vector< pair<string, string> > variables;
 
 	FILE *fpipe;
-	INT nerr, nwarn, ninfo;
+	int nerr, nwarn, ninfo;
 
 	void pop();
 	void piperead();

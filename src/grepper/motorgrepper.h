@@ -17,7 +17,7 @@ class motorgrepper {
     protected:
 	grepmode mode;
 	string pattern;
-	INT options;
+	int options;
 	regex_t re;
 
 	vector<motorui::editfile> openfiles;
@@ -27,13 +27,13 @@ class motorgrepper {
 	void makefilelist();
 	void go();
 	void grepfile(const string &fname);
-	INT grepline(const string &s, INT &subsize, INT frompos);
+	int grepline(const string &s, int &subsize, int frompos);
 
     public:
 	motorgrepper();
 	~motorgrepper();
 
-	void exec(grepmode amode, const string &apattern, INT aoptions);
+	void exec(grepmode amode, const string &apattern, int aoptions);
 	void setadditional(const vector<string> a);
 	    // for the "folders" and "connected" modes
 

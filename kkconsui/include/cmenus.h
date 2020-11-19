@@ -18,19 +18,19 @@ class verticalmenu: public abstractuicontrol {
     private:
 	struct verticalmenuitem {
 	    string text;
-	    INT color, kind;
+	    int color, kind;
 	    void *ref;
 	};
 
 	vector<verticalmenuitem> items;
 	textwindow window;
 
-	INT ncolor, scolor;
-	INT curelem, firstdisp, lastkey;
+	int ncolor, scolor;
+	int curelem, firstdisp, lastkey;
 
 	void initmembers();
 	
-	bool shownelem(INT n, INT selected);
+	bool shownelem(int n, int selected);
 	void showall();
 
 	void checkclear();
@@ -41,15 +41,15 @@ class verticalmenu: public abstractuicontrol {
 	bool cycled;
 	bool exitonedges;
 
-	INT (*otherkeys)(verticalmenu &caller, INT k);
+	int (*otherkeys)(verticalmenu &caller, int k);
 	    // function called on pressing of non-standard menu keys
 	    // should return a number of selected menu item or -1 to
 	    // continue browsing
 
 	void (*idle)(verticalmenu &caller);
 
-	verticalmenu(INT px1, INT py1, INT px2, INT py2, INT pncolor, INT pscolor);
-	verticalmenu(INT pncolor = 0, INT pscolor = 0);
+	verticalmenu(int px1, int py1, int px2, int py2, int pncolor, int pscolor);
+	verticalmenu(int pncolor = 0, int pscolor = 0);
 	~verticalmenu();
 
 	// following special characters are valid in the items text:
@@ -67,43 +67,43 @@ class verticalmenu: public abstractuicontrol {
 	void additemf(const char *fmt, ...);
 	void additem(const string &text);
 
-	void additem(INT color, void *ref, const string &text);
-	void additemf(INT color, void *ref, const char *fmt, ...);
+	void additem(int color, void *ref, const string &text);
+	void additemf(int color, void *ref, const char *fmt, ...);
 
-	void additem(INT color, INT ref, const string &text);
-	void additemf(INT color, INT ref, const char *fmt, ...);
+	void additem(int color, int ref, const string &text);
+	void additemf(int color, int ref, const char *fmt, ...);
 
 	void addline();
-	void addline(INT color, const char *fmt = 0, ...);
+	void addline(int color, const char *fmt = 0, ...);
 
 	void clear();
 	void redraw();
 
 	bool empty();
 
-	INT getcount();
-	INT getlastkey();
-	void *getref(INT n);
+	int getcount();
+	int getlastkey();
+	void *getref(int n);
 
-	INT getpos();
-	void getpos(INT &cur, INT &first);
-	void setpos(INT cur, INT first = -1);
-	void setitemcolor(INT pos, INT color);
+	int getpos();
+	void getpos(int &cur, int &first);
+	void setpos(int cur, int first = -1);
+	void setitemcolor(int pos, int color);
 	void setwindow(textwindow nwindow);
-	void remove(INT pos);
+	void remove(int pos);
 
-	INT open();
+	int open();
 	void scale();
 	void close();
-	void setcoords(INT nx1, INT ny1, INT nx2, INT ny2);
-	void setcolor(INT pncolor, INT pscolor);
+	void setcoords(int nx1, int ny1, int nx2, int ny2);
+	void setcolor(int pncolor, int pscolor);
 
     friend class horizontalmenu;
 };
 
 struct horizontalmenuitem {
     string text;
-    INT color;
+    int color;
     verticalmenu menu;
 
     horizontalmenuitem();
@@ -114,36 +114,36 @@ struct horizontalmenuitem {
 class horizontalmenu: public abstractuicontrol {
     protected:
 	vector<horizontalmenuitem> menus;
-	INT ncolor, scolor, fcolor, coordy, coordx, selected;
+	int ncolor, scolor, fcolor, coordy, coordx, selected;
 
-	static INT menu_otherkeys(verticalmenu &ref, INT k);
+	static int menu_otherkeys(verticalmenu &ref, int k);
 
 	void draw();
-	void moveelem(INT old);
+	void moveelem(int old);
 	void saveline();
 	void restoreline();
 
-	INT getx(INT n);
-	INT menulen(INT n);
+	int getx(int n);
+	int menulen(int n);
 
     public:
-	bool (*otherkeys)(horizontalmenu &caller, INT k);
+	bool (*otherkeys)(horizontalmenu &caller, int k);
 	void (*idle)(horizontalmenu &caller);
 
-	horizontalmenu(INT x, INT y, INT normcolor, INT selcolor, INT framecolor);
+	horizontalmenu(int x, int y, int normcolor, int selcolor, int framecolor);
 	horizontalmenu();
 	~horizontalmenu();
 
-	void additemf(INT color, const char *fmt, ...);
+	void additemf(int color, const char *fmt, ...);
 	void additemf(const char *fmt, ...);
 
-	void additem(INT color, const string &text);
+	void additem(int color, const string &text);
 	void additem(const string &text);
 
-	verticalmenu *pulldown(INT n);
+	verticalmenu *pulldown(int n);
 
 	virtual void redraw();
-	bool open(INT *hor, INT *pulld);
+	bool open(int *hor, int *pulld);
 	void close();
 };
 

@@ -133,7 +133,7 @@ string motorconfiguration::getuserfullname() const {
 }
 
 void motorconfiguration::readuserdetails() {
-    INT npos;
+    int npos;
     struct passwd *p;
 
     if(p = getpwuid(getuid())) {

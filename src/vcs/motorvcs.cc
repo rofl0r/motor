@@ -4,7 +4,7 @@
 #include "motormisc.h"
 #include "motorui.h"
 
-#include <sstream>
+#include <strstream>
 
 motorvcs::motorvcs() {
     fgood = true;
@@ -115,7 +115,7 @@ bool motorvcs::enabled() {
 
 vector< pair<string, motorvcs::changekind> > motorvcs::getchanges() {
     vector< pair<string, changekind> > r;
-    stringstream st;
+    strstream st;
     string buf, fname;
     changekind ck;
 

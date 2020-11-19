@@ -15,7 +15,7 @@ class uieditor: public texteditor {
     protected:
 	vector<uiconfiguration::syntaxitem> syntaxitems;
 
-	static INT keyhandler(texteditor &e, INT k);
+	static int keyhandler(texteditor &e, int k);
 	static void idlefunc(texteditor &ref);
 
 	void readsyntaxhighlight();
@@ -29,10 +29,10 @@ class uieditor: public texteditor {
 
 	void loadsettings();
 
-	INT load(const string &buf, const string &id);
-	INT load(ifstream &f, const string &id);
+	int load(const string &buf, const string &id);
+	int load(ifstream &f, const string &id);
 
-	void switchwindow(INT delta);
+	void switchwindow(int delta);
 	void loadfile();
 	bool closecurrentfile();
 	bool fsave(savemode amode);
@@ -43,7 +43,7 @@ class uieditor: public texteditor {
 
 	string atcursor();
 	void windowlist();
-	void resizebottom(INT lines);
+	void resizebottom(int lines);
 	bool anymodified();
 };
 

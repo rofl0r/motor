@@ -75,8 +75,8 @@ texteditor::~texteditor() {
     delete files;
 }
 
-INT texteditor::load(const string abuf, const string id) {
-    INT newfn = addwindow(strdup(id.c_str())), k;
+int texteditor::load(const string abuf, const string id) {
+    int newfn = addwindow(strdup(id.c_str())), k;
     string buf = abuf;
     vector<string> lst;
     vector<string>::iterator i;
@@ -94,8 +94,8 @@ INT texteditor::load(const string abuf, const string id) {
     return newfn;
 }
 
-INT texteditor::load(FILE *f, const string id) {
-    INT i = -1;
+int texteditor::load(FILE *f, const string id) {
+    int i = -1;
     struct stat st;
     char *p = 0;
 
@@ -112,8 +112,8 @@ INT texteditor::load(FILE *f, const string id) {
     return i;
 }
 
-INT texteditor::load(ifstream &f, const string id) {
-    INT ret, size;
+int texteditor::load(ifstream &f, const string id) {
+    int ret, size;
     char *buf;
 
     f.seekg(0, ios::end);
@@ -130,7 +130,7 @@ INT texteditor::load(ifstream &f, const string id) {
 }
 
 char *texteditor::save(const char *linebreak) {
-    INT i;
+    int i;
     char *buf, *p, *prev;
 
     buf = p = 0;
@@ -169,7 +169,7 @@ char *texteditor::save(const char *linebreak) {
     return buf;
 }
 
-INT texteditor::save(FILE *f, const char *linebreak) {
+int texteditor::save(FILE *f, const char *linebreak) {
     char *buf = save(linebreak);
     fwrite(buf, strlen(buf), 1, f);
     delete buf;
@@ -177,7 +177,7 @@ INT texteditor::save(FILE *f, const char *linebreak) {
     return 0;
 }
 
-INT texteditor::save(ofstream &f, const string linebreak) {
+int texteditor::save(ofstream &f, const string linebreak) {
     char *buf = save(linebreak.c_str());
     f.write(buf, strlen(buf));
     delete buf;
@@ -186,11 +186,11 @@ INT texteditor::save(ofstream &f, const string linebreak) {
     return 0;
 }
 
-INT texteditor::getfnum() {
+int texteditor::getfnum() {
     return fn;
 }
 
-INT texteditor::getfcount() {
+int texteditor::getfcount() {
     return files->count;
 }
 
@@ -198,7 +198,7 @@ char *texteditor::getfid() {
     return getfid(fn);
 }
 
-char *texteditor::getfid(INT fnn) {
+char *texteditor::getfid(int fnn) {
     if(files->count) {
 	editfile *ef = (editfile *) files->at(fnn);
 	if(ef) return ef->id; else return 0;
@@ -211,14 +211,14 @@ void texteditor::setfid(char *id) {
     setfid(fn, id);
 }
 
-void texteditor::setfid(INT fnn, char *id) {
+void texteditor::setfid(int fnn, char *id) {
     if(fnn < files->count) {
 	editfile *ef = (editfile *) files->at(fnn);
 	if(ef) ef->id = id;
     }
 }
 
-void texteditor::setfnum(INT n) {
+void texteditor::setfnum(int n) {
     if(n < files->count && n >= 0 && n != fn) {
 
 	// save previous window params
@@ -235,7 +235,7 @@ void texteditor::setfnum(INT n) {
     }
 }
 
-INT texteditor::addwindow(char *id) {
+int texteditor::addwindow(char *id) {
     editfile *ef = new editfile;
 
     ef->lines = new linkedlist;
@@ -260,7 +260,7 @@ INT texteditor::addwindow(char *id) {
     return files->count-1;
 }
 
-void texteditor::modification(tundoaction action, const string &data, bool connected, INT curx, INT cury) {
+void texteditor::modification(tundoaction action, const string &data, bool connected, int curx, int cury) {
     if(undolog && !data.empty()) {
 	undorecord *ur = new undorecord;
 	ur->x = curx < 0 ? CURCOL  : curx;
@@ -276,15 +276,15 @@ void texteditor::modification(tundoaction action, const string &data, bool conne
     scancomments(true);
 }
 
-void texteditor::setcoords(INT nx1, INT ny1, INT nx2, INT ny2) {
+void texteditor::setcoords(int nx1, int ny1, int nx2, int ny2) {
     x1 = nx1; x2 = nx2;
     y1 = ny1; y2 = ny2;
     if(curfile) setpos(CURCOL, CURLINE);
 }
 
-INT texteditor::addscheme(INT nc, INT bc, INT fbold, ...) {
+int texteditor::addscheme(int nc, int bc, int fbold, ...) {
     va_list ap;
-    INT p, nscheme = colorschemes.size();
+    int p, nscheme = colorschemes.size();
 
     va_start(ap, fbold);
     colorscheme s;
@@ -293,14 +293,14 @@ INT texteditor::addscheme(INT nc, INT bc, INT fbold, ...) {
     s.blockcolor = bc;
     s.bold = fbold;
 
-    while((p = va_arg(ap, INT)) != 0) s.difcolors.push_back(p);
+    while((p = va_arg(ap, int)) != 0) s.difcolors.push_back(p);
 
     colorschemes.push_back(s);
     return nscheme;
 }
 
-void texteditor::addhighlight(INT nscheme, string text, INT color, hl_kind kind) {
-    INT i;
+void texteditor::addhighlight(int nscheme, string text, int color, hl_kind kind) {
+    int i;
     hlight h;
 
     if(nscheme >= 0 && nscheme < colorschemes.size()) {
@@ -324,18 +324,18 @@ void texteditor::addhighlight(INT nscheme, string text, INT color, hl_kind kind)
     }
 }
 
-void texteditor::addcolordif(INT nscheme, INT pairno) {
+void texteditor::addcolordif(int nscheme, int pairno) {
     if(nscheme >= 0 && nscheme < colorschemes.size()) {
 	colorscheme &s = colorschemes[nscheme];
 	s.difcolors.push_back(pairno);
     }
 }
 
-void texteditor::setcolorscheme(INT nscheme) {
+void texteditor::setcolorscheme(int nscheme) {
     setcolorscheme(getfnum(), nscheme);
 }
 
-void texteditor::setcolorscheme(INT nfn, INT nscheme) {
+void texteditor::setcolorscheme(int nfn, int nscheme) {
     editfile *f = (editfile *) files->at(nfn);
 
     if(f) {
@@ -346,7 +346,7 @@ void texteditor::setcolorscheme(INT nfn, INT nscheme) {
     }
 }
 
-void texteditor::addblock(INT x1, INT y1, INT x2, INT y2, INT color) {
+void texteditor::addblock(int x1, int y1, int x2, int y2, int color) {
     textblock *tb = new textblock;
     tb->x1 = x1;
     tb->y1 = y1;
@@ -409,7 +409,7 @@ void texteditor::marktext() {
 }
 
 void texteditor::copymark(FILE *f) {
-    INT i;
+    int i;
     CHECKLOADED;
 
     for(i = curfile->markblock->y1; i <= curfile->markblock->y2; i++) {
@@ -443,13 +443,13 @@ void texteditor::copymark(FILE *f) {
     }
 }
 
-void texteditor::copymark(char *p, INT maxlen) {
+void texteditor::copymark(char *p, int maxlen) {
 }
 
 void texteditor::delmark() {
     CHECKLOADED;
 
-    INT i, newcol, newrow, line = 0;
+    int i, newcol, newrow, line = 0;
     char *c, *p, *sl, *el;
     string deltext;
     textblock *mb = curfile->markblock;
@@ -479,7 +479,7 @@ void texteditor::delmark() {
 	    
 	} else {
 	    char *lch = (char *) curfile->lines->at(i-line);
-	    INT li = strlen(lch);
+	    int li = strlen(lch);
 
 	    deltext += "\n";
 	    if(i == mb->y1) deltext += lch+mb->x1; else deltext += lch;
@@ -516,7 +516,7 @@ void texteditor::clearmark() {
 
 void texteditor::insert(FILE *f) {
     struct stat sb;
-    INT fsize;
+    int fsize;
     char *buf;
 
     if(f) {
@@ -550,7 +550,7 @@ void texteditor::insert(const string abuf) {
 	char *sl = strdup(CURSTRING), *el = strdup(CURSTRING+CURCOL), buf[1024], *s;
 	const char *curpos = sbuf.c_str();
 	bool firstpass = true;
-	INT line = 0;
+	int line = 0;
 
 	sl[CURCOL] = 0;
 
@@ -583,8 +583,8 @@ void texteditor::insert(const string abuf) {
     }
 }
 
-void texteditor::sethlcolor(INT n) {
-    INT at = colors.bold;
+void texteditor::sethlcolor(int n) {
+    int at = colors.bold;
     
     if(!n) n = colors.ncolor;
 
@@ -595,7 +595,7 @@ void texteditor::sethlcolor(INT n) {
     attrset(at ? boldcolor(n) : normalcolor(n));
 }
 
-void texteditor::draw_print(char *buf, INT bcolor, INT distance) {
+void texteditor::draw_print(char *buf, int bcolor, int distance) {
     if(outx + strlen(buf) > distance) buf[distance-outx] = 0;
     if(buf[0]) {
 	sethlcolor(bcolor);
@@ -605,8 +605,8 @@ void texteditor::draw_print(char *buf, INT bcolor, INT distance) {
     }
 }
 
-INT dstralone(const char *buf, const char *startword, INT wordlen, const char *delim) {
-    INT leftdelim = 0, rightdelim = 0;
+int dstralone(const char *buf, const char *startword, int wordlen, const char *delim) {
+    int leftdelim = 0, rightdelim = 0;
     const char *si;
 
     for(si = startword-1; si != buf && *si < 32; si--);
@@ -619,7 +619,7 @@ INT dstralone(const char *buf, const char *startword, INT wordlen, const char *d
 }
 
 void texteditor::scancomments(bool visible) {
-    INT sl, el, i;
+    int sl, el, i;
     const char *rsub, *lsub;
     hl_kind hk;
 
@@ -699,8 +699,8 @@ void texteditor::scancomments(bool visible) {
     }
 }
 
-INT texteditor::hl_comment(char *cp, char *txt, INT color) {
-    INT r;
+int texteditor::hl_comment(char *cp, char *txt, int color) {
+    int r;
     const char *p;
 
     r = 0;
@@ -710,10 +710,10 @@ INT texteditor::hl_comment(char *cp, char *txt, INT color) {
     return r;
 }
 
-INT texteditor::hl_comment(char *cp, INT st, INT pend, INT color) {
-    INT i, delcount, r;
+int texteditor::hl_comment(char *cp, int st, int pend, int color) {
+    int i, delcount, r;
     char ins[5] = "\001 ";
-    INT origclr = -1;
+    int origclr = -1;
 
     delcount = r = 0;
 
@@ -764,8 +764,8 @@ INT texteditor::hl_comment(char *cp, INT st, INT pend, INT color) {
     return r-delcount;
 }
 
-INT texteditor::count_clrcodes(char *cp, INT pos) {
-    INT i, j, k;
+int texteditor::count_clrcodes(char *cp, int pos) {
+    int i, j, k;
     j = k = 0;
     
     for(i = 0; i < strlen(cp) && j < pos; i++) {
@@ -778,23 +778,20 @@ INT texteditor::count_clrcodes(char *cp, INT pos) {
     return k;
 }
 
-void texteditor::showline(INT ln, INT startx, INT distance, INT extrax) {
+void texteditor::showline(int ln, int startx, int distance, int extrax) {
     if(!show) return;
 
-    INT i, n, inscount, bcolor, sxinscount, printed, j, lastoccur, q, eolstart, npos, offs;
+    int i, n, inscount, bcolor, sxinscount, printed, j, lastoccur, q, eolstart, npos, offs;
     char *cs, *sr, *nr, *r, ins[3] = "\001 ";
 
-    vector<INT> layout;
-    vector<INT>::iterator iq;
+    vector<int> layout;
+    vector<int>::iterator iq;
     vector<hlight>::iterator hi;
 
     const char *p;
 
     if(!(cs = (char *) curfile->lines->at(ln))) return;
-
-    i = (strlen(cs)+1)*4;
-
-    char cp[i];
+    char cp[i = (strlen(cs)+1)*4];
     char buf[i];
 
     eolstart = i;
@@ -975,8 +972,8 @@ void texteditor::showline(INT ln, INT startx, INT distance, INT extrax) {
     mvhline(y1+ln-curfile->sy, x1+extrax+printed, ' ', distance-printed);
 }
 
-void texteditor::draw(INT fromline) {
-    INT k;
+void texteditor::draw(int fromline) {
+    int k;
 
     if(show) {
 	if(curfile->lines) {
@@ -1020,7 +1017,7 @@ void texteditor::updatecursor() {
 }
 
 bool texteditor::fix_x(bool tab) {
-    INT osx = curfile->sx, clen = CSTRLEN;
+    int osx = curfile->sx, clen = CSTRLEN;
 
     if(CURCOL > clen) {
 	if(clen-curfile->sx < 0) {
@@ -1032,7 +1029,7 @@ bool texteditor::fix_x(bool tab) {
     }
 
     if(tab) {
-	INT rm = rtabmargin(true, CURCOL, CURSTRING);
+	int rm = rtabmargin(true, CURCOL, CURSTRING);
 	char *p = CURSTRING;
 	
 	if(p[CURCOL-1] == ' ')
@@ -1048,7 +1045,7 @@ bool texteditor::fix_x(bool tab) {
 
 void texteditor::eddel(bool usetabs) {
     char *p = CURSTRING;
-    INT nextlen, todelete = 1, rm;
+    int nextlen, todelete = 1, rm;
     string deltext;
     
     if(p) {
@@ -1068,7 +1065,7 @@ void texteditor::eddel(bool usetabs) {
 	    
 	} else {
 	    char *next = (char *) curfile->lines->at(CURLINE+1);
-	    INT able = x2-x1-strlen(p);
+	    int able = x2-x1-strlen(p);
 
 	    if(next) {
 		if(wrap && (able < strlen(next))) {
@@ -1105,7 +1102,7 @@ void texteditor::eddel(bool usetabs) {
 }
 
 void texteditor::edbackspace() {
-    INT i, bc;
+    int i, bc;
     
     if(CURCOL) {
 	bool spacetoend = endofline() && !currentchar();
@@ -1133,7 +1130,7 @@ void texteditor::edbackspace() {
 void texteditor::eddelword() {
     char *p = CURSTRING, *e;
     string deltext, n;
-    INT count;
+    int count;
 
     if(!strlen(p)) {
 	eddelline();
@@ -1202,9 +1199,9 @@ void texteditor::edenter(bool countspaces) {
     
     if(wrap) strimtrail(p);
     
-    INT oldsx = curfile->sx;
-    INT spacecount = strspn(p, " ");
-    INT nextlen = CSTRLEN-CURCOL+spacecount+1;
+    int oldsx = curfile->sx;
+    int spacecount = strspn(p, " ");
+    int nextlen = CSTRLEN-CURCOL+spacecount+1;
     
     char *nextstr = (char *) malloc(nextlen < 1 ? 1 : nextlen);
     if(CURCOL < spacecount) spacecount = 0;
@@ -1240,8 +1237,8 @@ void texteditor::edenter(bool countspaces) {
     edmove(KEY_DOWN);
 }
 
-void texteditor::edmove(INT k, INT options) {
-    INT i, lm;
+void texteditor::edmove(int k, int options) {
+    int i, lm;
     bool fdraw = false, acted;
     bool ctrlpressed = (options & EM_CTRL) && (getctrlkeys() & CONTROL_PRESSED);
     bool shiftpressed = (getctrlkeys() & SHIFT_PRESSED);
@@ -1471,17 +1468,17 @@ void texteditor::edmove(INT k, INT options) {
     }
 }
 
-void texteditor::inschar(INT k) {
+void texteditor::inschar(int k) {
     if(k == '\t') {
 
-	INT rm = rtabmargin(true, CURCOL, CURSTRING)-CURCOL, i;
+	int rm = rtabmargin(true, CURCOL, CURSTRING)-CURCOL, i;
 	if(rm < 0) rm = rtabmargin(true, CURCOL)-CURCOL;
 	for(i = 0; i < rm; i++) inschar(' ');
 	
     } else {
     
 	char *p = CURSTRING;
-	INT len = strlen(p);
+	int len = strlen(p);
 	char *n = (char *) malloc(len+5);
 	char np[2];
 
@@ -1530,7 +1527,7 @@ void texteditor::inschar(INT k) {
     }
 }
 
-void texteditor::setpos(INT col, INT line) {
+void texteditor::setpos(int col, int line) {
     bool drawneeded = false;
 
     CHECKLOADED;
@@ -1572,13 +1569,13 @@ void texteditor::setpos(INT col, INT line) {
     updatecursor();
 }
 
-void texteditor::getpos(INT *col, INT *line) {
+void texteditor::getpos(int *col, int *line) {
     if(col) *col = CURCOL;
     if(line) *line = CURLINE;
 }
 
-INT texteditor::open() {
-    INT k, l, go;
+int texteditor::open() {
+    int k, l, go;
 
     if((x2-x1 < 2) || (y2-y1 < 2)) {
 	return 0;
@@ -1686,7 +1683,7 @@ void texteditor::close() {
     curfile = 0;
     
     if(files->count) {
-	INT n = fn;
+	int n = fn;
 	fn = -1;
 	if(n >= files->count) n = files->count-1;
 	setfnum(n);
@@ -1696,10 +1693,10 @@ void texteditor::close() {
     }
 }
 
-bool texteditor::find(const char *needle, const char *options, INT *col, INT *line) {
+bool texteditor::find(const char *needle, const char *options, int *col, int *line) {
     const char *f;
     char *p;
-    INT i, plus;
+    int i, plus;
     enum {fromcur, fromstart, backward} fdirection;
     bool casesens = (bool) strchr(options, 's');
 
@@ -1724,7 +1721,7 @@ bool texteditor::find(const char *needle, const char *options, INT *col, INT *li
 	else f = strstr(p+plus, needle);
 	
 	if(f) {
-	    *col = (INT) (f-p);
+	    *col = (int) (f-p);
 	    *line = i;
 	    return true;
 	}
@@ -1737,11 +1734,11 @@ bool texteditor::ismark() {
     return curfile ? curfile->markmode : false;
 }
 
-char *texteditor::getline(INT ln) {
+char *texteditor::getline(int ln) {
     return (char *) (getfcount() ? curfile->lines->at(ln) : 0);
 }
 
-void texteditor::putline(INT ln, const char *newline) {
+void texteditor::putline(int ln, const char *newline) {
     char *p = (char *) curfile->lines->at(ln);
     string deltext, instext;
 
@@ -1759,13 +1756,13 @@ void texteditor::redraw() {
     draw();
 }
 
-void texteditor::highlight(INT line, INT color) {
+void texteditor::highlight(int line, int color) {
     highlight(getfnum(), line, color);
 }
 
-void texteditor::highlight(INT fn, INT line, INT color) {
+void texteditor::highlight(int fn, int line, int color) {
     editfile *f = (editfile *) files->at(fn);
-    INT i;
+    int i;
 
     if(f) {
 	if((i = f->highlines->findnum(&line, &findhighline)) != -1) {
@@ -1779,12 +1776,12 @@ void texteditor::highlight(INT fn, INT line, INT color) {
     }
 }
 
-void texteditor::unlight(INT line) {
+void texteditor::unlight(int line) {
     unlight(getfnum(), line);
 }
 
-void texteditor::unlight(INT fn, INT line) {
-    INT i;
+void texteditor::unlight(int fn, int line) {
+    int i;
     editfile *f = (editfile *) files->at(fn);
 
     if(f) {
@@ -1798,7 +1795,7 @@ void texteditor::clearlight() {
     clearlight(getfnum());
 }
 
-void texteditor::clearlight(INT fn) {
+void texteditor::clearlight(int fn) {
     editfile *f = (editfile *) files->at(fn);
     if(f) f->highlines->empty();
 }
@@ -1810,8 +1807,8 @@ void texteditor::switchmark() {
     else startmark();
 }
 
-void texteditor::shiftident(INT x1, INT y1, INT x2, INT y2, INT delta) {
-    INT starty = y1, endy = y2, i;
+void texteditor::shiftident(int x1, int y1, int x2, int y2, int delta) {
+    int starty = y1, endy = y2, i;
     char *p, *newp;
     string origtext, repltext;
 
@@ -1854,14 +1851,14 @@ void texteditor::shiftident(INT x1, INT y1, INT x2, INT y2, INT delta) {
     modification(uinsblock, repltext, false, curfile->markblock->x1, curfile->markblock->y1);
 }
 
-void texteditor::shiftident(INT delta) {
+void texteditor::shiftident(int delta) {
     CHECKLOADED;
     shiftident(curfile->markblock->x1, curfile->markblock->y1,
     curfile->markblock->x2, curfile->markblock->y2, delta);
 }
 
 void texteditor::undo() {
-    INT i, aline;
+    int i, aline;
     undorecord *ur;
     tundoaction a;
     bool firstpass = true, finished = false;
@@ -1942,15 +1939,15 @@ void texteditor::undorecordfree(void *p) {
     if(ur) delete ur;
 }
 
-INT texteditor::findint(void *p1, void *p2) {
-    return *(INT *) p1 != (INT) p2;
+int texteditor::findint(void *p1, void *p2) {
+    return *(intptr_t *) p1 != (intptr_t) p2;
 }
 
-INT texteditor::findhighline(void *p1, void *p2) {
-    return *(INT *) p1 != ((highline *) p2)->line;
+int texteditor::findhighline(void *p1, void *p2) {
+    return *(int *) p1 != ((highline *) p2)->line;
 }
 
-void texteditor::shiftmarkedblock(INT delta) {
+void texteditor::shiftmarkedblock(int delta) {
     CHECKLOADED;
     if(CURLINE <= curfile->markblock->y1) {
 	curfile->markblock->y1 += delta;

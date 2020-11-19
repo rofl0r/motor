@@ -9,19 +9,19 @@ __KTOOL_BEGIN_NAMESPACE
 
 class textinputline: public abstractuicontrol {
     public:
-	INT (*otherkeys)(textinputline &caller, INT k);
+	int (*otherkeys)(textinputline &caller, int k);
 	void (*idle)(textinputline &caller);
 
     private:
 	vector<string> history;
-	INT length, position, beginpos, lastkey;
-	INT color, histcolor, histcurcolor;
+	int length, position, beginpos, lastkey;
+	int color, histcolor, histcurcolor;
 	string value;
 	char passwordchar;
 	fileselector *selector;
 	bool firstiter;
 
-	bool keymove(INT key);
+	bool keymove(int key);
 	void redraw();
 	void exechistory();
 
@@ -34,14 +34,14 @@ class textinputline: public abstractuicontrol {
 	void setvalue(const string &buf);
 	string getvalue() const;
 
-	void setcoords(INT x, INT y, INT len);
-	void setcolor(INT acolor, INT ahistcolor = 0, INT ahistcurcolor = 0);
+	void setcoords(int x, int y, int len);
+	void setcolor(int acolor, int ahistcolor = 0, int ahistcurcolor = 0);
 	void setpasswordchar(char npc);
 
 	void connectselector(fileselector &fsel);
 	void removeselector();
 
-	INT getlastkey() const;
+	int getlastkey() const;
 
 	void exec();
 	void close();

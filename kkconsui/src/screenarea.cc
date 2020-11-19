@@ -27,7 +27,7 @@
 screenarea::screenarea() {
 }
 
-screenarea::screenarea(INT fx1, INT fy1, INT fx2, INT fy2) {
+screenarea::screenarea(int fx1, int fy1, int fx2, int fy2) {
     save(fx1, fy1, fx2, fy2);
 }
 
@@ -39,8 +39,8 @@ void screenarea::save() {
     save(0, 0, COLS, LINES);
 }
 
-void screenarea::save(INT fx1, INT fy1, INT fx2, INT fy2) {
-    INT i;
+void screenarea::save(int fx1, int fy1, int fx2, int fy2) {
+    int i;
     chtype *line;
 
     freebuffer();
@@ -61,9 +61,9 @@ void screenarea::restore() {
     restore(x1, y1, x2, y2);
 }
 
-void screenarea::restore(INT fx1, INT fy1, INT fx2, INT fy2) {
+void screenarea::restore(int fx1, int fy1, int fx2, int fy2) {
     vector<chtype *>::iterator i;
-    INT k = fy1;
+    int k = fy1;
     chtype *line;
 
     if(!buffer.empty()) {

@@ -1,0 +1,37 @@
+Source: motor
+Section: editors
+Priority: optional
+Maintainer: Krzysztof Krzyzaniak (eloy) <eloy@debian.org>
+Build-Conflicts: libstdc++5-dev (<= 3.2.3)
+Build-Depends: debhelper (>= 4.1.37), dpatch, libgpm-dev, libncurses5-dev | libncurses-dev, gettext, libfribidi-dev (>= 0.10.4-4), libstdc++5 (>> 3.2.3) | libstdc++5-3.3-dev | libstdc++6-dev
+Standards-Version: 3.6.1.0
+
+Package: motor-common
+Architecture: all
+Replaces: motor (<< 3.2.3-1)
+Conflicts: motor (<< 3.2.3-1)
+Suggests: cvs, gettext, ctags, gdb
+Description: C/C++/Java Integrated Development Environment
+ Motor is a text mode based programming environment for Linux. It consists of
+ a powerful editor with syntax highlight feature, project manager, makefile
+ generator, gcc and gdb front-end, etc. Deep CVS integration is also provided.
+ .
+ This package consists of common files for motor and motor-fribidi
+
+Package: motor-fribidi
+Architecture: any
+Depends: ${shlibs:Depends}, motor-common
+Description: C/C++/Java Integrated Development Environment
+ Motor is a text mode based programming environment for Linux. It consists of
+ a powerful editor with syntax highlight feature, project manager, makefile
+ generator, gcc and gdb front-end, etc. Deep CVS integration is also provided.
+ .
+ This package is compiled with fribidi so supports Hebrew and Arabic
+
+Package: motor
+Architecture: any
+Depends: ${shlibs:Depends}, motor-common
+Description: C/C++/Java Integrated Development Environment
+ Motor is a text mode based programming environment for Linux. It consists of
+ a powerful editor with syntax highlight feature, project manager, makefile
+ generator, gcc and gdb front-end, etc. Deep CVS integration is also provided.

@@ -44,6 +44,7 @@ char byte2char(char c) {
     return z;
 }
 
+
 char *strappend(char *dst, const char *src) {
     int dlen;
     

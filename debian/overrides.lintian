@@ -1,0 +1,1 @@
+motor-common: script-not-executable ./usr/share/motor/templates/terminal program/perl/[value name].pl.tmpl

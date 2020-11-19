@@ -4,8 +4,8 @@
 #include "conscommon.h"
 #include "cmenus.h"
 
-#define DIALOG_WIDTH	(INT) (COLS*0.85)
-#define DIALOG_HEIGHT	(INT) (LINES*0.75)
+#define DIALOG_WIDTH	(int) (COLS*0.85)
+#define DIALOG_HEIGHT	(int) (LINES*0.75)
 
 #define cp_input		37
 #define cp_bottom		39

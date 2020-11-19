@@ -16,7 +16,7 @@ uigrepper::~uigrepper() {
 
 bool uigrepper::init() {
     dialogbox db;
-    INT i, b, n;
+    int i, b, n;
     bool found, start, r;
     string buf;
     vector<projectname> plst;
@@ -26,7 +26,7 @@ bool uigrepper::init() {
     vector<motorfile>::iterator ifile;
     vector<string>::iterator is;
 
-    db.setwindow(new textwindow(0, 0, (INT) (DIALOG_WIDTH*0.65), (INT) (DIALOG_HEIGHT*0.8),
+    db.setwindow(new textwindow(0, 0, (int) (DIALOG_WIDTH*0.65), (int) (DIALOG_HEIGHT*0.8),
 	uiconf.getcolor(cp_menufr), TW_CENTERED, uiconf.getcolor(cp_menuhl),
 	replacemode ? _(" Motor grepper: replace mode ") : _(" Motor grepper ")));
 
@@ -45,7 +45,7 @@ bool uigrepper::init() {
     for(bool fin = false, first = true; !fin; first = false) {
 	tree.clear();
 
-	i = tree.addnode(0, uiconf.getcolor(cp_menuhl), NULL, _(" Search "));
+	i = tree.addnode(0, uiconf.getcolor(cp_menuhl), 0, _(" Search "));
     	n = tree.addleaff(i, 0, 1, _(" Look for: %s "), pattern.c_str());
 	if(first) tree.setcur(n);
 
@@ -61,7 +61,7 @@ bool uigrepper::init() {
 
 	switch(grepmode) {
 	    case motorgrepper::folders:
-        	i = tree.addnode(0, uiconf.getcolor(cp_menuhl), NULL, _(" Folders "));
+        	i = tree.addnode(0, uiconf.getcolor(cp_menuhl), 0, _(" Folders "));
 
                 for(ifold = project.foldbegin(); ifold != project.foldend(); ifold++)
 		    if(ifold->getcontentkind() == motorfile::source) {
@@ -74,7 +74,7 @@ bool uigrepper::init() {
 		break;
 
 	    case motorgrepper::connected:
-        	i = tree.addnode(0, uiconf.getcolor(cp_menuhl), NULL, _(" Projects "));
+        	i = tree.addnode(0, uiconf.getcolor(cp_menuhl), 0, _(" Projects "));
 		n = 50;
 
                 for(ifold = project.foldbegin(); ifold != project.foldend(); ifold++) {
@@ -89,7 +89,7 @@ bool uigrepper::init() {
 		break;
 	}
 
-	i = tree.addnode(0, uiconf.getcolor(cp_menuhl), NULL, _(" Options "));
+	i = tree.addnode(0, uiconf.getcolor(cp_menuhl), 0, _(" Options "));
 	tree.addleaff(i, 0, 3, _(" Case sensitive: %s "), BOOL_TO_STR(fcase));
 	tree.addleaff(i, 0, 4, _(" Whole words only: %s "), BOOL_TO_STR(fwhole));
 	tree.addleaff(i, 0, 5, _(" Regular expression: %s "), BOOL_TO_STR(fregexp));
@@ -201,7 +201,7 @@ bool uigrepper::go() {
 }
 
 bool uigrepper::collectgo() {
-    INT n, b, citem;
+    int n, b, citem;
     dialogbox db;
     vector<motorui::editfile>::const_iterator ir;
     bool openf = false;
@@ -249,7 +249,7 @@ bool uigrepper::collectgo() {
 
 bool uigrepper::currentgo() {
     string fopt;
-    INT x, y;
+    int x, y;
 
     if(!ed.getfcount()) {
 	return false;
@@ -284,7 +284,7 @@ bool uigrepper::replacego() {
     vector<motorui::editfile>::const_iterator ir, pir;
     motorui::askresult ar;
     motorui::editfile ef;
-    INT offset;
+    int offset;
 
     replall = false;
 

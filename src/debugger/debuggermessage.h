@@ -18,7 +18,7 @@ class debuggermessage {
 	    // first is regexp
 	    // second is positional order
 
-	mutable INT matchend;
+	mutable int matchend;
 	mutable string porder;
 	mutable vector<string> values;
 
@@ -31,11 +31,11 @@ class debuggermessage {
 	messagekind getkind() const;
 
 	string getvalue(const string &paramname = "") const;
-	string getvalue(INT n) const;
+	string getvalue(int n) const;
 	    // the whole expression match (0) is omitted
 	    // so 0 is the first sub-match found
 
-	INT getmatchendpos() const;
+	int getmatchendpos() const;
 
 	bool operator == (const messagekind akind) const;
 	bool operator != (const messagekind akind) const;

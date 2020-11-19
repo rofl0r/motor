@@ -1,0 +1,6 @@
+motor-common_3.4.0-2sarge1_all.deb editors optional
+motor-dbgsym_3.4.0-2sarge1_amd64.ddeb debug optional automatic=yes
+motor-fribidi-dbgsym_3.4.0-2sarge1_amd64.ddeb debug optional automatic=yes
+motor-fribidi_3.4.0-2sarge1_amd64.deb editors optional
+motor_3.4.0-2sarge1_amd64.buildinfo editors optional
+motor_3.4.0-2sarge1_amd64.deb editors optional

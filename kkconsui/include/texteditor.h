@@ -43,7 +43,7 @@ typedef enum {
 
 struct hlight {
     hl_kind kind;
-    INT color;
+    int color;
     string text;
 
     bool operator == (const hl_kind &kind) const;
@@ -52,11 +52,11 @@ struct hlight {
 };
 
 struct highline {
-    INT line, color;
+    int line, color;
 };
 
 struct textblock {
-    INT x1, y1, x2, y2, color;
+    int x1, y1, x2, y2, color;
 };
 
 struct editfile {
@@ -64,24 +64,24 @@ struct editfile {
 
     linkedlist *lines, *blocks, *highlines, *undo;
     textblock *markblock;
-    INT sx, sy, x, y, ncolorscheme;
+    int sx, sy, x, y, ncolorscheme;
     bool modified, markmode, markreverse, showmarked;
 };
 
 struct colorscheme {
     vector<hlight> hl;
-    vector<INT> difcolors;
+    vector<int> difcolors;
 
     string synt_quote, synt_qescape;
 
-    INT ncolor, qcolor, blockcolor;
+    int ncolor, qcolor, blockcolor;
     bool bold;
 };
 
 struct undorecord {
     tundoaction action;
     bool prevconnected;
-    INT x, y;
+    int x, y;
     string data;
 };
 
@@ -90,8 +90,8 @@ class texteditor: public abstractuicontrol {
 	linkedlist *files;
 	vector<colorscheme> colorschemes;
 	
-	INT outx, abscol;
-	INT fn /* file number */, fcount /* files count */;
+	int outx, abscol;
+	int fn /* file number */, fcount /* files count */;
 	bool undolog, show, prevshift;
 
 	editfile *curfile;
@@ -102,85 +102,85 @@ class texteditor: public abstractuicontrol {
 	static void undorecordfree(void *p);
 	static void highlinefree(void *p);
 
-	static INT findint(void *p1, void *p2);
-	static INT findhl(void *p1, void *p2);
-	static INT findhighline(void *p1, void *p2);
-	static INT sorthl(void *p1, void *p2);
+	static int findint(void *p1, void *p2);
+	static int findhl(void *p1, void *p2);
+	static int findhighline(void *p1, void *p2);
+	static int sorthl(void *p1, void *p2);
 
 	bool fix_x(bool tab);
-	void sethlcolor(INT n);
-	void draw(INT fromline);
-	void draw_print(char *buf, INT bcolor, INT distance);
+	void sethlcolor(int n);
+	void draw(int fromline);
+	void draw_print(char *buf, int bcolor, int distance);
 
-	INT addwindow(char *id);
+	int addwindow(char *id);
 
 	void scancomments(bool visible);
 
 	void modification(tundoaction action, const string &data,
-	    bool connected = false, INT curx = -1, INT cury = -1);
+	    bool connected = false, int curx = -1, int cury = -1);
 
 	bool endofline();
 	const char currentchar();
 
-	INT count_clrcodes(char *cp, INT pos);
-	INT hl_comment(char *cp, char *txt, INT color);
-	INT hl_comment(char *cp, INT st, INT pend, INT color);
-	void showline(INT ln, INT startx, INT distance, INT extrax = 0);
+	int count_clrcodes(char *cp, int pos);
+	int hl_comment(char *cp, char *txt, int color);
+	int hl_comment(char *cp, int st, int pend, int color);
+	void showline(int ln, int startx, int distance, int extrax = 0);
 
 	void marktext();
-	void edmove(INT k, INT options = 2);
+	void edmove(int k, int options = 2);
 	void eddel(bool usetabs = true);
 	void edenter(bool countspaces = true);
 	void edbackspace();
 	void eddelline();
 	void eddelword();
 
-	void inschar(INT k);
+	void inschar(int k);
 
-	void shiftmarkedblock(INT delta);
+	void shiftmarkedblock(int delta);
 	
     public:
 	bool active, wrap, insertmode, modified, smarttab;
 
-	INT (*otherkeys)(texteditor &caller, INT k);
+	int (*otherkeys)(texteditor &caller, int k);
 	void (*idle)(texteditor &caller);
 
 	texteditor();
 	virtual ~texteditor();
 
-	INT load(const string buf, const string id);
-	INT load(FILE *f, const string id);
-	INT load(ifstream &f, const string id);
+	int load(const string buf, const string id);
+	int load(FILE *f, const string id);
+	int load(ifstream &f, const string id);
 	    // loads a file from char* or FILE opening
 	    // a new editor window
 
 	char *save(const char *linebreak);
-	INT save(FILE *f, const char *linebreak);
-	INT save(ofstream &f, const string linebreak);
+	int save(FILE *f, const char *linebreak);
+	int save(ofstream &f, const string linebreak);
 	    // saves a file to char* or FILE
 
 	void close();
 	    // closes current file
 
-	INT getfcount();
+	int getfcount();
 	    // returns the amount of windows opened
 
-	INT getfnum();
+	int getfnum();
 	    // returns current editor window number
 
 	char *getfid();
-	char *getfid(INT fnn);
+	char *getfid(int fnn);
 	    // returns id of a file
 
 	void setfid(char *id);
-	void setfid(INT fnn, char *id);
+	void setfid(int fnn, char *id);
 	    // sets an id of file
 
-	void setfnum(INT n);
+	void setfnum(int n);
 	    // sets active file
 
-	void setcolorscheme(INT nscheme);
-	void setcolorscheme(INT fn, INT nscheme);
+	void setcolorscheme(int nscheme);
+	void setcolorscheme(int fn, int nscheme);
 	    // set color scheme for current file
 
 	void startmark();
@@ -190,7 +190,7 @@ class texteditor: public abstractuicontrol {
 
 	void clearmark();
 	void copymark(FILE *f);
-	void copymark(char *p, INT maxlen);
+	void copymark(char *p, int maxlen);
 
 	void insert(FILE *f);
 	void insert(const string buf);
@@ -198,44 +198,44 @@ class texteditor: public abstractuicontrol {
 	void delmark();
 	void undo();
 	
-	void addblock(INT x1, INT y1, INT x2, INT y2, INT color);
+	void addblock(int x1, int y1, int x2, int y2, int color);
 	    // adds a block
 
-	void setcoords(INT nx1, INT ny1, INT nx2, INT ny2);
-	INT addscheme(INT nc, INT bc, INT fbold, ...);
+	void setcoords(int nx1, int ny1, int nx2, int ny2);
+	int addscheme(int nc, int bc, int fbold, ...);
 	    // nc    = normal text color
 	    // bc    = block color
 	    // fbold = use bold colors
 	    // ...   = numbers of pairs in different attribute,
 	    //         the last one MUST BE 0 !
-	void addhighlight(INT nscheme, string text, INT color, hl_kind kind);
-	void addcolordif(INT nscheme, INT pairno);
+	void addhighlight(int nscheme, string text, int color, hl_kind kind);
+	void addcolordif(int nscheme, int pairno);
 	
-	INT open();
+	int open();
 	virtual void redraw();
 	void draw();
 	void updatecursor();
 
-	bool find(const char *needle, const char *options, INT *col, INT *line);
+	bool find(const char *needle, const char *options, int *col, int *line);
 
-	void setpos(INT col, INT line);
-	void getpos(INT *col, INT *line);
+	void setpos(int col, int line);
+	void getpos(int *col, int *line);
 	
-	char *getline(INT ln);
-	void putline(INT ln, const char *newline);
+	char *getline(int ln);
+	void putline(int ln, const char *newline);
 
-	void highlight(INT line, INT color);
-	void highlight(INT fn, INT line, INT color);
+	void highlight(int line, int color);
+	void highlight(int fn, int line, int color);
 
-	void unlight(INT line);
-	void unlight(INT fn, INT line);
+	void unlight(int line);
+	void unlight(int fn, int line);
 
 	void clearlight();
-	void clearlight(INT fn);
+	void clearlight(int fn);
 	    // lines highlighting
 
-	void shiftident(INT x1, INT y1, INT x2, INT y2, INT delta);
-	void shiftident(INT delta);
+	void shiftident(int x1, int y1, int x2, int y2, int delta);
+	void shiftident(int delta);
 };
 
 __KTOOL_END_NAMESPACE

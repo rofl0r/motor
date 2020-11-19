@@ -14,7 +14,7 @@ class abstractuicontrol {
 
     public:
 	bool emacs;
-	INT x1, x2, y1, y2;
+	int x1, x2, y1, y2;
 
 	abstractuicontrol();
 	abstractuicontrol(const abstractuicontrol &a);

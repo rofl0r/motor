@@ -14,13 +14,13 @@ __KTOOL_BEGIN_NAMESPACE
 
 class fileselector: public abstractuicontrol {
     public:
-	INT (*otherkeys)(fileselector &caller, INT k);
+	int (*otherkeys)(fileselector &caller, int k);
 	void (*idle)(fileselector &caller);
 
     private:
 	struct dhistitem {
 	    string dirname;
-	    INT pos, fpos;
+	    int pos, fpos;
 	};
 
 	class item {
@@ -29,9 +29,9 @@ class fileselector: public abstractuicontrol {
 
 	    public:
 		string fname;
-		INT mode;
+		int mode;
 
-		item(const string &afname, INT amode)
+		item(const string &afname, int amode)
 		    { fname = afname, mode = amode; }
 		string getprefix() const;
 
@@ -41,8 +41,8 @@ class fileselector: public abstractuicontrol {
 		bool operator != (const string &afname) const;
 	};
 
-	INT options;
-	INT cnormal, cselected, cfile, ccurrent;
+	int options;
+	int cnormal, cselected, cfile, ccurrent;
 
 	vector<dhistitem> dhist;
 	vector<string> selected;
@@ -54,7 +54,7 @@ class fileselector: public abstractuicontrol {
 	verticalmenu m;
 	textwindow w;
 
-	static INT menukeys(verticalmenu &m, INT k);
+	static int menukeys(verticalmenu &m, int k);
 	static void menuidle(verticalmenu &m);
 
 	void generatemenu();
@@ -63,13 +63,13 @@ class fileselector: public abstractuicontrol {
 	fileselector();
 	~fileselector();
 
-	void setoptions(INT noptions);
+	void setoptions(int noptions);
 	void setstartpoint(const string &aspoint);
 	void setwindow(textwindow awindow);
-	void setcolor(INT acnormal, INT acselected, INT accurrent, INT acfile);
+	void setcolor(int acnormal, int acselected, int accurrent, int acfile);
 
 	vector<string> getselected();
-	INT getlastkey();
+	int getlastkey();
 
 	void exec();
 	void close();

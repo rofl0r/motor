@@ -11,26 +11,26 @@ __KTOOL_BEGIN_NAMESPACE
 
 class textbrowser: public abstractuicontrol {
     protected:
-	INT ncolor, line, endline;
+	int ncolor, line, endline;
 	vector<string> lines;
 	string buf;
 
-	void draw(INT line);
+	void draw(int line);
 	
     public:
-	INT (*otherkeys)(textbrowser &caller, INT k);
+	int (*otherkeys)(textbrowser &caller, int k);
 	void (*idle)(textbrowser &caller);
 	
-	textbrowser(INT nx1, INT ny1, INT nx2, INT ny2, INT clr);
-	textbrowser(INT clr = 0);
+	textbrowser(int nx1, int ny1, int nx2, int ny2, int clr);
+	textbrowser(int clr = 0);
 	~textbrowser();
 
-	void setcolor(INT clr);
-	void setcoords(INT nx1, INT ny1, INT nx2, INT ny2);
+	void setcolor(int clr);
+	void setcoords(int nx1, int ny1, int nx2, int ny2);
 	void redraw();
-	void move(INT k);
+	void move(int k);
 
-	INT open();
+	int open();
 
 	bool empty();
 	void setbuf(const string &p);

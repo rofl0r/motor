@@ -1,0 +1,359 @@
+motor (2:3.4.0-2sarge1) stable-security; urgency=high
+
+  * Non-maintainer upload by the Security Team
+  * Applied patch by Julien Lemoine to fix buffer overflow
+    [kkstrtext/kkstrtext.h, CVE-2005-3863]
+
+ -- Martin Schulze <joey@infodrom.org>  Sat, 27 May 2006 16:44:36 +0200
+
+motor (2:3.4.0-2) unstable; urgency=low
+
+  * Dropping dependency from experimental (once again, I had to remember it)
+
+ -- Krzysztof Krzyzaniak (eloy) <eloy@debian.org>  Mon, 14 Feb 2005 15:28:59 +0100
+
+motor (2:3.4.0-1) unstable; urgency=low
+
+  * New upstream release
+  * patches for compiling against gcc 3.4 removed (they are in upstream now)
+
+ -- Krzysztof Krzyzaniak (eloy) <eloy@debian.org>  Mon, 14 Feb 2005 10:37:37 +0100
+
+motor (2:3.3.0-5) unstable; urgency=low
+
+  * dropped dependency from experimental (close: Bug#276243)
+
+ -- Krzysztof Krzyzaniak (eloy) <eloy@debian.org>  Wed, 13 Oct 2004 12:41:44 +0200
+
+motor (2:3.3.0-4) unstable; urgency=low
+
+  * debian/control: Build-Conflicts: libstdc++5-dev (<= 3.2.3) added
+    (closes: Bug#268606)  
+
+ -- Krzysztof Krzyzaniak (eloy) <eloy@debian.org>  Tue, 12 Oct 2004 12:41:25 +0200
+
+motor (2:3.3.0-3) unstable; urgency=low
+
+  * I hope this time I've dropped dependencies from experimental (closes:
+    Bug#261750)
+
+ -- Krzysztof Krzyzaniak (eloy) <eloy@debian.org>  Wed, 28 Jul 2004 11:05:07 +0200
+
+motor (2:3.3.0-2) unstable; urgency=low
+
+  * Rebuilded against gcc-3.4 (closes: Bug#261666)
+
+ -- Krzysztof Krzyzaniak (eloy) <eloy@debian.org>  Tue, 27 Jul 2004 15:45:59 +0200
+
+motor (2:3.3.0-1) unstable; urgency=low
+
+  * New upstream release
+  * debian/control - libstdc++6-dev added to Build-Depends
+  * debian/rules - cleaning (config.gues & config.sub issue), dpatch rules
+    added
+  * debian/*.menu - quoted words
+  * Patch from Andreas Jochens <aj@andaco.de> applied (closes: Bug#260618)
+
+ -- Krzysztof Krzyzaniak (eloy) <eloy@debian.org>  Thu, 22 Jul 2004 14:01:46 +0200
+
+motor (2:3.2.4.1-1) unstable; urgency=low
+
+  * diff.gz file come backs
+  * debian/changelog - converted to utf8
+
+ -- Krzysztof Krzyzaniak (eloy) <eloy@debian.org>  Fri,  6 Feb 2004 15:43:06 +0100
+
+motor (2:3.2.4-6) unstable; urgency=low
+
+  * debian/control - Standards-Version updated to 3.6.1.0
+    - removed dependency from autoconf
+    - removed dependency from automake
+    - added dependency from libstdc++5-3.3-dev
+
+ -- Krzysztof Krzyzaniak (eloy) <eloy@debian.org>  Tue, 13 Jan 2004 16:18:26 +0100
+
+motor (2:3.2.4-5) unstable; urgency=low
+
+  * debian/rules - once again this file was rewritten to avoid problems with
+    autobuilders
+
+ -- Krzysztof Krzyzaniak (eloy) <eloy@debian.org>  Sun,  1 Jun 2003 00:07:37 +0200
+
+motor (2:3.2.4-4) unstable; urgency=low
+
+  * debian/control: Added Conflicts field for motor-common package, this
+    should avoid problems with upgrading from old packages
+    (closes: Bug#194799)
+  * debian/control: Changed email in Maintaner field to eloy@debian.org
+
+ -- Krzysztof Krzyzaniak (eloy) <eloy@debian.org>  Tue, 27 May 2003 13:00:27 +0200
+
+motor (2:3.2.4-3) unstable; urgency=low
+
+  * debian/control: changes depedency from autoconf (closes: Bug#191025)
+
+ -- Krzysztof Krzyzaniak (eloy) <eloy@debian.org>  Mon, 28 Apr 2003 11:15:03 +0200
+
+motor (2:3.2.4-2) unstable; urgency=low
+
+  * Dependecy from automake1.4 added.
+  * rules file was rewritten to avoid arch and indep problems 
+    (closes: Bug#174387)
+  * lintian override file added
+  * Version of debhelper in control file added
+  * Dependency from libstdc++5-dev added
+
+ -- Krzysztof Krzyzaniak (eloy) <eloy@debian.org>  Fri, 14 Mar 2003 13:39:43 +0100
+
+motor (2:3.2.4-1) unstable; urgency=low
+
+  * New upstream release
+  * debian/motor-common.doc-base.package: Changed docbase title - suggestion 
+    from Yann Dirson <dirson@debian.org> (closes: Bug#147001)
+  * configure: patch to find GNU Make properly (closes: Bug#172998)
+
+ -- Krzysztof Krzyzaniak (eloy) <eloy@debian.org>  Mon, 23 Dec 2002 16:03:49 +0100
+
+motor (2:3.2.3-1) unstable; urgency=low
+
+  * New upstream release
+  * Splitted to three packages (motor, motor-common, motor-fribidi)
+
+ -- Krzysztof Krzyzaniak (eloy) <eloy@debian.org>  Wed,  4 Sep 2002 23:36:31 +0200
+
+motor (2:3.2.2-2) unstable; urgency=low
+
+  * Improved polish translation
+  * Added --with-included-gettext to configure command in rules file
+
+ -- Krzysztof Krzyżaniak (eloy) <eloy@debian.org>  Mon,  1 Apr 2002 21:23:12 +0200
+
+motor (2:3.2.2-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Krzysztof Krzyżaniak (eloy) <eloy@debian.org>  Sun, 24 Mar 2002 13:18:00 +0100
+
+motor (2:3.2.0-1) unstable; urgency=low
+
+  * New upstream version (bugfix release)
+
+ -- Krzysztof Krzyżaniak (eloy) <eloy@debian.org>  Sat,  2 Feb 2002 11:50:59 +0100
+
+motor (2:3.1.5-3) unstable; urgency=low
+
+  * motorsync moved to /usr/share/doc/motor/
+  * rules file cleaned from crap
+
+ -- Krzysztof Krzyzaniak (eloy) <eloy@debian.org>  Sat, 29 Dec 2001 13:07:57 +0100
+
+motor (2:3.1.5-2) unstable; urgency=low
+
+  * motorsync man page was added
+
+ -- Krzysztof Krzyżaniak (eloy) <eloy@debian.org>  Fri, 16 Nov 2001 13:56:48 +0100
+
+motor (2:3.1.5-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Krzysztof Krzyżaniak (eloy) <eloy@debian.org>  Thu, 15 Nov 2001 13:37:38 +0100
+
+motor (2:3.1.0-3) unstable; urgency=low
+
+  * One of manpage was removed (closes: Bug#116980)
+
+ -- Krzysztof Krzyżaniak (eloy) <eloy@debian.org>  Thu, 25 Oct 2001 10:16:21 +0200
+
+motor (2:3.1.0-2) unstable; urgency=low
+
+  * gettext added to Build-Depends (closes: Bug#116037)
+
+ -- Krzysztof Krzyżaniak (eloy) <eloy@debian.org>  Thu, 18 Oct 2001 10:11:19 +0200
+
+motor (2:3.1.0-1) unstable; urgency=low
+
+  * New upstream release
+  * Epoch number is changing (upstream autor has changed style of versioning)
+
+ -- Krzysztof Krzyżaniak (eloy) <eloy@debian.org>  Wed, 17 Oct 2001 13:50:28 +0200
+
+motor (3.2.5-3) unstable; urgency=low
+
+  * Fixed typo in changelog file
+  * (closes: Bug#112742)
+
+ -- Krzysztof Krzyżaniak (eloy) <eloy@debian.org>  Wed, 26 Sep 2001 10:55:21 +0200
+
+motor (3.2.5-2) unstable; urgency=low
+
+  * Bugfix release (closes: Bug#108778)
+  * New release fixes problem with opening project (close: Bug#112742)
+  * gdb added to Suggest field
+
+ -- Krzysztof Krzyżaniak (eloy) <eloy@debian.org>  Tue, 25 Sep 2001 10:58:12 +0200
+
+motor (3.2.5-1) unstable; urgency=low
+
+  * New upstream release
+  * Bugfix release
+
+ -- Krzysztof Krzyżaniak (eloy) <eloy@debian.org>  Tue, 18 Sep 2001 15:34:23 +0200
+
+motor (3.2.4-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Krzysztof Krzyżaniak (eloy) <eloy@debian.org>  Mon, 17 Sep 2001 13:00:01 +0200
+
+motor (3.1.3-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Krzysztof Krzyżaniak (eloy) <eloy@debian.org>  Wed,  5 Sep 2001 14:02:36 +0200
+
+motor (3.0.0-2) unstable; urgency=low
+
+  * Upgraded to Standards-Version: 3.5.6.0
+  * dh_suidregister removed from rules file
+  * motor is now compatible with lintian 1.20.14
+
+ -- Krzysztof Krzyżaniak (eloy) <eloy@debian.org>  Fri, 31 Aug 2001 23:00:41 +0200
+
+motor (3.0.0-1) unstable; urgency=low
+
+  * New upstream release
+  * dh_suidregister removed from rules file
+
+ -- Krzysztof Krzyżaniak (eloy) <eloy@debian.org>  Fri, 24 Aug 2001 14:40:56 +0200
+
+motor (2.99.4-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Krzysztof Krzyżaniak (eloy) <eloy@debian.org>  Tue,  7 Aug 2001 10:52:47 +0200
+
+motor (2.99.3-1) unstable; urgency=low
+
+  * New upstream release
+  * Fixed problem with C template
+
+ -- Krzysztof Krzyżaniak (eloy) <eloy@debian.org>  Mon,  6 Aug 2001 13:34:16 +0200
+
+motor (2.99.2-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Krzysztof Krzyżaniak (eloy) <eloy@debian.org>  Mon,  6 Aug 2001 10:38:05 +0200
+
+motor (2.20.14-3) unstable; urgency=low
+
+  * Changed architecture from 'i386' to 'any' (closes: Bug#102982)
+
+ -- Krzysztof Krzyżaniak (eloy) <eloy@debian.org>  Sun,  1 Jul 2001 16:22:03 +0200
+
+motor (2.20.14-2) unstable; urgency=low
+
+  * Updated manual page
+  * Maintainer email address changed to <eloy@debian.org>
+
+ -- Krzysztof Krzyżaniak (eloy) <eloy@debian.org>  Tue, 19 Jun 2001 21:39:02 +0200
+
+motor (2.20.14-1) unstable; urgency=low
+
+  * New upstream release
+  * Upgraded to Standards-Version: 3.1.0.0
+
+ -- Krzysztof Krzyżaniak (eloy) <eloy@transilvania.eu.org>  Mon,  4 Jun 2001 20:55:25 +0200
+
+motor (2.17.13-1) unstable; urgency=low
+
+  * New upstream release
+  * Short description changed
+
+ -- Krzysztof Krzyżaniak (eloy) <eloy@transilvania.eu.org>  Mon, 14 May 2001 15:28:34 +0200
+
+motor (2.16.11-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Krzysztof Krzyżaniak (eloy) <eloy@transilvania.eu.org>  Thu, 10 May 2001 16:15:43 +0200
+
+motor (2.15.7-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Krzysztof Krzyżaniak (eloy) <eloy@transilvania.eu.org>  Tue, 17 Apr 2001 09:57:31 +0200
+
+motor (2.9.03-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Krzysztof Krzyżaniak (eloy) <eloy@transilvania.eu.org>  Fri,  6 Apr 2001 14:10:26 +0200
+
+motor (2.6.3-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Krzysztof Krzyżaniak (eloy) <eloy@transilvania.eu.org>  Tue, 20 Feb 2001 12:46:21 +0100
+
+motor (2.3.1-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Krzysztof Krzyżaniak (eloy) <eloy@transilvania.eu.org>  Mon,  5 Feb 2001 11:06:35 +0100
+
+motor (2.0.0-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Krzysztof Krzyżaniak (eloy) <eloy@transilvania.eu.org>  Mon, 18 Dec 2000 11:54:06 +0100
+
+motor (1.14.19-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Krzysztof Krzyżaniak (eloy) <eloy@transilvania.eu.org>  Wed,  6 Dec 2000 18:34:20 +0100
+
+motor (1.9.14-2) unstable; urgency=low
+
+  * Fixed typo in copyright file
+
+ -- Krzysztof Krzyżaniak (eloy) <eloy@transilvania.eu.org>  Tue, 19 Sep 2000 15:51:12 +0200
+
+motor (1.9.14-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Krzysztof Krzyżaniak (eloy) <eloy@transilvania.eu.org>  Tue, 19 Sep 2000 15:51:03 +0200
+
+motor (1.7.12-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Krzysztof Krzyżaniak (eloy) <eloy@transilvania.eu.org>  Tue,  5 Sep 2000 11:12:31 +0200
+
+motor (1.4.7-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Krzysztof Krzyżaniak (eloy) <eloy@transilvania.eu.org>  Mon, 31 Jul 2000 15:20:08 +0200
+
+motor (1.2.3-3) unstable; urgency=low
+
+  * typo in menu file
+
+ -- Krzysztof Krzyżaniak (eloy) <eloy@transilvania.eu.org>  Mon, 31 Jul 2000 15:00:08 +0200
+
+motor (1.2.3-2) unstable; urgency=low
+
+  * typo in control & changelog files
+
+ -- Krzysztof Krzyżaniak (eloy) <eloy@transilvania.eu.org>  Mon, 31 Jul 2000 14:54:41 +0200
+
+motor (1.2.3-1) unstable; urgency=low
+
+  * Initial Release.  
+
+ -- Krzysztof Krzyżaniak (eloy) <eloy@transilvania.eu.org>  Tue, 25 Jul 2000 16:24:52 +0200
+

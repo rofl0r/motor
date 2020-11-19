@@ -22,7 +22,7 @@ class projectdesk/*: virtual public projectname*/ {
 	vector< pair<string, string> > settings;
 	vector<motorui::editfile> fedit;
 
-	void loadeditfile(const string &fname, INT x, INT y);
+	void loadeditfile(const string &fname, int x, int y);
 
     public:
 	projectdesk();

@@ -19,7 +19,7 @@ class motortagbrowser {
 	    private:
 		string name, fname, info;
     		char kind;
-    		INT lineno;
+    		int lineno;
 
 	    public:
 		record();

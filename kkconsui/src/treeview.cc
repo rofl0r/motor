@@ -24,7 +24,7 @@
 
 #include "treeview.h"
 
-treeview::treeview(INT nx1, INT ny1, INT nx2, INT ny2, INT nbgcolor, INT nselectcolor, INT nnodecolor, INT nleafcolor) {
+treeview::treeview(int nx1, int ny1, int nx2, int ny2, int nbgcolor, int nselectcolor, int nnodecolor, int nleafcolor) {
     bgcolor = nbgcolor;
     selectcolor = nselectcolor;
     nodecolor = nnodecolor;
@@ -33,7 +33,7 @@ treeview::treeview(INT nx1, INT ny1, INT nx2, INT ny2, INT nbgcolor, INT nselect
     setcoords(nx1, ny1, nx2, ny2);
 }
 
-treeview::treeview(INT nbgcolor, INT nselectcolor, INT nnodecolor, INT nleafcolor) {
+treeview::treeview(int nbgcolor, int nselectcolor, int nnodecolor, int nleafcolor) {
     bgcolor = nbgcolor;
     selectcolor = nselectcolor;
     nodecolor = nnodecolor;
@@ -57,47 +57,47 @@ void treeview::init() {
     clear();
 }
 
-INT treeview::addnodef(INT parent, INT color, void *ref, const char *fmt, ...) {
+int treeview::addnodef(int parent, int color, void *ref, const char *fmt, ...) {
     string buf;
     VGETSTRING(buf, fmt);
     return addnode(parent, color, ref, buf);
 }
 
-INT treeview::addnodef(const char *fmt, ...) {
+int treeview::addnodef(const char *fmt, ...) {
     string buf;
     VGETSTRING(buf, fmt);
     return addnode(buf);
 }
 
-INT treeview::addleaff(INT parent, INT color, void *ref, const char *fmt, ...) {
+int treeview::addleaff(int parent, int color, void *ref, const char *fmt, ...) {
     string buf;
     VGETSTRING(buf, fmt);
     return addleaf(parent, color, ref, buf);
 }
 
-INT treeview::addleaff(const char *fmt, ...) {
+int treeview::addleaff(const char *fmt, ...) {
     string buf;
     VGETSTRING(buf, fmt);
     return addleaf(buf);
 }
 
-INT treeview::addnodef(INT parent, INT color, INT ref, const char *fmt, ...) {
+int treeview::addnodef(int parent, int color, int ref, const char *fmt, ...) {
     string buf;
     VGETSTRING(buf, fmt);
     return addnode(parent, color, (void *) ref, buf);
 }
 
-INT treeview::addleaff(INT parent, INT color, INT ref, const char *fmt, ...) {
+int treeview::addleaff(int parent, int color, int ref, const char *fmt, ...) {
     string buf;
     VGETSTRING(buf, fmt);
     return addleaf(parent, color, (void *) ref, buf);
 }
 
-INT treeview::addnode(const string &text) {
-    return addnode(0, 0, NULL, text);
+int treeview::addnode(const string &text) {
+    return addnode(0, 0, 0, text);
 }
 
-INT treeview::addnode(INT parent, INT color, void *ref, const string &text) {
+int treeview::addnode(int parent, int color, void *ref, const string &text) {
     treeviewnode node;
 
     node.id = idseq++;
@@ -112,11 +112,11 @@ INT treeview::addnode(INT parent, INT color, void *ref, const string &text) {
     return node.id;
 }
 
-INT treeview::addleaf(const string &text) {
-    return addleaf(0, 0, NULL, text);
+int treeview::addleaf(const string &text) {
+    return addleaf(0, 0, 0, text);
 }
 
-INT treeview::addleaf(INT parent, INT color, void *ref, const string &text) {
+int treeview::addleaf(int parent, int color, void *ref, const string &text) {
     treeviewnode node;
 
     node.id = idseq++;
@@ -130,16 +130,16 @@ INT treeview::addleaf(INT parent, INT color, void *ref, const string &text) {
     return node.id;
 }
 
-INT treeview::addnode(INT parent, INT color, INT ref, const string &text) {
+int treeview::addnode(int parent, int color, int ref, const string &text) {
     return addnode(parent, color, (void *) ref, text);
 }
 
-INT treeview::addleaf(INT parent, INT color, INT ref, const string &text) {
+int treeview::addleaf(int parent, int color, int ref, const string &text) {
     return addleaf(parent, color, (void *) ref, text);
 }
 
-INT treeview::getid(void *ref) {
-    INT id = -1;
+int treeview::getid(void *ref) {
+    int id = -1;
     vector<treeviewnode>::iterator i;
 
     if((i = find(items.begin(), items.end(), (void *) ref)) != items.end())
@@ -148,7 +148,7 @@ INT treeview::getid(void *ref) {
     return id;
 }
 
-INT treeview::getid(INT mpos) {
+int treeview::getid(int mpos) {
     if((mpos >= 0) && (mpos < refdeps.size())) {
 	return refdeps[mpos].id;
     } else {
@@ -156,7 +156,7 @@ INT treeview::getid(INT mpos) {
     }
 }
 
-void treeview::opennode(INT id) {
+void treeview::opennode(int id) {
     vector<treeviewnode>::iterator i;
     i = find(items.begin(), items.end(), id);
 
@@ -166,7 +166,7 @@ void treeview::opennode(INT id) {
     }
 }
 
-void treeview::closenode(INT id) {
+void treeview::closenode(int id) {
     vector<treeviewnode>::iterator i;
     i = find(items.begin(), items.end(), id);
 
@@ -190,8 +190,8 @@ void treeview::clear() {
     items.push_back(node);
 }
 
-bool treeview::islast(INT id) {
-    INT lastid, nid;
+bool treeview::islast(int id) {
+    int lastid, nid;
     vector<treeviewnode>::iterator i;
 
     if((i = find(items.begin(), items.end(), id)) != items.end())
@@ -204,8 +204,8 @@ bool treeview::islast(INT id) {
     return lastid == id;
 }
 
-void treeview::genmenu(INT parent) {
-    INT nproc = 0;
+void treeview::genmenu(int parent) {
+    int nproc = 0;
     vector<treeviewnode>::iterator i, k;
 
     if(!parent) {
@@ -235,7 +235,7 @@ void treeview::genmenu(INT parent) {
 	    buf += i->text + "\001";
 	    nproc++;
 
-	    menu.additem(i->color, NULL, buf);
+	    menu.additem(i->color, 0, buf);
 	    refdeps.push_back(*i);
 
 	    if(i->isnode) if(!collapsable || (collapsable && i->isopen))
@@ -252,9 +252,9 @@ void treeview::redraw() {
     menu.redraw();
 }
 
-void *treeview::open(INT *n) {
+void *treeview::open(int *n) {
     void *p = 0;
-    INT k;
+    int k;
 
     screenbuffer.save(x1, y1, x2, y2);
     redraw();
@@ -267,7 +267,7 @@ void *treeview::open(INT *n) {
     return p;
 }
 
-bool treeview::isnodeopen(INT id) {
+bool treeview::isnodeopen(int id) {
     vector<treeviewnode>::iterator i;
 
     if((i = find(items.begin(), items.end(), id)) != items.end()) {
@@ -277,7 +277,7 @@ bool treeview::isnodeopen(INT id) {
     }
 }
 
-bool treeview::isnode(INT id) {
+bool treeview::isnode(int id) {
     vector<treeviewnode>::iterator i;
 
     if((i = find(items.begin(), items.end(), id)) != items.end()) {
@@ -287,8 +287,8 @@ bool treeview::isnode(INT id) {
     }
 }
 
-INT treeview::getparent(INT id) {
-    INT ret = -1;
+int treeview::getparent(int id) {
+    int ret = -1;
     vector<treeviewnode>::iterator i;
 
     if((i = find(items.begin(), items.end(), id)) != items.end())
@@ -299,7 +299,7 @@ INT treeview::getparent(INT id) {
     return ret;
 }
 
-void *treeview::getref(INT id) {
+void *treeview::getref(int id) {
     vector<treeviewnode>::iterator i;
 
     if((i = find(items.begin(), items.end(), id)) != items.end()) {
@@ -309,7 +309,7 @@ void *treeview::getref(INT id) {
     }
 }
 
-void treeview::setcur(INT id) {
+void treeview::setcur(int id) {
     vector<treeviewnode>::iterator i;
 
     if(!menu.getcount()) genmenu(0);
@@ -319,7 +319,7 @@ void treeview::setcur(INT id) {
     }
 }
 
-INT treeview::getcount() {
+int treeview::getcount() {
     return items.size();
 }
 
@@ -327,13 +327,13 @@ bool treeview::empty() {
     return items.size() < 2;
 }
 
-void treeview::setcoords(INT nx1, INT ny1, INT nx2, INT ny2) {
+void treeview::setcoords(int nx1, int ny1, int nx2, int ny2) {
     menu.setcoords(x1 = nx1, y1 = ny1, x2 = nx2, y2 = ny2);
 }
 
 // ----------------------------------------------------------------------------
 
-bool treeview::treeviewnode::operator == (const INT aid) {
+bool treeview::treeviewnode::operator == (const int aid) {
     return id == aid;
 }
 
@@ -341,7 +341,7 @@ bool treeview::treeviewnode::operator == (const void *aref) {
     return ref == aref;
 }
 
-bool treeview::treeviewnode::operator != (const INT aid) {
+bool treeview::treeviewnode::operator != (const int aid) {
     return id != aid;
 }
 

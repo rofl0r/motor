@@ -56,7 +56,7 @@ time_t lastkeypress() {
 
     struct utmp *u;
     char tname[32];
-    INT tlen;
+    int tlen;
 
     if((tlen = readlink("/proc/self/fd/0", tname, 12)) != -1) {
 	tname[tlen] = 0;
@@ -111,10 +111,10 @@ time_t lastkeypress() {
     return t;
 }
 
-INT dataready(INT fd, INT dowait) {
+int dataready(int fd, int dowait) {
     struct timeval tv;
     fd_set fds;
-    INT rc;
+    int rc;
 
     tv.tv_sec = tv.tv_usec = 0;
 
@@ -135,7 +135,7 @@ INT dataready(INT fd, INT dowait) {
 char *getprocentry(char *fname) {
     FILE *f = fopen(fname, "r");
     static char *p = 0;
-    INT fsize = kfilesize(fname);
+    int fsize = kfilesize(fname);
 
     if(f) {
 	p = (char *) realloc(p, fsize+1);
@@ -158,7 +158,7 @@ char *getdomainname() {
 
 const char *getcurtty() {
     static char buf[64];
-    INT n;
+    int n;
 
     sprintf(buf, "/proc/%lu/fd/0", getpid());
     if((n = readlink(buf, buf, 64)) != -1) {
@@ -171,7 +171,7 @@ const char *getcurtty() {
 
 #ifdef __sun__
 
-void setenv(const string &name, const string &value, INT replace) {
+void setenv(const string &name, const string &value, int replace) {
     if(getenv(name.c_str()) && replace) {
 	auto_ptr<char> stuff(new char[name.size() + value.size() + 2]);
 	sprintf(stuff.get(), "%s=%s", name.c_str(), value.c_str());

@@ -8,7 +8,7 @@ __MOTOR_BEGIN_NAMESPACE
 
 class uiconfiguration {
     protected:
-	vector<INT> boldcolors;
+	vector<int> boldcolors;
 	string schemename, lastproject;
 	bool mcedclip, smarttab;
 
@@ -17,24 +17,24 @@ class uiconfiguration {
     public:
 	class syntaxcolorpair {
 	    protected:
-		INT id, pair;
+		int id, pair;
 		bool bold;
 
 	    public:
-		syntaxcolorpair(INT aid, INT apair, bool bold);
+		syntaxcolorpair(int aid, int apair, bool bold);
 		~syntaxcolorpair();
 
 		bool isbold();
-		INT getpairnumber();
+		int getpairnumber();
 
-		bool operator == (const INT &aid);
-		bool operator != (const INT &aid);
+		bool operator == (const int &aid);
+		bool operator != (const int &aid);
 	};
 
-	class syntaxitem: public pair<string, INT> {
+	class syntaxitem: public pair<string, int> {
 	// first is filename mask, second is syntaxhl id
 	    public:
-		syntaxitem(const string &afname, INT id);
+		syntaxitem(const string &afname, int id);
 
 		bool operator == (const string &afname);
 		bool operator != (const string &afname);
@@ -43,7 +43,7 @@ class uiconfiguration {
 	uiconfiguration();
 	~uiconfiguration();
 
-	INT getcolor(INT paircode) const;
+	int getcolor(int paircode) const;
 	string getschemename() const;
 
 	string getclipboardfname() const;
@@ -58,7 +58,7 @@ class uiconfiguration {
 	void load();
 	void save();
 
-	INT getwatchlines() const;
+	int getwatchlines() const;
 };
 
 __MOTOR_END_NAMESPACE

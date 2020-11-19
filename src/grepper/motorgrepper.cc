@@ -64,7 +64,7 @@ void motorgrepper::makefilelist() {
 
 }
 
-void motorgrepper::exec(grepmode amode, const string &apattern, INT aoptions) {
+void motorgrepper::exec(grepmode amode, const string &apattern, int aoptions) {
     mode = amode;
     pattern = apattern;
     options = aoptions;
@@ -102,7 +102,7 @@ void motorgrepper::grepfile(const string &fname) {
     vector<motorui::editfile> fedit;
     vector<motorui::editfile>::iterator ie;
     string buf;
-    INT col, frompos, subsize;
+    int col, frompos, subsize;
 
     project.chdir();
     ui.logf(_("Grepping %s.."), fname.c_str());
@@ -112,7 +112,7 @@ void motorgrepper::grepfile(const string &fname) {
     }
 
     if(content.empty()) {
-	INT fsize;
+	int fsize;
 	char *pbuf;
 	ifstream f(fname.c_str());
 
@@ -151,11 +151,11 @@ void motorgrepper::grepfile(const string &fname) {
     }
 }
 
-INT motorgrepper::grepline(const string &s, INT &subsize, INT frompos) {
+int motorgrepper::grepline(const string &s, int &subsize, int frompos) {
     string cpat, cs, origs, buf;
     string::iterator c;
     regmatch_t rm[1];
-    INT r;
+    int r;
 
     r = -1;
     subsize = 0;

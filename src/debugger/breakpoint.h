@@ -8,25 +8,25 @@ __MOTOR_BEGIN_NAMESPACE
 class breakpoint {
     protected:
 	string fname, id;
-	INT line;
+	int line;
 	bool fpermanent;
 
     public:
 	breakpoint();
-	breakpoint(const string &aid, const string &afname, INT aline, bool apermanent);
-	breakpoint(const string &afname, INT aline);
+	breakpoint(const string &aid, const string &afname, int aline, bool apermanent);
+	breakpoint(const string &afname, int aline);
 	breakpoint(const string &definition);
 	~breakpoint();
 
 	string getfname() const;
-	INT getline() const;
+	int getline() const;
 	bool permanent() const;
 
 	bool operator == (const string &aid) const;
 	bool operator != (const string &aid) const;
 
-	bool operator == (const pair<string, INT> aloc) const;
-	bool operator != (const pair<string, INT> aloc) const;
+	bool operator == (const pair<string, int> aloc) const;
+	bool operator != (const pair<string, int> aloc) const;
 };
 
 __MOTOR_END_NAMESPACE
