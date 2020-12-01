@@ -1,4 +1,4 @@
-prefix=/usr/local
+prefix=/usr
 bindir=$(prefix)/bin
 datadir=$(prefix)/share
 
@@ -43,7 +43,7 @@ motor: $(OBJS)
 	$(CXX) -o motor $^ $(LDFLAGS) $(LIBS)
 
 %.o: %.cc
-	$(CXX) -DSHARE_DIR=\"$(datadir)/motor\" $(INCLUDES) $(CPPFLAGS) $(CXXFLAGS) -c -o  $@ $<
+	$(CXX) -DSHARE_DIR="\"$(datadir)/motor\"" $(INCLUDES) $(CPPFLAGS) $(CXXFLAGS) -c -o  $@ $<
 
 %.o: %.c
 	$(CC) $(INCLUDES) $(CPPFLAGS) $(CFLAGS) -c -o  $@ $<
