@@ -11,7 +11,7 @@ INCLUDES=-Isrc -Iparser/include -Ikkstrtext -Isrc/ui -Isrc/project -Isrc/executo
          -Ikkconsui/include -Isrc/manager -Isrc/vcs -Isrc/grepper -Isrc/ui/ncurses
 PROGS=motor
 TEMPLATES=$(sort $(wildcard share/templates/* share/templates/*/* share/templates/*/*/*))
-LIBS=-lintl -lncurses
+LIBS=-lncurses
 LDFLAGS=
 CFLAGS=-O0 -g3
 CPPFLAGS=-DINT=intptr_t -DUINT=uintptr_t
