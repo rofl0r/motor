@@ -299,6 +299,8 @@ manual
 1
 %file fdoc README
 1
+%file fbuild configure.in
+1
 %file fbuild Makefile
 1
 %file fbuild motor.spec
@@ -381,6 +383,26 @@ manual
 1
 %file fmisc misc/motorsync
 1
+%file fmisc motor.motor
+1
+%file fmisc debian/install
+1
+%file fmisc debian/README.source
+1
+%file fmisc debian/source/format
+1
+%file fmisc debian/changelog
+1
+%file fmisc debian/control
+1
+%file fmisc debian/motor-docs.docs
+1
+%file fmisc debian/copyright
+1
+%file fmisc debian/README.Debian
+1
+%file fmisc debian/rules
+1
 %file fmisc tutorial/images/snapshot02.png
 1
 %file fmisc tutorial/images/snapshot01.png
@@ -433,16 +455,12 @@ manual
 1
 %file fmisc po/Makevars
 1
-%file fmisc motor
-1
-%file fmisc motor.motor
-1
 %editor
 %breakpoints
 %watch
 %desktop
 ncurses_watchactive	0
-distdir	
+distdir	/home/witherking25/motor/motor
 tagbrowser_scope	2
 tagbrowser_filter	csgtfmednuvpx
 distparam0	rpmtarget i386-pc-linux-gnu
