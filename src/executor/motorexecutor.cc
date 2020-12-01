@@ -66,7 +66,7 @@ bool motorexecutor::runmake(const string &atarget) {
 
 	    pop();
 
-	    execl(findprogram(GNUMAKE).c_str(), GNUMAKE,
+	    execlp("make", "make",
 		"-f", "Makefile.func",
 		target.c_str(), 0);
 
