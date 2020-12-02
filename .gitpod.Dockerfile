@@ -1,4 +1,6 @@
 FROM gitpod/workspace-full
-USER gitpod
-RUN sudo apt-get update -q && \
-    sudo apt-get install -yq dh-make
+
+RUN sudo apt-get update \
+ && sudo apt-get install -y \
+    dh-make debhelper devscripts\
+ && sudo rm -rf /var/lib/apt/lists/*
