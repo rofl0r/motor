@@ -23,7 +23,7 @@
 
 // #define LOCALE_DIR  "/usr/local/share/locale/"
 // #define SHARE_DIR   "/usr/local/share/motor/"
-#define VERSION     "0.0.0"
+#define VERSION     "3.5.0"
 #define GNUMAKE     "gmake"
 
 #endif
