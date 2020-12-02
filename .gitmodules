@@ -1,3 +1,0 @@
-[submodule "debian"]
-	path = debian
-	url = https://github.com/withertech/motor-debian
