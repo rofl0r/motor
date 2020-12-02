@@ -1,0 +1,21 @@
+Source: motor
+Section: devel
+Priority: optional
+Maintainer: Witherking25 <witherking@withertech.com>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.5.1
+Homepage: https://github.com/rofl0r/motor
+#Vcs-Browser: https://salsa.debian.org/debian/motor
+#Vcs-Git: https://salsa.debian.org/debian/motor.git
+Rules-Requires-Root: no
+
+Package: motor
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: ncurses based ide
+ Motor is a text mode based programming environment for Linux. It
+ consists of a powerful editor with syntax highlight feature, project
+ manager, makefile generator, gcc and gdb front-end, etc. Deep CVS
+ integration is also provided. A symbol browser is provided to make it
+ easier to move between various definitions in the source, and the
+ regexper tool helps you to create and debug regular expressions.
