@@ -102,7 +102,6 @@ distlib: linklibs
 
 dist: 
 	$(MAKE) dist
-	-if test -d /root/motor; then mv $(DIST_TARGZ) /root/motor; fi
 	$(MAKE) -f Makefile.func automake
 
 distcleanup:
