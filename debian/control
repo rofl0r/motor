@@ -2,7 +2,7 @@ Source: motor
 Section: devel
 Priority: optional
 Maintainer: Witherking25 <witherking@withertech.com>
-Build-Depends: debhelper-compat (= 13)
+Build-Depends: debhelper-compat (= 13), libncurses-dev
 Standards-Version: 4.5.1
 Homepage: https://github.com/rofl0r/motor
 #Vcs-Browser: https://salsa.debian.org/debian/motor
