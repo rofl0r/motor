@@ -164,7 +164,7 @@ deb:
 	    dh_make -sy -c gpl --createorig; \
 	    rm -r debian; \
 	    cp -r ../debian .; \
-	    debuild -us -uc; \
+	    debuild -sa; \
 	    popd; \
 	    cp -r "$(HOME)/.motor/deb/debian" .; \
 	else \
