@@ -29,7 +29,7 @@ WANT = $(WANT_AM) CFLAGS="-O0 -g" CXXFLAGS="-O0 -g"
 # Executed every time there is a need to compile the stuff
 
 build: ready
-	$(WANT) $(MAKE) prefix=/usr
+	$(WANT) $(MAKE)
 
 # Executed to make sure the build environment is ready
 
@@ -102,6 +102,7 @@ distlib: linklibs
 
 dist: 
 	$(MAKE) dist
+	-if test -d /root/motor; then mv $(DIST_TARGZ) /root/motor; fi
 	$(MAKE) -f Makefile.func automake
 
 distcleanup:
@@ -175,8 +176,8 @@ rpm: rpmspec dist
 	    echo "%_tmppath     %{_var}/tmp"            >>~/.motor/rpmmacros; \
 	fi
 	@-for i in SPECS BUILD RPMS SRPMS; do mkdir -p "$${HOME}/.motor/rpm/$$i"; done
-	unset LINGUAS; rpmbuild -ta --rcfile ~/.motor/rpmrc --target i386-pc-linux-gnu /$(DIST_TARGZ)
-	find "${HOME}/.motor/rpm" -name "$(PROJNAME)-$(PROJVER)*rpm" -exec mv {} "" \;
+	unset LINGUAS; rpmbuild -ta --rcfile ~/.motor/rpmrc --target i386-pc-linux-gnu /root/motor/$(DIST_TARGZ)
+	find "${HOME}/.motor/rpm" -name "$(PROJNAME)-$(PROJVER)*rpm" -exec mv {} "/root/motor" \;
 	rm -rf "${HOME}/.motor/rpm"
 
 
