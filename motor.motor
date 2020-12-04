@@ -2,7 +2,7 @@
 # of a project. For more information visit http://thekonst.net/motor
 
 %version
-3.5.2
+0.1
 %template
 terminal program/C++
 %vcsname
