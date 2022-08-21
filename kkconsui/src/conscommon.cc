@@ -63,7 +63,7 @@ void kinterface() {
     use_default_colors();
     atexit(kendinterface);
 //      nodelay(stdscr, TRUE);
-    ESCDELAY = 0;
+    set_escdelay(0);
     signal(SIGWINCH, &kreinit);
     kt_resize_event = 0;
 }
