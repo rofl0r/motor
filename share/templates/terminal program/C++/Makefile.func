@@ -1,6 +1,6 @@
 #
 # Motor IDE functional Makefile template
-# 	for terminal program in C++
+#       for terminal program in C++
 #
 # Written by Konstantin Klyagin <konst@konst.org.ua>
 # Distributed under the GNU Public License
@@ -150,6 +150,37 @@ distcleanup:[loop 0;{fconnectedlib};1]
 	    mv .makefile.am Makefile.am; \
 	fi
 
+deb:
+	@if test ! -d "$(HOME)/.motor/deb"; then \
+	    mkdir "$(HOME)/.motor/deb"; \
+	fi
+	@if test ! -d "$(HOME)/.motor/deb/$(PROJNAME)-$(PROJVER)"; then \
+	    mkdir "$(HOME)/.motor/deb/$(PROJNAME)-$(PROJVER)"; \
+	fi
+	@if test -d debian; then \
+	    mv debian/ "$(HOME)/.motor/deb/"; \
+	    find . -depth | grep -v ".git" | cpio -pdmv "$(HOME)/.motor/deb/$(PROJNAME)-$(PROJVER)/"; \
+	    pushd "$(HOME)/.motor/deb/$(PROJNAME)-$(PROJVER)"; \
+	    dh_make -sy -c gpl --createorig; \
+	    rm -r debian; \
+	    cp -r ../debian .; \
+	    debuild -sa; \
+	    popd; \
+	    cp -r "$(HOME)/.motor/deb/debian" .; \
+	else \
+	    find . -depth | grep -v ".git" | cpio -pdmv "$(HOME)/.motor/deb/$(PROJNAME)-$(PROJVER)/"; \
+	    pushd "$(HOME)/.motor/deb/$(PROJNAME)-$(PROJVER)"; \
+	    dh_make -sy -c gpl --createorig; \
+	    rm debian/*.ex debian/*.EX debian/README.Debian debian/README.source; \
+	    echo "$(PROG) usr/bin"> debian/install; \
+	    cp -r debian ..; \
+	    popd; \
+	    cp -r "$(HOME)/.motor/deb/debian" .; \
+	    rm -r "$(HOME)/.motor/deb"; \
+	    echo "now configure the debian directory in `pwd`/debian"; \
+	    read -n 1; \
+	fi
+
 rpmspec:
 	@if test ! -f [value name].spec; then \
 	    echo "[value name].spec file not found!"; \
@@ -166,16 +197,16 @@ rpmspec:
 
 rpm: rpmspec dist
 	@if test ! -f ~/.motor/rpmrc; then \
-	    echo "macrofiles:	/usr/lib/rpm/macros:/usr/lib/rpm/%{_target}/macros:/etc/rpm/macros.specspo:/etc/rpm/macros:/etc/rpm/%{_target}/macros:~/.rpmmacros:~/.motor/rpmmacros" >~/.motor/rpmrc; \
+	    echo "macrofiles:   /usr/lib/rpm/macros:/usr/lib/rpm/%{_target}/macros:/etc/rpm/macros.specspo:/etc/rpm/macros:/etc/rpm/%{_target}/macros:~/.rpmmacros:~/.motor/rpmmacros" >~/.motor/rpmrc; \
 	fi
 	@if test ! -f ~/.motor/rpmmacros; then \
-	    echo "%_topdir	$${HOME}/.motor/rpm"	>>~/.motor/rpmmacros; \
-	    echo "%_builddir	%{_topdir}/BUILD"	>>~/.motor/rpmmacros; \
-	    echo "%_rpmdir	%{_topdir}/RPMS"	>>~/.motor/rpmmacros; \
-	    echo "%_sourcedir	%{_topdir}/SOURCES"	>>~/.motor/rpmmacros; \
-	    echo "%_specdir	%{_topdir}/SPECS"	>>~/.motor/rpmmacros; \
-	    echo "%_srcrpmdir	%{_topdir}/SRPMS"	>>~/.motor/rpmmacros; \
-	    echo "%_tmppath	%{_var}/tmp"		>>~/.motor/rpmmacros; \
+	    echo "%_topdir      $${HOME}/.motor/rpm"    >>~/.motor/rpmmacros; \
+	    echo "%_builddir    %{_topdir}/BUILD"       >>~/.motor/rpmmacros; \
+	    echo "%_rpmdir      %{_topdir}/RPMS"        >>~/.motor/rpmmacros; \
+	    echo "%_sourcedir   %{_topdir}/SOURCES"     >>~/.motor/rpmmacros; \
+	    echo "%_specdir     %{_topdir}/SPECS"       >>~/.motor/rpmmacros; \
+	    echo "%_srcrpmdir   %{_topdir}/SRPMS"       >>~/.motor/rpmmacros; \
+	    echo "%_tmppath     %{_var}/tmp"            >>~/.motor/rpmmacros; \
 	fi
 	@-for i in SPECS BUILD RPMS SRPMS; do mkdir -p "$${HOME}/.motor/rpm/$$i"; done
 	unset LINGUAS; rpmbuild -ta --rcfile ~/.motor/rpmrc --target i386-pc-linux-gnu [value packoutdir]/$(DIST_TARGZ)
@@ -184,16 +215,16 @@ rpm: rpmspec dist
 
 [if {makefmode} = automake]#
 # mfdetect(currentfiles) returns
-#	1 - root dir	2 - prog dir
-#	3 - lib dir	4 - doc dir
-#	5 - misc dir
+#       1 - root dir    2 - prog dir
+#       3 - lib dir     4 - doc dir
+#       5 - misc dir
 #
 # finlist(currentfiles, setof) $result to the list of files matched
 #
 # variables
-#	rfnames - files in the current directory (with relative path names)
-#	fnames  - files in the current directory (filenames only)
-#	dnames  - current dir subdirectories
+#       rfnames - files in the current directory (with relative path names)
+#       fnames  - files in the current directory (filenames only)
+#       dnames  - current dir subdirectories
 #
 automake: distcleanup
 	@rootfound=0; \
@@ -296,7 +327,7 @@ automake: distcleanup
 		   if test ! -z "$$result"; then \
 		       if test ! -z "$$idirs"; then echo "INCLUDES = $$idirs" >>$$amfname; fi; \
 		       if test ! -z "$$cflgs"; then \
-		           echo "CPPFLAGS = $$cflgs" >>$$amfname; \
+			   echo "CPPFLAGS = $$cflgs" >>$$amfname; \
 		       fi; \
 		       lib=`echo $$lib | sed 's/[l]-.,[r]/_/g'`; \
 		       echo "noinst_LIBRARIES = lib$${lib}.a" >>$$amfname; \
@@ -364,7 +395,7 @@ gettext:
 	    cat configure.in | egrep "^[l][l]:space:[r][r]*AC_OUTPUT" | \
 		sed "$$acopt" >>configure.in.acout; \
 	    if test ! -z "`egrep '^\s*SUBDIRS' Makefile.am`"; then \
-		sed 's/^\s*SUBDIRS[l] 	=[r]*\(.*\)$$/SUBDIRS = intl po \1/g' <Makefile.am >Makefile.am.motmp; \
+		sed 's/^\s*SUBDIRS[l]   =[r]*\(.*\)$$/SUBDIRS = intl po \1/g' <Makefile.am >Makefile.am.motmp; \
 	    else \
 		echo "SUBDIRS = intl po" >Makefile.am.motmp; cat Makefile.am >>Makefile.am.motmp; \
 	    fi; \
@@ -376,11 +407,11 @@ gettext:
 		    then mv po/Makevars.template po/Makevars; fi; \
 		if test -z "$$m4d"; then \
 		    rm -rf m4; \
-		    sed 's/^\s*SUBDIRS[l] 	=[r]*m4[l] 	=[r]*\(.*\)$$/SUBDIRS = \1/g' <Makefile.am >Makefile.am.motmp; \
+		    sed 's/^\s*SUBDIRS[l]       =[r]*m4[l]      =[r]*\(.*\)$$/SUBDIRS = \1/g' <Makefile.am >Makefile.am.motmp; \
 		    grep -v "ACLOCAL_AMFLAGS = -I m4" Makefile.am.motmp >Makefile.am; \
 		fi; \
 		if test ! -d intl; then \
-		    sed 's/^\s*SUBDIRS[l] 	=[r]*intl[l] 	=[r]*\(.*\)$$/SUBDIRS = \1/g' <Makefile.am >Makefile.am.motmp; \
+		    sed 's/^\s*SUBDIRS[l]       =[r]*intl[l]    =[r]*\(.*\)$$/SUBDIRS = \1/g' <Makefile.am >Makefile.am.motmp; \
 		    mv Makefile.am.motmp Makefile.am; \
 		fi; \
 	    fi; \
@@ -423,5 +454,5 @@ target: ready
 gnudoc:
 	touch INSTALL NEWS README COPYING AUTHORS ChangeLog
 
-.PHONY: build update debug automake dist rpm start makesure distextra \
+.PHONY: build update debug automake dist rpm deb start makesure distextra \
     distlib gettext target linklibs gnudoc

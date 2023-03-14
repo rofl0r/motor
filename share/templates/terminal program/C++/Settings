@@ -5,6 +5,9 @@
 %dist tar.gz
 target	dist
 
+%dist deb
+target deb
+
 %dist rpm
 target	rpm
 parameter	rpmtarget	Target platform
